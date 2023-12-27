@@ -80,7 +80,7 @@ function App() {
           setAuth(true);
           setUserId(res.data.userid);
           setCartId(res.data.cart_id);
-          console.log(res.data);
+          // console.log(res.data);
         } else {
           setAuth(false);
         }
@@ -235,7 +235,7 @@ function App() {
           </Routes>
           <LogPopup isShowLogin={isShowLogin} handleLoginClick={handleLoginClick} />
           <OtpLoginPopup2 show={showOtpPopup2} onHide={() => setShowOtpPopup2(false)} />
-          <AddAnotherAddressPopup show={showAddNewAddressPopup} onHide={() => setShowAddNewAddressPopup(false)} />
+          <AddAnotherAddressPopup userId={userId} show={showAddNewAddressPopup} onHide={() => setShowAddNewAddressPopup(false)} />
           <Footer />
         </Router>
       </div>

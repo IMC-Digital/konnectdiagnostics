@@ -1,3 +1,18 @@
+// const db = mysql.createConnection({
+//   host: 'localhost',
+//   user: 'infocusr_konnect',
+//   password: '}%!Bv]J_FoJ5',
+//   database: 'infocusr_konnect'
+// });
+// -----------------------------------------------------------
+// const otpdb = mysql.createConnection({
+  //   host: 'localhost',
+  //   user: 'root',
+  //   password: '',
+  //   database: 'userauthotp'
+  // })
+  // -----------------------------------------------------------
+
 const mysql = require('mysql2');
 
 const createOtpDbConnection = () => {

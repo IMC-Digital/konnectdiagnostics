@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import SampleCollHomeTab from './SampleCollHomeTab';
 import SampleCollClinicTab from './SampleCollClinicTab';
 
-function SampleCollectionAt({ setShowAddNewAddressPopup }) {
+function SampleCollectionAt({ setShowAddNewAddressPopup, userId }) {
     const [activeTab, setActiveTab] = useState(0);
     const handleTabClick = (tabIndex) => {
       setActiveTab(tabIndex);
@@ -26,7 +26,7 @@ function SampleCollectionAt({ setShowAddNewAddressPopup }) {
         <div className="tabs-container">
           {renderTabs()}
           <div className="tab-content">
-            { activeTab === 1 && <SampleCollHomeTab setShowAddNewAddressPopup={setShowAddNewAddressPopup} /> }
+            { activeTab === 1 && <SampleCollHomeTab setShowAddNewAddressPopup={setShowAddNewAddressPopup} userId={userId} /> }
             { activeTab === 2 && <SampleCollClinicTab /> }
           </div>
         </div>

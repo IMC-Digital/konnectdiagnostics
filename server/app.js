@@ -9,6 +9,7 @@ const bodyParser = require('body-parser');
 const nodemailer = require('nodemailer');
 const app = express();
 const createOtpDbConnection = require('./config/database');
+const axios = require('axios');
 
 const port = process.env.PORT;
 const privateKey = process.env.PRIVATEKEY;
@@ -33,29 +34,11 @@ const otpdb = createOtpDbConnection();
 
 // ----------------------------------------------
 const accountSid = 'AC9ca547f7c708b233df42e89bfbdca249';
-const authToken = 'de7106ee043523afd930908d5a95461b';
+const authToken = 'b7829da61a62912f21cb4b7d9f79872a';
 const client = twilio(accountSid, authToken);
 // ----------------------------------------------
 
-// const db = mysql.createConnection({
-//   host: 'localhost',
-//   user: 'infocusr_konnect',
-//   password: '}%!Bv]J_FoJ5',
-//   database: 'infocusr_konnect'
-// });
-// -----------------------------------------------------------
-// const otpdb = mysql.createConnection({
-  //   host: 'localhost',
-  //   user: 'root',
-  //   password: '',
-  //   database: 'userauthotp'
-  // })
-  // -----------------------------------------------------------
-
-app.get('/', (req, res) => {
-  res.json('Hello');
-})
-
+  
 // ------------------------------------------------------------
 const clinicsRoutes = require('./src/routes/clinicsroutes');
 const couponRoutes = require('./src/routes/couponroutes');
@@ -66,6 +49,28 @@ app.use('/user', userRoutes);
 
 
 // ------------------------------------------------------------
+app.get('/', (req, res) => {
+  res.json('Hello');
+})
+
+app.get('/getPincodeData/:pincode', async (req, res) => {
+  try {
+    const response = await axios.get(`https://api.postalpincode.in/pincode/${req.params.pincode}`);
+    res.json(response.data);
+  } catch (error) {
+    console.error('Error fetching data from external API:', error);
+
+    // Extract relevant information from the error object
+    const errorResponse = {
+      message: 'Internal Server Error',
+      details: error.message,  // Include the error message
+      // Add more properties as needed
+    };
+
+    res.status(500).json(errorResponse);
+  }
+});
+
 
 app.get('/search', (req, res) => {
   const searchTerm = req.query.q;

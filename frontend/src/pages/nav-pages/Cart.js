@@ -100,7 +100,7 @@ const Cart = ({ userId, cart, setCart, setShowAddNewAddressPopup }) => {
 
                     <h2 className="text-k-accent">Sample Collection At</h2>
                     <hr />
-                    <SampleCollectionAt setShowAddNewAddressPopup={setShowAddNewAddressPopup} />
+                    <SampleCollectionAt setShowAddNewAddressPopup={setShowAddNewAddressPopup} userId={userId} />
                     <button type="button" className='btn btn-primary w-100 fw-bold text-white'> 
                         &#8377;{grandTotalAmount} 
                         <span className='ms-4 me-2 text-white'>Proceed To Checkout</span> 

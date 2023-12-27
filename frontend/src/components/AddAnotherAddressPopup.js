@@ -6,7 +6,7 @@ export default function AddAnotherAddressPopup(props) {
   return (
     <Modal {...props} size="lg" aria-labelledby="contained-modal-title-vcenter" centered>
       <Modal.Body className='p-0'>
-        <AddOtherAddressForm />
+        <AddOtherAddressForm userId={props.userId} />
       </Modal.Body>
     </Modal>
   )
