@@ -39,29 +39,29 @@ const About = () => {
           </div>
 
           <div className="container">
-        <div className="row">
-          {
-            [
-              {title: "Vision", para: "Our Vision is to serve the superior quality diagnostic care with utmost commitment and dedication to know your health."},
-              {title: "Mission", para: "Konnect Diagnostics is equipped with a mission of providing a wide range of diagnostic services to the wellness of our patients in a cost-effective and accessible method. We strive to know you better."}
-            ].map((e) => (
-              <div className="col-md-6 d-flex align-items-stretch">
-                <div className="bg-white p-3 shadow-sm rounded rounded-bottom-0" style={{ borderBottom: "5px solid #00aeef" }}>
-                  <div className="me-3 mb-3">
-                    <div className="bg-white shadow-sm rounded-circle p-2" style={{ width: "50px", height: "50px" }}>
-                      <img src="/images/fetal-medicine-care/vision.svg" alt="" />
+            <div className="row">
+              {
+                [
+                  { title: "Vision", para: "Our Vision is to serve the superior quality diagnostic care with utmost commitment and dedication to know your health." },
+                  { title: "Mission", para: "Konnect Diagnostics is equipped with a mission of providing a wide range of diagnostic services to the wellness of our patients in a cost-effective and accessible method. We strive to know you better." }
+                ].map((e) => (
+                  <div className="col-md-6 d-flex align-items-stretch">
+                    <div className="bg-white p-3 shadow-sm rounded rounded-bottom-0" style={{ borderBottom: "5px solid #00aeef" }}>
+                      <div className="me-3 mb-3">
+                        <div className="bg-white shadow-sm rounded-circle p-2" style={{ width: "50px", height: "50px" }}>
+                          <img src={`/images/fetal-medicine-care/${e.title}.svg`} alt="" />
+                        </div>
+                      </div>
+                      <div>
+                        <h2 className="text-k-accent">{e.title}: </h2>
+                        <p> {e.para} </p>
+                      </div>
                     </div>
                   </div>
-                  <div>
-                    <h2 className="text-k-accent">{e.title}: </h2>
-                    <p> {e.para} </p>
-                  </div>
-                </div>
-              </div>
-            ))
-          }
-        </div>
-      </div>
+                ))
+              }
+            </div>
+          </div>
         </div>
         <div className="img-box ">
           <DynamicImage
@@ -86,34 +86,6 @@ const About = () => {
           </p>
         </div>
       </div>
-
-      {/* ----------------Vision Mession----------------------- */}
-      {/* <div className="container">
-        <div className="row">
-          {
-            [
-              {title: "Vision", para: "Our Vision is to serve the superior quality diagnostic care with utmost commitment and dedication to know your health."},
-              {title: "Mission", para: "Konnect Diagnostics is equipped with a mission of providing a wide range of diagnostic services to the wellness of our patients in a cost-effective and accessible method. We strive to know you better."}
-            ].map((e) => (
-              <div className="col-md-6 d-flex align-items-stretch">
-                <div className="bg-white p-3 shadow-sm rounded rounded-bottom-0" style={{ borderBottom: "5px solid #00aeef" }}>
-                  <div className="me-3 mb-3">
-                    <div className="bg-white shadow-sm rounded-circle p-2" style={{ width: "50px", height: "50px" }}>
-                      <img src="/images/fetal-medicine-care/vision.svg" alt="" />
-                    </div>
-                  </div>
-                  <div>
-                    <h2 className="text-k-accent">{e.title}: </h2>
-                    <p> {e.para} </p>
-                  </div>
-                </div>
-              </div>
-            ))
-          }
-        </div>
-      </div> */}
-
-      {/* ----------------Vision Mession----------------------- */}
 
       {/* -----------------------------Section Two------------------------------ */}
       <div className="sec sec-2 container flex flex-r">

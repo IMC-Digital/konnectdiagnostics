@@ -94,17 +94,21 @@ function App() {
   }, [auth, userId, cartId]);
 
   useEffect(() => {
-    // if (auth) {
-    //   axios.get(`${BASE_API_URL}/cart/${cartId}/products`)
-    //     .then((response) => {
-    //       setCart(response.data.cartItems);
-    //     })
-    //     .catch((error) => {
-    //       console.error('Error fetching tests:', error);
-    //     });
-    // } else {
-      setCart(JSON.parse(localStorage.getItem("selectedCartItems")));
-    // }
+    // Get the existing cart items from localStorage
+    const storedCartItems = JSON.parse(
+      localStorage.getItem("selectedCartItems")
+    );
+
+    // If there are no stored cart items, create an empty array
+    const initialCart = storedCartItems || [];
+
+    // Set the initial cart state
+    setCart(initialCart);
+
+    // Check if the localStorage item exists, and if not, create it with an empty array
+    if (!storedCartItems) {
+      localStorage.setItem("selectedCartItems", JSON.stringify([]));
+    }
   }, [cartId, auth]);
   
   useEffect(() => {
