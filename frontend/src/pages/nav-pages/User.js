@@ -22,7 +22,7 @@ export const User = ({ auth, userName, message, handleLoginClick, handleLogout }
                   <p className="text-k-text mb-0">{userName}</p>
                 </div>
                 <div className="user-profile-icon">
-                  <i class="fa-solid fa-user"></i>
+                  <i className="fa-solid fa-user"></i>
                 </div>
               </div>
             </button>
@@ -31,7 +31,7 @@ export const User = ({ auth, userName, message, handleLoginClick, handleLogout }
                 <Link to="/profile" className="text-decoration-none">
                   <div className="d-flex align-items-center p-3 bg-light">
                     <div className="user-profile-icon">
-                      <i class="fa-solid fa-user"></i>
+                      <i className="fa-solid fa-user"></i>
                     </div>
                     <div className="ps-2">
                       <h4 className="text-start fw-bold mb-0">{userName}</h4>

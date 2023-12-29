@@ -51,7 +51,7 @@ const AddOtherAddressForm = ({ userId }) => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        axios.post("http://localhost:3210/user/add-new-address", formData)
+        axios.post(`${BASE_API_URL}/user/add-new-address`, formData)
             .then((response) => {
                 console.log("Address added successfully:", response.data);
             })

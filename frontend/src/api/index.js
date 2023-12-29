@@ -1,9 +1,9 @@
-import axios from 'axios';
+// import axios from 'axios';
 
 export const BASE_API_URL = 'http://localhost:3210';
 
-const apis = {
-    clinics: axios.get(`${BASE_API_URL}/clinics`),
-};
+// const apis = {
+//     clinics: axios.get(`${BASE_API_URL}/clinics`),
+// };
 
-export default apis;
+export default BASE_API_URL;

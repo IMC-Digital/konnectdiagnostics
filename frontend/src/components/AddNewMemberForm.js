@@ -1,0 +1,120 @@
+import axios from 'axios';
+import React, { useState } from 'react';
+import { Form, Button, DropdownButton, Dropdown } from 'react-bootstrap';
+import { BASE_API_URL } from "../api"
+
+const AddNewMemberForm = ({ cart, setCart, userId, setShowAddNewMemberPopup }) => {
+  const [formData, setFormData] = useState({
+    userId: userId,
+    personTitle: 'Mr.',
+    formFullName: '',
+    formDOB: '',
+    gender: '',
+    formRelationship: 'Father',
+  });
+
+  const handleChange = (e) => {
+    const { id, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [id]: value,
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    axios.post(`${BASE_API_URL}/user/add-new-address`, formData)
+      .then((response) => {
+        console.log("Member added to db", response.data);
+      }).catch((error) => {
+        console.log(error);
+      })
+  };
+
+  return (
+    <div className='p-4'>
+      <h3 className='text-k-secondary'>Add New Member</h3>
+      <hr />
+      <Form onSubmit={handleSubmit}>
+        <div className="mb-3">
+          <div className='d-flex'>
+            <div className="form-group w-25">
+              <Form.Label htmlFor="personTitle" className='text-k-accent'>Title</Form.Label>
+              <DropdownButton
+                variant="outline-secondary"
+                id="personTitle"
+                title={formData.personTitle}
+              >
+                {["Mr.", "Mrs.", "Master.", "Baby.", "Baby Of.", "Baby Boy.", "Baby Girl.", "Dr.", "Prof.", "Captain."].map((e) => (
+                  <Dropdown.Item key={e} onClick={() => handleChange({ target: { id: 'personTitle', value: e } })}>
+                    {e}
+                  </Dropdown.Item>
+                ))}
+              </DropdownButton>
+            </div>
+
+            <div className="form-group w-75">
+              <Form.Label htmlFor="formFullName" className='text-k-accent'>Full Name</Form.Label>
+              <Form.Control
+                type="text"
+                id="formFullName"
+                placeholder="Enter Full Name"
+                value={formData.formFullName}
+                onChange={handleChange}
+              />
+            </div>
+          </div>
+        </div>
+
+        <div className="mb-3">
+          <div className="form-group">
+            <Form.Label htmlFor="formDOB" className='text-k-accent'>Date of Birth</Form.Label>
+            <Form.Control
+              type="date"
+              id="formDOB"
+              value={formData.formDOB}
+              onChange={handleChange}
+            />
+          </div>
+
+          <div className="form-group" id="formGender">
+            <Form.Label className='text-k-accent'>Gender</Form.Label>
+            <div className='d-flex'>
+              {["Male", "Female", "Other"].map((e) => (
+                <div key={e} className="form-check rounded shadow-sm me-2 py-1 px-3">
+                  <Form.Check
+                    type="radio"
+                    name="gender"
+                    id={e}
+                    label={e}
+                    onChange={() => handleChange({ target: { id: 'gender', value: e } })}
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div className="mb-3">
+          <div className="form-group">
+            <Form.Label htmlFor="formRelationship" className='text-k-accent'>Relationship</Form.Label>
+            <Form.Control
+              as="select"
+              id="formRelationship"
+              value={formData.formRelationship}
+              onChange={handleChange}
+            >
+              {["Spouse", "Mother", "Father", "Daughter", "Son", "Mother-in-law", "Father-in-law", "Sibling", "Grandmother"].map((e) => (
+                <option key={e} value={e}>{e}</option>
+              ))}
+            </Form.Control>
+          </div>
+        </div>
+
+        <Button type="submit" variant="primary" className='btn btn-k-primary w-100'>Submit</Button>
+      </Form>
+    </div>
+  )
+}
+
+export default AddNewMemberForm;

@@ -54,26 +54,35 @@ const SectionThree = () => {
           </div>
         </div>
 
-        <div className="col-md-6">
-          <div className="icon-box">
-            <div className="icon">
-              <img src="/images/icons/home/certified.svg" alt="certifiedIcon" />
+        <div className="col-md-6 p-4">
+          <div className="icon-box p-2 d-flex align-items-center">
+            <div className="icon me-3">
+              <div className="shadow-sm rounded-circle d-flex justify-content-center align-items-center p-2" style={{width: "80px", height: "80px"}}>
+                <img src="/images/icons/home/certified.svg" alt="certifiedIcon" className="img-fluid" />
+              </div>
             </div>
-            <p> Konnect Diagnostics offers precise diagnostics with certified radiologists, pathologists, doctors, and technicians. </p>
+            <p className="mb-0"> Konnect Diagnostics offers precise diagnostics with certified radiologists, pathologists, doctors, and technicians. </p>
           </div>
           <hr />
-          <div className="icon-box">
-            <div className="icon"> 
-              <img src="/images/icons/home/team.svg" alt="teamIcon" /> 
+          <div className="icon-box p-2 d-flex align-items-center">
+            <div className="icon me-3">
+              <div className="shadow-sm rounded-circle d-flex justify-content-center align-items-center p-2" style={{width: "80px", height: "80px"}}>
+                <img src="/images/icons/home/team.svg" alt="teamIcon" /> 
+                {/* <img src="/images/icons/home/certified.svg" alt="certifiedIcon" className="img-fluid" /> */}
+              </div>
             </div>
-            <p> Pioneering tech, skilled team drive us in advanced diagnostics, managing complex cases with expertise. </p>
+            <p className="mb-0"> Pioneering tech, skilled team drive us in advanced diagnostics, managing complex cases with expertise. </p>
           </div>
           <hr />
-          <div className="icon-box">
-            <div className="icon"> 
-              <img src="/images/icons/home/top.svg" alt="topIcon" />
+          <div className="icon-box p-2 d-flex align-items-center">
+            
+            <div className="icon me-3">
+              <div className="shadow-sm rounded-circle d-flex justify-content-center align-items-center p-2" style={{width: "80px", height: "80px"}}>
+                <img src="/images/icons/home/top.svg" alt="topIcon" />
+                {/* <img src="/images/icons/home/certified.svg" alt="certifiedIcon" className="img-fluid" /> */}
+              </div>
             </div>
-            <p> Our priority: satisfied patients. Swift, transparent, precise top-quality services for convenience and rapid results. </p>
+            <p className="mb-0"> Our priority: satisfied patients. Swift, transparent, precise top-quality services for convenience and rapid results. </p>
           </div>
         </div>
       </div>
@@ -87,12 +96,12 @@ const Wrapper = styled.section`
   .icon-box{
     display: flex;
     .icon{
-      width: 100px;
-      height: 100px;
-      border-radius: 50px;
-      padding: 10px;
-      background-color: #fff;
-      box-shadow: rgba(149, 157, 165, 0.3) 0px 8px 24px;
+      ${'' /* width: 100px;
+      height: 100px; */}
+      ${'' /* border-radius: 50px; */}
+      padding: 0px;
+      ${'' /* background-color: #fff; */}
+      ${'' /* box-shadow: rgba(149, 157, 165, 0.3) 0px 8px 24px; */}
       img{
         width: 50px;
       }

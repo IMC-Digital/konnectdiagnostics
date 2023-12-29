@@ -2,7 +2,6 @@ import React from 'react';
 import { styled } from "styled-components";
 import { GoLocation } from "react-icons/go";
 import ImageCarousel from './LocateClinics/ImageCarousel';
-// import ClinicData from '../../assets/data/ClinicData';
 
 function LocateClinicGrid({ clinicsdata, noclinics }) {
 
@@ -14,7 +13,6 @@ function LocateClinicGrid({ clinicsdata, noclinics }) {
             <div className="clinic-card d-flex">
               <div className="clinic-image w-50">
                 <ImageCarousel clinicname={item.area} />
-                {/* <ImageCarousel2 /> */}
                 <p className="area d-flex gap-2">
                   {item.area}
                   <a href={item.direction} target="blank">

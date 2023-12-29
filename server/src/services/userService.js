@@ -12,8 +12,22 @@ const addNewAddress = (newAddressFormData, callback) => {
       console.error('Error adding address to database:', error);
       callback(error, null);
     } else {
-      // console.log('Address added to database:', results);
       callback(null, { message: 'Address added successfully!' });
+    }
+  });
+}
+
+const addNewMember = (newMemberFormData, callback) => {
+  const { user_id, personTitle, fullName, date_of_birth, gender, relation } = newMemberFormData;
+  const query = "INSERT INTO user_members (user_id, person_title, fullname, date_of_birth, gender, relation ) VALUES (?, ?, ?, ?, ?, ?)";
+  const values = [ user_id, personTitle, fullName, date_of_birth, gender, relation ];
+
+  otpdb.query(query, values, (error, results) => {
+    if (error) {
+      console.error('Error adding member to database:', error);
+      callback(error, null);
+    } else {
+      callback(null, { results });
     }
   });
 }
@@ -25,8 +39,18 @@ const getUserAddresses = (req, callback) => {
     callback(error, response);
   })
 } 
+
+const getUserAltmob = (req, callback) => {
+  const uid = req.query.userid;
+  const query = "SELECT * FROM user_profile WHERE user_id = ?";
+  otpdb.query(query, [uid], (error, response) => {
+    callback(error, response);
+  })
+}
   
 module.exports = {
   addNewAddress,
-  getUserAddresses
+  addNewMember,
+  getUserAddresses,
+  getUserAltmob
 };

@@ -28,7 +28,7 @@ function Header2({ cart, setCart, auth, setAuth, userId, setUserId, userName, se
                             <div className="d-flex align-items-center justify-content-center me-2">
                                 {!auth ?
                                     <Button variant="primary" className='btn btn-secondary' onClick={() => setShowOtpPopup2(true)}>
-                                      Sigin / Signup <i class="ms-2 fa-solid fa-right-to-bracket text-white"></i>
+                                      Sigin / Signup <i className="ms-2 fa-solid fa-right-to-bracket text-white"></i>
                                     </Button> :
                                     <User auth={auth} setAuth={setAuth} userId={userId} setUserId={setUserId} userName={userName} setUserName={setUserName} setCartId={setCartId} message={message} handleLoginClick={handleLoginClick} handleLogout={handleLogout} />
                                 }

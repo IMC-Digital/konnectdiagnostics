@@ -40,6 +40,8 @@ import { BASE_API_URL } from "./api";
 import OtpLoginPopup2 from "./login/OtpLoginPopup2";
 import OtpLoginPage from "./login/OtpLoginPage";
 import AddAnotherAddressPopup from "./components/AddAnotherAddressPopup";
+import CheckoutProceed from "./pages/nav-pages/CheckoutProceed";
+import AddNewMemberPopup from "./components/AddNewMemberPopup";
 
 const theme = {
   colors: {
@@ -73,6 +75,7 @@ function App() {
   axios.defaults.withCredentials = true;
   const [showOtpPopup2, setShowOtpPopup2] = React.useState(false);
   const [showAddNewAddressPopup, setShowAddNewAddressPopup] = useState(false)
+  const [showAddNewMemberPopup, setShowAddNewMemberPopup] = useState(false)
 
   useEffect(() => {
     axios.get(`${BASE_API_URL}/user`).then((res) => {
@@ -102,7 +105,7 @@ function App() {
     // } else {
       setCart(JSON.parse(localStorage.getItem("selectedCartItems")));
     // }
-  }, [cartId, auth, cart]);
+  }, [cartId, auth]);
   
   useEffect(() => {
     const fetchData = async () => {
@@ -194,8 +197,8 @@ function App() {
                 cart={cart} 
                 setCart={setCart} 
                 handleLoginClick={handleLoginClick} 
-                />} />
-            <Route path="/cart" element={
+              />} />
+            {/* <Route path="/cart" element={
               auth ? (<Cart 
                 userId={userId} 
                 cart={cart} 
@@ -203,8 +206,41 @@ function App() {
                 setShowAddNewAddressPopup={setShowAddNewAddressPopup}
               />) : ( 
                  <Navigate to="/login" /> 
-            )} />
+            )} /> */}
+            <Route path="/cart" element={
+              auth ? (
+                <Cart 
+                  userId={userId} 
+                  cart={cart} 
+                  setCart={setCart}
+                />) : ( 
+                 <Navigate to="/login" /> 
+                )
+              } 
+              />
             {/* <Route path="/cart" element={ <Cart userId={userId} cart={cart} setCart={setCart} /> } /> */}
+            <Route path="/checkout" element={ 
+              <CheckoutProceed 
+                userId={userId} 
+                cart={cart} 
+                setCart={setCart} 
+                setShowAddNewAddressPopup={setShowAddNewAddressPopup}
+                setShowAddNewMemberPopup={setShowAddNewMemberPopup}
+              /> } />
+            {/* <Route path="/checkout" element={
+              auth ? (
+                <CheckoutProceed 
+                  userId={userId}
+                  cart={cart}
+                  setCart={setCart}
+                  setShowAddNewAddressPopup={setShowAddNewAddressPopup}
+                />
+              ) : (
+                <Navigate to="/login" />
+              )
+            }
+            /> */}
+
             <Route path="/packages" element={
               <Packages 
                 auth={auth} 
@@ -236,6 +272,7 @@ function App() {
           <LogPopup isShowLogin={isShowLogin} handleLoginClick={handleLoginClick} />
           <OtpLoginPopup2 show={showOtpPopup2} onHide={() => setShowOtpPopup2(false)} />
           <AddAnotherAddressPopup userId={userId} show={showAddNewAddressPopup} onHide={() => setShowAddNewAddressPopup(false)} />
+          <AddNewMemberPopup userId={userId} show={showAddNewMemberPopup} onHide={() => setShowAddNewMemberPopup(false)} />
           <Footer />
         </Router>
       </div>
