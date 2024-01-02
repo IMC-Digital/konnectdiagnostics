@@ -2,10 +2,11 @@ import React from 'react';
 import { styled } from "styled-components";
 import CartBillingSec from '../../components/cart/CartBillingSec';
 import { NavLink } from 'react-router-dom';
-import SampleCollectionAt from '../../components/checkout/SampleCollectionAt';
-import SelectMember from '../../components/checkout/SelectMember';
+import SessionSelection from '../../components/checkout/SessionSelection';
+// import SampleCollectionAt from '../../components/checkout/SampleCollectionAt';
+// import SelectMember from '../../components/checkout/SelectMember';
 
-export default function CheckoutProceed({ userId, cart, setCart, setShowAddNewAddressPopup, setShowAddNewMemberPopup }) {
+export default function CheckoutProceed({ userId, cart, setCart, profileData, setShowAddNewAddressPopup, setShowAddNewMemberPopup }) {
   return (
     <Wrapper>
       <article className='container mx-auto m-5 p-0 d-flex'>
@@ -20,7 +21,7 @@ export default function CheckoutProceed({ userId, cart, setCart, setShowAddNewAd
           <CartBillingSec cart={cart} setCart={setCart} userId={userId} />
         </div>
         <div className='p-5' style={{ width: "65%" }}>
-          <SampleCollectionAt
+          {/* <SampleCollectionAt
             setShowAddNewAddressPopup={setShowAddNewAddressPopup}
             cart={cart}
             setCart={setCart}
@@ -32,7 +33,10 @@ export default function CheckoutProceed({ userId, cart, setCart, setShowAddNewAd
             setCart={setCart}
             userId={userId}
             setShowAddNewMemberPopup={setShowAddNewMemberPopup}
-            />
+            profileData={profileData}
+            /> */}
+          
+          <SessionSelection />
         </div>
       </article>
     </Wrapper>

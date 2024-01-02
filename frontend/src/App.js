@@ -230,6 +230,7 @@ function App() {
                 setCart={setCart} 
                 setShowAddNewAddressPopup={setShowAddNewAddressPopup}
                 setShowAddNewMemberPopup={setShowAddNewMemberPopup}
+                profileData={profileData}
               /> } />
             {/* <Route path="/checkout" element={
               auth ? (

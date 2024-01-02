@@ -24,7 +24,7 @@ function SampleCollectionAt({ setShowAddNewAddressPopup, userId }) {
 
     return (
         <div className="tabs-container">
-          <h2 className="text-k-accent">Sample Collection At</h2>
+          <h2 className="text-k-secondary">Sample Collection At</h2>
           <hr />
           {renderTabs()}
           <div className="tab-content">

@@ -5,6 +5,7 @@
 @import url('./styles/User.css');
 @import url('./styles/SampleCollecionAt.css');
 @import url('./styles/selectMember.css');
+@import url('./styles/checkout.css');
 
 :root {
   --primary-color: #005BAB;
@@ -16,42 +17,6 @@
   color: var(--text-color);
   font-family: 'Archivo', sans-serif;
 }
-/* .c1200{
-  max-width: 1200px;
-  margin: 0 auto !important;
-}
-h1{
-  font-size: 1.75rem;
-  font-weight: 700;
-}
-h2{
-  font-size: 1.625rem;
-  font-weight: 700;
-  text-transform: uppercase;
-}
-h3{
-  font-size: 1.5rem;
-  font-weight: 700;
-}
-h4{
-  font-size: 1.25rem;
-  font-weight: 600;
-}
-h5{
-  font-size: 1rem;
-  font-weight: 500;
-}
-p{
-  font-size: 0.9375rem;
-  font-weight:500;
-  margin: 0;
-}
-.para{
-  font-size: 1rem;
-}
-.w1000{
-  width: 1000px;
-} */
 
 .text-k-clr-primary{ color: var(--primary-color); }
 .text-k-clr-secondary{ color: var(--secondary-color); }
@@ -60,22 +25,22 @@ p{
 .text-k-primary{
   font-size: 46px;
   font-weight: 800;
-  line-height: 56px;
+  line-height: 1.1rem;
 }
 .text-k-secondary{
   font-size: 26px;
   font-weight: 700;
-  line-height: 36px;
+  line-height: 1.1rem;
 }
 .text-k-text{
   font-size: 16px;
   font-weight: 400;
-  line-height: 26px;
+  line-height: 1.1rem;
 }
 .text-k-accent{
   font-size: 16px;
   font-weight: 600;
-  line-height: 26px;
+  line-height: 1.1rem;
 }
 
 .btn-k-primary{

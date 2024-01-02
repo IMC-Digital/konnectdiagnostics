@@ -1,16 +1,16 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import { Form, Button, DropdownButton, Dropdown } from 'react-bootstrap';
-import { BASE_API_URL } from "../api"
+import { BASE_API_URL } from "../api";
 
 const AddNewMemberForm = ({ cart, setCart, userId, setShowAddNewMemberPopup }) => {
   const [formData, setFormData] = useState({
     userId: userId,
     personTitle: 'Mr.',
-    formFullName: '',
-    formDOB: '',
+    fullName: '',
+    date_of_birth: '',
     gender: '',
-    formRelationship: 'Father',
+    relationship: '',
   });
 
   const handleChange = (e) => {
@@ -22,6 +22,7 @@ const AddNewMemberForm = ({ cart, setCart, userId, setShowAddNewMemberPopup }) =
   };
 
   const handleSubmit = (e) => {
+    console.log(formData);
     e.preventDefault();
     axios.post(`${BASE_API_URL}/user/add-new-address`, formData)
       .then((response) => {
@@ -44,6 +45,7 @@ const AddNewMemberForm = ({ cart, setCart, userId, setShowAddNewMemberPopup }) =
                 variant="outline-secondary"
                 id="personTitle"
                 title={formData.personTitle}
+                required
               >
                 {["Mr.", "Mrs.", "Master.", "Baby.", "Baby Of.", "Baby Boy.", "Baby Girl.", "Dr.", "Prof.", "Captain."].map((e) => (
                   <Dropdown.Item key={e} onClick={() => handleChange({ target: { id: 'personTitle', value: e } })}>
@@ -54,13 +56,14 @@ const AddNewMemberForm = ({ cart, setCart, userId, setShowAddNewMemberPopup }) =
             </div>
 
             <div className="form-group w-75">
-              <Form.Label htmlFor="formFullName" className='text-k-accent'>Full Name</Form.Label>
+              <Form.Label htmlFor="fullName" className='text-k-accent'>Full Name</Form.Label>
               <Form.Control
                 type="text"
-                id="formFullName"
+                id="fullName"
                 placeholder="Enter Full Name"
-                value={formData.formFullName}
+                value={formData.fullName}
                 onChange={handleChange}
+                required
               />
             </div>
           </div>
@@ -68,12 +71,13 @@ const AddNewMemberForm = ({ cart, setCart, userId, setShowAddNewMemberPopup }) =
 
         <div className="mb-3">
           <div className="form-group">
-            <Form.Label htmlFor="formDOB" className='text-k-accent'>Date of Birth</Form.Label>
+            <Form.Label htmlFor="date_of_birth" className='text-k-accent'>Date of Birth</Form.Label>
             <Form.Control
               type="date"
-              id="formDOB"
-              value={formData.formDOB}
+              id="date_of_birth"
+              value={formData.date_of_birth}
               onChange={handleChange}
+              required
             />
           </div>
 
@@ -88,6 +92,7 @@ const AddNewMemberForm = ({ cart, setCart, userId, setShowAddNewMemberPopup }) =
                     id={e}
                     label={e}
                     onChange={() => handleChange({ target: { id: 'gender', value: e } })}
+                    required
                   />
                 </div>
               ))}
@@ -97,14 +102,15 @@ const AddNewMemberForm = ({ cart, setCart, userId, setShowAddNewMemberPopup }) =
 
         <div className="mb-3">
           <div className="form-group">
-            <Form.Label htmlFor="formRelationship" className='text-k-accent'>Relationship</Form.Label>
+            <Form.Label htmlFor="relationship" className='text-k-accent'>Relationship</Form.Label>
             <Form.Control
               as="select"
-              id="formRelationship"
-              value={formData.formRelationship}
+              id="relationship"
+              value={formData.relationship}
               onChange={handleChange}
+              required
             >
-              {["Spouse", "Mother", "Father", "Daughter", "Son", "Mother-in-law", "Father-in-law", "Sibling", "Grandmother"].map((e) => (
+              {["Father", "Mother", "Spouse", "Daughter", "Son", "Mother-in-law", "Father-in-law", "Sibling", "Grandmother"].map((e) => (
                 <option key={e} value={e}>{e}</option>
               ))}
             </Form.Control>

@@ -19,8 +19,8 @@ export default function SelectClinicGrid({ item, setSelectedClinic }) {
           </div>
           <p className='mb-0'>{item.address}</p>
           <div className="d-flex gap-4">
-            <p className='mb-0'> <i className="fa-solid fa-mobile-screen text-muted me-2"></i> {item.telephone_number}</p>
-            <p className='mb-0'> <i className="fa-regular fa-envelope text-muted me-2"></i> {item.email}</p>
+            <p className='mb-0 small'> <i className="fa-solid fa-mobile-screen text-muted me-2"></i> {item.telephone_number}</p>
+            <p className='mb-0 small'> <i className="fa-regular fa-envelope text-muted me-2"></i> {item.email}</p>
           </div>
         </div>
       </div>

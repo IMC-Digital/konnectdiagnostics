@@ -18,9 +18,9 @@ const addNewAddress = (newAddressFormData, callback) => {
 }
 
 const addNewMember = (newMemberFormData, callback) => {
-  const { user_id, personTitle, fullName, date_of_birth, gender, relation } = newMemberFormData;
+  const { userId, personTitle, fullName, date_of_birth, gender, relationship } = newMemberFormData;
   const query = "INSERT INTO user_members (user_id, person_title, fullname, date_of_birth, gender, relation ) VALUES (?, ?, ?, ?, ?, ?)";
-  const values = [ user_id, personTitle, fullName, date_of_birth, gender, relation ];
+  const values = [ userId, personTitle, fullName, date_of_birth, gender, relationship ];
 
   otpdb.query(query, values, (error, results) => {
     if (error) {
@@ -47,10 +47,20 @@ const getUserAltmob = (req, callback) => {
     callback(error, response);
   })
 }
+
+const getUserMembers = (req, callback) => {
+  const uid = req.query.userid;
+  // callback(null, uid)
+  const query = "SELECT * FROM user_members WHERE user_id = ?";
+  otpdb.query(query, [uid], (error, response) => {
+    callback(error, response)
+  })
+}
   
 module.exports = {
   addNewAddress,
   addNewMember,
   getUserAddresses,
-  getUserAltmob
+  getUserAltmob,
+  getUserMembers
 };

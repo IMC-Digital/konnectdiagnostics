@@ -46,7 +46,6 @@ export default function SampleCollHomeTab({ setShowAddNewAddressPopup, userId })
 
   const handleAltMobChange = (e) => {
     const newValue = e.target.value;
-    // Assuming you want to restrict to numeric values only
     const numericValue = newValue.replace(/\D/g, '');
     setUserAltMob(numericValue);
   };

@@ -18,7 +18,7 @@ export default function OtpLoginPopup2(props) {
       .then((res) => {
         if (res.data.Status === "OTP sent!") {
           setNumberVerified(true);
-        } else {
+        } else{
           alert(res.data.Error);
           console.log(res.data.Error);
         }

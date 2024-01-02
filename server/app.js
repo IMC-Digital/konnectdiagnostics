@@ -34,7 +34,7 @@ const otpdb = createOtpDbConnection();
 
 // ----------------------------------------------
 const accountSid = 'AC9ca547f7c708b233df42e89bfbdca249';
-const authToken = '7f96f21d1d073f49fb838b4f94e9ed9b';
+const authToken = 'ba1c4a212a1449f7a9a258d91a1d7998';
 const client = twilio(accountSid, authToken);
 // ----------------------------------------------
 
@@ -60,11 +60,9 @@ app.get('/getPincodeData/:pincode', async (req, res) => {
   } catch (error) {
     console.error('Error fetching data from external API:', error);
 
-    // Extract relevant information from the error object
     const errorResponse = {
       message: 'Internal Server Error',
-      details: error.message,  // Include the error message
-      // Add more properties as needed
+      details: error.message,
     };
 
     res.status(500).json(errorResponse);
@@ -204,7 +202,7 @@ app.post("/otplogin", async (req, res) => {
       })
       .catch((err) => {
           console.error("Error sending OTP:", err);
-          res.status(500).json({ "Failed to send OTP": err });
+          res.status(500).json({ "Failed to send OTP": err, messagese: "Failed to send OTP!" });
       });
   }
   

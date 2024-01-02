@@ -55,10 +55,22 @@ const getUserAltmob = async (req, res) => {
   })
 }
 
+const getUserMembers = async (req, res) => {
+  UserService.getUserMembers(req, (error, response) => {
+    if(error) {
+      console.log("getting user members error", error);
+      res.status(500).json({ error: "User " })
+    } else {
+      res.status(200).json({response});
+    }
+  })
+}
+
 module.exports = {
     getUserInfo,
     addNewAddress,
     addNewMember,
     getUserAddresses,
-    getUserAltmob
+    getUserAltmob,
+    getUserMembers
 };
