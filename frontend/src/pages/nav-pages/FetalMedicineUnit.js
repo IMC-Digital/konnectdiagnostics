@@ -34,6 +34,11 @@ const Li = ({ prop }) => {
 const FetalMedicineUnit = () => {
   return (
     <Wrapper className="partnerwithus">
+      <div className="banner pb d-flex">
+        <div className="container flex">
+          <h1 className="page_title text-k-mainHeadings">Partner With Us</h1>
+        </div>
+      </div>
       <section className="section" id="fmu_s1">
         <img src="/images/dotGrids1.png" alt="" className="dots" />
         <div className="container p-0 d-flex py-4">
@@ -292,6 +297,9 @@ const FetalMedicineUnit = () => {
 export default FetalMedicineUnit;
 
 const Wrapper = styled.section`
+  .banner {
+    background: url("https://img.freepik.com/free-photo/partnership-handshake-innovation-corporate-business-concept_53876-104048.jpg?w=1380&t=st=1704189308~exp=1704189908~hmac=8dc5d17efffa35b6a94436377894fd0b6999bd73bef8b499fa9f3cd37486f697");
+  }
   .fm-heading {
     color: ${({ theme }) => theme.colors.pink};
   }

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { styled } from "styled-components";
-import TestsBanner from "../../components/testsComponents/TestsBanner";
+// import TestsBanner from "../../components/testsComponents/TestsBanner";
 import TestsFilterBarLeft from "../../components/testsComponents/TestsFilterBarLeft";
 import axios from "axios";
 import TestsGrid from "../../components/testsComponents/TestsGrid";
@@ -10,23 +10,38 @@ const Tests = ({ userId, auth, cart, setCart, handleLoginClick }) => {
   const [searchResults, setSearchResults] = useState([]);
   useEffect(() => {
     async function fetchInitialData() {
-        try {
-            const response = await axios.get(`${BASE_API_URL}/orgsel?selectedorgan=heart`);
-            setSearchResults(response.data);
-        } catch (error) {
-            console.error(error);
-        }
-    } 
+      try {
+        const response = await axios.get(
+          `${BASE_API_URL}/orgsel?selectedorgan=heart`
+        );
+        setSearchResults(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    }
     fetchInitialData();
   }, []);
-  
+
   return (
     <Wrapper className="testspage">
-      <TestsBanner />
+      {/* <TestsBanner /> */}
+      <div className="banner pb d-flex">
+        <div className="container flex">
+          <h1 className="page_title text-k-mainHeadings">Tests</h1>
+        </div>
+      </div>
       <div className="container tests-container d-flex">
         <TestsFilterBarLeft setSearchResults={setSearchResults} />
         <div className="box-right">
-          <TestsGrid userId={userId} auth={auth} cart={cart} setCart={setCart} searchResults={searchResults} cardsPerPage={9} handleLoginClick={handleLoginClick} />
+          <TestsGrid
+            userId={userId}
+            auth={auth}
+            cart={cart}
+            setCart={setCart}
+            searchResults={searchResults}
+            cardsPerPage={9}
+            handleLoginClick={handleLoginClick}
+          />
         </div>
       </div>
     </Wrapper>
@@ -37,6 +52,11 @@ export default Tests;
 
 const Wrapper = styled.section`
   /* pagination */
+  .banner {
+    background: url("https://img.freepik.com/free-photo/experiment-biotechnology-with-chemistry-science_23-2150365001.jpg?w=1060&t=st=1693206336~exp=1693206936~hmac=298f321f3d42d2c85a616759ad5fc036e099b783b64729b16ca8cba4b61ac944");
+    background-size: cover;
+    background-position: bottom center;
+  }
   .pagination {
     display: flex;
     justify-content: center;
@@ -62,7 +82,7 @@ const Wrapper = styled.section`
     color: #fff;
     border-radius: 50%;
   }
-  .pagination button.active::after{
+  .pagination button.active::after {
     display: none;
   }
   /* pagination */
@@ -76,7 +96,8 @@ const Wrapper = styled.section`
       border-radius: 15px;
       z-index: 1;
       .ptBg {
-        background-image: url(/images/k-10.png), linear-gradient(360deg, transparent, #005bab);
+        background-image: url(/images/k-10.png),
+          linear-gradient(360deg, transparent, #005bab);
         background-size: cover;
         background-repeat: no-repeat;
         background-color: #005bab90;
@@ -198,10 +219,11 @@ const Wrapper = styled.section`
     width: 20%;
     height: 100%;
     padding: 10px;
-    .organs{
-      .org-item{
+    .organs {
+      .org-item {
         background: white;
-        box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+          rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
         border-radius: 4px;
         width: 100%;
         padding: 5px 10px;
@@ -213,13 +235,13 @@ const Wrapper = styled.section`
         img {
           width: 30px;
           margin: 5px;
-          ${'' /* background: red; */}
+          ${"" /* background: red; */}
         }
         &:hover {
-          background-color: rgba(0,0,0,0.05);
+          background-color: rgba(0, 0, 0, 0.05);
         }
       }
-      .active::after{
+      .active::after {
         height: 3px;
         width: 100%;
       }

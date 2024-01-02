@@ -1,12 +1,17 @@
 import { styled } from "styled-components";
 import DynamicImage from "../../components/requiredPages/DynamicImage";
-import { BiChevronsRight } from "react-icons/bi";
+// import { BiChevronsRight } from "react-icons/bi";
 import { CiHospital1 } from "react-icons/ci";
 
 const About = () => {
   return (
     <Wrapper className="about">
-      <div className="banner-bg d-flex">
+      <div className="banner pb d-flex">
+        <div className="container flex">
+          <h1 className="page_title text-k-mainHeadings">About Us</h1>
+        </div>
+      </div>
+      {/* <div className="banner-bg d-flex">
         <div className="banner-cnt container flex ">
           <h2>About</h2>
           <h6>
@@ -15,7 +20,7 @@ const About = () => {
             about
           </h6>
         </div>
-      </div>
+      </div> */}
       <div className="sec-1 container flex flex-r">
         <div className="sec-left ">
           <h3 className="paraH3 hdng2">We Care About Your Health -</h3>
@@ -40,26 +45,39 @@ const About = () => {
 
           <div className="container">
             <div className="row">
-              {
-                [
-                  { title: "Vision", para: "Our Vision is to serve the superior quality diagnostic care with utmost commitment and dedication to know your health." },
-                  { title: "Mission", para: "Konnect Diagnostics is equipped with a mission of providing a wide range of diagnostic services to the wellness of our patients in a cost-effective and accessible method. We strive to know you better." }
-                ].map((e) => (
-                  <div className="col-md-6 d-flex align-items-stretch">
-                    <div className="bg-white p-3 shadow-sm rounded rounded-bottom-0" style={{ borderBottom: "5px solid #00aeef" }}>
-                      <div className="me-3 mb-3">
-                        <div className="bg-white shadow-sm rounded-circle p-2" style={{ width: "50px", height: "50px" }}>
-                          <img src={`/images/fetal-medicine-care/${e.title}.svg`} alt="" />
-                        </div>
-                      </div>
-                      <div>
-                        <h2 className="text-k-accent">{e.title}: </h2>
-                        <p> {e.para} </p>
+              {[
+                {
+                  title: "Vision",
+                  para: "Our Vision is to serve the superior quality diagnostic care with utmost commitment and dedication to know your health.",
+                },
+                {
+                  title: "Mission",
+                  para: "Konnect Diagnostics is equipped with a mission of providing a wide range of diagnostic services to the wellness of our patients in a cost-effective and accessible method. We strive to know you better.",
+                },
+              ].map((e) => (
+                <div className="col-md-6 d-flex align-items-stretch">
+                  <div
+                    className="bg-white p-3 shadow-sm rounded rounded-bottom-0"
+                    style={{ borderBottom: "5px solid #00aeef" }}
+                  >
+                    <div className="me-3 mb-3">
+                      <div
+                        className="bg-white shadow-sm rounded-circle p-2"
+                        style={{ width: "50px", height: "50px" }}
+                      >
+                        <img
+                          src={`/images/fetal-medicine-care/${e.title}.svg`}
+                          alt=""
+                        />
                       </div>
                     </div>
+                    <div>
+                      <h2 className="text-k-accent">{e.title}: </h2>
+                      <p> {e.para} </p>
+                    </div>
                   </div>
-                ))
-              }
+                </div>
+              ))}
             </div>
           </div>
         </div>
@@ -213,13 +231,19 @@ const About = () => {
           </div>
         </div>
       </div>
-    </Wrapper >
+    </Wrapper>
   );
 };
 
 export default About;
 
 const Wrapper = styled.section`
+  .banner {
+    background: url("/images/about-banner.jpg");
+    .page_title {
+      color: var(--text-color);
+    }
+  }
   h3.hdng2 {
     font-weight: bold;
     font-size: 28px;
@@ -445,35 +469,3 @@ const Wrapper = styled.section`
     -webkit-text-size-adjust: 100%;
   }
 `;
-
-// .card1 {
-//   display: block;
-//   position: relative;
-//   max-width: 262px;
-//   background-color: #f2f8f9;
-//   border-radius: 4px;
-//   padding: 32px 24px;
-//   margin: 12px;
-//   text-decoration: none;
-//   z-index: 0;
-//   overflow: hidden;
-
-//   &:before {
-//     content: "";
-//     position: absolute;
-//     z-index: -1;
-//     top: -16px;
-//     right: -16px;
-//     background: #00838d;
-//     height: 32px;
-//     width: 32px;
-//     border-radius: 32px;
-//     transform: scale(1);
-//     transform-origin: 50% 50%;
-//     transition: transform 0.25s ease-out;
-//   }
-
-//   &:hover:before {
-//     transform: scale(21);
-//   }
-// }
