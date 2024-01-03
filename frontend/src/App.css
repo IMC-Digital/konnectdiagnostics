@@ -1,49 +1,63 @@
-/* @import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@700&display=swap'); */
-@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@300;700;900&display=swap');
-@import url('./styles/minicart.css');
-@import url('./styles/packages.css');
-@import url('./styles/User.css');
-@import url('./styles/SampleCollecionAt.css');
-@import url('./styles/selectMember.css');
-@import url('./styles/checkout.css');
+/* @import url("https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@700&display=swap"); */
+@import url("https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;700;900&display=swap");
+@import url("./styles/minicart.css");
+@import url("./styles/packages.css");
+@import url("./styles/User.css");
+@import url("./styles/SampleCollecionAt.css");
+@import url("./styles/selectMember.css");
+@import url("./styles/checkout.css");
 
 :root {
-  --primary-color: #005BAB;
+  --primary-color: #005bab;
   --secondary-color: #00aeef;
-  --text-color: #303030;
+  --text-color: #2c2c2c;
 }
 
 * {
   color: var(--text-color);
-  font-family: 'Archivo', sans-serif;
+  font-family: "Archivo", sans-serif;
 }
 
-.text-k-clr-primary{ color: var(--primary-color); }
-.text-k-clr-secondary{ color: var(--secondary-color); }
-.text-k-clr-text{ color: var(--text-color); }
+.k-clr-white {
+  color: #fff;
+}
+.text-k-clr-primary {
+  color: var(--primary-color);
+}
+.text-k-clr-secondary {
+  color: var(--secondary-color);
+}
+.text-k-clr-text {
+  color: var(--text-color);
+}
 
-.text-k-primary{
+.text-k-primary {
   font-size: 46px;
   font-weight: 800;
-  line-height: 1.1rem;
+  line-height: 1.3em;
 }
-.text-k-secondary{
+.text-k-mainHeadings {
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1.3em;
+}
+.text-k-secondary {
   font-size: 26px;
   font-weight: 700;
-  line-height: 1.1rem;
+  line-height: 1.1em;
 }
-.text-k-text{
+.text-k-text {
   font-size: 16px;
   font-weight: 400;
-  line-height: 1.1rem;
+  line-height: 1.5em;
 }
-.text-k-accent{
+.text-k-accent {
   font-size: 16px;
   font-weight: 600;
-  line-height: 1.1rem;
+  line-height: 1.3em;
 }
 
-.btn-k-primary{
+.btn-k-primary {
   border: none;
   padding: 8px 20px;
   color: white;
@@ -51,10 +65,10 @@
   background-color: var(--primary-color);
   transition: 0.5s;
 }
-.btn-k-primary:hover{
+.btn-k-primary:hover {
   background-color: var(--secondary-color);
 }
-.btn-k-secondary{
+.btn-k-secondary {
   border: none;
   padding: 8px 20px;
   border-radius: 5px;
@@ -62,35 +76,71 @@
   background-color: var(--secondary-color) !important;
   transition: 0.5s;
 }
-.btn-k-secondary:hover{
+.btn-k-secondary:hover {
   background-color: var(--primary-color) !important;
 }
-.cursor-pointer:hover{cursor: pointer;}
+.cursor-pointer:hover {
+  cursor: pointer;
+}
 
-.hover-bg-danger:hover{background-color: rgb(218, 0, 0)(218, 0, 0);}
-.hover-bg-primary:hover{ background-color: var(--primary-color) }
-.hover-bg-secondary:hover{ background-color: var(--secondary-color) }
+.hover-bg-danger:hover {
+  background-color: rgb(218, 0, 0) (218, 0, 0);
+}
+.hover-bg-primary:hover {
+  background-color: var(--primary-color);
+}
+.hover-bg-secondary:hover {
+  background-color: var(--secondary-color);
+}
 
-.bg-k-primary{background-color: var(--primary-color);}
-.bg-k-secondary{background-color: var(--secondary-color);}
+.bg-k-primary {
+  background-color: var(--primary-color);
+}
+.bg-k-secondary {
+  background-color: var(--secondary-color);
+}
 
-p{
+p {
   font-size: 16px;
   color: var(--text-color);
   font-weight: 400;
   line-height: 26px;
 }
 
-.position-l0{ left: 0; }
-.position-l20{ left: 20px; }
-.position-r0{ right: 0; }
-.position-r20{ right: 20px; }
-.position-t0{ top: 0; }
-.position-t20{ top: 20px; }
-.position-b0{ bottom: 0; }
-.position-b20{ bottom: 20px; }
+.position-l0 {
+  left: 0;
+}
+.position-l20 {
+  left: 20px;
+}
+.position-r0 {
+  right: 0;
+}
+.position-r20 {
+  right: 20px;
+}
+.position-t0 {
+  top: 0;
+}
+.position-t20 {
+  top: 20px;
+}
+.position-b0 {
+  bottom: 0;
+}
+.position-b20 {
+  bottom: 20px;
+}
 
-
+/* ------------------------------------ Inner page banner ------------------------------------------ */
+.pb {
+  position: relative;
+  height: 15em;
+  align-items: center;
+  z-index: 0;
+  background-size: cover !important;
+  background-position: center center !important;
+}
 
 /* ------------------------------------ Section three ------------------------------------------ */
 .secThree-img img {
@@ -181,7 +231,6 @@ p{
   justify-content: center;
 }
 
-
 /* ----------------------------------------- Section Five ------------------------------------------ */
 
 .secFive {
@@ -195,7 +244,7 @@ p{
 }
 .s5-search {
   background-color: #ffffff;
-  
+
   padding: 8px 24px;
   font-size: 1.2rem;
   color: #005bab;
@@ -223,7 +272,7 @@ p{
   transform: translate(-50%, -50%) scale(0);
   opacity: 0;
   transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
-  z-index: -1; 
+  z-index: -1;
   pointer-events: none;
   background-color: transparent;
   width: 0;
@@ -235,13 +284,13 @@ p{
   left: 50%;
   transform: translate(-50%, -50%) scale(1);
   opacity: 1;
-  z-index: 2; 
+  z-index: 2;
   pointer-events: auto;
   background-color: #000000ae;
   width: auto;
   height: auto;
 }
-.popupsec{
+.popupsec {
   border-radius: 8px;
   overflow: hidden;
 }
@@ -250,23 +299,23 @@ p{
   opacity: 1;
   pointer-events: auto;
 }
-.loginpopupleftsec{
-  background-image: url('https://img.freepik.com/premium-photo/doctor-research-analysis-diagnose-checking-brain-testing-result-patient-medical-technology_34200-493.jpg');
+.loginpopupleftsec {
+  background-image: url("https://img.freepik.com/premium-photo/doctor-research-analysis-diagnose-checking-brain-testing-result-patient-medical-technology_34200-493.jpg");
   background-size: cover;
   background-position: center;
 }
-.bottomlogbtn{
+.bottomlogbtn {
   padding: 0 5px;
   font-weight: 700;
   background: none;
   color: blue;
   border: none;
 }
-.bottomlogbtn:hover{
+.bottomlogbtn:hover {
   color: red;
 }
 
-.popupclosebtn{
+.popupclosebtn {
   width: 35px;
   height: 35px;
   display: grid;
@@ -281,11 +330,11 @@ p{
 /* LogPopup css */
 
 /* cards increment, decrement styling */
-.qntCntWrp{
+.qntCntWrp {
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  .quantDisp{
+  .quantDisp {
     display: inline-block;
     text-align: center;
     font-weight: bold;
@@ -298,10 +347,10 @@ p{
     border-top: 1px solid #c2c2c2;
     border-bottom: 1px solid #c2c2c2;
   }
-  .plusminBtn{
+  .plusminBtn {
     width: 28px;
     height: 28px;
-    background: linear-gradient(#fff,#f9f9f9);
+    background: linear-gradient(#fff, #f9f9f9);
     display: inline-block;
     border: 1px solid #c2c2c2;
     cursor: pointer;
@@ -309,15 +358,14 @@ p{
     padding-top: 1px;
     line-height: 1;
   }
-  .plsBtn{
+  .plsBtn {
     border-top-left-radius: 50%;
     border-bottom-left-radius: 50%;
   }
-  .mnsBtn{
+  .mnsBtn {
     border-top-right-radius: 50%;
     border-bottom-right-radius: 50%;
   }
 }
 
 /* cards increment, decrement styling */
-

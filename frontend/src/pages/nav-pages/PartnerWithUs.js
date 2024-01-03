@@ -5,6 +5,11 @@ import { styled } from "styled-components";
 const PartnerWithUs = () => {
   return (
     <Wrapper className="partnerwithus">
+      <div className="banner pb d-flex">
+        <div className="container flex">
+          <h1 className="page_title text-k-mainHeadings">Partner With Us</h1>
+        </div>
+      </div>
       <section className="container" id="pwu_s1">
         <img src="/images/dotGrids1.png" alt="" className="dots" />
         <div className="r_container row d-flex align-items-stretch">
@@ -289,6 +294,9 @@ const PartnerWithUs = () => {
 export default PartnerWithUs;
 
 const Wrapper = styled.section`
+  .banner {
+    background: url("/images/banners/partner-with-us-bg-image.jpg");
+  }
   .r_heading_title {
     text-transform: capitalize;
     font-size: 38px;

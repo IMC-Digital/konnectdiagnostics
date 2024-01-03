@@ -34,6 +34,13 @@ const Li = ({ prop }) => {
 const FetalMedicineUnit = () => {
   return (
     <Wrapper className="partnerwithus">
+      <div className="banner pb d-flex">
+        <div className="container flex">
+          <h1 className="page_title text-k-mainHeadings">
+            Fetal Medicine Unit
+          </h1>
+        </div>
+      </div>
       <section className="section" id="fmu_s1">
         <img src="/images/dotGrids1.png" alt="" className="dots" />
         <div className="container p-0 d-flex py-4">
@@ -292,6 +299,9 @@ const FetalMedicineUnit = () => {
 export default FetalMedicineUnit;
 
 const Wrapper = styled.section`
+  .banner {
+    background: url("/images/banners/fatal-medicine-bg-image.jpg");
+  }
   .fm-heading {
     color: ${({ theme }) => theme.colors.pink};
   }
