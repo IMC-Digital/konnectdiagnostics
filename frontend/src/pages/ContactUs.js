@@ -8,35 +8,32 @@ function ContactUs() {
     <Wrapper className="contact">
       <div className="banner pb d-flex">
         <div className="container flex">
-          <h1 className="page_title k-clr-white text-k-mainHeadings">
-            Contact Us
-          </h1>
+          <h1 className="page_title text-k-mainHeadings">Contact Us</h1>
         </div>
       </div>
 
-      <div className="container row container px-sm-5 px-0 mx-auto my-5 d-flex justify-content-center align-items-center">
-        <div className="col-md-6 p-3">
-          <div>
-            <h6 className="fw-bolder">Registered Office</h6>
-          </div>
-
-          <div>
-            <h2> Konnect Diagnostics </h2>
-            <p>
-              <strong> Address: </strong> Ground Floor, FPAI Building,
-              Punjagutta Officers Colony, Near Topaz Building, Hyderabad,
-              Telangana 500082
-            </p>
-            <p>
-              <strong> Email: </strong> info@konnectdiagnostics.com{" "}
-            </p>
-            <p>
-              <strong> Customer Care No: </strong> 040 - 2100 0000{" "}
-            </p>
-          </div>
+      <div className="box container row container px-0 mx-auto my-5 d-flex justify-content-center align-items-center">
+        <div className="box-left col-md-6 p-5">
+          <h6 className="fw-bolder">Registered Office</h6>
+          {/* <h2> Konnect Diagnostics </h2> */}
+          <img
+            src="/images/konnect-logo.png"
+            className="my-3"
+            alt="konnect-diagnostics"
+          />
+          <p>
+            <strong> Address: </strong> Ground Floor, FPAI Building, Punjagutta
+            Officers Colony, Near Topaz Building, Hyderabad, Telangana 500082
+          </p>
+          <p>
+            <strong> Email: </strong> info@konnectdiagnostics.com{" "}
+          </p>
+          <p>
+            <strong> Customer Care No: </strong> 040 - 2100 0000{" "}
+          </p>
         </div>
 
-        <div className="col-md-6 p-2 p-md-5 bg-light">
+        <div className="box-right col-md-6 p-2 p-md-5">
           <ContactForm />
         </div>
       </div>
@@ -64,17 +61,31 @@ export default ContactUs;
 
 const Wrapper = styled.div`
   .banner {
-    background: url("https://img.freepik.com/free-photo/rear-view-businessman-talking-phone-city_53876-129657.jpg?w=1380&t=st=1704189003~exp=1704189603~hmac=f2b1bfebc9bd0dcf6d8e0f30f604d5443b22585722f215b06044737c40b0bc86");
+    background: url("/images/banners/contact-us-bg-image.jpg");
   }
+  .box {
+    background-image: linear-gradient(90deg, white 0 35%, #e0e0e0 0% 100%);
+  }
+
+  .box-left {
+    background-image: url("/images/k-10.png");
+    background-position: top center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-color: ${({ theme }) => theme.colors.white};
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    z-index: 1;
+  }
+
   .w-80 {
     width: 80%;
   }
   h2 {
-    color: ${({ theme }) => theme.colors.primary};
+    color: ${({ theme }) => theme.colors.secondary};
   }
   p {
     strong {
-      color: ${({ theme }) => theme.colors.secondary};
+      color: ${({ theme }) => theme.colors.primary};
     }
     margin-top: 5px;
   }

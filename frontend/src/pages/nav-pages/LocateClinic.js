@@ -115,7 +115,7 @@ const LocateClinic = () => {
 export default LocateClinic;
 const Wrapper = styled.section`
   .banner {
-    background: url("https://img.freepik.com/premium-photo/man-holding-3d-rendering-pin-holder-map_110893-587.jpg?w=1380");
+    background: url("/images/banners/locate-clinic-bg-image.jpg");
   }
   .locate-clinic {
     background-color: white;

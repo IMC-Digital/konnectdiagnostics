@@ -53,9 +53,8 @@ export default Tests;
 const Wrapper = styled.section`
   /* pagination */
   .banner {
-    background: url("https://img.freepik.com/free-photo/experiment-biotechnology-with-chemistry-science_23-2150365001.jpg?w=1060&t=st=1693206336~exp=1693206936~hmac=298f321f3d42d2c85a616759ad5fc036e099b783b64729b16ca8cba4b61ac944");
+    background: url("/images/banners/tests-bg-image.jpg");
     background-size: cover;
-    background-position: bottom center;
   }
   .pagination {
     display: flex;
@@ -170,7 +169,7 @@ const Wrapper = styled.section`
     overflow: hidden;
   }
   .container {
-    color: #fff;
+    /* color: #fff; */
     padding: 50px 0;
   }
   .tests-container {

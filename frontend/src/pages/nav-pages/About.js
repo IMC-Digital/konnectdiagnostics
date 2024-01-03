@@ -239,7 +239,7 @@ export default About;
 
 const Wrapper = styled.section`
   .banner {
-    background: url("/images/about-banner.jpg");
+    background: url("/images/banners/about-us-bg-image.jpg");
     .page_title {
       color: var(--text-color);
     }
