@@ -11,14 +11,18 @@ const HeroSlider = () => {
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 3000,
+    autoplaySpeed: 2000,
   };
   const Fac_carousel_slider = useRef(null);
 
   return (
     <Wrapper>
       <div className="home-slider">
-        <Slider ref={Fac_carousel_slider} {...sliderSettings} className="s-slider">
+        <Slider
+          ref={Fac_carousel_slider}
+          {...sliderSettings}
+          className="s-slider"
+        >
           <div className="sliderSec1">
             <div className="container">
               <h1 className="display-4 fw-bold w-50">
@@ -28,12 +32,13 @@ const HeroSlider = () => {
             </div>
           </div>
 
-          <div className="sliderSec2">
-            <div className="container">
+          <div className="sliderSec2 d-flex">
+            <div className="container ">
               <div className="slider-2 d-flex justify-content-between align-items-center">
                 <div className="slider-2-content text-center text-md-left">
                   <h1 className="display-4 fw-bold">
-                    Your <span className="span">partner</span> <br /> in keeping you <br />
+                    Your <span className="span">partner</span> <br /> in keeping
+                    you <br />
                     <span className="span">healthy</span>
                   </h1>
                   <div className="gyr my-4">
@@ -73,31 +78,33 @@ const Wrapper = styled.section`
     justify-content: center;
     overflow: hidden;
     .sliderSec1 {
-       width: 100%;
-       height: 72vh;
-       display: flex !important;
-       align-items: center; 
-       background: #ffffff url("images/bannerImage.jpg") no-repeat right top;
-       background-size: cover;
-       .container{
-         align-self: center;
-       }
-       h1 {
-         font-size: 4rem;
-         text-transform: capitalize;
-         line-height: 1.3;
-         color: ${({ theme }) => theme.colors.primary};
-       }
-       .span {
-         color: ${({ theme }) => theme.colors.secondary};
-         /* font-size: 2.5rem; */
-       }
+      width: 100%;
+      height: 72vh;
+      display: flex !important;
+      align-items: center;
+      background: #ffffff url("images/bannerImage.jpg") no-repeat right top;
+      background-size: cover;
+      .container {
+        align-self: center;
+      }
+      h1 {
+        font-size: 4rem;
+        text-transform: capitalize;
+        line-height: 1.3;
+        color: ${({ theme }) => theme.colors.primary};
+      }
+      .span {
+        color: ${({ theme }) => theme.colors.secondary};
+        /* font-size: 2.5rem; */
+      }
     }
     .sliderSec2 {
       width: 100%;
       height: 72vh;
       background-size: center;
       background-repeat: no-repeat;
+      justify-content: center;
+      align-items: center;
       .slider-2 {
         justify-content: space-between;
         width: 100%;
@@ -150,65 +157,66 @@ const Wrapper = styled.section`
     }
   }
 
-   .bg-2 {
-     display: flex;
-     align-items: center;
-     justify-content: center;
-   }
-   .slick-arrow {
-     &::before {
-       font-family: inherit;
-       font-size: 32px;
-       font-weight: 700;
-       color: ${({ theme }) => theme.colors.primary90};
-     }
-     &:hover::before {
-       color: ${({ theme }) => theme.colors.primary};
-     }
-   }
+  .bg-2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .slick-arrow {
+    &::before {
+      font-family: inherit;
+      font-size: 32px;
+      font-weight: 700;
+      color: ${({ theme }) => theme.colors.primary90};
+    }
+    &:hover::before {
+      color: ${({ theme }) => theme.colors.primary};
+    }
+  }
 
-    .slick-prev {
-      top: 50%;
-      left: 2%;
-      z-index: 10;
-      &:hover {
+  .slick-prev {
+    top: 50%;
+    left: 2%;
+    z-index: 10;
+    &:hover {
+    }
+  }
+  .slick-next {
+    top: 50%;
+    right: 2%;
+  }
+  .slider1 {
+    height: 100%;
+    background: url("/images/bannerImage.jpg");
+  }
+
+  .hero-bg-img {
+    position: relative;
+    overflow: hidden;
+    img {
+      width: 100%;
+    }
+  }
+  .slick-dots {
+    bottom: 5%;
+    .slick-active {
+      background-color: ${({ theme }) => theme.colors.primary90};
+    }
+    li {
+      background-color: #cfcfcf;
+      border-radius: 50px;
+      &::before {
+        /* background-color: red; */
+        color: ${({ theme }) => theme.colors.primary};
       }
     }
-    .slick-next {
-      top: 50%;
-      right: 2%;
-    }
-    .slider1 {
-      height: 100%;
-      background: url("/images/bannerImage.jpg");
-    }
-    .hero-bg-img {
-      position: relative;
-      overflow: hidden;
-      img {
-        width: 100%;
-      }
-    }
-    .slick-dots {
-      bottom: 5%;
-      .slick-active {
-        background-color: ${({ theme }) => theme.colors.primary90};
-      }
-      li {
-        background-color: #cfcfcf;
-        border-radius: 50px;
-        &::before {
-          /* background-color: red; */
-          color: ${({ theme }) => theme.colors.primary};
-        }
-      }
-    }
+  }
 
   /* Tablet styles */
   @media (min-width: 0px) and (max-width: 768px) {
     .sliderSec1 {
       height: 70vh;
-      h1{
+      h1 {
         font-size: 3.5rem;
       }
     }
@@ -267,7 +275,8 @@ const Wrapper = styled.section`
             color: ${({ theme }) => theme.colors.secondary};
             font-size: 14px;
             line-height: 26px;
-            strong, span {
+            strong,
+            span {
               color: #005bab;
               font-weight: 700;
             }
@@ -298,4 +307,3 @@ const Wrapper = styled.section`
     }
   }
 `;
-
