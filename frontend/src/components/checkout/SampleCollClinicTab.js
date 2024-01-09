@@ -7,11 +7,25 @@ import SelectClinicGrid from './SelectClinicGrid';
 import { FormControl, FormControlLabel, Radio, RadioGroup } from '@mui/material';
 
 
-export default function SampleCollClinicTab() {
+export default function SampleCollClinicTab({ userId, profileData, checkOutFormData, setCheckOutFormData }) {
   const [selectedClinic, setSelectedClinic] = useState({})
   const [showNoExctPin, setshowNoExctPin] = useState(false);
   const [clinicsdata, setClinicsdata] = useState([]);
   const [pinSearchTerm, setPinSearchTerm] = useState('');
+  // const [userAddresses, setUserAddresses] = useState([]);
+  // const [userAddresses, setUserAddresses] = useState([]);
+
+  // useEffect(() => {
+  //   const fetchUserAddresses = async () => {
+  //     try {
+  //       const response = await axios.get(`${BASE_API_URL}/user/get-user-addresses`, { params: { userid: userId } });
+  //       setUserAddresses(response.data.addrs);
+  //     } catch (err) {
+  //       console.log(err);
+  //     }
+  //   }
+  //   fetchUserAddresses();
+  // }, [userId]);
 
   useEffect(() => {
     axios.get(`${BASE_API_URL}/clinics`)
@@ -43,6 +57,32 @@ export default function SampleCollClinicTab() {
     console.log(selectedClinic);
   }, [selectedClinic])
 
+  const handleClinicSelection = (e) => {
+    const clinicArea = e.target.value;
+    // Use the find method to get the object with the matching area
+    const selectedClinic = clinicsdata.find(clinic => clinic.area === clinicArea);
+    setCheckOutFormData((prevData) => ({
+      ...prevData,
+      sampleCollection: {
+        ...prevData.sampleCollection,
+        clinicSampleCollection: {
+          ...prevData.sampleCollection.clinicSampleCollection,
+          id: selectedClinic.id,
+          name: selectedClinic.name,
+          address: selectedClinic.address,
+          area: selectedClinic.area,
+          city: selectedClinic.city,
+          code: selectedClinic.code,
+          pincode: selectedClinic.pincode,
+          google_map_link: selectedClinic.google_map_link,
+          telephone_number: selectedClinic.telephone_number,
+          email: selectedClinic.email
+        },
+      },
+    }));
+  }
+  
+
   return (
     <div className='py-3'>
       <div className="d-flex">
@@ -68,13 +108,16 @@ export default function SampleCollClinicTab() {
           <FormControl className='w-100'>
             <RadioGroup
               aria-labelledby="clinics-radio-field"
-              defaultValue="Kompally"
+              defaultValue={checkOutFormData.sampleCollection.clinicSampleCollection.area || "Attapur"}
+              // defaultValue="Attapur"
               name="radio-buttons-group"
             >
-              {clinicsdata.map((item) => (
+              {clinicsdata.map((item, index) => (
                 <FormControlLabel
+                  key={index}
                   value={item.area}
-                  className='shadow-sm rounded my-2'
+                  className={`shadow-sm rounded my-2 ${checkOutFormData.sampleCollection.clinicSampleCollection.area === item.area ? 'clinicSelectoinChecked' : ''}`}
+                  onChange={handleClinicSelection}
                   control={
                     <Radio />
                   }

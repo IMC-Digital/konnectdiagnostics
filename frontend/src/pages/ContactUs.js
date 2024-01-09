@@ -1,6 +1,5 @@
 import React from "react";
 import { styled } from "styled-components";
-// import Faqs from './Faqs';
 import ContactForm from "../components/contactForm";
 
 function ContactUs() {
@@ -13,9 +12,8 @@ function ContactUs() {
       </div>
 
       <div className="box container row container px-0 mx-auto my-5 d-flex justify-content-center align-items-center">
-        <div className="box-left col-md-6 p-5">
+        <div className="box-left col-md-6 p-5 rounded">
           <h6 className="fw-bolder">Registered Office</h6>
-          {/* <h2> Konnect Diagnostics </h2> */}
           <img
             src="/images/konnect-logo.png"
             className="my-3"
@@ -33,14 +31,10 @@ function ContactUs() {
           </p>
         </div>
 
-        <div className="box-right col-md-6 p-2 p-md-5">
+        <div className="bg-light shadow-sm rounded col-md-6 p-2 p-md-5">
           <ContactForm />
         </div>
       </div>
-
-      {/* <div className='w-50 mx-auto p-3'>
-                <Faqs />
-            </div> */}
 
       <div className="p-0 m-0">
         <iframe
@@ -62,9 +56,6 @@ export default ContactUs;
 const Wrapper = styled.div`
   .banner {
     background: url("/images/banners/contact-us-bg-image.jpg");
-  }
-  .box {
-    background-image: linear-gradient(90deg, white 0 35%, #e0e0e0 0% 100%);
   }
 
   .box-left {

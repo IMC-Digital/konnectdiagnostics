@@ -4,7 +4,7 @@ import CartItemsList from '../CartItemsList';
 import { NavLink } from 'react-router-dom';
 import CartBillingSec from '../../components/cart/CartBillingSec';
 
-const Cart = ({ userId, cart, setCart }) => {
+const Cart = ({ userId, cart, setCart, checkOutFormData, setCheckOutFormData }) => {
     return (
         <Wrapper>
             <article className='container mx-auto m-5 p-0 d-flex'>
@@ -26,7 +26,13 @@ const Cart = ({ userId, cart, setCart }) => {
                     </div>
                 </div>
                 <div className='p-5' style={{ width: "40%" }}>
-                    <CartBillingSec cart={cart} setCart={setCart} userId={userId} />
+                    <CartBillingSec 
+                        cart={cart} 
+                        setCart={setCart} 
+                        userId={userId}
+                        checkOutFormData={checkOutFormData} 
+                        setCheckOutFormData={setCheckOutFormData} 
+                    />
                     <NavLink to="/checkout">
                         <button type="button" className='btn btn-primary w-100 fw-bold text-white'>
                             {/* &#8377;{grandTotalAmount} */}

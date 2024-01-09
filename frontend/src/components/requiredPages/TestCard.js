@@ -7,9 +7,15 @@ export const TestCard = ({ cart, setCart, item }) => {
   const [isItemSelected, setIsItemSelected] = useState(false);
 
   const handleAddToCart = (item) => {
+<<<<<<< HEAD
     if (!isItemSelected) {
       const prevCartItems =
         JSON.parse(localStorage.getItem("selectedCartItems")) || [];
+=======
+    if(!isItemSelected){
+      item.quantity = 1;
+      const prevCartItems = JSON.parse(localStorage.getItem("selectedCartItems")) || [];
+>>>>>>> 6a1a1988d20005b1b586ac0d4d0e79b18dae3ff8
       const newCartItems = [...prevCartItems, item];
       localStorage.setItem("selectedCartItems", JSON.stringify(newCartItems));
       setCart(JSON.parse(localStorage.getItem("selectedCartItems")));

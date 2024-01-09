@@ -86,13 +86,13 @@ function Header2({
               <DropdownButton
                 align="end"
                 id="dropdown-menu-align-responsive-1"
+                className="btn-sm p-0 pb-0 mb-0 d-flex"
                 title={
-                  <Button variant="primary" className="btn btn-k-secondary">
+                  <Button variant="primary" className="btn align-self-center btn-k-primary btn-sm">
                     <i className="fa-solid fa-cart-plus me-2 text-white"></i>
                     <span className="item-count text-white">{cart.length}</span>
                   </Button>
                 }
-                className="btn-sm p-0"
               >
                 <Dropdown.Item eventKey="1" className="p-0">
                   <MiniCart cart={cart} setCart={setCart} />
@@ -116,4 +116,33 @@ const Wrapper = styled.section`
       background-color: var(--secondary-color);
     }
   }
+
+  ${'' /* mini cart */}
+  .mini-cart-wrapper{
+    width: 350px;
+    height: 350px;
+    overflow-y: scroll;
+    background-color: white;
+}
+.mini-cart-wrapper::-webkit-scrollbar {
+    width: 5px;
+    box-shadow: inset 0 0 7px #11010125;
+    border-radius: 10px;
+  }
+  .mini-cart-wrapper::-webkit-scrollbar-thumb {
+    background: linear-gradient(220deg, #005bab, #00ffbb90);
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+#dropdown-menu-align-responsive-1, #dropdown-menu-align-responsive-2{
+    padding: 0;
+}
+#dropdown-menu-align-responsive-1::after, #dropdown-menu-align-responsive-2::after{
+    position: absolute;
+    opacity: 0;
+}
+.mini-cart-wrapper ul{
+    list-style-type: none;
+}
 `;
