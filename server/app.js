@@ -34,7 +34,7 @@ const otpdb = createOtpDbConnection();
 
 // ----------------------------------------------
 const accountSid = 'AC9ca547f7c708b233df42e89bfbdca249';
-const authToken = 'ba1c4a212a1449f7a9a258d91a1d7998';
+const authToken = '23bbf212b2ea6e3f5637769458da2c64';
 const client = twilio(accountSid, authToken);
 // ----------------------------------------------
 
@@ -351,24 +351,27 @@ app.get('/logout', (req, res) => {
 //=========================profile=============================================
 app.get('/profile/:userId', (req, res) => {
   const userId = req.params.userId;
-
-  // Check if a user profile exists for the given user ID
   const sql = 'SELECT * FROM user_profile WHERE user_id = ?';
   otpdb.query(sql, [userId], (error, results) => {
     if (error) {
       return res.status(500).json({ error: 'Database error' });
     }
-
     if (results.length === 0) {
-      // No profile exists for the user
       return res.json({ profileExists: false });
+    } else {
+      const profileData = results[0];
+      const getRegMobNumQ = 'SELECT * FROM users WHERE user_id = ?';
+      otpdb.query(getRegMobNumQ, [userId], (err, innerResults) => {
+        if (err) {
+          return res.status(500).json({ error: 'Database error' });
+        }
+        profileData.registered_mobile = innerResults[0].mobile_number;
+        return res.json({ profileExists: true, profileData });
+      });
     }
-
-    // Profile data found, return it
-    const profileData = results[0];
-    return res.json({ profileExists: true, profileData });
   });
 });
+
 
 app.post('/profile/:userId', (req, res) => {
   const userId = req.params.userId;

@@ -2,11 +2,19 @@ import React from 'react';
 import { styled } from "styled-components";
 import CartBillingSec from '../../components/cart/CartBillingSec';
 import { NavLink } from 'react-router-dom';
-import SessionSelection from '../../components/checkout/SessionSelection';
-// import SampleCollectionAt from '../../components/checkout/SampleCollectionAt';
-// import SelectMember from '../../components/checkout/SelectMember';
+import MultiStepForm3 from '../../components/checkout/MultiStepForm3';
 
-export default function CheckoutProceed({ userId, cart, setCart, profileData, setShowAddNewAddressPopup, setShowAddNewMemberPopup }) {
+export default function CheckoutProceed({ 
+  userId, 
+  cart, 
+  setCart, 
+  profileData, 
+  setShowAddNewAddressPopup, 
+  setShowAddNewMemberPopup,
+  setShowPopupConfirmCheckout, 
+  checkOutFormData, 
+  setCheckOutFormData 
+}) {
   return (
     <Wrapper>
       <article className='container mx-auto m-5 p-0 d-flex'>
@@ -18,25 +26,26 @@ export default function CheckoutProceed({ userId, cart, setCart, profileData, se
             </button>
           </NavLink>
           <div className='my-2'></div>
-          <CartBillingSec cart={cart} setCart={setCart} userId={userId} />
+          <CartBillingSec 
+            cart={cart} 
+            setCart={setCart} 
+            userId={userId} 
+            checkOutFormData={checkOutFormData} 
+            setCheckOutFormData={setCheckOutFormData} 
+          />
         </div>
         <div className='p-5' style={{ width: "65%" }}>
-          {/* <SampleCollectionAt
-            setShowAddNewAddressPopup={setShowAddNewAddressPopup}
+          <MultiStepForm3
             cart={cart}
             setCart={setCart}
             userId={userId}
-          />
-
-          <SelectMember 
-            cart={cart}
-            setCart={setCart}
-            userId={userId}
-            setShowAddNewMemberPopup={setShowAddNewMemberPopup}
             profileData={profileData}
-            /> */}
-          
-          <SessionSelection />
+            checkOutFormData={checkOutFormData} 
+            setCheckOutFormData={setCheckOutFormData}
+            setShowAddNewMemberPopup={setShowAddNewMemberPopup}
+            setShowAddNewAddressPopup={setShowAddNewAddressPopup}
+            setShowPopupConfirmCheckout={setShowPopupConfirmCheckout}
+          />
         </div>
       </article>
     </Wrapper>
@@ -75,5 +84,10 @@ article{
     margin: 20px 0;
     font-weight: 700;
     font-size: 18px;
-}`;
+}
+.clinicSelectoinChecked {
+  background-color: #e0f7fa; 
+  border-right: 4px solid var(--secondary-color);
+}
+`;
 

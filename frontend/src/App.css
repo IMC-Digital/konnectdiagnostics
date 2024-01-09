@@ -79,6 +79,7 @@ p{
   color: var(--text-color);
   font-weight: 400;
   line-height: 26px;
+  margin-bottom: 0;
 }
 
 .position-l0{ left: 0; }

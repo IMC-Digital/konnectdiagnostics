@@ -1,26 +1,35 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import SampleCollHomeTab from './SampleCollHomeTab';
 import SampleCollClinicTab from './SampleCollClinicTab';
 
-function SampleCollectionAt({ setShowAddNewAddressPopup, userId }) {
-    const [activeTab, setActiveTab] = useState(0);
+function SampleCollectionAt({ setShowAddNewAddressPopup, userId, profileData, checkOutFormData, setCheckOutFormData }) {
+    const [activeTab, setActiveTab] = useState(checkOutFormData.sampleCollection.sampleCollectionAt);
     const handleTabClick = (tabIndex) => {
       setActiveTab(tabIndex);
     };
 
     const renderTabs = () => {
         const tabs = ['Home Address', 'Diagnostic Centre'];
-    
         return tabs.map((tab, index) => (
           <button
             key={index}
-            className={`btn me-2 ${activeTab === index + 1 ? 'btn-success' : 'btn-outline-secondary'}`}
-            onClick={() => handleTabClick(index + 1)}
+            className={`btn me-2 ${activeTab === index ? 'btn-success' : 'btn-outline-secondary'}`}
+            onClick={() => handleTabClick(index)}
           >
             {tab}
           </button>
         ));
     };
+
+    useEffect(() => {
+      setCheckOutFormData((prevData) => ({
+        ...prevData,
+        sampleCollection: {
+            ...prevData.sampleCollection,
+            sampleCollectionAt: activeTab,
+        },
+      }));
+    }, [activeTab, setCheckOutFormData])
 
     return (
         <div className="tabs-container">
@@ -28,8 +37,22 @@ function SampleCollectionAt({ setShowAddNewAddressPopup, userId }) {
           <hr />
           {renderTabs()}
           <div className="tab-content">
-            { activeTab === 1 && <SampleCollHomeTab setShowAddNewAddressPopup={setShowAddNewAddressPopup} userId={userId} /> }
-            { activeTab === 2 && <SampleCollClinicTab /> }
+            { activeTab === 0 && 
+              <SampleCollHomeTab 
+                profileData={profileData} 
+                userId={userId}
+                checkOutFormData={checkOutFormData}
+                setCheckOutFormData={setCheckOutFormData}
+                setShowAddNewAddressPopup={setShowAddNewAddressPopup} 
+              /> 
+            }
+            { activeTab === 1 && 
+              <SampleCollClinicTab 
+                userId={userId}
+                profileData={profileData}
+                checkOutFormData={checkOutFormData}
+                setCheckOutFormData={setCheckOutFormData}
+            /> }
           </div>
         </div>
       );

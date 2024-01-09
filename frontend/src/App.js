@@ -42,6 +42,7 @@ import OtpLoginPage from "./login/OtpLoginPage";
 import AddAnotherAddressPopup from "./components/AddAnotherAddressPopup";
 import CheckoutProceed from "./pages/nav-pages/CheckoutProceed";
 import AddNewMemberPopup from "./components/AddNewMemberPopup";
+import PopupConfirmCheckout from "./components/PopupConfirmCheckout";
 
 const theme = {
   colors: {
@@ -76,6 +77,53 @@ function App() {
   const [showOtpPopup2, setShowOtpPopup2] = React.useState(false);
   const [showAddNewAddressPopup, setShowAddNewAddressPopup] = useState(false)
   const [showAddNewMemberPopup, setShowAddNewMemberPopup] = useState(false)
+  const [showPopupConfirmCheckout, setShowPopupConfirmCheckout] = useState(false)
+  const [checkOutFormData, setCheckOutFormData] = useState({
+    userId: 36,
+    amount: {
+      subTotalAmount: 0,
+      couponCode: "",
+      couponCodeDiscount: 0,
+      totalAmount: 0,
+    },
+    sampleCollection: {
+      sampleCollectionAt: 0,
+      homeSampleCollection: {
+        address_id: 0,
+        address_line_1: "",
+        address_line_2: "",
+        address_name: "",
+        address_type: "",
+        city: "",
+        googlemap: "",
+        locality: "",
+        pincode: "",
+        state:"",
+        alternate_mobile_number: ""
+      },
+      clinicSampleCollection: {
+        id: 0,
+        name: "",
+        address: "",
+        area: "",
+        city: "",
+        code: "",
+        pincode: "",
+        google_map_link: "",
+        telephone_number: "",
+        email: ""
+      }
+    },
+    selectedMember: [],
+    selectedSession: {
+      date: {
+        date: "",
+        month: "",
+        day: ""
+      },
+      time: "18:00-19:00"
+    }
+  })
 
   useEffect(() => {
     axios.get(`${BASE_API_URL}/user`).then((res) => {
@@ -83,7 +131,6 @@ function App() {
           setAuth(true);
           setUserId(res.data.userid);
           setCartId(res.data.cart_id);
-          // console.log(res.data);
         } else {
           setAuth(false);
         }
@@ -94,22 +141,22 @@ function App() {
   }, [auth, userId, cartId]);
 
   useEffect(() => {
-    // Get the existing cart items from localStorage
-    const storedCartItems = JSON.parse(
-      localStorage.getItem("selectedCartItems")
-    );
+  const storedCartItems = JSON.parse(
+    localStorage.getItem("selectedCartItems")
+  );
+  const initialCart = storedCartItems || [];
 
-    // If there are no stored cart items, create an empty array
-    const initialCart = storedCartItems || [];
+  // Update quantity property to 1 for each item in the cart
+  const updatedCart = initialCart.map(item => ({ ...item, quantity: 1 }));
 
-    // Set the initial cart state
-    setCart(initialCart);
+  setCart(updatedCart);
 
-    // Check if the localStorage item exists, and if not, create it with an empty array
-    if (!storedCartItems) {
-      localStorage.setItem("selectedCartItems", JSON.stringify([]));
-    }
-  }, [cartId, auth]);
+  if (!storedCartItems) {
+    // If there were no stored cart items, initialize the local storage with an empty array
+    localStorage.setItem("selectedCartItems", JSON.stringify([]));
+  }
+}, [auth]);
+
   
   useEffect(() => {
     const fetchData = async () => {
@@ -217,6 +264,8 @@ function App() {
                   userId={userId} 
                   cart={cart} 
                   setCart={setCart}
+                  checkOutFormData={checkOutFormData}
+                  setCheckOutFormData={setCheckOutFormData}
                 />) : ( 
                  <Navigate to="/login" /> 
                 )
@@ -227,10 +276,13 @@ function App() {
               <CheckoutProceed 
                 userId={userId} 
                 cart={cart} 
-                setCart={setCart} 
+                setCart={setCart}
                 setShowAddNewAddressPopup={setShowAddNewAddressPopup}
                 setShowAddNewMemberPopup={setShowAddNewMemberPopup}
+                setShowPopupConfirmCheckout={setShowPopupConfirmCheckout}
                 profileData={profileData}
+                checkOutFormData={checkOutFormData}
+                setCheckOutFormData={setCheckOutFormData}
               /> } />
             {/* <Route path="/checkout" element={
               auth ? (
@@ -278,6 +330,14 @@ function App() {
           <OtpLoginPopup2 show={showOtpPopup2} onHide={() => setShowOtpPopup2(false)} />
           <AddAnotherAddressPopup userId={userId} show={showAddNewAddressPopup} onHide={() => setShowAddNewAddressPopup(false)} />
           <AddNewMemberPopup userId={userId} show={showAddNewMemberPopup} onHide={() => setShowAddNewMemberPopup(false)} />
+          <PopupConfirmCheckout 
+            userId={userId} 
+            cart={cart}
+            show={showPopupConfirmCheckout} 
+            onHide={() => setShowPopupConfirmCheckout(false)} 
+            checkOutFormData={checkOutFormData}
+            setCheckOutFormData={setCheckOutFormData}
+          />
           <Footer />
         </Router>
       </div>
