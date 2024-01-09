@@ -1,72 +1,47 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
-import { IoSettingsOutline } from "react-icons/io5";
-import { BsBagCheck } from "react-icons/bs";
 import { BiLogOut } from "react-icons/bi";
-import { GrHelp } from "react-icons/gr";
-import { Link } from "react-router-dom";
+import Dropdown from 'react-bootstrap/Dropdown';
+import DropdownButton from 'react-bootstrap/DropdownButton';
 
 export const User = ({ auth, userName, message, handleLoginClick, handleLogout }) => {
-  const [profileOpen, setProfileOpen] = useState(false);
-  const close = () => {
-    setProfileOpen(false);
-  };
   return (
     <Wrapper>
-      <div className="profile me-3">
+      <div className="profile">
         {auth ? (
           <>
-            <button className="img" onClick={() => setProfileOpen(!profileOpen)}>
-              <div className="d-flex align-items-center">
-                <div className="pe-2">
-                  <p className="text-k-text mb-0">{userName}</p>
-                </div>
-                <div className="user-profile-icon">
-                  <i className="fa-solid fa-user"></i>
-                </div>
-              </div>
-            </button>
-            {profileOpen && (
-              <div className="openProfile boxItems" onClick={close}>
-                <Link to="/profile" className="text-decoration-none">
-                  <div className="d-flex align-items-center p-3 bg-light">
-                    <div className="user-profile-icon">
-                      <i className="fa-solid fa-user"></i>
-                    </div>
-                    <div className="ps-2">
-                      <h4 className="text-start fw-bold mb-0">{userName}</h4>
-                    </div>
-                  </div>
-                </Link>
-                <Link to="/profile">
-                  <button className="box">
-                    <IoSettingsOutline className="icon" />
-                    <h4>My Account</h4>
+            <DropdownButton
+              align="end"
+              id="dropdown-menu-align-responsive-2"
+              variant="primary"
+              title={
+                  <button className="btn border px-2">
+                    {userName}
+                    <i className="fa-solid fa-user rounded p-2"></i>
                   </button>
-                </Link>
-                <Link to="/cart">
-                  <button className="box">
-                    <BsBagCheck className="icon" />
-                    <h4>My Order</h4>
-                  </button>
-                </Link>
-                <Link to="/cart">
-                  <button className="box">
-                    <svg height="22" viewBox="-35 0 511 512" width="22" xmlns="http://www.w3.org/2000/svg"><path d="m436.03125 107.03125-104.601562-102.734375c-2.804688-2.753906-6.578126-4.296875-10.511719-4.296875h-264.449219c-30.859375 0-55.96875 25.105469-55.96875 55.96875v400.0625c0 30.859375 25.105469 55.96875 55.96875 55.96875h328.082031c30.859375 0 55.96875-25.105469 55.96875-55.96875v-338.296875c0-4.027344-1.617187-7.882813-4.488281-10.703125zm-100.113281-56.273438 52.921875 51.976563h-48.152344c-2.628906 0-4.769531-2.140625-4.769531-4.769531zm48.632812 431.242188h-328.082031c-14.316406 0-25.96875-11.648438-25.96875-25.96875v-400.0625c0-14.320312 11.648438-25.96875 25.96875-25.96875h249.453125v67.964844c0 19.171875 15.597656 34.769531 34.769531 34.769531h69.828125v323.296875c0 14.320312-11.648437 25.96875-25.96875 25.96875zm0 0"/><path d="m324.644531 238h-211.453125c-8.285156 0-15 6.714844-15 15s6.714844 15 15 15h211.453125c8.285157 0 15-6.714844 15-15s-6.714843-15-15-15zm0 0"/><path d="m113.191406 328h172.414063c8.285156 0 15-6.714844 15-15s-6.714844-15-15-15h-172.414063c-8.285156 0-15 6.714844-15 15s6.714844 15 15 15zm0 0"/><path d="m306.40625 358h-193.214844c-8.285156 0-15 6.714844-15 15s6.714844 15 15 15h193.214844c8.28125 0 15-6.714844 15-15s-6.71875-15-15-15zm0 0"/></svg>
-                    <h4 style={{marginLeft: '14px'}}>Download Report</h4>
-                  </button>
-                </Link>
-                <Link to="/about-us">
-                  <button className="box">
-                    <GrHelp className="icon" />
-                    <h4>Help</h4>
-                  </button>
-                </Link>
-                <div className="logoutbtn p-2" onClick={handleLogout}>
-                  <h4><BiLogOut /> Log Out</h4>
-                </div>
-              </div>
-            )}
+              }
+            >
+              <Dropdown.Item href="/profile">
+                <i className="fa-solid fa-user"></i>
+                <span className="text-k-text"> {userName} </span>
+              </Dropdown.Item>
+              <Dropdown.Item href="/profile">
+                <span className="text-k-text"> My Account </span>
+              </Dropdown.Item>
+              <Dropdown.Item href="/cart">
+                <span className="text-k-text"> My Orders </span>
+              </Dropdown.Item>
+              <Dropdown.Item href="/cart">
+                <span className="text-k-text"> My Reports </span>
+              </Dropdown.Item>
+              <Dropdown.Item href="/cart">
+                <span className="text-k-text"> Help? </span>
+              </Dropdown.Item>
+              <Dropdown.Item onClick={handleLogout} className="bg-light">
+                  <BiLogOut />
+                  <span className="text-k-text"> Logout </span>
+              </Dropdown.Item>
+            </DropdownButton>
           </>
         ) : (
           <div>
