@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import DynamicImage from "../requiredPages/DynamicImage";
-import '../../App.css';
+import "../../App.css";
 
 const SectionThree = () => {
   return (
@@ -57,32 +57,52 @@ const SectionThree = () => {
         <div className="col-md-6 p-4">
           <div className="icon-box p-2 d-flex align-items-center">
             <div className="icon me-3">
-              <div className="shadow-sm rounded-circle d-flex justify-content-center align-items-center p-2" style={{width: "80px", height: "80px"}}>
-                <img src="/images/icons/home/certified.svg" alt="certifiedIcon" className="img-fluid" />
+              <div
+                className="shadow-sm rounded-circle d-flex justify-content-center align-items-center p-2"
+                style={{ width: "80px", height: "80px" }}
+              >
+                <img
+                  src="/images/icons/home/certified.svg"
+                  alt="certifiedIcon"
+                  className="img-fluid"
+                />
               </div>
             </div>
-            <p className="mb-0"> Konnect Diagnostics offers precise diagnostics with certified radiologists, pathologists, doctors, and technicians. </p>
+            <p className="mb-0">
+              Konnect Diagnostics offers precise diagnostics with certified
+              radiologists, pathologists, doctors, and technicians.{" "}
+            </p>
           </div>
           <hr />
           <div className="icon-box p-2 d-flex align-items-center">
             <div className="icon me-3">
-              <div className="shadow-sm rounded-circle d-flex justify-content-center align-items-center p-2" style={{width: "80px", height: "80px"}}>
-                <img src="/images/icons/home/team.svg" alt="teamIcon" /> 
-                {/* <img src="/images/icons/home/certified.svg" alt="certifiedIcon" className="img-fluid" /> */}
+              <div
+                className="shadow-sm rounded-circle d-flex justify-content-center align-items-center p-2"
+                style={{ width: "80px", height: "80px" }}
+              >
+                <img src="/images/icons/home/team.svg" alt="teamIcon" />
               </div>
             </div>
-            <p className="mb-0"> Pioneering tech, skilled team drive us in advanced diagnostics, managing complex cases with expertise. </p>
+            <p className="mb-0">
+              Pioneering tech, skilled team drive us in advanced diagnostics,
+              managing complex cases with expertise.
+            </p>
           </div>
           <hr />
           <div className="icon-box p-2 d-flex align-items-center">
-            
             <div className="icon me-3">
-              <div className="shadow-sm rounded-circle d-flex justify-content-center align-items-center p-2" style={{width: "80px", height: "80px"}}>
+              <div
+                className="shadow-sm rounded-circle d-flex justify-content-center align-items-center p-2"
+                style={{ width: "80px", height: "80px" }}
+              >
                 <img src="/images/icons/home/top.svg" alt="topIcon" />
                 {/* <img src="/images/icons/home/certified.svg" alt="certifiedIcon" className="img-fluid" /> */}
               </div>
             </div>
-            <p className="mb-0"> Our priority: satisfied patients. Swift, transparent, precise top-quality services for convenience and rapid results. </p>
+            <p className="mb-0">
+              Our priority: satisfied patients. Swift, transparent, precise
+              top-quality services for convenience and rapid results.{" "}
+            </p>
           </div>
         </div>
       </div>
@@ -93,16 +113,10 @@ const SectionThree = () => {
 export default SectionThree;
 
 const Wrapper = styled.section`
-  .icon-box{
+  .icon-box {
     display: flex;
-    .icon{
-      ${'' /* width: 100px;
-      height: 100px; */}
-      ${'' /* border-radius: 50px; */}
-      padding: 0px;
-      ${'' /* background-color: #fff; */}
-      ${'' /* box-shadow: rgba(149, 157, 165, 0.3) 0px 8px 24px; */}
-      img{
+    .icon {
+      img {
         width: 50px;
       }
     }
@@ -191,11 +205,11 @@ const Wrapper = styled.section`
       margin: 15px;
       margin-top: -12rem;
       display: block !important;
-      .why-konnect-img{
+      .why-konnect-img {
         height: 300px;
         width: 100%;
       }
-      .secThree-info{
+      .secThree-info {
         padding: 0px 15px;
         width: 100%;
       }

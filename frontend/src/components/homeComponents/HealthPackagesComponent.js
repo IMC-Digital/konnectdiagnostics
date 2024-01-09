@@ -5,7 +5,13 @@ import { Link } from "react-router-dom";
 // import PackagesGrid from "../../pages/nav-pages/PackagesGrid";
 import PackagesGrid from "../../components/packagesComponents/PackagesGrid";
 
-const HealthPackagesComponent = ({ userId, auth, cart, setCart, handleLoginClick }) => {
+const HealthPackagesComponent = ({
+  userId,
+  auth,
+  cart,
+  setCart,
+  handleLoginClick,
+}) => {
   return (
     <Wrapper>
       <section className="" id="hp_sec">
@@ -20,7 +26,14 @@ const HealthPackagesComponent = ({ userId, auth, cart, setCart, handleLoginClick
           </div>
           <div className="hp-box container flex-wrap">
             <div className="hpCards d-flex justify-content-center flex-wrap gap-3">
-              <PackagesGrid userId={userId} auth={auth} cart={cart} setCart={setCart} qntt={3} handleLoginClick={handleLoginClick}  />
+              <PackagesGrid
+                userId={userId}
+                auth={auth}
+                cart={cart}
+                setCart={setCart}
+                qntt={3}
+                handleLoginClick={handleLoginClick}
+              />
             </div>
           </div>
           <Link to="/packages">

@@ -2,33 +2,46 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import axios from "axios";
 import { TestCard } from "./TestCard";
-import { BASE_API_URL } from '../../api';
+import { BASE_API_URL } from "../../api";
 
-
-export const PopularTests = ({ userId, auth, cart, setCart, handleLoginClick }) => {
+export const PopularTests = ({
+  userId,
+  auth,
+  cart,
+  setCart,
+  handleLoginClick,
+}) => {
   const [popularTests, setPopularTests] = useState([]);
-  
+
   useEffect(() => {
-      const poptestscode = ["INV131", "INV1008", "INV1011", "INV1005"]; 
-      async function getPopularTests() {
-          try {
-              const response = await axios.get(`${BASE_API_URL}/getpoptests`, {params:{ codes: poptestscode }});
-              setPopularTests(response.data);
-          } catch (error) {
-              console.error(error);
-          }
-      } 
-      getPopularTests();
+    const poptestscode = ["INV131", "INV1008", "INV1011", "INV1005"];
+    async function getPopularTests() {
+      try {
+        const response = await axios.get(`${BASE_API_URL}/getpoptests`, {
+          params: { codes: poptestscode },
+        });
+        setPopularTests(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+    getPopularTests();
   }, []);
   return (
     <Wrapper>
       <div className="ptCards my-3 container p-0 d-flex flex-wrap gap-2">
-        <div className="container d-flex justify-content-center gap-3">
-          {
-            popularTests.map((item) => (
-              <TestCard key={item.product_id} item={item} auth={auth} userId={userId} cart={cart} setCart={setCart} handleLoginClick={handleLoginClick} />
-            ))
-          }
+        <div className="container d-flex flex-wrap justify-content-center gap-3">
+          {popularTests.map((item) => (
+            <TestCard
+              key={item.product_id}
+              item={item}
+              auth={auth}
+              userId={userId}
+              cart={cart}
+              setCart={setCart}
+              handleLoginClick={handleLoginClick}
+            />
+          ))}
         </div>
       </div>
     </Wrapper>

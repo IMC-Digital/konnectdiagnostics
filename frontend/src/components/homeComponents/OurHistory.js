@@ -5,22 +5,22 @@ import { BiSolidQuoteRight } from "react-icons/bi";
 const OurHistory = () => {
   return (
     <Wrapper>
-      <div className="top our-history p-md-5 p-3">
+      <div className="top our-history p-md-5">
         <div className="col-md-6 mx-auto px-2 mb-5">
           <h2>Our History and Experience</h2>
           <p>
-            Chronicle of Our Journey: our commitment has revolved around enhancing
-            the lives of individuals
+            Chronicle of Our Journey: our commitment has revolved around
+            enhancing the lives of individuals
           </p>
         </div>
-        <div className="oh-section container p-0 d-sm-flex mt-4">
-          <div className="oh-left w-100">
+        <div className="oh-section container p-0 d-sm-flex">
+          <div className="oh-left">
             <img
               src="https://img.freepik.com/free-photo/portrait-doctor_144627-39409.jpg?w=740&t=st=1692358246~exp=1692358846~hmac=0ebe64510d017ba81a4031d4c7db0ab35e4e548a9345615c25ce15dd4fa51236"
               alt=""
             />
           </div>
-          <div className="oh-right">
+          <div className="oh-right overflow-hidden">
             <h5>Our History</h5>
             <div className="content">
               <h2>We are committed to deliver your health aspirations</h2>
@@ -47,15 +47,21 @@ const Wrapper = styled.section`
     text-align: center;
     align-items: center;
   }
+  .oh-section {
+    /* background-color: ${({ theme }) => theme.colors.primary}; */
+    justify-content: center;
+    align-items: center;
+  }
   .oh-left {
-    width: 50%;
+    /* height: 100%; */
+    width: 60%;
     img {
       border-radius: 25px 0 0 25px;
       width: 100%;
     }
   }
   .oh-right {
-    width: 50%;
+    width: 40%;
     background-color: ${({ theme }) => theme.colors.primary};
     padding: 50px;
     color: ${({ theme }) => theme.colors.primary};
@@ -115,7 +121,6 @@ const Wrapper = styled.section`
     }
     .oh-right {
       width: 100%;
-    }  
+    }
   }
-
 `;
