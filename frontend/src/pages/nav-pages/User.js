@@ -13,10 +13,10 @@ export const User = ({ auth, userName, message, handleLoginClick, handleLogout }
             <DropdownButton
               align="end"
               id="dropdown-menu-align-responsive-2"
-              variant="primary"
+              variant="secondary"
               title={
                   <button className="btn border px-2">
-                    {userName}
+                    <span>{userName}</span>
                     <i className="fa-solid fa-user rounded p-2"></i>
                   </button>
               }

@@ -3,7 +3,6 @@ import { styled } from "styled-components";
 import MyBookings from './MyBookings';
 import MySampleTracing from './MySampleTracing';
 import MyReports from './MyReports';
-import { Link } from 'react-router-dom';
 
 function Dashboard({ userId, userName, auth, profileData }) {
     const [activeTab, setActiveTab] = useState(0);
@@ -16,34 +15,28 @@ function Dashboard({ userId, userName, auth, profileData }) {
 
     return (
         <Wrapper>
-            <div className='container p-5'>
-                <div>
+            <div className='container'>
+                <div className='userDashboard-wrapper shadow-sm rounded my-5 mx-auto p-0'>
                     <div className='d-flex'>
-                        <div className="tab-title-wrapper-main">
-                            <Link to="/profile">
-                                <div className="d-flex my-2">
-                                    <div className="profilePhoto">
-                                        <img src="/images/k.png" alt="siteLogo" />
-                                    </div>
-                                    <div className="ps-2">
-                                        <h4 className="text-start fw-bold mb-0">{userName}</h4>
-                                        <small className="text-start">{profileData.email}</small>
-                                    </div>
+                        <div className="tab-title-wrapper-main bg-light w-25">
+                            <div className="d-flex my-2 p-3">
+                                <div className="profilePhoto">
+                                    <img src="/images/k.png" alt="siteLogo" />
                                 </div>
-                            </Link>
+                                <div className="ps-2">
+                                    <h2 className="text-k-accent mb-0">{userName}</h2>
+                                    <small className="text-k-text">{profileData.email}</small>
+                                </div>
+                            </div>
+                            <hr />
                             {DashboardTabs.map((tab, index) => (
-                                <div key={index} className={`tab-title py-3 px-3 ${index === activeTab ? 'active' : ''}`} onClick={() => handleTabClick(index)}>
-                                    <img
-                                        src={`/images/icons/Dashboard/${tab.trim().replace(/\s+/g, '').toLowerCase()}.svg`}
-                                        className='icon me-2'
-                                        alt=""
-                                    />
-                                    {tab}
+                                <div key={index} className={`tab-title py-2 px-4 ${index === activeTab ? 'active' : ''}`} onClick={() => handleTabClick(index)}>
+                                    <span className='text-k-text'>{tab}</span>
                                 </div>
                             ))}
 
                         </div>
-                        <div className="tab-content">
+                        <div className="tab-content w-75">
                             {DashboardTabs[activeTab] === DashboardTabs[0] && <MyBookings />}
                             {DashboardTabs[activeTab] === DashboardTabs[1] && <MySampleTracing />}
                             {DashboardTabs[activeTab] === DashboardTabs[2] && <MyReports />}
@@ -58,8 +51,16 @@ function Dashboard({ userId, userName, auth, profileData }) {
 export default Dashboard;
 
 const Wrapper = styled.section`
+.userDashboard-wrapper{
+    width: 1100px;
+    height: 80vh;
+}
+
 .tab-title-wrapper{
     display: flex;
+}
+.tab-title-wrapper-main{
+    height: 80vh;
 }
 .tab-title-wrapper-main .tab-title{
   font-size: 16px;
@@ -104,14 +105,27 @@ const Wrapper = styled.section`
     background: white;
 }
 .profilePhoto{
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
     padding: 8px;
     border: 2px solid white;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     border-radius: 8px;
+    display: flex;
     img{
         width: 100%;
     }
 }
+
+/* Order Tracking -- */
+.progressBarLine{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 78%; 
+    height: 7px; 
+    z-index: 0;
+}
+/* -- Order Tracking */
 `;

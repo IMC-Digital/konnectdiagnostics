@@ -34,7 +34,6 @@ import axios from "axios";
 import LogPopup from "./login/LogPopup";
 import HealthPackages from "./pages/nav-pages/HealthPackages";
 import ProfileUpdate from "./login/ProfileUpdate";
-import Dashboard from "./pages/nav-pages/Dashboard/Dashboard";
 import ContactUs from "./pages/ContactUs";
 import { BASE_API_URL } from "./api";
 import OtpLoginPopup2 from "./login/OtpLoginPopup2";
@@ -43,6 +42,7 @@ import AddAnotherAddressPopup from "./components/AddAnotherAddressPopup";
 import CheckoutProceed from "./pages/nav-pages/CheckoutProceed";
 import AddNewMemberPopup from "./components/AddNewMemberPopup";
 import PopupConfirmCheckout from "./components/PopupConfirmCheckout";
+import Dashboard from "./pages/nav-pages/Dashboard/Dashboard";
 
 const theme = {
   colors: {
@@ -219,19 +219,29 @@ function App() {
                 handleLoginClick={handleLoginClick} 
               />} />
             <Route exact path="/profile" element={
-              auth ?
-                ( <Profile userId={userId} auth={auth} profileData={profileData} setProfileData={setProfileData} showProfileForm={showProfileForm} setShowProfileForm={setShowProfileForm} /> )
-                : ( <Navigate to="/login" /> )
-              } />
+              <Profile 
+                userId={userId} 
+                auth={auth} 
+                profileData={profileData} 
+                setProfileData={setProfileData} 
+                showProfileForm={showProfileForm} 
+                setShowProfileForm={setShowProfileForm} />   
+            } />
             <Route exact path="/edit-profile" element={ 
-              auth ? 
-                ( <ProfileUpdate userId={userId} auth={auth} profileData={profileData} setProfileData={setProfileData} /> ) 
-                : ( <Navigate to="/login" /> )
-              } />
+              <ProfileUpdate 
+                userId={userId} 
+                auth={auth} 
+                profileData={profileData} 
+                setProfileData={setProfileData} />
+            } />
             <Route exact path="/dashboard" element={
-              auth ? 
-                ( <Dashboard userId={userId} auth={auth} userName={profileData.fullname} profileData={profileData} setProfileData={setProfileData} /> )
-                : ( <Navigate to="/login" /> )              
+                <Dashboard 
+                  userId={userId} 
+                  auth={auth} 
+                  userName={profileData.fullname} 
+                  profileData={profileData} 
+                  setProfileData={setProfileData} 
+                /> 
               } />
             <Route path="/tests" element={
               <Tests 
@@ -249,15 +259,6 @@ function App() {
                 setCart={setCart} 
                 handleLoginClick={handleLoginClick} 
               />} />
-            {/* <Route path="/cart" element={
-              auth ? (<Cart 
-                userId={userId} 
-                cart={cart} 
-                setCart={setCart}
-                setShowAddNewAddressPopup={setShowAddNewAddressPopup}
-              />) : ( 
-                 <Navigate to="/login" /> 
-            )} /> */}
             <Route path="/cart" element={
               auth ? (
                 <Cart 
@@ -270,8 +271,7 @@ function App() {
                  <Navigate to="/login" /> 
                 )
               } 
-              />
-            {/* <Route path="/cart" element={ <Cart userId={userId} cart={cart} setCart={setCart} /> } /> */}
+            />
             <Route path="/checkout" element={ 
               <CheckoutProceed 
                 userId={userId} 
@@ -284,19 +284,6 @@ function App() {
                 checkOutFormData={checkOutFormData}
                 setCheckOutFormData={setCheckOutFormData}
               /> } />
-            {/* <Route path="/checkout" element={
-              auth ? (
-                <CheckoutProceed 
-                  userId={userId}
-                  cart={cart}
-                  setCart={setCart}
-                  setShowAddNewAddressPopup={setShowAddNewAddressPopup}
-                />
-              ) : (
-                <Navigate to="/login" />
-              )
-            }
-            /> */}
 
             <Route path="/packages" element={
               <Packages 
@@ -306,9 +293,7 @@ function App() {
                 setCart={setCart} 
                 handleLoginClick={handleLoginClick} 
                 />} />
-            <Route exact path="/account" element={
-              auth ? ( <Account /> ) : ( <Navigate to="/login" /> )
-            } />
+            <Route exact path="/account" element={ <Account />} />
             <Route exact path="/login" element={<OtpLoginPage />} />
             <Route exact path="/register" element={<Register />} />
             <Route path="/about" element={<About />} />
@@ -326,10 +311,24 @@ function App() {
             <Route path="/testing-page" element={<TesgingPage />} />
             <Route path="*" element={<ErrorPage />} />
           </Routes>
-          <LogPopup isShowLogin={isShowLogin} handleLoginClick={handleLoginClick} />
-          <OtpLoginPopup2 show={showOtpPopup2} onHide={() => setShowOtpPopup2(false)} />
-          <AddAnotherAddressPopup userId={userId} show={showAddNewAddressPopup} onHide={() => setShowAddNewAddressPopup(false)} />
-          <AddNewMemberPopup userId={userId} show={showAddNewMemberPopup} onHide={() => setShowAddNewMemberPopup(false)} />
+          <LogPopup 
+            isShowLogin={isShowLogin} 
+            handleLoginClick={handleLoginClick} 
+          />
+          <OtpLoginPopup2 
+            show={showOtpPopup2} 
+            onHide={() => setShowOtpPopup2(false)} 
+          />
+          <AddAnotherAddressPopup 
+            userId={userId} 
+            show={showAddNewAddressPopup} 
+            onHide={() => setShowAddNewAddressPopup(false)} 
+          />
+          <AddNewMemberPopup 
+            userId={userId} 
+            show={showAddNewMemberPopup} 
+            onHide={() => setShowAddNewMemberPopup(false)}
+          />
           <PopupConfirmCheckout 
             userId={userId} 
             cart={cart}

@@ -20,14 +20,16 @@ function ContactUs() {
             alt="konnect-diagnostics"
           />
           <p>
-            <strong> Address: </strong> Ground Floor, FPAI Building, Punjagutta
-            Officers Colony, Near Topaz Building, Hyderabad, Telangana 500082
+            {/* <strong> Address: </strong> Ground Floor, FPAI Building, Punjagutta
+            Officers Colony, Near Topaz Building, Hyderabad, Telangana 500082 */}
+            <strong> Address: </strong> 1-5-1055/87/236 & 237, HMT officers colony, Batukhamma park, Alwal, Hyderabad, Secunderabad, Telangana 500010
           </p>
           <p>
             <strong> Email: </strong> info@konnectdiagnostics.com{" "}
           </p>
           <p>
-            <strong> Customer Care No: </strong> 040 - 2100 0000{" "}
+            {/* <strong> Customer Care No: </strong> 040 - 2100 0000{" "} */}
+            <strong> Customer Care No: </strong> 040 - 4123 5555{" "}
           </p>
         </div>
 

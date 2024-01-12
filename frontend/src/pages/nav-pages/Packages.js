@@ -27,7 +27,7 @@ const Packages = ({ auth, userId, cart, setCart, handleLoginClick }) => {
           <h1 className="page_title text-k-mainHeadings">Packages</h1>
         </div>
       </div>
-      <section className="pkg container my-5" id="hp_sec">
+      {/* <section className="pkg container my-5" id="hp_sec">
         <div className="pkg-tabs mt-4">
           <div className="tabs" style={{ width: "25%" }}>
             {packages.map((item) => (
@@ -43,7 +43,7 @@ const Packages = ({ auth, userId, cart, setCart, handleLoginClick }) => {
           <div className="tab-content" style={{ width: "75%" }}>
             {packages.map((item) => (
               <PackageItemInfo
-                key={item.product_id_id}
+                key={item.product_id}
                 item={item}
                 auth={auth}
                 userId={userId}
@@ -51,6 +51,30 @@ const Packages = ({ auth, userId, cart, setCart, handleLoginClick }) => {
                 setCart={setCart}
                 activeTab={activeTab}
                 handleLoginClick={handleLoginClick}
+              />
+            ))}
+          </div>
+        </div>
+      </section> */}
+      <section className="pkg container my-5" id="hp_sec">
+        <div className="pkg-tabs mt-4">
+          <div className="tabs" style={{ width: "25%" }}>
+            {packages.map((item) => (
+              <button key={item.product_id} className={item.product_id === activeTab ? "active" : ""} onClick={() => setActiveTab(item.product_id)}>
+                {item.product_name}
+              </button>
+            ))}
+          </div>
+          <div className="tab-content" style={{ width: "75%" }}>
+            {packages.map((item) => (
+              <PackageItemInfo 
+                key={item.product_id_id} 
+                item={item} auth={auth} 
+                userId={userId} 
+                cart={cart} 
+                setCart={setCart} 
+                activeTab={activeTab} 
+                handleLoginClick={handleLoginClick} 
               />
             ))}
           </div>

@@ -2,9 +2,7 @@ import React, { useState } from 'react';
 import { TestCard } from '../requiredPages/TestCard';
 import { styled } from 'styled-components';
 
-function TestsGrid({ localCartItems, setLocalCartItems, searchResults, userId, auth, cart, setCart, cardsPerPage, handleLoginClick}) {
-  // const cardsPerPage  = 9;
-  // pagination
+function TestsGrid({ searchResults, cart, setCart, cardsPerPage}) {
   const [currentPage, setCurrentPage] = useState(1);
   const totalPages = Math.ceil(searchResults.length / cardsPerPage);
   const handlePageChange = (newPage) => {
@@ -35,10 +33,15 @@ function TestsGrid({ localCartItems, setLocalCartItems, searchResults, userId, a
         </div>
 
         <div className="box-right-bottom mt-3">
-          <div className="d-flex justify-content-center flex-wrap gap-3">
+          <div className="d-flex justify-content-center flex-wrap gap-2">
             {
               visibleCards.map((item) => (
-                <TestCard localCartItems={localCartItems} setLocalCartItems={setLocalCartItems} key={item.product_id} item={item} auth={auth} userId={userId} cart={cart} setCart={setCart} handleLoginClick={handleLoginClick} />
+                <TestCard 
+                  key={item.product_id} 
+                  item={item}
+                  cart={cart} 
+                  setCart={setCart}
+                />
               ))
             }
           </div>

@@ -28,10 +28,10 @@ function Header2({
     <Wrapper>
       <Navbar
         expand="xl"
-        className="bg-body-tertiary sticky-top w-100 px-2"
-        style={{ zIndex: "100" }}
+        className="bg-body-tertiary bg-light w-100"
+        style={{ zIndex: "100", position: "-webkit-sticky", top: "0" }}
       >
-        <Container fluid>
+        <Container>
           <Navbar.Brand href="/">
             <img
               src="/images/konnect-logo.png"
@@ -39,24 +39,9 @@ function Header2({
               style={{ width: "150px" }}
             />
           </Navbar.Brand>
-          <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-xl`} />
-          <Navbar.Offcanvas
-            id={`offcanvasNavbar-expand-xl`}
-            aria-labelledby={`offcanvasNavbarLabel-expand-xl`}
-            placement="end"
-          >
-            <Offcanvas.Header closeButton>
-              <Offcanvas.Title id={`offcanvasNavbarLabel-expand-xl`}>
-                <img
-                  src="/images/konnect-logo.png"
-                  alt="Konect-Logo"
-                  style={{ width: "150px" }}
-                />
-              </Offcanvas.Title>
-            </Offcanvas.Header>
-            <Offcanvas.Body>
-              <NavMenu2 />
 
+          <div>
+            <div className="d-flex justify-content-end">
               <div className="d-flex align-items-center justify-content-center me-2">
                 {!auth ? (
                   <Button
@@ -94,12 +79,35 @@ function Header2({
                   </Button>
                 }
               >
-                <Dropdown.Item eventKey="1" className="p-0">
+                <Dropdown.Item eventKey="0" className="p-0">
                   <MiniCart cart={cart} setCart={setCart} />
                 </Dropdown.Item>
               </DropdownButton>
-            </Offcanvas.Body>
-          </Navbar.Offcanvas>
+            </div>
+
+            <div className="d-flex justify-content-end">
+              <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-xl`} />
+              <Navbar.Offcanvas
+                id={`offcanvasNavbar-expand-xl`}
+                aria-labelledby={`offcanvasNavbarLabel-expand-xl`}
+                placement="end"
+              >
+                <Offcanvas.Header closeButton>
+                  <Offcanvas.Title id={`offcanvasNavbarLabel-expand-xl`}>
+                    <img
+                      src="/images/konnect-logo.png"
+                      alt="Konect-Logo"
+                      style={{ width: "150px" }}
+                    />
+                  </Offcanvas.Title>
+                </Offcanvas.Header>
+                <Offcanvas.Body>
+                  <NavMenu2 />
+                </Offcanvas.Body>
+              </Navbar.Offcanvas>
+            </div>
+          </div>
+
         </Container>
       </Navbar>
     </Wrapper>

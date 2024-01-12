@@ -24,37 +24,35 @@ const Home = ({
 
   return (
     <>
-      <div>
-        <HeroSlider />
-        <SectionTwo
-          localCartItems={localCartItems}
-          setLocalCartItems={setLocalCartItems}
-          userId={userId}
-          auth={auth}
-          cart={cart}
-          setCart={setCart}
-          handleLoginClick={handleLoginClick}
-        />
-        <SectionThree />
-        <SectionFour
-          userId={userId}
-          auth={auth}
-          cart={cart}
-          setCart={setCart}
-          handleLoginClick={handleLoginClick}
-        />
-        <HealthPackagesComponent
-          userId={userId}
-          auth={auth}
-          cart={cart}
-          setCart={setCart}
-          handleLoginClick={handleLoginClick}
-        />
-        {/* <CounterBox /> */}
-        <CounterBox2 />
-        <PatientExperience />
-        <OurHistory />
-      </div>
+      <HeroSlider />
+      <SectionTwo
+        localCartItems={localCartItems}
+        setLocalCartItems={setLocalCartItems}
+        userId={userId}
+        auth={auth}
+        cart={cart}
+        setCart={setCart}
+        handleLoginClick={handleLoginClick}
+      />
+      <SectionThree />
+      <SectionFour
+        userId={userId}
+        auth={auth}
+        cart={cart}
+        setCart={setCart}
+        handleLoginClick={handleLoginClick}
+      />
+      <HealthPackagesComponent
+        userId={userId}
+        auth={auth}
+        cart={cart}
+        setCart={setCart}
+        handleLoginClick={handleLoginClick}
+      />
+      {/* <CounterBox /> */}
+      <CounterBox2 />
+      <PatientExperience />
+      <OurHistory />
     </>
   );
 };

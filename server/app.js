@@ -34,7 +34,7 @@ const otpdb = createOtpDbConnection();
 
 // ----------------------------------------------
 const accountSid = 'AC9ca547f7c708b233df42e89bfbdca249';
-const authToken = '23bbf212b2ea6e3f5637769458da2c64';
+const authToken = '98344b47f4af2c39a2bff64ee32bb4de';
 const client = twilio(accountSid, authToken);
 // ----------------------------------------------
 

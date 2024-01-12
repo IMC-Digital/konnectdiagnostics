@@ -40,7 +40,21 @@ const ToggleKT = ({ localCartItems, setLocalCartItems, userId, auth, cart, setCa
           </div>
         </div>
       
-        <TestsGrid localCartItems={localCartItems} setLocalCartItems={setLocalCartItems} userId={userId} auth={auth} cart={cart} setCart={setCart} searchResults={searchResults} cardsPerPage={6} handleLoginClick={handleLoginClick} />
+
+        <TestsGrid 
+          localCartItems={localCartItems} 
+          setLocalCartItems={setLocalCartItems} 
+          userId={userId} 
+          auth={auth} 
+          cart={cart} 
+          setCart={setCart} 
+          searchResults={searchResults} 
+          cardsPerPage={8} 
+          handleLoginClick={handleLoginClick}
+        />
+        {/* <div className="px-md-5">
+        </div> */}
+
       </div>
     </Wrapper>
   );

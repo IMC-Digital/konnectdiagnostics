@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { AiOutlineTags } from "react-icons/ai";
 import { useParams } from "react-router-dom";
 import { hcContentData } from "../../assets/data/HcContentData";
 
@@ -23,30 +22,29 @@ const DetailsPages = () => {
       {conditions ? (
         <section className="singlePage">
           <div className="container d-flex gap-5">
-            <div className="left ">
-              <div className="img">
-                <img src={conditions.cover} alt={conditions.title} />
+            <div className="art_sec pe-5">
+              <div className="fi_box" style={{ backgroundImage: `url("${conditions.cover}")`}}>
+                <h2 className="text-k-mainHeadings text-white bg-k-primary p-2 px-sm-5 mb-0"> {conditions.title} </h2>
               </div>
-              <AiOutlineTags className="icon" />
-              {/* <a href="/">{conditions.category}</a> */}
-              <h2>{conditions.title}</h2>
-              <hr />
-
+              {/* <AiOutlineTags className="icon" /> */}
               <div>{conditions.component}</div>
             </div>
-            <div className="right">
-              <h3 className="related-heading">Related</h3>
+
+            <div className="related_art_sec">
+              <h3 className="text-k-mainHeadings">Related</h3>
+              <hr />
               <div className="scroll-box-right">
                 {hcContentData.map((item) => (
                   <Link to={`/health-conditions/${item.slug}`}>
                     <div className="related">
                       <div className="item d-flex gap-2">
-                        <div className="img">
-                          <img src={item.cover} alt="" />
+                        <div className="rel_art_fi">
+                          <div className="fi_box_related" style={{backgroundImage: `url("${item.cover}")`}}>
+                          </div>
                         </div>
-                        <div className="info">
-                          <h3>{item.title}</h3>
-                          <p>{item.excerpt}</p>
+                        <div className="rel_art_info px-2">
+                          <h2 className="text-k-accent">{item.title}</h2>
+                          <p className="text-secondary">{item.excerpt.slice(0,60)}...</p>
                         </div>
                       </div>
                     </div>
@@ -75,36 +73,36 @@ const Wrapper = styled.section`
       .symptom-image {
         height: auto;
         padding: 10px;
-
-        /* height: auto; */
         background-color: yellowgreen;
       }
     }
   }
 
   .singlePage {
-    .left {
-      width: 70%;
-      img {
-        width: 100%;
-        height: 400px;
-        border-radius: 15px;
-        margin-bottom: 20px;
-      }
-      a {
-        font-size: 15px;
-        font-weight: 500;
-        color: ${({ theme }) => theme.colors.primary};
-      }
-      h2 {
-        font-family: "Montserrat Alternates", sans-serif;
-        margin-bottom: 15px;
-        line-height: 1.5;
-        font-size: 2rem;
-      }
+    a{ text-decoration: none; }
+    .art_sec{width: 65%;}
+    .related_art_sec{width: 35%;}
+    .rel_art_fi{width: 40%}
+    .rel_art_info{width: 60%}
+    .fi_box {
+      width: 100%;
+      height: 400px;
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      align-items: flex-end;
+      padding: 0;
+    }
+    .fi_box_related{
+      background-size: cover;
+      height: 100px;
+      width: 100%; 
+    }
       .content {
-        /* background-color: aliceblue; */
         margin: 1.5rem auto;
+        .questions{
+          border: 1px solid red
+        }
         .question {
           font-size: 1.5rem;
           font-weight: 600;
@@ -114,46 +112,16 @@ const Wrapper = styled.section`
           font-weight: 500;
         }
       }
-    }
-    .right {
-      width: 30%;
-      .related-heading {
-        font-family: "Montserrat Alternates", sans-serif;
-        font-size: ${({ theme }) => theme.fonts.heading2};
-        color: ${({ theme }) => theme.colors.dark};
-        font-weight: 600;
-        margin-bottom: 1rem;
-      }
-      a {
-        text-decoration: none;
-      }
-      .box {
-        /* border: 2px solid red; */
-        /* width: 100%; */
-      }
       img {
-        width: 100%;
-        height: 100%;
+        width: 50%;
+        height: auto;
       }
       .related {
-        box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-        border-radius: 15px;
         .item {
-          /* align-items: center; */
           display: flex;
-
-          margin-bottom: 20px;
-          padding: 10px;
-
-          .img {
-            width: 45%;
-            img {
-              width: 100%;
-              border-radius: 5px;
-            }
-          }
+          margin-bottom: 15px;
+          
           .info {
-            /* background: red; */
             margin: 5px;
             width: 55%;
             h3 {
@@ -168,6 +136,5 @@ const Wrapper = styled.section`
           }
         }
       }
-    }
   }
 `;

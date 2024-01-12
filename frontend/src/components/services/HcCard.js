@@ -2,26 +2,23 @@ import React from "react";
 import { styled } from "styled-components";
 import { Link } from "react-router-dom";
 import { hcContentData } from "../../assets/data/HcContentData";
-import { AiOutlineTags } from "react-icons/ai";
 
 const HcCard = () => {
   return (
     <Wrapper>
-      <section className="conditions">
+      <section className="conditions pb-5">
         <div className="hc-card d-flex gap-3 justify-content-between flex-wrap col container">
           {hcContentData.map((item) => (
-            <div className="box mb-3" key={item.id}>
+            <div className="box bg-white rounded p-0 overflow-hidden shadow-sm" key={item.id}>
               <Link to={`/health-conditions/${item.slug}`}>
-                <div className="img">
-                  <img src={item.cover} alt="" />
+                <div className="fi_box" style={{backgroundImage: `url("${item.cover}")`}}>
                 </div>
-                <div className="details">
-                  <div className="catg">
-                    <AiOutlineTags className="icon" />
-                    <a href="/">{item.category}</a>
-                  </div>
-                  <h3>{item.title}</h3>
-                  <p>Need some description regarding the condition</p>
+
+                <div className="p-3 ">
+                  <a href="/">{item.category}</a>
+                  <h2 className="text-k-secondary">{item.title}</h2>
+                  <p className="text-secondary">{item.excerpt.slice(0,40)}...</p>
+                  <button className="btn btn-outline-secondary btn-sm">Know More</button>
                 </div>
               </Link>
             </div>
@@ -36,46 +33,12 @@ export default HcCard;
 
 const Wrapper = styled.section`
   .hc-card {
-    /* background-color: gainsboro; */
-    margin: 2rem auto;
-    a {
-      text-decoration: none;
-    }
-    .box {
-      background-color: #fff;
-      border-radius: 1rem;
-      box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-      padding: 15px;
-      width: 32%;
-      img {
-        width: 100%;
-        height: 220px;
-        border-radius: 1rem;
-      }
-      .details {
-        padding: 15px;
-
-        a {
-          font-size: 14px;
-        }
-
-        h3 {
-          font-size: 1.25rem;
-          margin-top: 5px;
-          /* font-family: "Montserrat Alternates", sans-serif; */
-          font-weight: 600;
-          text-decoration: none;
-          text-transform: lowercase;
-          &::first-line {
-            text-transform: capitalize;
-          }
-        }
-        p {
-          font-size: 1rem;
-          font-weight: 500;
-          color: #858585;
-        }
-      }
+    a {text-decoration: none;}
+    .box {width: 24%;}
+    .fi_box{
+      background-size: cover;
+      height: 200px;
+      width: 100%; 
     }
   }
 `;

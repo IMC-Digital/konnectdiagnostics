@@ -4,7 +4,7 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 
 export default function NavMenu2() {
     return(
-        <Nav className="justify-content-end flex-grow-1 pe-3">
+        <Nav className="justify-content-end flex-grow-1 gap-2">
           <Nav.Link href="/tests" data-bs-toggle="tooltip" title="All the Tests are listed here!"> Tests </Nav.Link>
           <NavDropdown title="Services" id={`offcanvasNavbarDropdown-expand-xl`}>
             <NavDropdown.Item href="/radiology-services"> Radiology Services </NavDropdown.Item>

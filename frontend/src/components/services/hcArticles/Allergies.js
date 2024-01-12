@@ -1,5 +1,4 @@
 import React from "react";
-// import { symptoms, riskFactors } from "../../../assets/data/HcSymptomsData";
 import { hcIcons } from "../../../assets/data/HcSymptomsData";
 import styled from "styled-components";
 
@@ -64,9 +63,7 @@ const Allergies = () => {
       <div className="questions">
         <h3 className="question">How to diagnose?</h3>
         <h5 className="include">
-          Allergies are usually diagnosed by examining the symptoms of an
-          individual. However, to confirm the diagnosis, the following tests are
-          recommended for individuals:
+          Allergies are usually diagnosed by examining the symptoms of an individual. However, to confirm the diagnosis, the following tests are recommended for individuals:
         </h5>
         <ul>
           <li>
@@ -146,49 +143,4 @@ const Allergies = () => {
 
 export default Allergies;
 const Wrapper = styled.section`
-  /* .questions {
-    margin-top: 1.5rem;
-    .question {
-      font-size: ${({ theme }) => theme.fonts.heading2};
-
-      font-weight: 600;
-    }
-    .include {
-      font-size: ${({ theme }) => theme.fonts.heading4};
-      font-weight: 600;
-      line-height: 1.5;
-    }
-    p,
-    li {
-      font-weight: 500;
-      color: ${({ theme }) => theme.colors.text};
-      margin-bottom: 5px;
-      &::marker {
-        color: ${({ theme }) => theme.colors.secondary};
-      }
-    }
-    .icon-box {
-      margin: 25px 0 50px;
-      .box {
-        padding: 5px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-        width: 150px;
-        height: auto;
-        box-shadow: rgba(100, 100, 111, 0.2) 0px 5px 15px 0px;
-        border-radius: 10px;
-        img {
-          margin: 1rem;
-          width: 100%;
-          height: 55px;
-        }
-        h5 {
-          font-size: 15px;
-        }
-      }
-    }
-  } */
 `;

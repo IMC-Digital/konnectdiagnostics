@@ -63,6 +63,14 @@ export default function CartBillingSec({ cart, setCart, userId, checkOutFormData
         }
     }, [couponCode, verifyCouponCode]);
 
+    const submitCouponCode = (e) => {
+        e.preventDefault();
+
+        const inputValue = e.target.elements.couponCode.value;
+        setCouponCode(inputValue)
+        // e.target.elements.couponCode.value = '';
+    };
+
     return (
         <div>
             <div className='d-flex justify-content-between'>
@@ -70,23 +78,23 @@ export default function CartBillingSec({ cart, setCart, userId, checkOutFormData
                 <p> &#8377; {subTotalAmount} </p>
             </div>
             <div className='mb-3'>
-                <InputGroup>
-                    <Form.Control
-                        placeholder="Coupon Code"
-                        aria-label="Coupon Code"
-                        aria-describedby="basic-addon2"
-                        value={ couponCode }
-                        onChange={(e) => { setCouponCode(e.target.value) }}
-                    />
-                    <Button 
-                        variant="outline-secondary" 
-                        id="button-addon2" 
-                        onClick={
-                            verifyCouponCode
-                        }>
-                        Submit
-                    </Button>
-                </InputGroup>
+                <form onSubmit={submitCouponCode}>
+                    <InputGroup>
+                        <Form.Control
+                            required
+                            placeholder={ couponCode ? couponCode : "Coupon Code" }
+                            aria-label="Coupon Code"
+                            aria-describedby="basic-addon2"
+                            name="couponCode"
+                        />
+                        <Button
+                            type='submit'
+                            variant="outline-secondary"
+                            id="button-addon2">
+                            Submit
+                        </Button>
+                    </InputGroup>
+                </form>
                 <p className="text-success text-k-text small">{couponAppliedMessage}</p>
             </div>
             <div className='d-flex justify-content-between'>

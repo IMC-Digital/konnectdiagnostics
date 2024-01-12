@@ -11,7 +11,7 @@ const HeroSlider = () => {
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 2000,
+    autoplaySpeed: 5000
   };
   const Fac_carousel_slider = useRef(null);
 
@@ -24,29 +24,26 @@ const HeroSlider = () => {
           className="s-slider"
         >
           <div className="sliderSec1">
-            <div className="container">
-              <h1 className="display-4 fw-bold w-50">
-                Navigating <span className="span"> Health Solutions </span> with{" "}
-                <br /> Konnect
-              </h1>
+            <div className="container d-flex align-items-center h-100">
+              <div className="w-50 pe-5">
+                <h1 className="text-k-primary text-k-clr-primary text-capitalize"> 
+                  Navigating <span className="text-k-clr-secondary">Health Solutions</span> with konnect
+                </h1>
+              </div>
             </div>
           </div>
 
-          <div className="sliderSec2 d-flex">
-            <div className="container ">
-              <div className="slider-2 d-flex justify-content-between align-items-center">
-                <div className="slider-2-content text-center text-md-left">
-                  <h1 className="display-4 fw-bold">
-                    Your <span className="span">partner</span> <br /> in keeping
-                    you <br />
-                    <span className="span">healthy</span>
+          <div className="sliderSec2 d-flex bg-white">
+            <div className="container align-self-center">
+              <div className="slider-2 d-flex align-self-center justify-content-between align-items-center">
+                <div className="w-50 pe-5">
+                  <h1 className="text-k-primary text-k-clr-primary text-capitalize"> 
+                    Your <span className="text-k-clr-secondary">partner</span> in keeping you <span className="text-k-clr-secondary">healthy</span> 
                   </h1>
-                  <div className="gyr my-4">
-                    Get Your <strong>Reports</strong> in 12 hours
-                    <span style={{ color: "red" }}> * </span>
-                  </div>
+                  <p className="text-k-accent"> Get Your Reports in 12 hours <span className="text-danger"> * </span> </p>
                 </div>
-                <div className="slider-2-video d-flex">
+
+                <div className="w-50 p-5 d-flex-cc">
                   <video autoPlay loop muted controls={false}>
                     <source src="/images/hero24.mp4" type="video/mp4" />
                     Your browser does not support the video tag.
@@ -65,11 +62,12 @@ export default HeroSlider;
 
 const Wrapper = styled.section`
   .home-slider {
-    align-items: center;
-    justify-content: center;
-    vertical-align: middle;
-    display: flex;
     width: 100%;
+  }
+  h1 {
+    font-size: 4rem;
+    text-transform: capitalize;
+    line-height: 1.3;
   }
   .s-slider {
     position: relative;
@@ -78,89 +76,14 @@ const Wrapper = styled.section`
     justify-content: center;
     overflow: hidden;
     .sliderSec1 {
-      width: 100%;
-      height: 72vh;
-      display: flex !important;
-      align-items: center;
+      height: 70vh;
       background: #ffffff url("images/bannerImage.jpg") no-repeat right top;
       background-size: cover;
-      .container {
-        align-self: center;
-      }
-      h1 {
-        font-size: 4rem;
-        text-transform: capitalize;
-        line-height: 1.3;
-        color: ${({ theme }) => theme.colors.primary};
-      }
-      .span {
-        color: ${({ theme }) => theme.colors.secondary};
-        /* font-size: 2.5rem; */
-      }
     }
     .sliderSec2 {
-      width: 100%;
-      height: 72vh;
-      background-size: center;
-      background-repeat: no-repeat;
-      justify-content: center;
-      align-items: center;
-      .slider-2 {
-        justify-content: space-between;
-        width: 100%;
-        gap: 50px;
-        .slider-2-content {
-          align-self: center;
-          padding-right: 50px;
-          .span {
-            color: ${({ theme }) => theme.colors.secondary};
-            /* margin: 0 1rem 0 1rem; */
-          }
-          h1 {
-            font-size: 4rem;
-            text-align: left;
-            text-transform: capitalize;
-            line-height: 1.3;
-            color: ${({ theme }) => theme.colors.primary};
-          }
-          .hero-packages {
-            flex-wrap: wrap;
-          }
-        }
-        .gyr {
-          text-align: left;
-          white-space: nowrap;
-          font-weight: 600;
-          color: ${({ theme }) => theme.colors.secondary};
-          font-size: 1.3rem;
-          line-height: 1.3;
-          strong,
-          span {
-            color: #005bab;
-            font-weight: 700;
-          }
-          @keyframes typing {
-            from {
-              width: 0;
-            }
-          }
-          @keyframes blink {
-            50% {
-              border-color: transparent;
-            }
-          }
-        }
-        video {
-          width: 28rem;
-        }
-      }
+      height: 70vh;
+      video { width: 28rem; }
     }
-  }
-
-  .bg-2 {
-    display: flex;
-    align-items: center;
-    justify-content: center;
   }
   .slick-arrow {
     &::before {
@@ -185,32 +108,6 @@ const Wrapper = styled.section`
     top: 50%;
     right: 2%;
   }
-  .slider1 {
-    height: 100%;
-    background: url("/images/bannerImage.jpg");
-  }
-
-  .hero-bg-img {
-    position: relative;
-    overflow: hidden;
-    img {
-      width: 100%;
-    }
-  }
-  .slick-dots {
-    bottom: 5%;
-    .slick-active {
-      background-color: ${({ theme }) => theme.colors.primary90};
-    }
-    li {
-      background-color: #cfcfcf;
-      border-radius: 50px;
-      &::before {
-        /* background-color: red; */
-        color: ${({ theme }) => theme.colors.primary};
-      }
-    }
-  }
 
   /* Tablet styles */
   @media (min-width: 0px) and (max-width: 768px) {
@@ -234,8 +131,8 @@ const Wrapper = styled.section`
         h1 {
           font-size: 26px;
           text-transform: capitalize;
-          color: #ffffff; /* Add this line to set the text color */
-          z-index: 30; /* Add this line to place the text above the overlay */
+          color: #ffffff;
+          z-index: 30;
         }
       }
       .sliderSec1::before {
@@ -247,7 +144,7 @@ const Wrapper = styled.section`
         height: 100%;
         background: black;
         z-index: -1;
-        opacity: 0.5; /* Add this line to control the overlay opacity */
+        opacity: 0.5;
       }
       .sliderSec2 {
         height: 300px;

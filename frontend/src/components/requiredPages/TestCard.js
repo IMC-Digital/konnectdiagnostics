@@ -54,25 +54,11 @@ export const TestCard = ({ cart, setCart, item }) => {
           <div className="go-corner"></div>
           <div className="tcardbody">
             <div className="card_org_cont">
-              <img
-                src={"/images/organs/" + item.category + ".png"}
-                className="testOrgImg"
-                alt=""
-              />
+              <img src={"/images/organs/" + item.category + ".png"} className="testOrgImg" alt="" />
             </div>
-            <h6 className="text-k-accent text-k-clr-primary mb-2">
-              {item.product_name}
-            </h6>
-            <p className="small mb-0">
-              <b> INVCODE: </b> {item.product_code}{" "}
-            </p>
-            <div className="w-100">
-              <p className="mb-1 small">
-                <b> Sample Type: </b> {item.sample_type}{" "}
-              </p>
-              {/* <p className="mb-1 small"> <b> Test Report Delivery: </b> {item.test_report_delivery} </p> */}
-              {/* <p className="mb-1 small"> <b> Frequency: </b> {item.frequency} </p> */}
-            </div>
+            <h6 className="text-k-accent text-k-clr-primary mb-2"> {item.product_name} </h6>
+            <p className="small mb-0"> <b> INVCODE: </b> {item.product_code} </p>
+            <p className="mb-1 small"> <b> Sample Type: </b> {item.sample_type} </p>
           </div>
 
           <div className="ftr-sec bg-light px-3 py-2 w-100 d-flex justify-content-between border-top tcardfooter">
@@ -119,7 +105,7 @@ const Wrapper = styled.section`
     border: 1px solid rgba(0, 0, 0, 0.05);
     color: #fff;
     border-radius: 4px;
-    width: 300px;
+    width: 280px;
     transition: 0.3s;
     overflow: hidden;
     position: relative;

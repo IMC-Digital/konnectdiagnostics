@@ -164,7 +164,7 @@ const FetalMedicineUnit = () => {
                   height: "auto",
                   borderRadius: "10px",
                 }}
-                src="https://img.freepik.com/free-photo/doctor-getting-patient-ready-ct-scan_23-2149367401.jpg?w=996&t=st=1690875027~exp=1690875627~hmac=1aa5118d64968b377330e40d707d0439093f3c5c17306731000934b7bb1629b6"
+                src="/images/Konnect_fetal_medicine_S3_img.jpg"
                 alt=""
               />
             </div>

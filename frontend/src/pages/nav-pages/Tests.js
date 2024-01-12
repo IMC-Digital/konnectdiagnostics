@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { styled } from "styled-components";
-// import TestsBanner from "../../components/testsComponents/TestsBanner";
 import TestsFilterBarLeft from "../../components/testsComponents/TestsFilterBarLeft";
 import axios from "axios";
 import TestsGrid from "../../components/testsComponents/TestsGrid";
 import { BASE_API_URL } from "../../api";
 
-const Tests = ({ userId, auth, cart, setCart, handleLoginClick }) => {
+const Tests = ({ userId, cart, setCart }) => {
   const [searchResults, setSearchResults] = useState([]);
   useEffect(() => {
     async function fetchInitialData() {
@@ -24,7 +23,6 @@ const Tests = ({ userId, auth, cart, setCart, handleLoginClick }) => {
 
   return (
     <Wrapper className="testspage">
-      {/* <TestsBanner /> */}
       <div className="banner pb d-flex">
         <div className="container flex">
           <h1 className="page_title text-k-mainHeadings">Tests</h1>
@@ -35,12 +33,10 @@ const Tests = ({ userId, auth, cart, setCart, handleLoginClick }) => {
         <div className="box-right">
           <TestsGrid
             userId={userId}
-            auth={auth}
             cart={cart}
             setCart={setCart}
             searchResults={searchResults}
             cardsPerPage={9}
-            handleLoginClick={handleLoginClick}
           />
         </div>
       </div>
@@ -51,7 +47,6 @@ const Tests = ({ userId, auth, cart, setCart, handleLoginClick }) => {
 export default Tests;
 
 const Wrapper = styled.section`
-  /* pagination */
   .banner {
     background: url("/images/banners/tests-bg-image.jpg");
     background-size: cover;
@@ -84,9 +79,6 @@ const Wrapper = styled.section`
   .pagination button.active::after {
     display: none;
   }
-  /* pagination */
-
-  /* ---------------test cards */
   .ptCards {
     justify-content: space-between;
     .ptCard {
