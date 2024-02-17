@@ -1,11 +1,14 @@
-/* @import url("https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@700&display=swap"); */
 @import url("https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;700;900&display=swap");
 @import url("./styles/minicart.css");
 @import url("./styles/packages.css");
 @import url("./styles/User.css");
 @import url("./styles/SampleCollecionAt.css");
 @import url("./styles/selectMember.css");
-@import url("./styles/checkout.css");
+@import url("./styles/text.css");
+@import url("./styles/positions.css");
+@import url("./styles/flex.css");
+@import url("./styles/orderStatusBadge.css");
+@import url("./styles/heightandwidth.css");
 
 :root {
   --primary-color: #005bab;
@@ -16,55 +19,15 @@
 * {
   color: var(--text-color);
   font-family: "Archivo", sans-serif;
-  font-size: 16px;
-}
-p {
-  color: var(--text-color);
-  font-weight: 400;
-  line-height: 1.3rem;
+  margin: 0;
   margin-bottom: 0;
-  font-size: 16px;
-}
-.text-k-clr-primary {
-  color: var(--primary-color);
+  padding: 0;
+  box-sizing: border-box;
   font-size: inherit;
-}
-.text-k-clr-secondary {
-  color: var(--secondary-color);
-  font-size: inherit;
-}
-.text-k-clr-text {
-  color: var(--text-color);
-  font-size: inherit;
+  /* color: inherit; */
 }
 
-.text-k-primary {
-  font-size: 46px;
-  font-weight: 700;
-  line-height: 1.3em;
-}
-.text-k-mainHeadings {
-  font-size: 26px;
-  font-weight: 700;
-  line-height: 1.3em;
-}
-.text-k-secondary {
-  font-size: 22px;
-  font-weight: 700;
-  line-height: 1.1em;
-}
-.text-k-text {
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 1.5em;
-  color: inherit;
-}
-.text-k-accent {
-  font-size: 16px;
-  font-weight: 600;
-  line-height: 1.3em;
-  color: inherit;
-}
+.clr-inherit{color: inherit;}
 
 .btn-k-primary {
   border: none;
@@ -108,43 +71,9 @@ p {
 .bg-k-secondary {
   background-color: var(--secondary-color);
 }
-
-.position-l0 {
-  left: 0;
+.bg-k-light{
+  background-color: #F6F9FC;
 }
-.position-l20 {
-  left: 20px;
-}
-.position-r0 {
-  right: 0;
-}
-.position-r20 {
-  right: 20px;
-}
-.position-t0 {
-  top: 0;
-}
-.position-t20 {
-  top: 20px;
-}
-.position-b0 {
-  bottom: 0;
-}
-.position-b20 {
-  bottom: 20px;
-}
-
-.d-flex-cc{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.w-20{width: 20%;}
-.w-30{width: 30%;}
-.w-33{width: 33%;}
-.w-66{width: 66%;}
-.w-70{width: 70%;}
 
 /* ------------------------------------ Inner page banner ------------------------------------------ */
 .pb {

@@ -69,7 +69,7 @@ function CartItemsList({item, userId, cart}) {
         <div className='w-100 bd-highlight d-flex justify-content-between' Style={{flex: "2"}}>
           <div>
             <div>
-              <span> {item.product_name} </span> 
+              <span> {item.test_name} </span> 
             </div>
             <div className='d-flex align-items-center my-2'>
               <div className="d-flex">

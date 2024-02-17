@@ -35,7 +35,7 @@ export default function SampleCollHomeTab({ setShowAddNewAddressPopup, userId, p
 
     const selectedAddIndex = Number(e.target.value);
     const selectedAddress = userAddresses[selectedAddIndex];
-    console.log(selectedAddIndex, typeof selectedAddIndex, selectedAddress);
+    // console.log(selectedAddIndex, typeof selectedAddIndex, selectedAddress);
 
     setCheckOutFormData((prevData) => ({
       ...prevData,
@@ -62,7 +62,7 @@ export default function SampleCollHomeTab({ setShowAddNewAddressPopup, userId, p
   const handleAltMobNum = () => {
     const numericValue = userAltMob.replace(/\D/g, '');
     if (/^\d{10}$/.test(numericValue)) {
-      console.log("Entered Mobile Number:", numericValue);
+      // console.log("Entered Mobile Number:", numericValue);
       setAltMobSuccessMessage("Entered mobile number: " + numericValue);
       setAltMobErrorMessage("");
 
@@ -93,21 +93,15 @@ export default function SampleCollHomeTab({ setShowAddNewAddressPopup, userId, p
           onChange={(e) => {
             handleUserAddressChange(e);
           }}
-          className="me-3"
-          style={{ width: "250px" }}
+          className="me-0"
+          // style={{ width: "250px" }}
         >
-          <option
-            value="default"
-            selected={
-              checkOutFormData.sampleCollection.homeSampleCollection
-                .address_name === "Select Address"
-            }
-          >
+          <option value={ checkOutFormData.sampleCollection.homeSampleCollection.address_name === "Select Address" }>
             Select Address
           </option>
           {userAddresses.map((address, index) => (
             <option
-              key={address.address_id}
+              key={index}
               value={index}
               selected={
                 address.address_name ===
@@ -153,8 +147,7 @@ export default function SampleCollHomeTab({ setShowAddNewAddressPopup, userId, p
               <strong>User: </strong> {profileData.fullname}
             </p>
             <p className="mb-1">
-              <strong>Regd. Mobile Number: </strong>{" "}
-              {profileData.registered_mobile}
+              <strong>Regd. Mobile Number: </strong> {profileData.mobile_number}
             </p>
           </>
         ) : (

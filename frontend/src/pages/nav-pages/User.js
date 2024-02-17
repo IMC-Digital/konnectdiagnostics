@@ -15,20 +15,24 @@ export const User = ({ auth, userName, message, handleLoginClick, handleLogout }
               id="dropdown-menu-align-responsive-2"
               variant="secondary"
               title={
-                  <button className="btn border px-2">
+                  <div className="btn border px-2">
                     <span>{userName}</span>
                     <i className="fa-solid fa-user rounded p-2"></i>
-                  </button>
+                  </div>
               }
             >
               <Dropdown.Item href="/profile">
-                <i className="fa-solid fa-user"></i>
+                <i className="fa-solid fa-user me-2"></i>
                 <span className="text-k-text"> {userName} </span>
               </Dropdown.Item>
-              <Dropdown.Item href="/profile">
+              <Dropdown.Item href="/dashboard">
+                <i class="fa-solid fa-table-columns me-2"></i>
+                <span className="text-k-text"> My Dashboard </span>
+              </Dropdown.Item>
+              {/* <Dropdown.Item href="/profile">
                 <span className="text-k-text"> My Account </span>
               </Dropdown.Item>
-              <Dropdown.Item href="/cart">
+              <Dropdown.Item href="/dashboard">
                 <span className="text-k-text"> My Orders </span>
               </Dropdown.Item>
               <Dropdown.Item href="/cart">
@@ -36,7 +40,7 @@ export const User = ({ auth, userName, message, handleLoginClick, handleLogout }
               </Dropdown.Item>
               <Dropdown.Item href="/cart">
                 <span className="text-k-text"> Help? </span>
-              </Dropdown.Item>
+              </Dropdown.Item> */}
               <Dropdown.Item onClick={handleLogout} className="bg-light">
                   <BiLogOut />
                   <span className="text-k-text"> Logout </span>

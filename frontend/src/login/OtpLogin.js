@@ -28,7 +28,7 @@ function OtpLogin({ handleLoginClick }) {
 
     const handleOtpSubmit = async (event) => {
       event.preventDefault();
-      await axios.post(`${ BASE_API_URL }/verifyotp`, {number, Otp})
+      await axios.post(`${ BASE_API_URL }/user/verify-otp`, {number, Otp})
       .then((res) => {
         if (res.data.Status === "Verified") {
           setTimeout(()=> {

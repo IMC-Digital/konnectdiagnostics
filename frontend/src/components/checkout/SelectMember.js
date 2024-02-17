@@ -21,7 +21,7 @@ const SelectMember = ({ userId, cart, profileData, setCart, setShowAddNewMemberP
 
   const handleCheckboxChange = (productName, memberName) => {
     const updatedCart = cart.map((item) => {
-      if (item.product_name === productName) {
+      if (item.test_name === productName) {
         const selectedMembers = item.selectedMembers || [];
         const memberIndex = selectedMembers.indexOf(memberName);
   
@@ -57,7 +57,7 @@ const SelectMember = ({ userId, cart, profileData, setCart, setShowAddNewMemberP
       <form>
         {cart.map((product, questionIndex) => (
           <div key={product.product_id} className="mb-3 border-bottom">
-            <h5 className="text-k-accent">{product.product_name}</h5>
+            <h5 className="text-k-accent">{product.test_name}</h5>
 
             <div className="d-flex ">
               <div className="form-check">

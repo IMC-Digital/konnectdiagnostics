@@ -10,6 +10,7 @@ export default function SessionSelection({ checkOutFormData, setCheckOutFormData
     const [otherDaySessions, setOtherDaySessions] = useState([]);
     const [selectedSession, setSelectedSession] = useState(null)
 
+    // console.log(checkOutFormData.selectedSession.date.date);
     useEffect(() => {
         function getRemainingSessions() {
             const now = new Date();
@@ -63,40 +64,38 @@ export default function SessionSelection({ checkOutFormData, setCheckOutFormData
         ...getDate(index),
     }));
       
-      // CustomPrevArrow and CustomNextArrow components
-      const CustomPrevArrow = (props) => {
-        return (
-          <div
-            className="slick-arrow-custom slick-prev"
-            onClick={props.onClick}
-            style={{ left: "-20px", zIndex: 1 }}
-          >
-            <i className="fas fa-chevron-left"></i>
-          </div>
-        );
-      };
-      
-      const CustomNextArrow = (props) => {
-        return (
-          <div
-            className="slick-arrow-custom border text-success slick-next"
-            onClick={props.onClick}
-            style={{ right: "-20px", zIndex: 1, padding: "10px", border: "2px solid red" }}
-          >
-            <i className="fas fa-chevron-right"></i>
-          </div>
-        );
-      };
-
-      const settings = {
-        infinite: false,
-        speed: 500,
-        slidesToShow: 8,
-        slidesToScroll: 3,
-        prevArrow: <CustomPrevArrow />,
-        nextArrow: <CustomNextArrow />,
-      };
-      
+    // CustomPrevArrow and CustomNextArrow components
+    const CustomPrevArrow = (props) => {
+      return (
+        <div
+          className="slick-arrow-custom slick-prev"
+          onClick={props.onClick}
+          style={{ left: "-20px", zIndex: 1 }}
+        >
+          <i className="fas fa-chevron-left"></i>
+        </div>
+      );
+    };
+    
+    const CustomNextArrow = (props) => {
+      return (
+        <div
+          className="slick-arrow-custom border text-success slick-next"
+          onClick={props.onClick}
+          style={{ right: "-20px", zIndex: 1, padding: "10px", border: "2px solid red" }}
+        >
+          <i className="fas fa-chevron-right"></i>
+        </div>
+      );
+    };
+    const settings = {
+      infinite: false,
+      speed: 500,
+      slidesToShow: 8,
+      slidesToScroll: 3,
+      prevArrow: <CustomPrevArrow />,
+      nextArrow: <CustomNextArrow />,
+    };
 
     const handleSessionClick = (session) => {
         setSelectedSession({

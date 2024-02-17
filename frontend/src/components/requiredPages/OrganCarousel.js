@@ -1,26 +1,59 @@
-import React from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { styled } from "styled-components";
 import axios from "axios";
 import { BASE_API_URL } from '../../api';
 
-const OrganCarousel = ({ images, setSearchResults }) => {
-  const handleOrgSel = async (event) => {
-    const selectedOrg = event.currentTarget.querySelector('img').alt;
+const OrganCarousel = ({ setSearchResults, testsOrPackage }) => {
+  const [categories, setCategories] = useState([]);
+  const [activeItemId, setActiveItemId] = useState(null);
+
+  const handleOrgSel = useCallback(async (event, item) => {
+    if (event) event.preventDefault();
     try {
-      const response = await axios.get(`${BASE_API_URL}/orgsel?selectedorgan=${selectedOrg}`);
-      setSearchResults(response.data);
+      const response = await axios.get(`${BASE_API_URL}/${testsOrPackage}/category/${item.category_id}`);
+      
+      // Append category property to each object in response.data
+      const searchResultsWithCategory = response.data.map(result => ({
+        ...result,
+        category: item.category_name
+      }));
+
+      setSearchResults(searchResultsWithCategory);
+      setActiveItemId(item.category_id); // Set the active item ID
     } catch (error) {
       console.error(error);
     }
-  };
+  }, [setSearchResults, testsOrPackage]);
+
+  useEffect(() => {
+    const getAllCategories = async () => {
+      try {
+        const response = await axios.get(`${BASE_API_URL}/categories`);
+        setCategories(response.data);
+
+        // Once categories are fetched, fetch and set the search results for the first category
+        if (response.data.length > 0) {
+          const firstCategory = response.data[0]; // Assuming the first category is at index 0
+          handleOrgSel(null, firstCategory); // Pass null event and first category to handleOrgSel
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    getAllCategories();
+  }, [handleOrgSel]);
 
   return (
     <Wrapper>
       <div className="organs d-flex gap-2 flex-wrap">
-        {images.map((image, index) => (
-          <div className="org-item" key={index} onClick={handleOrgSel}>
-            <img src={image.src} alt={image.alt} />
-            <p>{image.alt}</p>
+        {categories.map((item, index) => (
+          <div 
+            key={index} 
+            className={`org-item py-2 ${activeItemId === item.category_id ? 'active' : ''}`} 
+            onClick={(e) => handleOrgSel(e, item)}
+            >
+            <img src={`/images/organs/${item.category_name}.png`} alt={item.category_name + "icon"} />
+            <p className="mb-0 text-k-accent small clr-inherit">{item.category_name}</p>
           </div>
         ))}
       </div>
@@ -52,6 +85,10 @@ const Wrapper = styled.section`
       &:hover p {
         color: white;
       }
+    }
+    .active{
+      background-color: ${({ theme }) => theme.colors.primary};
+      color: white;
     }
     img {
       width: 40px;

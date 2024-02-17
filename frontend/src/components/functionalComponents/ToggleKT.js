@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { styled } from "styled-components";
-import { organImages } from "../../assets/data/AllData";
 import OrganCarousel from "../requiredPages/OrganCarousel";
 import AtoZ from "../requiredPages/AtoZ";
 import SearchBar from "../requiredPages/SearchBar";
@@ -28,32 +27,30 @@ const ToggleKT = ({ localCartItems, setLocalCartItems, userId, auth, cart, setCa
       <div className="s2-kt mt-4">
         <div className="selectionBox mx-auto d-flex gap-2 mb-4">
           <div className="a-zBox mx-auto">
-            <div className="kt-a-z d-flex flex-wrap">
+            <div className="kt-a-z d-flex flex-wrap me-3">
               <SearchBar searchResults={searchResults} setSearchResults={setSearchResults} />
               <AtoZ setSearchResults={setSearchResults} />
             </div>
           </div>
           <div className="organsBox">
             <div className="">
-              <OrganCarousel images={organImages} setSearchResults={setSearchResults} />
+              <OrganCarousel testsOrPackage={"tests"} setSearchResults={setSearchResults} />
             </div>
           </div>
         </div>
       
 
         <TestsGrid 
+          searchResults={searchResults} 
           localCartItems={localCartItems} 
           setLocalCartItems={setLocalCartItems} 
           userId={userId} 
           auth={auth} 
           cart={cart} 
           setCart={setCart} 
-          searchResults={searchResults} 
           cardsPerPage={8} 
           handleLoginClick={handleLoginClick}
         />
-        {/* <div className="px-md-5">
-        </div> */}
 
       </div>
     </Wrapper>
@@ -87,6 +84,7 @@ const Wrapper = styled.section`
       .searchBar {
         padding: 2px 10px;
         align-items: center;
+        width: 100%;
         input {
           color: ${({ theme }) => theme.colors.primary};
           text-decoration: none;

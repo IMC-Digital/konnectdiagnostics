@@ -3,6 +3,7 @@ import { styled } from "styled-components";
 import axios from "axios";
 import PackageItemInfo from "../../components/packagesComponents/PackageItemInfo";
 import { BASE_API_URL } from "../../api";
+import PageBanner from "../../components/PageBanner";
 
 const Packages = ({ auth, userId, cart, setCart, handleLoginClick }) => {
   const [packages, setPackages] = useState([]);
@@ -22,54 +23,22 @@ const Packages = ({ auth, userId, cart, setCart, handleLoginClick }) => {
 
   return (
     <Wrapper>
-      <div className="banner pb d-flex">
-        <div className="container flex">
-          <h1 className="page_title text-k-mainHeadings">Packages</h1>
-        </div>
-      </div>
-      {/* <section className="pkg container my-5" id="hp_sec">
-        <div className="pkg-tabs mt-4">
-          <div className="tabs" style={{ width: "25%" }}>
-            {packages.map((item) => (
-              <button
-                key={item.product_id}
-                className={item.product_id === activeTab ? "active" : ""}
-                onClick={() => setActiveTab(item.product_id)}
-              >
-                {item.product_name}
-              </button>
-            ))}
-          </div>
-          <div className="tab-content" style={{ width: "75%" }}>
-            {packages.map((item) => (
-              <PackageItemInfo
-                key={item.product_id}
-                item={item}
-                auth={auth}
-                userId={userId}
-                cart={cart}
-                setCart={setCart}
-                activeTab={activeTab}
-                handleLoginClick={handleLoginClick}
-              />
-            ))}
-          </div>
-        </div>
-      </section> */}
+      <PageBanner title={"Packages"} bannerImg={"packages-bg-image"} />
       <section className="pkg container my-5" id="hp_sec">
         <div className="pkg-tabs mt-4">
           <div className="tabs" style={{ width: "25%" }}>
             {packages.map((item) => (
               <button key={item.product_id} className={item.product_id === activeTab ? "active" : ""} onClick={() => setActiveTab(item.product_id)}>
-                {item.product_name}
+                {item.test_name}
               </button>
             ))}
           </div>
           <div className="tab-content" style={{ width: "75%" }}>
             {packages.map((item) => (
               <PackageItemInfo 
-                key={item.product_id_id} 
-                item={item} auth={auth} 
+                key={item.product_id} 
+                item={item} 
+                auth={auth} 
                 userId={userId} 
                 cart={cart} 
                 setCart={setCart} 
@@ -87,9 +56,6 @@ const Packages = ({ auth, userId, cart, setCart, handleLoginClick }) => {
 export default Packages;
 
 const Wrapper = styled.section`
-  .banner {
-    background: url("/images/banners/packages-bg-image.jpg");
-  }
   .pkg-tabs {
     display: flex;
     gap: 25px;

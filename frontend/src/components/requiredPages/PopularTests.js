@@ -14,7 +14,7 @@ export const PopularTests = ({
   const [popularTests, setPopularTests] = useState([]);
 
   useEffect(() => {
-    const poptestscode = ["INV131", "INV1008", "INV1011", "INV1005"];
+    const poptestscode = ["COMPLETE BLOOD COUNT", "BLOOD CULTURE", "TSH", "URINE MICROALBUMIN"];
     async function getPopularTests() {
       try {
         const response = await axios.get(`${BASE_API_URL}/getpoptests`, {
@@ -31,9 +31,9 @@ export const PopularTests = ({
     <Wrapper>
       <div className="ptCards my-3 container p-0 d-flex flex-wrap gap-2">
         <div className="container d-flex flex-wrap justify-content-center gap-3">
-          {popularTests.map((item) => (
+          {popularTests.slice(0,4).map((item, index) => (
             <TestCard
-              key={item.product_id}
+              key={index}
               item={item}
               auth={auth}
               userId={userId}

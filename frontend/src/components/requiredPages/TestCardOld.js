@@ -25,7 +25,7 @@ export const TestCard = ({ localCartItems, setLocalCartItems, item, userId, auth
   const handleAddtoLocal = () => {
     const newProductData = {
       product_id: item.product_id,
-      product_name: item.product_name,
+      test_name: item.test_name,
       price: item.price,
       quantity: 1,
     };
@@ -48,7 +48,7 @@ export const TestCard = ({ localCartItems, setLocalCartItems, item, userId, auth
       }
     }
     const decodedData = JSON.parse(atob(localStorage.getItem("selectedServiceList")));
-    console.log(decodedData);
+    // console.log(decodedData);
   };
   
   
@@ -124,7 +124,7 @@ export const TestCard = ({ localCartItems, setLocalCartItems, item, userId, auth
             <div className="card_org_cont">
               <img src={"/images/organs/" + item.category + ".png"} className="testOrgImg" alt="" />
             </div>
-            <h5 className="fw-bolder">{item.product_name}</h5>
+            <h5 className="fw-bolder">{item.test_name}</h5>
             <p className="small"> <b> INVCODE: </b> {item.product_code} </p>
             <div className="w-100 mb-4 ">
               <p className="mb-1 small"> <b> Sample Type: </b> {item.sample_type} </p>

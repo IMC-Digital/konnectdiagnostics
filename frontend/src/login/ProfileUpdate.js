@@ -10,8 +10,6 @@ const ProfileUpdate = ({ userId, profileData, setProfileData }) => {
     gender: profileData.gender,
     email: profileData.email,
     alternateMobile: profileData.alternate_mobile_number,
-    residentialAddress: profileData.residential_address,
-    officeAddress: profileData.office_address,
   });
 
   const handleChange = (e) => {
@@ -24,12 +22,10 @@ const ProfileUpdate = ({ userId, profileData, setProfileData }) => {
     console.log(formData);
     try {
       const response = await axios.post(`${BASE_API_URL}/updateprofile/${userId}`, formData);
-      // console.log(response.data);
       if (response.data.profileUpdated) {
-        // setProfileData(response.data.updatedProfileData);
         alert("Profile Updated successfully");
         setTimeout(() => {
-          window.location.replace("http://localhost:3000/profile");
+          window.location.replace("/profile");
         }, 500)
       } else {
         console.log(response.data.error);
@@ -136,28 +132,6 @@ const ProfileUpdate = ({ userId, profileData, setProfileData }) => {
               value={formData.alternateMobile}
               onChange={handleChange}
               className='form-control'
-            />
-          </div>
-          <div className='mb-3'>
-            <label htmlFor='residentialAddress' className='form-label'>Residential Address:</label>
-            <textarea
-              id='residentialAddress'
-              name='residentialAddress'
-              value={formData.residentialAddress}
-              onChange={handleChange}
-              className='form-control'
-              required
-            />
-          </div>
-          <div className='mb-3'>
-            <label htmlFor='officeAddress' className='form-label'>Office Address:</label>
-            <textarea
-              id='officeAddress'
-              name='officeAddress'
-              value={formData.officeAddress}
-              onChange={handleChange}
-              className='form-control'
-              required
             />
           </div>
           <button type='submit' className='btn btn-primary'>Update Profile</button>

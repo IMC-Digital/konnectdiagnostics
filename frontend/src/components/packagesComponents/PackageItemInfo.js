@@ -46,7 +46,7 @@
 //       localStorage.setItem("selectedCartItems", JSON.stringify(newCartItems));
 //       setCart(JSON.parse(localStorage.getItem("selectedCartItems")));
 
-//       toast.success(`${item.product_name} added to cart!`, {
+//       toast.success(`${item.test_name} added to cart!`, {
 //         position: toast.POSITION.BOTTOM_RIGHT,
 //       });
 //     }
@@ -65,7 +65,7 @@
 //     localStorage.setItem("selectedCartItems", JSON.stringify(updatedCartItems));
 //     setCart(updatedCartItems);
 
-//     toast.error(`${item.product_name} removed form cart!`, {
+//     toast.error(`${item.test_name} removed form cart!`, {
 //       position: toast.POSITION.BOTTOM_RIGHT,
 //     });
 //   };
@@ -87,7 +87,7 @@
 //               <img
 //                 src={
 //                   "/images/health-packages/" +
-//                   item.product_name.toLowerCase().replace(/\s+/g, "-") +
+//                   item.test_name.toLowerCase().replace(/\s+/g, "-") +
 //                   ".jpg"
 //                 }
 //                 alt={item.package_name}
@@ -95,7 +95,7 @@
 //             </div>
 //             <div className="pkg-info-right">
 //               <div className="pkg-code">
-//                 <h3>{item.product_name}</h3>
+//                 <h3>{item.test_name}</h3>
 //                 <h5 className="code">Code :{item.product_code}</h5>
 //                 <p className="text-k-clr-primary fw-bolder">
 //                   <span> Price : &#8377; </span>
@@ -170,12 +170,13 @@ function PackageItemInfo({ item, auth, userId, cart, setCart, activeTab, handleL
 
   const handleAddToCart = (item) => {
     if(!isItemSelected){
+      item.quantity = 1;
       const prevCartItems = JSON.parse(localStorage.getItem("selectedCartItems")) || [];
       const newCartItems = [...prevCartItems, item];
       localStorage.setItem('selectedCartItems', JSON.stringify(newCartItems));
       setCart(JSON.parse(localStorage.getItem("selectedCartItems")));
 
-      toast.success(`${item.product_name} added to cart!`, {
+      toast.success(`${item.test_name} added to cart!`, {
         position: toast.POSITION.BOTTOM_RIGHT,
         duration: 1000
       })
@@ -189,7 +190,7 @@ function PackageItemInfo({ item, auth, userId, cart, setCart, activeTab, handleL
     localStorage.setItem("selectedCartItems", JSON.stringify(updatedCartItems));
     setCart(updatedCartItems);
 
-    toast.error(`${item.product_name} removed form cart!`, {
+    toast.error(`${item.test_name} removed form cart!`, {
       position: toast.POSITION.BOTTOM_RIGHT,
       duration: 1000
     })
@@ -208,7 +209,7 @@ function PackageItemInfo({ item, auth, userId, cart, setCart, activeTab, handleL
           </div>
           <div className="pkg-info-right">
             <div className="pkg-code">
-              <h3>{item.product_name}</h3>
+              <h3>{item.test_name}</h3>
               <h5 className="code">Code :{item.product_code}</h5>
               <p className="text-k-clr-primary fw-bolder">
                 <span> Price : &#8377; </span>

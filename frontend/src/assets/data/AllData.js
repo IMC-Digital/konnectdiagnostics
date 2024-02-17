@@ -1,32 +1,40 @@
 export const organImages = [
   {
-    src: "/images/organs/Heart.png",
-    organ: "/",
-    alt: "Heart",
-  },
-  {
-    src: "/images/organs/Diabetes.png",
-    alt: "Diabetes",
-  },
-  {
     src: "/images/organs/Allergy.png",
     alt: "Allergy",
   },
   {
-    src: "/images/organs/Kidneys.png",
-    alt: "Kidneys",
+    src: "/images/organs/Cardiac.png",
+    organ: "/",
+    alt: "Cardiac",
   },
   {
-    src: "/images/organs/Pregnancy.png",
-    alt: "Pregnancy",
+    src: "/images/organs/Diabetic.png",
+    alt: "Diabetic",
+  },
+  {
+    src: "/images/organs/Fever.png",
+    alt: "Fever",
+  },
+  {
+    src: "/images/organs/Kidney.png",
+    alt: "Kidney",
+  },
+  {
+    src: "/images/organs/Liver.png",
+    alt: "Liver",
   },
   {
     src: "/images/organs/Lungs.png",
     alt: "Lungs",
   },
   {
-    src: "/images/organs/Fever.png",
-    alt: "Fever",
+    src: "/images/organs/Pancreatic.png",
+    alt: "Pancreatic",
+  },
+  {
+    src: "/images/organs/Pregnancy.png",
+    alt: "Pregnancy",
   },
   {
     src: "/images/organs/Prostate.png",

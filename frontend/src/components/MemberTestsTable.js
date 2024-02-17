@@ -1,17 +1,18 @@
 import React from 'react';
 
-const MemberTestsTable = ({ selectedTests, selectedMembers }) => {
+const MemberTestsTable = ({ selectedProducts, selectedMembers }) => {
   let tableRows = [];
   let totalTestPrice = 0;
 
-  selectedTests.forEach((test, index) => {
+  selectedProducts.forEach((product, index) => {
     selectedMembers[index].forEach((member) => {
-      const price = test.price;
+      const name = product.type === "test" ? product.test_name : product.package_name;
+      const price = product.price;
       totalTestPrice += price;
 
       tableRows.push(
-        <tr key={`${test.product_name}-${member}`}>
-          <td>{test.product_name}</td>
+        <tr key={`${name}-${member}`}>
+          <td>{name}</td>
           <td>{member}</td>
           <td>&#8377; {price}</td>
         </tr>
@@ -33,7 +34,7 @@ const MemberTestsTable = ({ selectedTests, selectedMembers }) => {
         <tfoot>
           <tr>
             <td colSpan="2" className="text-right fw-bold">Total:</td>
-            <td className='fw-bold'>{totalTestPrice}</td>
+            <td className='fw-bold'>&#8377; {totalTestPrice}</td>
           </tr>
         </tfoot>
       </table>

@@ -15,10 +15,12 @@ const SectionTwo = ({ localCartItems, setLocalCartItems, userId, auth, cart, set
 
   return (
     <Wrapper>
-      <div className="s2 mx-auto">
-        <div className="s2-tests-container container">
+      <div className="s2 mx-auto bg-k-light">
+        <div className="s2-tests-container bg-k-light container">
           <div className="k-btns d-flex justify-content-sm-center">
-            <button className={`k-btn ${ activeComponent === "ToggleKT" ? "active" : "" }`} onClick={() => handleButtonClick("ToggleKT")}>
+            <button 
+              className={`k-btn ${ activeComponent === "ToggleKT" ? "active" : "" }`} 
+              onClick={() => handleButtonClick("ToggleKT")}>
               Search Tests
             </button>
             <button
@@ -97,12 +99,12 @@ const Wrapper = styled.section`
     font-weight: 500;
   }
   .s2-tests-container {
-    background-image: url("/images/k-10.png");
-    background-repeat: repeat;
+    ${'' /* background-image: url("/images/k-10.png"); */}
+    ${'' /* background-repeat: repeat; */}
     background-position: center left;
     padding: 50px 0;
-    box-shadow: rgba(100, 100, 111, 0.2) 0px 0px 25px 0px;
-    background-color: ${({ theme }) => theme.colors.white};
+    ${'' /* box-shadow: rgba(100, 100, 111, 0.2) 0px 0px 25px 0px; */}
+    ${'' /* background-color: ${({ theme }) => theme.colors.white}; */}
     z-index: 50;
   }
   .k-btn {

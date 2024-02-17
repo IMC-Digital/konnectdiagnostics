@@ -108,7 +108,7 @@ export default function SampleCollClinicTab({ userId, profileData, checkOutFormD
           <FormControl className='w-100'>
             <RadioGroup
               aria-labelledby="clinics-radio-field"
-              defaultValue={checkOutFormData.sampleCollection.clinicSampleCollection.area || "Attapur"}
+              // defaultValue={checkOutFormData.sampleCollection.clinicSampleCollection.area || "Attapur"}
               // defaultValue="Attapur"
               name="radio-buttons-group"
             >

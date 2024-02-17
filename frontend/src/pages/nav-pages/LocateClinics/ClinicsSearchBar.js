@@ -7,7 +7,6 @@ function ClinicSearchBar({ setClinicsdata }) {
 
   const searchInpStyle = {
     borderRadius: "5px",
-    // border: "2px solid #005BAB"
   }
 
   const handleSearch = async () => {

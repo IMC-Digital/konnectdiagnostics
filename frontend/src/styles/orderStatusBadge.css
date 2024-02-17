@@ -1,0 +1,34 @@
+.order-status {
+  max-width: 220px;
+  width: auto;
+  padding: 0;
+  margin-bottom: 0;
+  border-radius: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-right: 10px;
+  padding-left: 5px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.order-status-paid {
+  color: #227151;
+  background: #e1faed;
+}
+
+.order-status-pending {
+  color: #e8b730;
+  background: #fcf5e3;
+}
+
+.order-status-cancelled {
+  color: #e83a30;
+  background: #ffe7e6;
+}
+
+.order-status-refunded {
+  color: #110a5c;
+  background: #f5f2ff;
+}

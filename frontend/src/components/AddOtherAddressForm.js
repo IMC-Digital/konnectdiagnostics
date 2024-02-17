@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { Form, Button, Container, Row, Col } from "react-bootstrap";
+import { styled } from "styled-components";
+import { Form, Button } from "react-bootstrap";
 import axios from "axios";
 import { BASE_API_URL } from "../api";
 
@@ -18,6 +19,7 @@ const AddOtherAddressForm = ({ userId }) => {
         city: "",
         state: "",
     });
+    const [formSubmitted, setFormSubmitted] = useState(false);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -37,7 +39,7 @@ const AddOtherAddressForm = ({ userId }) => {
                 const postOfficeData = response.data[0].PostOffice;
                 setFormData((prevData) => ({
                     ...prevData,
-                    city: postOfficeData[0].District,
+                    city: postOfficeData[0].Region,
                     state: postOfficeData[0].State,
                 }));
                 setLocalityOptions(response.data[0].PostOffice.map((office) => office.Name))
@@ -47,29 +49,47 @@ const AddOtherAddressForm = ({ userId }) => {
         }
     };
 
-
     const handleSubmit = (e) => {
         e.preventDefault();
+        setFormSubmitted(true);
 
         axios.post(`${BASE_API_URL}/user/add-new-address`, formData)
             .then((response) => {
                 console.log("Address added successfully:", response.data);
+                setTimeout(() => {
+                    window.location.reload();
+                }, 2000); // Refresh after 2 seconds
             })
             .catch((error) => {
                 console.error("Error adding address:", error.response.data);
             });
     };
 
-
     return (
-        <Container className="p-4">
-            <Form onSubmit={handleSubmit}>
-                <Row>
-                    <Col md={6}>
-                        <h3 className="text-k-secondary">Add New Address</h3>
-                        <p className="text-k-text small text-danger"> <strong>Note:</strong> All fields are mandatory</p>
-                        <div className="d-flex">
-                            <Form.Group controlId="addressType" className="mx-1">
+        <Wrapper>
+            {formSubmitted ? (
+                <div className="formSubmittedBox d-flex-cc flex-column">
+                    <img src="/images/completed.png" alt="completed" className="mb-4 ms-4" style={{width: "200px"}} />
+                    <p className="text-success">
+                        New address has been added to profile.
+                    </p>
+                </div>
+            ) : (
+                <Form onSubmit={handleSubmit}>
+                    <Form.Group controlId="addressName" className="my-1">
+                        <Form.Control
+                            type="text"
+                            name="address_name"
+                            placeholder="Name this address for reference..."
+                            value={formData.address_name}
+                            onChange={handleChange}
+                            required
+                        />
+                    </Form.Group>
+
+                    <div className="d-flex my-1">
+                        <div className="w-50">
+                            <Form.Group controlId="addressType" className="">
                                 <Form.Control
                                     as="select"
                                     name="address_type"
@@ -83,8 +103,9 @@ const AddOtherAddressForm = ({ userId }) => {
                                     <option value="Other">Other</option>
                                 </Form.Control>
                             </Form.Group>
-
-                            <Form.Group controlId="pincode" className="me-1">
+                        </div>
+                        <div className="w-50">
+                            <Form.Group controlId="pincode" className="ms-1">
                                 <Form.Control
                                     type="text"
                                     name="pincode"
@@ -97,100 +118,82 @@ const AddOtherAddressForm = ({ userId }) => {
                             </Form.Group>
                             {invalidPincode && <p className="small text-danger"> Invalid Pincode </p>}
                         </div>
+                    </div>
+
+                    <Form.Group controlId="locality" className="my-1">
+                        <Form.Control
+                            as="select"
+                            name="locality"
+                            value={formData.locality}
+                            onChange={handleChange}
+                            required
+                        >
+                            <option value="">Select Locality</option>
+                            {localityOptions.map((option) => (
+                                <option value={`${option}`}>{option}</option>
+                            ))}
+                        </Form.Control>
+                    </Form.Group>
+
+                    <Form.Group controlId="addressline1" className="my-1">
+                        <Form.Control
+                            type="text"
+                            name="address_line_1"
+                            placeholder="Address line 1"
+                            value={formData.address_line_1}
+                            onChange={handleChange}
+                            required
+                        />
+                    </Form.Group>
 
 
-                        <Form.Group controlId="locality" className="m-1">
-                            <Form.Control
-                                as="select"
-                                name="locality"
-                                value={formData.locality}
-                                onChange={handleChange}
-                                required
-                            >
-                                <option value="">Select Locality</option>
-                                {localityOptions.map((option) => (
-                                    <option value={`${option}`}>{option}</option>
-                                ))}
-                            </Form.Control>
-                        </Form.Group>
+                    <Form.Group controlId="addressline2" className="my-1">
+                        <Form.Control
+                            type="text"
+                            name="address_line_2"
+                            placeholder="Address line 2"
+                            value={formData.address_line_2}
+                            onChange={handleChange}
+                        />
+                    </Form.Group>
 
-                        <Form.Group controlId="addressName" className="m-1">
+                    <div className="d-flex my-1">
+                        <Form.Group controlId="city" className="w-50 float-left">
                             <Form.Control
                                 type="text"
-                                name="address_name"
-                                placeholder="Address Name"
-                                value={formData.address_name}
+                                name="city"
+                                placeholder="Enter City"
+                                value={formData.city}
                                 onChange={handleChange}
                                 required
                             />
                         </Form.Group>
 
-                        <Form.Group controlId="addressline1" className="m-1">
+                        <Form.Group controlId="state" className="ms-1 w-50 float-left">
                             <Form.Control
                                 type="text"
-                                name="address_line_1"
-                                placeholder="Address line 1"
-                                value={formData.address_line_1}
+                                name="state"
+                                placeholder="Enter State"
+                                value={formData.state}
                                 onChange={handleChange}
                                 required
                             />
                         </Form.Group>
+                    </div>
 
-
-                        <Form.Group controlId="addressline2" className="m-1">
-                            <Form.Control
-                                type="text"
-                                name="address_line_2"
-                                placeholder="Address line 2"
-                                value={formData.address_line_2}
-                                onChange={handleChange}
-                                required
-                            />
-                        </Form.Group>
-
-                        <div className="d-flex">
-                            <Form.Group controlId="city" className="mx-1 w-50 float-left">
-                                <Form.Control
-                                    type="text"
-                                    name="city"
-                                    placeholder="Enter City"
-                                    value={formData.city}
-                                    onChange={handleChange}
-                                    required
-                                />
-                            </Form.Group>
-
-                            <Form.Group controlId="state" className="me-1 w-50 float-left">
-                                <Form.Control
-                                    type="text"
-                                    name="state"
-                                    placeholder="Enter State"
-                                    value={formData.state}
-                                    onChange={handleChange}
-                                    required
-                                />
-                            </Form.Group>
-                        </div>
-
-                        <Button variant="primary" type="submit" className="btn m-1 w-100">Submit</Button>
-                    </Col>
-                    <Col md={6}>
-                        <iframe
-                            title="Google Map"
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3805.523434507499!2d78.45764861435773!3d17.426632888084933!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb98673c27a2bb%3A0xe7e6a045c1095c04!2sPunjagutta%2C%20Hyderabad%2C%20Telangana%20500082!5e0!3m2!1sen!2sin!4v1639045574805!5m2!1sen!2sin"
-                            width="100%"
-                            height="370"
-                            style={{ border: 0 }}
-                            allowFullScreen=""
-                            loading="lazy"
-                        ></iframe>
-                    </Col>
-                </Row>
-
-
-            </Form>
-        </Container>
+                    <Button variant="primary" type="submit" className="btn w-100">Submit</Button>
+                </Form>
+            )}
+        </Wrapper>
     );
 };
 
 export default AddOtherAddressForm;
+
+const Wrapper = styled.div`
+    width: 100%;
+    .formSubmittedBox{
+        width: 100%;
+        height: 300px;
+    }
+`

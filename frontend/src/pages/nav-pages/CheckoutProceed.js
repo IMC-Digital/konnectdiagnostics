@@ -2,7 +2,7 @@ import React from 'react';
 import { styled } from "styled-components";
 import CartBillingSec from '../../components/cart/CartBillingSec';
 import { NavLink } from 'react-router-dom';
-import MultiStepForm3 from '../../components/checkout/MultiStepForm3';
+import MultiStepForm from '../../components/checkout/MultiStepForm';
 
 export default function CheckoutProceed({ 
   userId, 
@@ -35,7 +35,7 @@ export default function CheckoutProceed({
           />
         </div>
         <div className='p-5' style={{ width: "65%" }}>
-          <MultiStepForm3
+          <MultiStepForm
             cart={cart}
             setCart={setCart}
             userId={userId}
@@ -88,6 +88,10 @@ article{
 .clinicSelectoinChecked {
   background-color: #e0f7fa; 
   border-right: 4px solid var(--secondary-color);
+}
+#datesTabTitlesWrap{
+    overflow: hidden;
+    overflow-x: scroll;
 }
 `;
 

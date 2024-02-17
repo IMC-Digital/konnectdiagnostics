@@ -1,0 +1,73 @@
+@import url("https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;700;900&display=swap");
+@import url("./styles/text.css");
+@import url("./styles/positions.css");
+@import url("./styles/flex.css");
+@import url("./styles/heightandwidth.css");
+@import url("./styles/dashboardtabs.css");
+
+:root {
+  --primary-color: #005bab;
+  --secondary-color: #00aeef;
+  --text-color: #2c2c2c;
+}
+
+* {
+  color: var(--text-color);
+  font-family: "Archivo", sans-serif;
+  margin: 0;
+  margin-bottom: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-size: 12px;
+}
+
+.clr-inherit{color: inherit;}
+
+.btn-k-primary {
+  border: none;
+  padding: 8px 20px;
+  color: white;
+  border-radius: 5px;
+  background-color: var(--primary-color);
+  transition: 0.5s;
+}
+.btn-k-primary:hover {
+  background-color: var(--secondary-color);
+}
+.btn-k-secondary {
+  border: none;
+  padding: 8px 20px;
+  border-radius: 5px;
+  color: white !important;
+  background-color: var(--secondary-color) !important;
+  transition: 0.5s;
+}
+.btn-k-secondary:hover {
+  background-color: var(--primary-color) !important;
+}
+.cursor-pointer:hover {
+  cursor: pointer;
+}
+
+.hover-bg-danger:hover {
+  background-color: rgb(218, 0, 0) (218, 0, 0);
+}
+.hover-bg-primary:hover {
+  background-color: var(--primary-color);
+}
+.hover-bg-secondary:hover {
+  background-color: var(--secondary-color);
+}
+
+.bg-k-primary {
+  background-color: var(--primary-color);
+}
+.bg-k-secondary {
+  background-color: var(--secondary-color);
+}
+.bg-light1{
+  background-color: #fcfcfc;
+}
+.bg-light2{
+  background-color: #F6F9FC;
+}

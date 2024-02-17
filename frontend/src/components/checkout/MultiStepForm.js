@@ -1,115 +1,126 @@
 import React, { useState } from 'react';
+import { Button, ProgressBar } from 'react-bootstrap';
+import { FaUser, FaEnvelope, FaLock } from 'react-icons/fa';
+import SessionSelection from './SessionSelection';
+import SampleCollectionAt from './SampleCollectionAt';
+import SelectMember2 from './SelectMember2';
 
-const MultiStepForm = () => {
-  const [step, setStep] = useState(1);
-  const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    password: '',
-  });
+const steps = [
+    { title: 'Step 1', icon: <FaUser /> },
+    { title: 'Step 2', icon: <FaEnvelope /> },
+    { title: 'Step 3', icon: <FaLock /> },
+];
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-  };
+export default function MultiStepForm({
+    cart,
+    setCart,
+    userId,
+    profileData,
+    setShowAddNewAddressPopup,
+    setShowAddNewMemberPopup,
+    setShowPopupConfirmCheckout,
+    checkOutFormData,
+    setCheckOutFormData
+}) {
+    const [currentStep, setCurrentStep] = useState(0);
 
-  const nextStep = () => {
-    setStep(step + 1);
-  };
+    const nextStep = () => {
+        setCurrentStep((prevStep) => prevStep + 1);
+    };
 
-  const prevStep = () => {
-    setStep(step - 1);
-  };
+    const prevStep = () => {
+        setCurrentStep((prevStep) => prevStep - 1);
+    };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Handle form submission logic here
-    console.log('Form submitted:', formData);
-  };
+    const renderForm = () => {
+        switch (currentStep) {
+            case 0:
+                return <SampleCollectionAt
+                    cart={cart}
+                    setCart={setCart}
+                    userId={userId}
+                    profileData={profileData}
+                    checkOutFormData={checkOutFormData}
+                    setCheckOutFormData={setCheckOutFormData}
+                    setShowAddNewAddressPopup={setShowAddNewAddressPopup}
+                />;
+            case 1:
+                return <SelectMember2
+                    cart={cart}
+                    setCart={setCart}
+                    userId={userId}
+                    profileData={profileData}
+                    checkOutFormData={checkOutFormData}
+                    setCheckOutFormData={setCheckOutFormData}
+                    setShowAddNewMemberPopup={setShowAddNewMemberPopup}
+                />;
+            case 2:
+                return <SessionSelection
+                    checkOutFormData={checkOutFormData}
+                    setCheckOutFormData={setCheckOutFormData}
+                />;
+            default:
+                return null;
+        }
+    };
+    // useEffect(() => {
+    //     console.log(".......");
+    // }, [checkOutFormData.selectedSession.date.date])
 
-  const renderForm = () => {
-    switch (step) {
-      case 1:
-        return (
-          <div>
-            <h2>Step 1: Personal Information</h2>
-            <label>
-              First Name:
-              <input
-                type="text"
-                name="firstName"
-                value={formData.firstName}
-                onChange={handleChange}
-              />
-            </label>
-            <br />
-            <label>
-              Last Name:
-              <input
-                type="text"
-                name="lastName"
-                value={formData.lastName}
-                onChange={handleChange}
-              />
-            </label>
-            <br />
-            <button type='button' onClick={nextStep}>Next</button>
-          </div>
-        );
-      case 2:
-        return (
-          <div>
-            <h2>Step 2: Contact Information</h2>
-            <label>
-              Email:
-              <input
-                type="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-              />
-            </label>
-            <br />
-            <label>
-              Password:
-              <input
-                type="password"
-                name="password"
-                value={formData.password}
-                onChange={handleChange}
-              />
-            </label>
-            <br />
-            <button type='button' onClick={prevStep}>Back</button>
-            <button type='button' onClick={nextStep}>Next</button>
-          </div>
-        );
-      case 3:
-        return (
-          <div>
-            <h2>Step 3: Review and Submit</h2>
-            <p>First Name: {formData.firstName}</p>
-            <p>Last Name: {formData.lastName}</p>
-            <p>Email: {formData.email}</p>
-            <p>Password: {formData.password}</p>
-            <button type='button' onClick={prevStep}>Back</button>
-            <button type='button' onClick={handleSubmit}>Submit</button>
-          </div>
-        );
-      default:
-        return null;
+    const handleCheckoutSubmission = () => {
+        // console.log(checkOutFormData);
+        setShowPopupConfirmCheckout(true)
     }
-  };
 
-  return (
-    <form>
-      {renderForm()}
-    </form>
-  );
+    return (
+        <div>
+            <ProgressBar now={(currentStep + 1) * (100 / steps.length)} />
+
+            <div className="mb-4 mt-4">
+                {renderForm()}
+            </div>
+
+            {currentStep === steps.length - 1 ? (
+                <>
+                    <Button
+                        variant="primary"
+                        className='me-1'
+                        onClick={prevStep}
+                        disabled={currentStep === 0}>
+                        Previous
+                    </Button>
+                    <Button
+                        variant="success"
+                        onClick={handleCheckoutSubmission}
+                        >
+                        Submit
+                    </Button>
+
+                </>
+            ) : (
+                <>
+                    <Button variant="primary" onClick={prevStep} disabled={currentStep === 0} className='me-1'>
+                        Previous
+                    </Button>
+
+                    <Button
+                        variant="primary"
+                        onClick={nextStep}
+                        disabled={
+                            currentStep === steps.length - 1 ||
+                            (currentStep === 0 &&
+                                !checkOutFormData.sampleCollection.homeSampleCollection.address_name &&
+                                !checkOutFormData.sampleCollection.clinicSampleCollection.name
+                            ) ||
+                            (currentStep === 1 && checkOutFormData.selectedMember.length === 0)
+                        }
+                    >
+                        Next
+                    </Button>
+
+                </>
+            )}
+        </div>
+
+    );
 };
-
-export default MultiStepForm;

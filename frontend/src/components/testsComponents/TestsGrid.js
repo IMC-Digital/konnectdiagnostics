@@ -35,9 +35,9 @@ function TestsGrid({ searchResults, cart, setCart, cardsPerPage}) {
         <div className="box-right-bottom mt-3">
           <div className="d-flex justify-content-center flex-wrap gap-2">
             {
-              visibleCards.map((item) => (
+              visibleCards.map((item, index) => (
                 <TestCard 
-                  key={item.product_id} 
+                  key={index} 
                   item={item}
                   cart={cart} 
                   setCart={setCart}

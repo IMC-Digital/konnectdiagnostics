@@ -28,7 +28,6 @@ const createOtpDbConnection = () => {
       console.error('Error connecting to OTP database:', err);
       process.exit(1);
     }
-    console.log('DB connected');
   });
 
   return otpdb;

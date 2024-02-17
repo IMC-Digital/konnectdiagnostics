@@ -10,28 +10,29 @@ const Cart = ({ userId, cart, setCart, checkOutFormData, setCheckOutFormData }) 
             <article className='container mx-auto m-5 p-0 d-flex'>
                 <div className='' style={{ width: "60%" }}>
                     <div className='px-5 py-3 bg-light d-flex justify-content-between align-items-center border'>
-                        <h3 className='text-k-secondary text-k-clr-secondary'>Cart - <span className='text-k-clr-text'>Selected Tests</span> </h3>
+                        <div>
+                            <h2 className='text-k-secondary text-k-clr-secondary'>
+                                Cart
+                            </h2>
+                            <span className='text-k-clr-text small fw-normal'>Selected Tests & Packages</span>
+                        </div>
                         <NavLink to="/tests">
                             <button className='btn btn-outline-secondary btn-sm'>Add +</button>
                         </NavLink>
-                        {/* <hr /> */}
                     </div>
                     <div className='px-5 p-2'>
                         {cart?.map((item) => (
                             <CartItemsList key={item.product_id} item={item} userId={userId} cart={cart} setCart={setCart} />
                         ))}
-                        {/* <div>
-                            {showComponent && (<CartFormComp cart={cart} />)}
-                        </div> */}
                     </div>
                 </div>
                 <div className='p-5' style={{ width: "40%" }}>
-                    <CartBillingSec 
-                        cart={cart} 
-                        setCart={setCart} 
+                    <CartBillingSec
+                        cart={cart}
+                        setCart={setCart}
                         userId={userId}
-                        checkOutFormData={checkOutFormData} 
-                        setCheckOutFormData={setCheckOutFormData} 
+                        checkOutFormData={checkOutFormData}
+                        setCheckOutFormData={setCheckOutFormData}
                     />
                     <NavLink to="/checkout">
                         <button type="button" className='btn btn-primary w-100 fw-bold text-white'>

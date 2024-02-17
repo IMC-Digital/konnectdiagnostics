@@ -1,11 +1,22 @@
-import React from "react";
-import PackagesGrid from "../packagesComponents/PackagesGrid";
+import React, { useState } from "react";
+import OrganCarousel from "../requiredPages/OrganCarousel";
+import PackageCard from "../packages(New)/PackageCard";
 
 const ToggleKHP = ({ userId, auth, cart, setCart, handleLoginClick }) => {
+  const [searchResults, setSearchResults] = useState([]);
+
   return (
     <div className="s2-khp mt-4">
-      <div className="results d-flex flex-wrap gap-3 justify-content-center">
-        <PackagesGrid userId={userId} auth={auth} cart={cart} setCart={setCart} qntt={6} handleLoginClick={handleLoginClick}  />
+      <div className="results d-flex flex-column flex-wrap gap-3 justify-content-center">
+        <OrganCarousel testsOrPackage={"packages"} searchResults={searchResults} setSearchResults={setSearchResults} />
+
+        <div className="mt-3 d-flex justify-content-center gap-3">
+          {
+            searchResults.map((item, index) => (
+              <PackageCard key={index} cart={cart} setCart={setCart} item={item} />
+            )) 
+          }
+        </div>
       </div>
     </div>
   );

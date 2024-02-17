@@ -19,18 +19,18 @@ function SearchBar({ setSearchResults }) {
 
   const handleSearch = async () => {
     try {
-      const response = await axios.get(`${BASE_API_URL}/search?q=${searchTerm}`);
+      // const response = await axios.get(`${BASE_API_URL}/search?q=${searchTerm}`);
+      const response = await axios.get(`${BASE_API_URL}/tests/search/${searchTerm}`);
       setSearchResults(response.data);
-      // console.log(response.data);
     } catch (error) {
       console.error(error);
     }
   };
 
   return (
-    <div className='w-100'>
+    <div className='w-100 me-3'>
       <div className="d-flex mb-2 w-100">
-        <div className="form-outline">
+        <div className="form-outline w-100">
           <input 
             type="text" id="form1" className="form-control" style={searchInpStyle} placeholder='Search...'
             value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)}
@@ -40,16 +40,6 @@ function SearchBar({ setSearchResults }) {
           <i className="fas fa-search text-white"></i>
         </button>
       </div>
-      {/* <ul>
-        {searchResults.map((result) => (
-            <li key={result.id}>
-                <ul>
-                    <li>{result.test_id}</li>
-                    <li>{result.test_name}</li>
-                </ul>
-            </li>
-        ))}
-      </ul> */}
     </div>
   );
 }

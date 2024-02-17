@@ -1,17 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { AiOutlineDoubleRight } from "react-icons/ai";
 import { Link } from "react-router-dom";
-// import PackagesGrid from "../../pages/nav-pages/PackagesGrid";
-import PackagesGrid from "../../components/packagesComponents/PackagesGrid";
+import OrganCarousel from "../requiredPages/OrganCarousel";
+import PackageCard from "../packages(New)/PackageCard";
 
-const HealthPackagesComponent = ({
-  userId,
-  auth,
-  cart,
-  setCart,
-  handleLoginClick,
-}) => {
+const HealthPackagesComponent = ({ userId, auth, cart, setCart, handleLoginClick,}) => {
+  const [searchResults, setSearchResults] = useState([]);
+
   return (
     <Wrapper>
       <section className="" id="hp_sec">
@@ -26,14 +22,14 @@ const HealthPackagesComponent = ({
           </div>
           <div className="hp-box container flex-wrap">
             <div className="hpCards d-flex justify-content-center flex-wrap gap-3">
-              <PackagesGrid
-                userId={userId}
-                auth={auth}
-                cart={cart}
-                setCart={setCart}
-                qntt={3}
-                handleLoginClick={handleLoginClick}
-              />
+              <OrganCarousel testsOrPackage={"packages"} searchResults={searchResults} setSearchResults={setSearchResults} />
+              <div className="mt-3 d-flex justify-content-center gap-3">
+                {
+                  searchResults.map((item, index) => (
+                    <PackageCard key={index} cart={cart} setCart={setCart} item={item} />
+                  ))
+                }
+              </div>
             </div>
           </div>
           <Link to="/packages">

@@ -74,15 +74,15 @@ export default function CartBillingSec({ cart, setCart, userId, checkOutFormData
     return (
         <div>
             <div className='d-flex justify-content-between'>
-                <p> Subtotal : </p>
-                <p> &#8377; {subTotalAmount} </p>
+                <p className='text-k-text'> Subtotal : </p>
+                <p className='text-k-text'> &#8377; {subTotalAmount} </p>
             </div>
             <div className='mb-3'>
                 <form onSubmit={submitCouponCode}>
                     <InputGroup>
                         <Form.Control
                             required
-                            placeholder={ couponCode ? couponCode : "Coupon Code" }
+                            placeholder={ couponCode !== "" ? couponCode : "Coupon Code" }
                             aria-label="Coupon Code"
                             aria-describedby="basic-addon2"
                             name="couponCode"
@@ -98,8 +98,8 @@ export default function CartBillingSec({ cart, setCart, userId, checkOutFormData
                 <p className="text-success text-k-text small">{couponAppliedMessage}</p>
             </div>
             <div className='d-flex justify-content-between'>
-                <p className='mb-0'> Coupon Code Discount : </p>
-                <p className='text-danger mb-0'> - &#8377;{couponDiscountAmount} </p>
+                <p className='text-k-text mb-0'> Coupon Code Discount : </p>
+                <p className='text-k-text text-danger mb-0'> - &#8377;{couponDiscountAmount} </p>
             </div>
             <hr />
             <div className='totalSec d-flex align-items-end justify-content-between'>

@@ -24,7 +24,7 @@ const AddNewMemberForm = ({ cart, setCart, userId, setShowAddNewMemberPopup }) =
   const handleSubmit = (e) => {
     console.log(formData);
     e.preventDefault();
-    axios.post(`${BASE_API_URL}/user/add-new-address`, formData)
+    axios.post(`${BASE_API_URL}/user/add-new-member`, formData)
       .then((response) => {
         console.log("Member added to db", response.data);
       }).catch((error) => {

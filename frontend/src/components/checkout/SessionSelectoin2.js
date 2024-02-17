@@ -57,7 +57,6 @@ const SlotBooking = () => {
   };
 
   const handleSlotSelection = (selectedSlot) => {
-    // Handle slot selection logic here
     console.log('Selected Slot:', selectedSlot);
   };
 

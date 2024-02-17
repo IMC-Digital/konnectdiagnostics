@@ -23,7 +23,17 @@ const HeroSlider = () => {
           {...sliderSettings}
           className="s-slider"
         >
-          <div className="sliderSec1">
+          <div className="sliderSec0">
+            <div className="container d-flex align-items-center h-100">
+              <div className="w-50 pe-5">
+                <h1 className="text-k-primary text-k-clr-primary text-capitalize">
+                  We are  <span className="text-k-clr-secondary">Upgrading</span> to serve you better
+                </h1>
+              </div>
+            </div>
+          </div>
+
+          {/* <div className="sliderSec1">
             <div className="container d-flex align-items-center h-100">
               <div className="w-50 pe-5">
                 <h1 className="text-k-primary text-k-clr-primary text-capitalize"> 
@@ -51,7 +61,7 @@ const HeroSlider = () => {
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
         </Slider>
       </div>
     </Wrapper>
@@ -75,6 +85,11 @@ const Wrapper = styled.section`
     align-items: center;
     justify-content: center;
     overflow: hidden;
+    .sliderSec0 {
+      height: 70vh;
+      background: #ffffff url("/images/bannerImage0.jpg") no-repeat right center;
+      background-size: 50%;
+    }
     .sliderSec1 {
       height: 70vh;
       background: #ffffff url("images/bannerImage.jpg") no-repeat right top;

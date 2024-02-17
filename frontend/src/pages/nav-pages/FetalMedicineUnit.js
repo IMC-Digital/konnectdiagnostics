@@ -5,28 +5,13 @@ import FacilitiesCarousel from "../../components/requiredPages/FacilitiesCarouse
 const Li = ({ prop }) => {
   return (
     <li>
-      <svg
-        height="20"
-        viewBox="0 0 24 24"
-        width="20"
-        xmlns="http://www.w3.org/2000/svg"
-      >
+      <svg height="20" viewBox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg">
         <g id="Outline">
-          <g>
-            <path
-              d="m11.982 14.982c-.265 0-.52-.105-.707-.293l-2.982-2.982c-.391-.391-.391-1.023 0-1.414s1.023-.391 1.414 0l2.275 2.275 7.293-7.293c.391-.391 1.023-.391 1.414 0s.391 1.023 0 1.414l-8 8c-.188.188-.442.293-.707.293z"
-              fill="#d66ea6 "
-            />
-          </g>
-          <g>
-            <path
-              d="m12 20c-4.411 0-8-3.589-8-8s3.589-8 8-8c1.193 0 2.342.257 3.414.763.499.236.713.832.477 1.331-.236.5-.832.715-1.332.478-.802-.38-1.663-.572-2.559-.572-3.309 0-6 2.691-6 6s2.691 6 6 6 6-2.691 6-6c0-.553.448-1 1-1s1 .447 1 1c0 4.411-3.589 8-8 8z"
-              fill="#d66ea6 "
-            />
-          </g>
+          <g> <path d="m11.982 14.982c-.265 0-.52-.105-.707-.293l-2.982-2.982c-.391-.391-.391-1.023 0-1.414s1.023-.391 1.414 0l2.275 2.275 7.293-7.293c.391-.391 1.023-.391 1.414 0s.391 1.023 0 1.414l-8 8c-.188.188-.442.293-.707.293z" fill="#d66ea6 " /> </g>
+          <g> <path d="m12 20c-4.411 0-8-3.589-8-8s3.589-8 8-8c1.193 0 2.342.257 3.414.763.499.236.713.832.477 1.331-.236.5-.832.715-1.332.478-.802-.38-1.663-.572-2.559-.572-3.309 0-6 2.691-6 6s2.691 6 6 6 6-2.691 6-6c0-.553.448-1 1-1s1 .447 1 1c0 4.411-3.589 8-8 8z" fill="#d66ea6 " /> </g>
         </g>
       </svg>
-      <span className="ms-2"> {prop} </span>
+      <span className="text-k-text"> {prop} </span>
     </li>
   );
 };
@@ -157,10 +142,10 @@ const FetalMedicineUnit = () => {
           </div>
 
           <div className="container mt-4 about-botm d-flex">
-            <div className=" d-flex align-items-center">
+            <div className="d-flex align-items-center">
               <img
                 style={{
-                  width: "500px",
+                  width: "600px",
                   height: "auto",
                   borderRadius: "10px",
                 }}
@@ -204,7 +189,22 @@ const FetalMedicineUnit = () => {
             <div className="w-50 p-4 ps-5 d-flex flex-column justify-content-center content_wrapper">
               <h4 className=""> FETAL IMAGING </h4>
               <ul>
-                <Li prop={"Early pregnancy scan/dating scan - 3D/4D"} />
+                {
+                  [
+                    "Early pregnancy scan/dating scan - 3D/4D",
+                    "Early TIFFA / NT - 3D/4D",
+                    "TIFFA / Anomaly scan - 3D/4D",
+                    "Fetal Echocardiogram - 3D/4D",
+                    "Fetal neuro imaging",
+                    "Fetal Doppler",
+                    "Growth scans",
+                    "BPP",
+                    "Fetal MRI",
+                  ].map((item, index) => (
+                    <Li key={index} prop={item} />
+                  ))
+                }
+                {/* <Li prop={"Early pregnancy scan/dating scan - 3D/4D"} />
                 <Li prop={"Early TIFFA / NT - 3D/4D"} />
                 <Li prop={"TIFFA / Anomaly scan - 3D/4D"} />
                 <Li prop={"Fetal Echocardiogram - 3D/4D"} />
@@ -212,7 +212,7 @@ const FetalMedicineUnit = () => {
                 <Li prop={"Fetal Doppler"} />
                 <Li prop={"Growth scans"} />
                 <Li prop={"BPP"} />
-                <Li prop={"Fetal MRI"} />
+                <Li prop={"Fetal MRI"} /> */}
               </ul>
             </div>
           </div>
@@ -221,16 +221,22 @@ const FetalMedicineUnit = () => {
             <div className="w-50 p-4 d-flex flex-column justify-content-center content_wrapper">
               <h4 className=""> IMAGING IN FERTILITY </h4>
               <ul>
-                <Li prop={"Follicular monitoring"} />
-                <Li prop={"Antral follicular study"} />
-                <Li prop={"Stromal volume in PCOS"} />
-                <Li prop={"Endometrial and perifollicular doppler"} />
-                <Li prop={"3D imaging of uterus"} />
-                <Li prop={"Sono-salpingography"} />
-                <Li prop={"Penile doppler"} />
-                <Li prop={"Scrotal imaging"} />
-                <Li prop={"Trans rectal USG for seminal vesicles"} />
-                <Li prop={"Prostate and ejaculatory ducts"} />
+                {
+                  [
+                    "Follicular monitoring",
+                    "Antral follicular study",
+                    "Stromal volume in PCOS",
+                    "Endometrial and perifollicular doppler",
+                    "3D imaging of uterus",
+                    "Sono-salpingography",
+                    "Penile doppler",
+                    "Scrotal imaging",
+                    "Trans rectal USG for seminal vesicles",
+                    "Prostate and ejaculatory ducts"
+                  ].map((item, index) => (
+                    <Li key={index} prop={item} />
+                  ))
+                }
               </ul>
             </div>
             <div
@@ -256,12 +262,18 @@ const FetalMedicineUnit = () => {
             <div className="w-50 p-4 d-flex flex-column justify-content-center content_wrapper">
               <h4 className=""> FETAL & MATERNAL </h4>
               <ul style={{ display: "block" }}>
-                <Li prop={"INTERVENTIONS"} />
-                <Li prop={"CVS"} />
-                <Li prop={"Amniocentesis"} />
-                <Li prop={"Fetal reduction"} />
-                <Li prop={"Maternal abdominal paracentesis/adnexal"} />
-                <Li prop={"Cyst aspiration"} />
+                {
+                  [
+                    "INTERVENTIONS",
+                    "CVS",
+                    "Amniocentesis",
+                    "Fetal reduction",
+                    "Maternal abdominal paracentesis/adnexal",
+                    "Cyst aspiration"
+                  ].map((item, index) => (
+                    <Li key={index} prop={item} />
+                  ))
+                }
               </ul>
             </div>
           </div>

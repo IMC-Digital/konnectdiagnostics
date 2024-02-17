@@ -1,151 +1,122 @@
+import axios from 'axios';
 import React, { useState } from 'react';
 import { styled } from "styled-components";
+import { BASE_API_URL } from '../api';
+import FloatingLabel from 'react-bootstrap/FloatingLabel';
+import Form from 'react-bootstrap/Form';
 
-const ProfileForm = ({ handleProfileSubmit }) => {
+const ProfileForm = ({ userId }) => {
+  axios.defaults.withCredentials = true;
+
   const [formData, setFormData] = useState({
     fullName: '',
     dateOfBirth: '',
     gender: '',
     email: '',
     alternateMobile: '',
-    residentialAddress: '',
-    officeAddress: '',
   });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
-
   const handleSubmit = (e) => {
     e.preventDefault();
     handleProfileSubmit(formData);
+    console.log(userId);
+    console.log(formData);
+  };
+
+  const handleProfileSubmit = async () => {
+    try {
+      const response = await axios.post(`${BASE_API_URL}/profile/${userId}`, formData);
+      if (response.data) {
+        window.location.reload();
+        console.log("profileAdded");
+      }
+    } catch (err) {
+      console.error("error:", err);
+    }
   };
 
   return (
     <Wrapper>
-    <article className='container w-50 mx-auto m-5 p-0'>
-      <div className='p-5 py-4 bg-light'>
-        <h2>Create Your Profile</h2>
-      </div>
-      <div className='px-5 py-3'>
-        <form onSubmit={handleSubmit}>
-          <div className='mb-3'>
-            <label htmlFor='fullName' className='form-label'>Full Name:</label>
-            <input
-              type='text'
-              id='fullName'
-              name='fullName'
-              value={formData.fullName}
-              onChange={handleChange}
-              className='form-control'
-              required
-            />
-          </div>
-          <div className='d-flex'>
-            <div className='mb-3'>
-              <label className='form-label'>Gender:</label>
-              <div className='d-flex'>
-                <div className='form-check'>
-                  <input
-                    type='radio'
-                    id='male'
-                    name='gender'
-                    value='Male'
-                    checked={formData.gender === 'Male'}
-                    onChange={handleChange}
-                    className='form-check-input'
-                  />
-                  <label htmlFor='male' className='form-check-label'>Male</label>
-                </div>
-                <div className='form-check'>
-                  <input
-                    type='radio'
-                    id='female'
-                    name='gender'
-                    value='Female'
-                    checked={formData.gender === 'Female'}
-                    onChange={handleChange}
-                    className='form-check-input'
-                  />
-                  <label htmlFor='female' className='form-check-label'>Female</label>
-                </div>
-                <div className='form-check'>
-                  <input
-                    type='radio'
-                    id='others'
-                    name='gender'
-                    value='Others'
-                    checked={formData.gender === 'Others'}
-                    onChange={handleChange}
-                    className='form-check-input'
-                  />
-                  <label htmlFor='others' className='form-check-label'>Others</label>
-                </div>
+      <article className='container mx-auto p-4'>
+        <div className='bg-light'>
+          <h2>Create Your Profile</h2>
+        </div>
+        <hr />
+        <div className=''>
+          <form onSubmit={handleSubmit}>
+            <FloatingLabel
+              controlId="fullName"
+              label="Full Name"
+              className="mb-3"
+            >
+              <Form.Control type='text' name='fullName' value={formData.fullName} onChange={handleChange} className='form-control' required placeholder="name@example.com" />
+            </FloatingLabel>
+
+            <Form.Group className='d-flex'>
+              <Form.Label className='form-label me-2'>Gender:</Form.Label>
+              <div className='d-flex gap-2'>
+                <Form.Check
+                  type='radio'
+                  id='male'
+                  name='gender'
+                  value='Male'
+                  onChange={handleChange}
+                  label='Male'
+                  required
+                />
+                <Form.Check
+                  type='radio'
+                  id='female'
+                  name='gender'
+                  value='Female'
+                  onChange={handleChange}
+                  label='Female'
+                  required
+                />
+                <Form.Check
+                  type='radio'
+                  id='others'
+                  name='gender'
+                  value='Others'
+                  onChange={handleChange}
+                  label='Others'
+                  required
+                />
               </div>
-            </div>
-            <div className='ms-3 w-50'>
-              <label htmlFor='dateOfBirth' className='form-label'>Date of Birth:</label>
-              <input
-                type='date'
-                id='dateOfBirth'
-                name='dateOfBirth'
-                value={formData.dateOfBirth}
-                onChange={handleChange}
-                className='form-control'
-                required
-              />
-            </div>
-          </div>  
-          <div className='mb-3'>
-            <label htmlFor='email' className='form-label'>Email:</label>
-            <input
-              type='email'
-              id='email'
-              name='email'
-              value={formData.email}
-              onChange={handleChange}
-              className='form-control'
-              required
-            />
-          </div>
-          <div className='mb-3'>
-            <label htmlFor='alternateMobile' className='form-label'>Alternate Mobile Number:</label>
-            <input
-              type='text'
-              id='alternateMobile'
-              name='alternateMobile'
-              value={formData.alternateMobile}
-              onChange={handleChange}
-              className='form-control'
-            />
-          </div>
-          <div className='mb-3'>
-            <label htmlFor='residentialAddress' className='form-label'>Residential Address:</label>
-            <textarea
-              id='residentialAddress'
-              name='residentialAddress'
-              value={formData.residentialAddress}
-              onChange={handleChange}
-              className='form-control'
-              required
-            />
-          </div>
-          <div className='mb-3'>
-            <label htmlFor='officeAddress' className='form-label'>Office Address:</label>
-            <textarea
-              id='officeAddress'
-              name='officeAddress'
-              value={formData.officeAddress}
-              onChange={handleChange}
-              className='form-control'
-              required
-            />
-          </div>
-          <button type='submit' className='btn btn-primary'>Create Profile</button>
-        </form>
-      </div>  
-    </article>
+            </Form.Group>
+
+            <FloatingLabel
+              controlId="dateOfBirth"
+              label="Data Of Birth"
+              className="mb-3"
+            >
+              <Form.Control type='date' name='dateOfBirth' value={formData.dateOfBirth} onChange={handleChange} className='form-control' required placeholder="name@example.com" />
+            </FloatingLabel>
+
+            <FloatingLabel
+              controlId="email"
+              label="Email"
+              className="mb-3"
+            >
+              <Form.Control type='email' name='email' value={formData.email} onChange={handleChange} className='form-control' required placeholder="name@example.com" />
+            </FloatingLabel>
+
+            <FloatingLabel
+              controlId="alternateMobile"
+              label="Alternative Mobile Number"
+              className="mb-3"
+            >
+              <Form.Control type='tel' name='alternateMobile' value={formData.alternateMobile} onChange={handleChange} className='form-control' required placeholder="Alternative Mobile Number" />
+            </FloatingLabel>
+
+            <button type='submit' className='btn btn-primary'>Create Profile</button>
+          </form>
+        </div>
+      </article>
     </Wrapper>
   );
 };
@@ -153,15 +124,39 @@ const ProfileForm = ({ handleProfileSubmit }) => {
 export default ProfileForm;
 
 const Wrapper = styled.section`
-article{
-    margin: auto;
-    background-image: 'url("/project-konnect/images/k-10.png")';
-    background-size: "500px";
-    background-position: "center center";
-    background-repeat: "no-repeat";
-    box-shadow: rgba(50, 50, 93, 0.1) 0px 50px 100px -20px, rgba(0, 0, 0, 0.1) 0px 30px 60px -30px;
-    border-radius: 10px;
+${'' /* .ff-group{
+  position: relative
 }
+.inputText {
+  font-size: 14px;
+  width: 200px;
+  height: 35px;
+}
+input:focus + .floating-label{;
+  background: #F6F9FC;
+}
+input:focus{
+  borde: none;
+  box-shadow: none;
+  background: #F6F9FC;
+}
+
+.floating-label {
+  position: absolute;
+  pointer-events: none;
+  padding: 2px 5px;
+  background: white;
+  transition: 0.2s ease all;
+  top: -12px;
+  font-size: 14px;
+  font-weight: 600;
+} */}
+
+label{
+  font-size: 16px;
+  font-weight: 00;
+}
+
 `
 
 

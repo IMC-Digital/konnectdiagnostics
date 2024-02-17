@@ -1,29 +1,16 @@
 import { styled } from "styled-components";
 import DynamicImage from "../../components/requiredPages/DynamicImage";
-// import { BiChevronsRight } from "react-icons/bi";
 import { CiHospital1 } from "react-icons/ci";
+import PageBanner from "../../components/PageBanner";
 
 const About = () => {
   return (
     <Wrapper className="about">
-      <div className="banner pb d-flex">
-        <div className="container flex">
-          <h1 className="page_title text-k-mainHeadings">About Us</h1>
-        </div>
-      </div>
-      {/* <div className="banner-bg d-flex">
-        <div className="banner-cnt container flex ">
-          <h2>About</h2>
-          <h6>
-            <span>Home</span>
-            <BiChevronsRight />
-            about
-          </h6>
-        </div>
-      </div> */}
+      <PageBanner title={"About Us"} bannerImg={"about-us-bg-image"} />
+
       <div className="sec-1 container flex flex-r">
         <div className="sec-left ">
-          <h3 className="paraH3 hdng2">We Care About Your Health -</h3>
+          <h3 className="paraH3 hdng2 text-dark">We Care About Your Health</h3>
           <div className="para-section flex">
             <p className="para">
               Konnect Diagnostics started in October 2019 with one center in
@@ -72,7 +59,7 @@ const About = () => {
                       </div>
                     </div>
                     <div>
-                      <h2 className="text-k-accent">{e.title}: </h2>
+                      <h2 className="text-k-accent text-dark">{e.title}: </h2>
                       <p> {e.para} </p>
                     </div>
                   </div>
@@ -92,7 +79,7 @@ const About = () => {
       <div className="container p-0 d-flex align-items-center">
         <div className="asafj p-5">
           <div className="img-box w-50"></div>
-          <h3>
+          <h3 className="text-dark">
             Konnect Diagnostics remains dedicated to delivering accurate and
             reliable diagnostic solutions{" "}
           </h3>
@@ -111,7 +98,7 @@ const About = () => {
           <DynamicImage imageName={"about-2.jpg"} />
         </div>
         <div className="sec-left ">
-          <h3 className="paraH3 mb-3">Why Konnect Diagnostics</h3>
+          <h3 className="paraH3 mb-3 text-dark">Why Konnect Diagnostics</h3>
           <div className="flex para-section">
             <p className="para para-box flex flex-r ">
               <DynamicImage imageName={"/icons/box.svg"} />
@@ -147,7 +134,7 @@ const About = () => {
             <div className="s3-box s3-box1 flex flex-r">
               <DynamicImage imageName={"nabl-logo.jpg"} />
               <div className="s3-box-1-info">
-                <h4>NABL Certification</h4>
+                <h4 className="text-dark">NABL Certification</h4>
                 <p className="para">
                   Konnect Diagnostics takes great pride in being a NABL
                   certified laboratory. This prestigious certification
@@ -159,7 +146,7 @@ const About = () => {
             <div className="s3-box s3-box2 flex flex-r">
               <DynamicImage imageName={"icmr-logo.jpg"} />
               <div className="s3-box-2-info">
-                <h4>ICMR Approval</h4>
+                <h4 className="text-dark">ICMR Approval</h4>
                 <p className="para">
                   Konnect Diagnostics is recognized and approved by the Indian
                   Council of Medical Research (ICMR). This recognition further
@@ -174,7 +161,7 @@ const About = () => {
       {/* -----------------------------Section three------------------------------ */}
       <div className="sec-m s4 container flex flex-r">
         <div className=" s4-info">
-          <span className="">Founder -----</span>
+          <span className="text-k-clr-secondary">Founder -----</span>
           <h3 className="hdng2">Dr. Mahesh Rao</h3>
           <p className="para">
             At Konnect Diagnostics, our team is led by the visionary founder,
@@ -189,7 +176,7 @@ const About = () => {
           </p>
         </div>
         <div className=" s4-img">
-          <DynamicImage imageName={"mahesh-rao.png"} />
+          {/* <DynamicImage imageName={"mahesh-rao.png"} /> */}
         </div>
       </div>
       <div className="sec-m s5 container flex flex-r">
@@ -238,12 +225,6 @@ const About = () => {
 export default About;
 
 const Wrapper = styled.section`
-  .banner {
-    background: url("/images/banners/about-us-bg-image.jpg");
-    .page_title {
-      color: var(--text-color);
-    }
-  }
   h3.hdng2 {
     font-weight: bold;
     font-size: 28px;

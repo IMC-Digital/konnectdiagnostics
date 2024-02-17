@@ -1,15 +1,12 @@
 import React from "react";
 import { styled } from "styled-components";
 import ContactForm from "../components/contactForm";
+import PageBanner from "../components/PageBanner";
 
 function ContactUs() {
   return (
     <Wrapper className="contact">
-      <div className="banner pb d-flex">
-        <div className="container flex">
-          <h1 className="page_title text-k-mainHeadings">Contact Us</h1>
-        </div>
-      </div>
+      <PageBanner title={"Contact Us"} bannerImg={'contact-us-bg-image'} />
 
       <div className="box container row container px-0 mx-auto my-5 d-flex justify-content-center align-items-center">
         <div className="box-left col-md-6 p-5 rounded">
@@ -56,10 +53,6 @@ function ContactUs() {
 export default ContactUs;
 
 const Wrapper = styled.div`
-  .banner {
-    background: url("/images/banners/contact-us-bg-image.jpg");
-  }
-
   .box-left {
     background-image: url("/images/k-10.png");
     background-position: top center;

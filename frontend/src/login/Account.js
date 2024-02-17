@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-// import pImag from "../assets/images/user/input.png";
 
 export const Account = () => {
   return (
@@ -11,8 +10,6 @@ export const Account = () => {
           <div className="content">
             <div className="left">
               <div className="img flexCenter">
-                {/* <input type="file" accept="image/*" src={pImag} alt="img" /> */}
-                {/* <img src={pImag} alt="p-name" className="image-preview" /> */}
               </div>
             </div>
             <div className="right">

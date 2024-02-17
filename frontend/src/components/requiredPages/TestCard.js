@@ -9,13 +9,14 @@ export const TestCard = ({ cart, setCart, item }) => {
   const handleAddToCart = (item) => {
     if (!isItemSelected) {
       item.quantity = 1;
+      item.type = "test";
       const prevCartItems =
         JSON.parse(localStorage.getItem("selectedCartItems")) || [];
       const newCartItems = [...prevCartItems, item];
       localStorage.setItem("selectedCartItems", JSON.stringify(newCartItems));
       setCart(JSON.parse(localStorage.getItem("selectedCartItems")));
 
-      toast.success(`${item.product_name} added to cart`, {
+      toast.success(`${item.test_name} added to cart`, {
         position: toast.POSITION.BOTTOM_RIGHT,
         className: "green-toast",
       });
@@ -26,7 +27,7 @@ export const TestCard = ({ cart, setCart, item }) => {
       JSON.parse(localStorage.getItem("selectedCartItems")) || [];
     console.log("prevCartItems:", prevCartItems);
     const indexToRemove = prevCartItems.findIndex(
-      (item) => item.product_id === itemToRemove.product_id
+      (item) => item.test_id === itemToRemove.test_id
     );
     const updatedCartItems = [
       ...prevCartItems.slice(0, indexToRemove),
@@ -35,14 +36,14 @@ export const TestCard = ({ cart, setCart, item }) => {
     localStorage.setItem("selectedCartItems", JSON.stringify(updatedCartItems));
     setCart(updatedCartItems);
 
-    toast.error(`${item.product_name} removed from cart`, {
+    toast.error(`${item.test_name} removed from cart`, {
       position: toast.POSITION.BOTTOM_RIGHT,
       className: "red-toast",
     });
   };
   useEffect(() => {
     setIsItemSelected(
-      cart.some((cartItem) => cartItem.product_id === item.product_id)
+      cart.some((cartItem) => cartItem.test_id === item.test_id)
     );
   }, [cart, item]);
 
@@ -56,9 +57,9 @@ export const TestCard = ({ cart, setCart, item }) => {
             <div className="card_org_cont">
               <img src={"/images/organs/" + item.category + ".png"} className="testOrgImg" alt="" />
             </div>
-            <h6 className="text-k-accent text-k-clr-primary mb-2"> {item.product_name} </h6>
-            <p className="small mb-0"> <b> INVCODE: </b> {item.product_code} </p>
+            <h6 className="text-k-accent text-k-clr-primary mb-2"> {item.test_name} </h6>
             <p className="mb-1 small"> <b> Sample Type: </b> {item.sample_type} </p>
+            <p className="mb-1 small"> <b> Pre Test Preparation: </b> {item.pre_test_preparation} </p>
           </div>
 
           <div className="ftr-sec bg-light px-3 py-2 w-100 d-flex justify-content-between border-top tcardfooter">
@@ -80,8 +81,8 @@ export const TestCard = ({ cart, setCart, item }) => {
               )}
             </div>
             <div>
-              <h5 className="price mb-0 fw-bolder">
-                <small>Rs: </small> {item.price}{" "}
+              <h5 className="price mb-0 fw-bolder text-k-clr-primary">
+                <small>&#8377; </small> {item.price}{" "}
               </h5>
             </div>
           </div>

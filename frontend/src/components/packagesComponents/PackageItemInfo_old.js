@@ -120,7 +120,7 @@ function PackageItemInfo({ item, auth, userId, cart, activeTab, handleLoginClick
           </div>
           <div className="pkg-info-right">
             <div className="pkg-code">
-              <h3>{item.product_name}</h3>
+              <h3>{item.test_name}</h3>
               <h5 className="code">Code :{item.product_code}</h5>
               <p className="text-k-clr-primary fw-bolder">
                 <span> Price : &#8377; </span>

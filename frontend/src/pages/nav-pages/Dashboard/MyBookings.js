@@ -1,34 +1,45 @@
-import React, { useState } from 'react'
+import React from 'react'
 import ActiveOrders from './ActiveOrders';
 import PastOrders from './PastOrders';
 import CancelledOrders from './CancelledOrders';
+import { Tab, Tabs } from 'react-bootstrap';
 
-function MyBookings() {
-    const [activeTab, setActiveTab] = useState(0);
-    const DashboardTabs = [ 'Active Orders', 'Past Orders', 'Cancelled Orders'];
-    const handleTabClick = (index) => {
-      setActiveTab(index);
-    };
-
+function MyBookings({ 
+    userId,
+    allOrdersData,
+    navigateToOrderDetails,
+}) {
     return (
-        <div className='container p-5'>
-            <h1>Orders History</h1>
-            <div>
-                <div>
-                    <div className="tab-title-wrapper">
-                        {DashboardTabs.map((tab, index) => (
-                            <div key={index} className={`tab-title2 ${index === activeTab ? 'active' : ''}`} onClick={() => handleTabClick(index)}>
-                                {tab}
-                            </div>
-                        ))}
-                    </div>
-                    <div className="tab-content">
-                        {DashboardTabs[activeTab] === DashboardTabs[0] && <ActiveOrders /> }
-                        {DashboardTabs[activeTab] === DashboardTabs[1] && <PastOrders /> }
-                        {DashboardTabs[activeTab] === DashboardTabs[2] && <CancelledOrders /> }
-                    </div>
-                </div>
-            </div>
+        <div>
+            <h2 className='text-k-secondary'>Order history</h2>
+            <hr />
+            <Tabs defaultActiveKey="home" id="dashboard-orders-tab" className="mb-3 dashboard-orders-tab">
+                {
+                    [
+                        ["home", "Active Orders", <ActiveOrders
+                            userId={userId}
+                            allOrdersData={allOrdersData}
+                            navigateToOrderDetails={navigateToOrderDetails}
+                        />],
+                        ["past", "Past Orders", <PastOrders 
+                            userId={userId}
+                            allOrdersData={allOrdersData}
+                            navigateToOrderDetails={navigateToOrderDetails}
+                        />],
+                        ["cancelled", "Cancelled Orders", <CancelledOrders 
+                            userId={userId}
+                            allOrdersData={allOrdersData}
+                            navigateToOrderDetails={navigateToOrderDetails}
+                        />]
+                    ].map((item, index) => (
+                        <Tab key={index} eventKey={item[0]} title={
+                            <p className="text-k-accent tabs-bottom-line position-relative"> {item[1]} </p>
+                        }>
+                            {item[2]}
+                        </Tab>
+                    ))
+                }
+            </Tabs>
         </div>
     )
 }

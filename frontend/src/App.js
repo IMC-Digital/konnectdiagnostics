@@ -4,8 +4,8 @@ import "./App.css";
 import { ThemeProvider } from "styled-components";
 import GlobalStyle from "./styles/global.css";
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
-// import Header from "./pages/Header";
-import Header2 from "./pages/Header2";
+
+import Header from "./pages/Header";
 import Footer from "./pages/Footer";
 
 import Home from "./pages/Home";
@@ -16,7 +16,6 @@ import Services from "./pages/nav-pages/Services";
 import Details from "./components/services/Details";
 import RsDetails from "./components/services/RsDetails";
 import SingleProduct from "./components/requiredPages/SingleProduct";
-import Packages from "./pages/nav-pages/Packages";
 import LocateClinic from "./pages/nav-pages/LocateClinic";
 import Tests from "./pages/nav-pages/Tests";
 import HealthConditions from "./pages/nav-pages/HealthConditions ";
@@ -26,9 +25,6 @@ import PartnerWithUs from "./pages/nav-pages/PartnerWithUs";
 import FetalMedicineUnit from "./pages/nav-pages/FetalMedicineUnit";
 import ErrorPage from "./pages/ErrorPage";
 
-import { Account } from "./login/Account";
-import { Register } from "./login/Register";
-
 import Profile from "./login/Profile";
 import axios from "axios";
 import LogPopup from "./login/LogPopup";
@@ -36,13 +32,17 @@ import HealthPackages from "./pages/nav-pages/HealthPackages";
 import ProfileUpdate from "./login/ProfileUpdate";
 import ContactUs from "./pages/ContactUs";
 import { BASE_API_URL } from "./api";
-import OtpLoginPopup2 from "./login/OtpLoginPopup2";
+import OtpLoginPopup from "./login/OtpLoginPopup";
 import OtpLoginPage from "./login/OtpLoginPage";
 import AddAnotherAddressPopup from "./components/AddAnotherAddressPopup";
 import CheckoutProceed from "./pages/nav-pages/CheckoutProceed";
 import AddNewMemberPopup from "./components/AddNewMemberPopup";
 import PopupConfirmCheckout from "./components/PopupConfirmCheckout";
 import Dashboard from "./pages/nav-pages/Dashboard/Dashboard";
+import PopupOrderSuccessful from "./components/PopupOrderSuccessfull";
+import OrderDetails from "./pages/nav-pages/Dashboard/OrderDetails";
+import PopupProfileSetupForm from "./components/PopupProfileSetupForm";
+import Packages from "./components/packages(New)/Packages";
 
 const theme = {
   colors: {
@@ -66,20 +66,24 @@ const theme = {
 };
 
 function App() {
+  axios.defaults.withCredentials = true;
   const [auth, setAuth] = useState(false);
   const [userId, setUserId] = useState('');
   const [cartId, setCartId] = useState('');
+  const [orderPlacedId, setOrderPlacedId] = useState('');
   const [cart, setCart] = useState([]);
   const [localCartItems, setLocalCartItems] = useState([]);
   const [profileData, setProfileData] = useState({});
   const [showProfileForm, setShowProfileForm] = useState(false);
-  axios.defaults.withCredentials = true;
-  const [showOtpPopup2, setShowOtpPopup2] = React.useState(false);
+  const [showOtpPopup, setShowOtpPopup] = React.useState(false);
   const [showAddNewAddressPopup, setShowAddNewAddressPopup] = useState(false)
   const [showAddNewMemberPopup, setShowAddNewMemberPopup] = useState(false)
   const [showPopupConfirmCheckout, setShowPopupConfirmCheckout] = useState(false)
+  const [showPopupOrderSuccessful, setShowPopupOrderSuccessful] = useState(false);
+  const [showPopupProfileSetupForm, setShowPopupProfileSetupForm] = useState(false);
+
   const [checkOutFormData, setCheckOutFormData] = useState({
-    userId: 36,
+    userId: "",
     amount: {
       subTotalAmount: 0,
       couponCode: "",
@@ -99,7 +103,7 @@ function App() {
         locality: "",
         pincode: "",
         state:"",
-        alternate_mobile_number: ""
+        alternate_mobile_number: profileData.alternate_mobile_number
       },
       clinicSampleCollection: {
         id: 0,
@@ -131,6 +135,10 @@ function App() {
           setAuth(true);
           setUserId(res.data.userid);
           setCartId(res.data.cart_id);
+          setCheckOutFormData((prevData) => ({
+            ...prevData,
+            userId: res.data.userid
+          }))
         } else {
           setAuth(false);
         }
@@ -141,32 +149,29 @@ function App() {
   }, [auth, userId, cartId]);
 
   useEffect(() => {
-  const storedCartItems = JSON.parse(
-    localStorage.getItem("selectedCartItems")
-  );
-  const initialCart = storedCartItems || [];
-
-  // Update quantity property to 1 for each item in the cart
-  const updatedCart = initialCart.map(item => ({ ...item, quantity: 1 }));
-
-  setCart(updatedCart);
-
-  if (!storedCartItems) {
-    // If there were no stored cart items, initialize the local storage with an empty array
-    localStorage.setItem("selectedCartItems", JSON.stringify([]));
-  }
-}, [auth]);
+    const storedCartItems = JSON.parse(
+      localStorage.getItem("selectedCartItems")
+    );
+    const initialCart = storedCartItems || [];
+    const updatedCart = initialCart.map(item => ({ ...item, quantity: 1 }));
+    setCart(updatedCart);
+    if (!storedCartItems) {
+      localStorage.setItem("selectedCartItems", JSON.stringify([]));
+    }
+  }, [auth]);
 
   
   useEffect(() => {
     const fetchData = async () => {
       if (auth) {
-        const profileResponse = await axios.get(`${BASE_API_URL}/profile/${userId}`);
-        const data = profileResponse.data;
-        if (data.profileExists) {
-          setProfileData(data.profileData);
+        const response = await axios.get(`${BASE_API_URL}/user/get-profile/${userId}`);
+        const profData = response.data;
+        if (profData.length > 0) {
+          setProfileData(profData[0]);
+          // console.log(response.data);
         } else {
           setShowProfileForm(true);
+          setShowPopupProfileSetupForm(true);
         }
       }
     };
@@ -182,6 +187,25 @@ function App() {
     });
   }
 
+  const handleOrderPlacedSuccessfullyActions = (orderId) => {
+    setOrderPlacedId(orderId);
+    setShowPopupConfirmCheckout(false);
+    setShowPopupOrderSuccessful(true);
+    localStorage.setItem("selectedCartItems", JSON.stringify([]));
+    setCart([]);
+    setCheckOutFormData({
+      userId: userId,
+      amount: { subTotalAmount: 0, couponCode: "", couponCodeDiscount: 0, totalAmount: 0},
+      sampleCollection: {
+        sampleCollectionAt: 0,
+        homeSampleCollection: { address_id: 0, address_line_1: "", address_line_2: "", address_name: "", address_type: "", city: "", googlemap: "", locality: "", pincode: "", state:"", alternate_mobile_number: ""},
+        clinicSampleCollection: { id: 0, name: "", address: "", area: "", city: "", code: "", pincode: "", google_map_link: "", telephone_number: "", email: ""}
+      },
+      selectedMember: [],
+      selectedSession: { date: { date: "", month: "", day: "" }, time: "18:00-19:00" }
+    })
+  }
+
   // ------------------------------------------------
   const [isShowLogin, setIsShowLogin] = useState(false);
   const handleLoginClick = () => {
@@ -194,7 +218,7 @@ function App() {
       <GlobalStyle />
       <div className="App">
         <Router>
-          <Header2 
+          <Header 
             cart={cart} 
             setCart={setCart} 
             auth={auth}  
@@ -205,7 +229,7 @@ function App() {
             cartId={cartId}  
             setCartId={setCartId}
             handleLoginClick={handleLoginClick}
-            setShowOtpPopup2={setShowOtpPopup2}
+            setShowOtpPopup={setShowOtpPopup}
             handleLogout={handleLogout} />
           <Routes>
             <Route path="/" element={
@@ -240,7 +264,15 @@ function App() {
                   auth={auth} 
                   userName={profileData.fullname} 
                   profileData={profileData} 
-                  setProfileData={setProfileData} 
+                  setProfileData={setProfileData}
+                  // setShowOrderDetailsPopup={setShowOrderDetailsPopup}
+                /> 
+              } />
+            <Route exact path="/dashboard/order-details" element={
+                <OrderDetails 
+                  userId={userId}
+                  profileData={profileData}
+                  userName={profileData.fullname}
                 /> 
               } />
             <Route path="/tests" element={
@@ -286,16 +318,14 @@ function App() {
               /> } />
 
             <Route path="/packages" element={
-              <Packages 
+              <Packages
                 auth={auth} 
                 userId={userId} 
                 cart={cart} 
                 setCart={setCart} 
                 handleLoginClick={handleLoginClick} 
                 />} />
-            <Route exact path="/account" element={ <Account />} />
             <Route exact path="/login" element={<OtpLoginPage />} />
-            <Route exact path="/register" element={<Register />} />
             <Route path="/about" element={<About />} />
             <Route path="/singleproduct/:id" element={<SingleProduct />} />
             <Route path="/home-collection" element={<HomeCollection />} />
@@ -315,9 +345,9 @@ function App() {
             isShowLogin={isShowLogin} 
             handleLoginClick={handleLoginClick} 
           />
-          <OtpLoginPopup2 
-            show={showOtpPopup2} 
-            onHide={() => setShowOtpPopup2(false)} 
+          <OtpLoginPopup 
+            show={showOtpPopup} 
+            onHide={() => setShowOtpPopup(false)} 
           />
           <AddAnotherAddressPopup 
             userId={userId} 
@@ -336,6 +366,20 @@ function App() {
             onHide={() => setShowPopupConfirmCheckout(false)} 
             checkOutFormData={checkOutFormData}
             setCheckOutFormData={setCheckOutFormData}
+            setShowPopupOrderSuccessful={setShowPopupOrderSuccessful}
+            handleOrderPlacedSuccessfullyActions={handleOrderPlacedSuccessfullyActions}
+          />
+          <PopupOrderSuccessful
+            profileData={profileData}
+            orderPlacedId={orderPlacedId}
+            show={showPopupOrderSuccessful}
+            onHide={() => setShowPopupOrderSuccessful(false)}
+          />
+          <PopupProfileSetupForm
+            profileData={profileData}
+            userId={userId}
+            show={showPopupProfileSetupForm}
+            onHide={() => setShowPopupProfileSetupForm(false)}
           />
           <Footer />
         </Router>

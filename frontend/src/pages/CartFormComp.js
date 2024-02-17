@@ -31,7 +31,7 @@ function CartFormComp({cart}) {
     e.preventDefault();
     try {
         const response = await axios.post(`${BASE_API_URL}/sendemail`, formData);
-        console.log(response.data);
+        // console.log(response.data);
         setSubmitted(true);
       } catch (error) {
         console.error('Error sending email:', error);

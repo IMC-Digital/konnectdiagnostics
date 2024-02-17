@@ -8,6 +8,7 @@ function PackageCard({ item, auth, userId, cart, setCart, handleLoginClick }) {
 
   const handleAddToCart = (item) => {
     if (!isItemSelected) {
+      item.quantity = 1;
       const prevCartItems =
         JSON.parse(localStorage.getItem("selectedCartItems")) || [];
       const newCartItems = [...prevCartItems, item];
