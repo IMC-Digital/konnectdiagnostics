@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useState } from 'react';
-import { BASE_API_URL } from '../api'; 
+import { BASE_API_URL } from '../api/index';
 
 
 function OtpLogin({ handleLoginClick }) {
@@ -12,18 +12,13 @@ function OtpLogin({ handleLoginClick }) {
 
     const handleSubmit = async (event) => {
       event.preventDefault();
-      await axios.post(`${ BASE_API_URL }/otplogin`, { number })
-      .then((res) => {
-        if (res.data.Status === "OTP sent!") {
+      console.log(number);
+      try{
+        const response = await axios.get(`${BASE_API_URL}/user/login-otp`, {number});
+        if (response.data.Status === "OTP sent!") {
           setNumberVerified(true);
-        } else {
-          alert(res.data.Error);
-          console.log(res.data.Error);
         }
-      })
-      .catch((err) => {
-        console.error("Axios error:", err);
-      });
+      }catch(error) { console.log(error); }
     };
 
     const handleOtpSubmit = async (event) => {

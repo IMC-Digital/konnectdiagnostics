@@ -45,7 +45,7 @@ const OrganCarousel = ({ setSearchResults, testsOrPackage }) => {
 
   return (
     <Wrapper>
-      <div className="organs d-flex gap-2 flex-wrap">
+      <div className="organs d-flex-cc gap-2 flex-wrap">
         {categories.map((item, index) => (
           <div 
             key={index} 

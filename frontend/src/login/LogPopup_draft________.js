@@ -1,5 +1,5 @@
 import React from 'react';
-import OtpLogin from './OtpLogin'
+import OtpLogin from './OtpLogin_draft_________'
 
 function LogPopup({ isShowLogin, handleLoginClick }) {
   return (

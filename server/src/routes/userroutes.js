@@ -14,7 +14,8 @@ router.post('/verify-otp', UserController.verifyOTP);
 
 // User Addresses
 router.post('/add-new-address', UserController.addNewAddress);
-router.get('/get-user-addresses', UserController.getUserAddresses);
+router.get('/get-user-addresses/:userId', UserController.getUserAddresses);
+// router.get('/get-user-addresses/:userId', (req, res) => { res.send(req.params.userId) });
 
 // User Members
 router.post('/add-new-member', UserController.addNewMember);

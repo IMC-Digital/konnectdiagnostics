@@ -45,7 +45,7 @@ const Diabetes = () => {
         <div className="icon-box d-flex flex-wrap gap-3">
           {hcIcons[0].diabetes[0].symptoms.map((item) => (
             <div className="box">
-              <img src={item.icon} alt="" />
+              <img src={item.icon} alt="icons" />
               <h5>{item.symptom}</h5>
             </div>
           ))}
@@ -57,7 +57,7 @@ const Diabetes = () => {
         <div className="icon-box d-flex flex-wrap gap-3">
           {hcIcons[0].diabetes[0].riskFactors.map((item) => (
             <div className="box">
-              <img src={item.icon} alt="" />
+              <img src={item.icon} alt="icons" />
               <h5>{item.symptom}</h5>
             </div>
           ))}

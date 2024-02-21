@@ -1,17 +1,20 @@
 const userService = require('../services/userService');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
+const { default: axios } = require('axios');
 const privateKey = process.env.PRIVATEKEY;
 
 const loginOTP = async (req, res) => {
   const { number } = req.body;
 
-  let digits = "0123456789";
-  let OTP = "";
-  for (let i = 0; i < 6; i++) {
-      OTP += digits[Math.floor(Math.random() * 10)];
-  }
-  res.send({number});
+  userService.loginOTP(number, (error, response) => {
+    if (error) {
+      console.error('Error fetching user profile data:', error);
+      res.status(500).json({ error: 'An error occurred' });
+    } else {
+      res.status(200).json(response); 
+    }
+  })
 }
 
 const verifyOTP = async (req, res) => {

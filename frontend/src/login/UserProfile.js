@@ -1,30 +1,8 @@
-import React from 'react';
-// import { NavLink } from 'react-router-dom';
 import { styled } from "styled-components";
 import ListGroup from 'react-bootstrap/ListGroup';
+import UserAddresses from "./UserAddresses";
 
 const UserProfile = ({ profileData }) => {
-
-  // useEffect(() => {
-  //   console.log(profileData);
-  // }, [profileData])
-
-
-  // function calculateAge(dateOfBirth) {
-  //   const dob = new Date(dateOfBirth);
-  //   const currentDate = new Date();
-
-  //   // Calculate the difference in years and months
-  //   const yearsDiff = currentDate.getFullYear() - dob.getFullYear();
-  //   const monthsDiff = currentDate.getMonth() - dob.getMonth();
-
-  //   // Adjust for cases where the birth date hasn't occurred yet this year
-  //   if (currentDate.getMonth() < dob.getMonth() || (currentDate.getMonth() === dob.getMonth() && currentDate.getDate() < dob.getDate())) {
-  //     return `${yearsDiff} Years ${12 + monthsDiff} Months`;
-  //   } else {
-  //     return `${yearsDiff} Years ${monthsDiff} Months`;
-  //   }
-  // }
 
   function calculateAge(birthDateString) {
     const birthDate = new Date(birthDateString);
@@ -40,8 +18,6 @@ const UserProfile = ({ profileData }) => {
     return age;
   }
 
-
-  // console.log(profileData);
   return (
     <Wrapper>
       <div className='mx-auto'>
@@ -60,26 +36,21 @@ const UserProfile = ({ profileData }) => {
                     <h1 className="text-start fw-bold mb-0">{profileData.fullname}</h1>
                     <p> <strong>Age :</strong> {calculateAge(profileData.date_of_birth)} - {profileData.gender} </p>
                   </div>
-                  {/* <div>
-                    <NavLink to="/edit-profile" className="nav-list">
-                      <button className="btn btn-primary text-white">
-                        <i className="fa-solid fa-pen-to-square text-white"></i>
-                      </button>
-                    </NavLink>
-                  </div> */}
                 </div>
 
                 <div className='border-top'>
-                  <h2 className='text-k-secondary py-2 mt-2'>Contact Details:</h2>
-
                   <ListGroup as="ul">
-                    <ListGroup.Item as="li"> <p className='mb-0'> <strong>Email :</strong> {profileData.email} </p> </ListGroup.Item>
-                    <ListGroup.Item as="li"> <p className='mb-0'> <strong>Mobile Number :</strong> {profileData.mobile_number} </p> </ListGroup.Item>
-                    <ListGroup.Item as="li"> <p className='mb-0'> <strong>Alternate Mobile Number :</strong> {profileData.alternate_mobile_number} </p> </ListGroup.Item>
+                    <ListGroup.Item className='p-0 px-3 py-1' as="li"> <p className='mb-0'> <span className='fw-bold'>Email :</span> {profileData.email} </p> </ListGroup.Item>
+                    <ListGroup.Item className='p-0 px-3 py-1' as="li"> <p className='mb-0'> <span className='fw-bold'>Mobile Number :</span> {profileData.mobile_number} </p> </ListGroup.Item>
+                    <ListGroup.Item className='p-0 px-3 py-1' as="li"> <p className='mb-0'> <span className='fw-bold'>Alternate Mobile Number :</span> {profileData.alternate_mobile_number} </p> </ListGroup.Item>
                   </ListGroup>
                 </div>
-
               </div>
+            </div>
+
+            <div className="p-4 border-top">
+              <h2 className="text-k-secondary">Addresses added</h2>
+              <UserAddresses userId={profileData.user_id} />
             </div>
           </article>
         )}
@@ -87,7 +58,6 @@ const UserProfile = ({ profileData }) => {
     </Wrapper>
   );
 };
-
 export default UserProfile;
 
 const Wrapper = styled.section`

@@ -21,9 +21,9 @@ const HealthPackagesComponent = ({ userId, auth, cart, setCart, handleLoginClick
             </p>
           </div>
           <div className="hp-box container flex-wrap">
-            <div className="hpCards d-flex justify-content-center flex-wrap gap-3">
+            <div className="hpCards w-100 d-flex justify-content-center flex-wrap gap-3">
               <OrganCarousel testsOrPackage={"packages"} searchResults={searchResults} setSearchResults={setSearchResults} />
-              <div className="mt-3 d-flex justify-content-center gap-3">
+              <div className="mt-3 d-flex justify-content-center flex-wrap gap-3">
                 {
                   searchResults.map((item, index) => (
                     <PackageCard key={index} cart={cart} setCart={setCart} item={item} />

@@ -7,7 +7,7 @@ import CartBillingSec from '../../components/cart/CartBillingSec';
 const Cart = ({ userId, cart, setCart, checkOutFormData, setCheckOutFormData }) => {
     return (
         <Wrapper>
-            <article className='container mx-auto m-5 p-0 d-flex'>
+            <article className='w-md-1100px mx-auto m-5 p-0 d-flex'>
                 <div className='' style={{ width: "60%" }}>
                     <div className='px-5 py-3 bg-light d-flex justify-content-between align-items-center border'>
                         <div>
@@ -34,13 +34,18 @@ const Cart = ({ userId, cart, setCart, checkOutFormData, setCheckOutFormData }) 
                         checkOutFormData={checkOutFormData}
                         setCheckOutFormData={setCheckOutFormData}
                     />
-                    <NavLink to="/checkout">
-                        <button type="button" className='btn btn-primary w-100 fw-bold text-white'>
+                    <NavLink to="/checkout" className={cart.length === 0 ? 'disabled-link' : ''} style={{ pointerEvents: cart.length === 0 ? 'none' : 'auto' }}>
+                        <button
+                            type="button"
+                            className='btn btn-primary w-100 fw-bold text-white'
+                            disabled={cart.length === 0}
+                        >
                             {/* &#8377;{grandTotalAmount} */}
                             <span className='ms-4 me-2 text-white'>Proceed To Checkout</span>
                             <i className="fa-solid fa-angle-right text-white"></i>
                         </button>
                     </NavLink>
+
                 </div>
             </article>
         </Wrapper>

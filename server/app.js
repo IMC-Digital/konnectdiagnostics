@@ -37,13 +37,6 @@ app.use(cors({
 createOtpDbConnection();
 const otpdb = createOtpDbConnection();
 
-// ----------------------------------------------
-// const accountSid = 'AC9ca547f7c708b233df42e89bfbdca249';
-// const authToken = 'd9f398ea6b18bfba28fcec4c2b4b7e3b';
-// const client = twilio(accountSid, authToken);
-// ----------------------------------------------
-
-
 // ------------------------------------------------------------
 const clinicsRoutes = require('./src/routes/clinicsroutes');
 const couponRoutes = require('./src/routes/couponroutes');
@@ -54,6 +47,7 @@ const testsRoutes = require('./src/routes/testsroutes');
 const packagesRoutes = require('./src/routes/packagesroutes');
 const adminRoutes = require('./src/routes/adminroutes');
 const paymentRoutes = require('./src/routes/paymentroute');
+const formsRoutes = require('./src/routes/formsroutes');
 app.use('/clinics', clinicsRoutes);
 app.use('/coupon', couponRoutes);
 app.use('/categories', categoryRoutes);
@@ -62,51 +56,14 @@ app.use('/packages', packagesRoutes);
 app.use('/user', userRoutes);
 app.use('/orders', orderRoutes);
 app.use('/admin', adminRoutes);
-app.use('/payments', paymentRoutes)
+app.use('/payments', paymentRoutes);
+app.use('/forms', formsRoutes);
 
 
 // ------------------------------------------------------------
 app.get('/', (req, res) => {
-  res.json('Hello! Server1');
+  res.json('Hello! from Server- #KV11');
 })
-
-// ----------------------------------------------------------------
-// ----------------------------------------------------------------
-// ----------------------------------------------------------------
-// const axios = require('axios');
-
-// const apiKey = 'A0c7c219e22a5f772085c95ceef54dd32';
-// const apiUrl = 'http://sms.athentech.co.in/api/web2sms.php';
-// const method = 'sms';
-// const sender = 'KIMDCK';
-// const unicode = '1';
-
-// const sendMessage = async (phoneNumber, message) => {
-//   try {
-//     const response = await axios.post(apiUrl, {
-//       api_key: apiKey,
-//       method: method,
-//       sender: sender,
-//       unicode: unicode,
-//       to: phoneNumber,
-//       message: message,
-//     });
-
-//     console.log(response.data);
-//   } catch (error) {
-//     console.error('Error sending SMS:', error.message);
-//   }
-// };
-
-// // Example usage
-// const phoneNumber = '8328298768'; // Replace with the actual recipient's phone number
-// const message = 'Hello, this is a test message!';
-
-// sendMessage(phoneNumber, message);
-
-// ----------------------------------------------------------------
-// ----------------------------------------------------------------
-
 
 app.get('/getPincodeData/:pincode', async (req, res) => {
   try {
@@ -155,20 +112,6 @@ app.get('/getbyletter', (req, res) => {
   });
 });
 
-
-app.get('/orgsel', (req, res) => {
-  const selectedOrg = req.query.selectedorgan;
-  const query = 'SELECT * FROM tests WHERE category = ?';
-
-  otpdb.query(query, [selectedOrg], (error, results) => {
-    if (error) {
-      console.error(error);
-      res.status(500).json({ error: 'An error occurred' });
-    } else {
-      res.status(200).json(results);
-    }
-  });
-});
 
 // ===========================================================================================
 // const verifyUser = (req, res, next) => {
@@ -241,123 +184,61 @@ app.post('/login', (req, res) => {
   });
 });
 
-app.post("/otplogin", async (req, res) => {
-  const { number } = req.body;
-  let digits = "0123456789";
-  let OTP = "000000";
-  // for (let i = 0; i < 6; i++) {
-  //     OTP += digits[Math.floor(Math.random() * 10)];
-  // }
-  // res.send({number, OTP});
-  const sendOTP = (num, otp) => {
-    client.messages.create({
-      body: 'Hello from twilio-node, Your OTP is: ' + otp,
-      to: '+91' + num,
-      from: '+14076245195',
-    })
-      .then((message) => {
-        res.json({ Status: "OTP sent!" });
-      })
-      .catch((err) => {
-        console.error("Error sending OTP:", err);
-        res.status(500).json({ "Failed to send OTP": err, messagese: "Failed to send OTP!" });
-      });
-  }
+// app.post("/otplogin", async (req, res) => {
+//   const { number } = req.body;
+//   let digits = "0123456789";
+//   let OTP = "000000";
+//   const sendOTP = (num, otp) => {
+//     client.messages.create({
+//       body: 'Hello from twilio-node, Your OTP is: ' + otp,
+//       to: '+91' + num,
+//       from: '+14076245195',
+//     })
+//       .then((message) => {
+//         res.json({ Status: "OTP sent!" });
+//       })
+//       .catch((err) => {
+//         console.error("Error sending OTP:", err);
+//         res.status(500).json({ "Failed to send OTP": err, messagese: "Failed to send OTP!" });
+//       });
+//   }
 
-  otpdb.query('SELECT * FROM users WHERE mobile_number = ?', [number], (err, result) => {
-    if (err) {
-      console.error('Error in searching for entered mobile number:', err);
-      res.status(500).json({ error: "Database error" });
-    }
-
-    if (result.length === 0) {
-      bcrypt.hash(OTP.toString(), salt, (err, hash) => {
-        if (err) return res.json({ "err for hasing password": err });
-        otpdb.query('INSERT INTO users (mobile_number, otp) VALUES (?, ?)', [number, hash], (err2, result2) => {
-          if (err2) {
-            console.error('Error inserting mobile number to users table:', err2);
-            res.status(500).json({ error: "Database error" });
-          }
-          // sendOTP(number, OTP);
-          res.json({ Status: "OTP sent!" });
-        });
-      })
-    } else {
-      bcrypt.hash(OTP.toString(), salt, (err, hash) => {
-        if (err) return res.json({ "err for hasing password": err });
-        otpdb.query('UPDATE users SET otp = ? WHERE mobile_number = ?', [hash, number], (err3, result3) => {
-          if (err3) {
-            console.error('Error updating OTP in users table:', err3);
-            if (err3.code === 'ECONNRESET') {
-              // Retry the database operation or handle it as needed.
-            } else {
-              res.status(500).json({ error: "Database error" });
-            }
-          } else {
-            // sendOTP(number, OTP);
-            res.json({ Status: "OTP sent!" });
-          }
-        });
-      })
-    }
-  });
-});
-
-// app.post("/verifyotp", async (req, res) => {
-//   const { number, Otp } = req.body;
-
-//   otpdb.query('SELECT * FROM users WHERE mobile_number = ?', [number], (err, userData) => {
+//   otpdb.query('SELECT * FROM users WHERE mobile_number = ?', [number], (err, result) => {
 //     if (err) {
-//       console.error('Error in user query:', err);
-//       return res.status(500).json({ error: "Login Error in Server" });
+//       console.error('Error in searching for entered mobile number:', err);
+//       res.status(500).json({ error: "Database error" });
 //     }
 
-//     if (userData.length === 0) {
-//       return res.status(401).json({ error: "User not found" });
-//     }
-
-//     const user_id = userData[0].user_id;
-
-//     bcrypt.compare(Otp.toString(), userData[0].otp, (err, response) => {
-//       if (err) {
-//         console.error('Error in otp comparison:', err);
-//         return res.status(500).json({ error: "Error comparing otp" });
-//       }
-
-//       if (response) {
-//         const cartQuery = 'SELECT cart_id FROM cart WHERE user_id = ?';
-//         otpdb.query(cartQuery, [user_id], (cartErr, cartData) => {
-//           if (cartErr) {
-//             console.error('Error in cart query:', cartErr);
-//             return res.status(500).json({ error: "Error getting cart ID" });
+//     if (result.length === 0) {
+//       bcrypt.hash(OTP.toString(), salt, (err, hash) => {
+//         if (err) return res.json({ "err for hasing password": err });
+//         otpdb.query('INSERT INTO users (mobile_number, otp) VALUES (?, ?)', [number, hash], (err2, result2) => {
+//           if (err2) {
+//             console.error('Error inserting mobile number to users table:', err2);
+//             res.status(500).json({ error: "Database error" });
 //           }
-//           if (cartData.length === 0) {
-//             const cartValues = [user_id, new Date()]; // Assuming 'created_at' is the current timestamp
-//             const cartInsertQuery = 'INSERT INTO cart (`user_id`, `created_at`) VALUES (?,?)';
-
-//             otpdb.query(cartInsertQuery, cartValues, (cartInsertError, cartResponse) => {
-//               if (cartInsertError) {
-//                 console.error(cartInsertError);
-//                 return res.json({ "Cart Insertion Error": cartInsertError });
-//               }
-//               const cart_id = cartResponse.insertId; // Get the newly inserted user's ID
-//               const tokenPayload = { user_id, cart_id };
-//               const token = jwt.sign(tokenPayload, privateKey, { expiresIn: "1d" });
-//               res.cookie('token', token);
-//               return res.json({ Status: "Verified" });
-//             });
+//           // sendOTP(number, OTP);
+//           res.json({ Status: "OTP sent!" });
+//         });
+//       })
+//     } else {
+//       bcrypt.hash(OTP.toString(), salt, (err, hash) => {
+//         if (err) return res.json({ "err for hasing password": err });
+//         otpdb.query('UPDATE users SET otp = ? WHERE mobile_number = ?', [hash, number], (err3, result3) => {
+//           if (err3) {
+//             console.error('Error updating OTP in users table:', err3);
+//             if (err3.code === 'ECONNRESET') {
+//               // Retry the database operation or handle it as needed.
+//             } else {
+//               res.status(500).json({ error: "Database error" });
+//             }
 //           } else {
-//             const cart_id = cartData[0].cart_id;
-//             const tokenPayload = { user_id, cart_id };
-//             const token = jwt.sign(tokenPayload, privateKey, { expiresIn: "1d" });
-//             res.cookie('token', token);
-//             return res.json({ Status: "Verified" });
+//             // sendOTP(number, OTP);
+//             res.json({ Status: "OTP sent!" });
 //           }
 //         });
-//       } else {
-//         return res.status(401).json({ Error: "Password mismatch. Try Again" });
-//       }
-//     });
+//       })
+//     }
 //   });
 // });
 
@@ -528,223 +409,6 @@ app.get('/getpoptests', (req, res) => {
   });
 });
 
-
-app.get('/getpackages', (req, res) => {
-  // const searchTerm = req.query.q;
-  const query = "SELECT * FROM products WHERE `product_type` = 'package'";
-
-  otpdb.query(query, (error, results) => {
-    if (error) {
-      console.error(error);
-      res.status(500).json({ error: 'An error occurred' });
-    } else {
-      res.status(200).json(results);
-    }
-  });
-});
-
-// adding to cart
-app.post('/addtocart', (req, res) => {
-  const { product_id, quantity, userId } = req.body;
-  const cartIdQuery = 'SELECT `cart_id` FROM `cart` WHERE `user_id` = ?';
-  otpdb.query(cartIdQuery, [userId], (cartIdError, cartIdResult) => {
-    if (cartIdError) {
-      console.error('Error fetching cart_id:', cartIdError);
-      return res.status(500).json({ error: 'Error adding to cart' });
-    }
-
-    if (cartIdResult.length === 0) {
-      const createCartForUser = (userId, callback) => {
-        const cartInsertQuery = 'INSERT INTO cart (`user_id`, `created_at`) VALUES (?, NOW())';
-
-        otpdb.query(cartInsertQuery, [userId], (error, result) => {
-          if (error) {
-            callback(error, null);
-          } else {
-            callback(null, result.insertId);
-          }
-        });
-      };
-      createCartForUser(userId, (createCartError, newCartId) => {
-        if (createCartError) {
-          console.error('Error creating cart:', createCartError);
-          return res.status(500).json({ error: 'Error adding to cart' });
-        }
-        const cartItemValues = [newCartId, product_id];
-        const checkCartItemQuery = 'SELECT `cartitem_id`, `quantity` FROM `cartitems` WHERE `cart_id` = ? AND `product_id` = ?';
-
-        otpdb.query(checkCartItemQuery, cartItemValues, (checkCartItemError, checkCartItemResult) => {
-          if (checkCartItemError) {
-            console.error('Error checking cart items:', checkCartItemError);
-            return res.status(500).json({ error: 'Error adding to cart' });
-          }
-
-          if (checkCartItemResult.length === 0) {
-            // Item doesn't exist, so insert it
-            const cartItemInsertQuery = 'INSERT INTO cartitems (`cart_id`, `product_id`, `quantity`) VALUES (?,?,?)';
-            otpdb.query(cartItemInsertQuery, [newCartId, product_id, quantity], (cartInsertError, cartItemResponse) => {
-              if (cartInsertError) {
-                console.error('Error adding to cart:', cartInsertError);
-                return res.status(500).json({ error: 'Error adding to cart' });
-              }
-
-              const cartItem = {
-                cartitem_id: cartItemResponse.insertId,
-                product_id: product_id,
-                quantity,
-              };
-              res.status(200).json({ Status: 'Success', cartItem });
-            });
-          } else {
-            // Item already exists, update the quantity
-            const existingCartItem = checkCartItemResult[0];
-            const updatedQuantity = existingCartItem.quantity + quantity;
-            const updateCartItemQuery = 'UPDATE `cartitems` SET `quantity` = ? WHERE `cartitem_id` = ?';
-
-            otpdb.query(updateCartItemQuery, [updatedQuantity, existingCartItem.cartitem_id], (updateCartItemError) => {
-              if (updateCartItemError) {
-                console.error('Error updating cart item quantity:', updateCartItemError);
-                return res.status(500).json({ error: 'Error adding to cart' });
-              }
-
-              const cartItem = {
-                cartitem_id: existingCartItem.cartitem_id,
-                product_id: product_id,
-                quantity: updatedQuantity,
-              };
-              res.status(200).json({ Status: 'Success', cartItem });
-            });
-          }
-        });
-      });
-    } else {
-      // Use the existing cart_id to check if the item already exists in cartitems
-      const cart_id = cartIdResult[0].cart_id;
-      const checkCartItemQuery = 'SELECT `cartitem_id`, `quantity` FROM `cartitems` WHERE `cart_id` = ? AND `product_id` = ?';
-
-      otpdb.query(checkCartItemQuery, [cart_id, product_id], (checkCartItemError, checkCartItemResult) => {
-        if (checkCartItemError) {
-          console.error('Error checking cart items:', checkCartItemError);
-          return res.status(500).json({ error: 'Error adding to cart' });
-        }
-
-        if (checkCartItemResult.length === 0) {
-          // Item doesn't exist, so insert it
-          const cartItemInsertQuery = 'INSERT INTO cartitems (`cart_id`, `product_id`, `quantity`) VALUES (?,?,?)';
-          otpdb.query(cartItemInsertQuery, [cart_id, product_id, quantity], (cartInsertError, cartItemResponse) => {
-            if (cartInsertError) {
-              console.error('Error adding to cart:', cartInsertError);
-              return res.status(500).json({ error: 'Error adding to cart' });
-            }
-
-            const cartItem = {
-              cartitem_id: cartItemResponse.insertId,
-              product_id: product_id,
-              quantity,
-            };
-            res.status(200).json({ Status: 'Success', cartItem });
-          });
-        } else {
-          // Item already exists, update the quantity
-          const existingCartItem = checkCartItemResult[0];
-          const updatedQuantity = existingCartItem.quantity + quantity;
-          const updateCartItemQuery = 'UPDATE `cartitems` SET `quantity` = ? WHERE `cartitem_id` = ?';
-
-          otpdb.query(updateCartItemQuery, [updatedQuantity, existingCartItem.cartitem_id], (updateCartItemError) => {
-            if (updateCartItemError) {
-              console.error('Error updating cart item quantity:', updateCartItemError);
-              return res.status(500).json({ error: 'Error adding to cart' });
-            }
-
-            const cartItem = {
-              cartitem_id: existingCartItem.cartitem_id,
-              product_id: product_id,
-              quantity: updatedQuantity,
-            };
-            res.status(200).json({ Status: 'Success', cartItem });
-          });
-        }
-      });
-    }
-  });
-});
-// ...
-
-app.post('/updatecartitemquantity', (req, res) => {
-  const { product_id, quantity, userId } = req.body;
-  const updateCartItemQuantityQuery = `
-      UPDATE cartitems
-      SET quantity = ?
-      WHERE cart_id = (SELECT cart_id FROM cart WHERE user_id = ?)
-      AND product_id = ?;
-  `;
-
-  otpdb.query(updateCartItemQuantityQuery, [quantity, userId, product_id], (err, result) => {
-    if (err) {
-      console.error('Error updating cart item quantity:', err);
-      return res.status(500).json({ Status: 'Error', error: 'Error updating cart item quantity' });
-    }
-
-    return res.json({ Status: 'Success', message: 'Cart item quantity updated successfully' });
-  });
-});
-
-app.post('/removecartitem', (req, res) => {
-  const { product_id, userId } = req.body;
-  const removeCartItemQuery = `
-      DELETE FROM cartitems
-      WHERE cart_id = (SELECT cart_id FROM cart WHERE user_id = ?)
-      AND product_id = ?;
-  `;
-
-  otpdb.query(removeCartItemQuery, [userId, product_id], (err, result) => {
-    if (err) {
-      console.error('Error removing cart item:', err);
-      return res.status(500).json({ Status: 'Error', error: 'Error removing cart item' });
-    }
-
-    return res.json({ Status: 'Success', message: 'Cart item removed successfully' });
-  });
-});
-
-app.get('/cart/:cartId/products', (req, res) => {
-  const cartId = req.params.cartId;
-
-  const cartItemsQuery = `
-      SELECT ci.cartitem_id, ci.quantity, t.*
-      FROM cartitems ci
-      JOIN products t ON t.product_id = ci.product_id
-      WHERE ci.cart_id = ?;
-  `;
-
-  otpdb.query(cartItemsQuery, [cartId], (err, cartItems) => {
-    if (err) {
-      console.error('Error fetching cart items for cart:', err);
-      return res.status(500).json({ error: 'Error fetching cart items for cart' });
-    }
-
-    const productsQuery = `
-          SELECT t.*
-          FROM products t
-          JOIN cartitems ci ON t.product_id = ci.product_id
-          WHERE ci.cart_id = ?;
-      `;
-
-    otpdb.query(productsQuery, [cartId], (prodsErr, products) => {
-      if (prodsErr) {
-        console.error('Error fetching products for cart:', prodsErr);
-        return res.status(500).json({ error: 'Error fetching products for cart' });
-      }
-
-      const responseData = {
-        cartItems: cartItems,
-        products: products
-      };
-
-      return res.json(responseData);
-    });
-  });
-});
 
 // Password reset
 app.post("/reset-password", async (req, res) => {

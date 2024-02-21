@@ -63,12 +63,8 @@ export default function MultiStepForm({
                 return null;
         }
     };
-    // useEffect(() => {
-    //     console.log(".......");
-    // }, [checkOutFormData.selectedSession.date.date])
 
     const handleCheckoutSubmission = () => {
-        // console.log(checkOutFormData);
         setShowPopupConfirmCheckout(true)
     }
 
@@ -80,46 +76,30 @@ export default function MultiStepForm({
                 {renderForm()}
             </div>
 
-            {currentStep === steps.length - 1 ? (
-                <>
-                    <Button
-                        variant="primary"
-                        className='me-1'
-                        onClick={prevStep}
-                        disabled={currentStep === 0}>
-                        Previous
-                    </Button>
-                    <Button
-                        variant="success"
-                        onClick={handleCheckoutSubmission}
-                        >
-                        Submit
-                    </Button>
+            <div>
+                <Button variant="outline-secondary" onClick={prevStep} disabled={currentStep === 0} className='me-1'>
+                    Previous
+                </Button>
 
-                </>
-            ) : (
-                <>
-                    <Button variant="primary" onClick={prevStep} disabled={currentStep === 0} className='me-1'>
-                        Previous
-                    </Button>
+                <Button
+                    variant={currentStep === steps.length - 1 ? "success" : "primary"}
+                    onClick={currentStep === steps.length - 1 ? handleCheckoutSubmission : nextStep}
+                    disabled={
+                        // (currentStep === 0 &&
+                        //     (!checkOutFormData.sampleCollection.homeSampleCollection.address_name && !checkOutFormData.sampleCollection.clinicSampleCollection.name)
+                        // ) ||
+                        (currentStep === 0 &&
+                            ((!checkOutFormData.sampleCollection.homeSampleCollection.address_name && checkOutFormData.sampleCollection.sampleCollectionAt === 0) ||
+                                (!checkOutFormData.sampleCollection.clinicSampleCollection.name && checkOutFormData.sampleCollection.sampleCollectionAt === 1))
+                        ) ||
+                        (currentStep === 1 && checkOutFormData.selectedMember.length === 0) ||
+                        (currentStep === steps.length - 1 && !checkOutFormData.selectedSession?.date?.date)
+                    }
+                >
+                    {currentStep === steps.length - 1 ? "Submit" : "Next"}
+                </Button>
 
-                    <Button
-                        variant="primary"
-                        onClick={nextStep}
-                        disabled={
-                            currentStep === steps.length - 1 ||
-                            (currentStep === 0 &&
-                                !checkOutFormData.sampleCollection.homeSampleCollection.address_name &&
-                                !checkOutFormData.sampleCollection.clinicSampleCollection.name
-                            ) ||
-                            (currentStep === 1 && checkOutFormData.selectedMember.length === 0)
-                        }
-                    >
-                        Next
-                    </Button>
-
-                </>
-            )}
+            </div>
         </div>
 
     );

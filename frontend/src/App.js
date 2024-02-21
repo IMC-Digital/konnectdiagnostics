@@ -27,7 +27,6 @@ import ErrorPage from "./pages/ErrorPage";
 
 import Profile from "./login/Profile";
 import axios from "axios";
-import LogPopup from "./login/LogPopup";
 import HealthPackages from "./pages/nav-pages/HealthPackages";
 import ProfileUpdate from "./login/ProfileUpdate";
 import ContactUs from "./pages/ContactUs";
@@ -103,7 +102,8 @@ function App() {
         locality: "",
         pincode: "",
         state:"",
-        alternate_mobile_number: profileData.alternate_mobile_number
+        // alternate_mobile_number: profileData.alternate_mobile_number
+        alternate_mobile_number: ""
       },
       clinicSampleCollection: {
         id: 0,
@@ -206,13 +206,6 @@ function App() {
     })
   }
 
-  // ------------------------------------------------
-  const [isShowLogin, setIsShowLogin] = useState(false);
-  const handleLoginClick = () => {
-    setIsShowLogin((isShowLogin) => !isShowLogin);
-  };
-  // ------------------------------------------------
-
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />
@@ -228,7 +221,6 @@ function App() {
             userName={profileData.fullname} 
             cartId={cartId}  
             setCartId={setCartId}
-            handleLoginClick={handleLoginClick}
             setShowOtpPopup={setShowOtpPopup}
             handleLogout={handleLogout} />
           <Routes>
@@ -239,8 +231,7 @@ function App() {
                 userId={userId} 
                 auth={auth} 
                 cart={cart} 
-                setCart={setCart} 
-                handleLoginClick={handleLoginClick} 
+                setCart={setCart}
               />} />
             <Route exact path="/profile" element={
               <Profile 
@@ -280,8 +271,7 @@ function App() {
                 userId={userId} 
                 auth={auth} 
                 cart={cart} 
-                setCart={setCart} 
-                handleLoginClick={handleLoginClick} 
+                setCart={setCart}
                 />} />
             <Route path="/health-packages" element={
               <HealthPackages 
@@ -289,7 +279,6 @@ function App() {
                 auth={auth} 
                 cart={cart} 
                 setCart={setCart} 
-                handleLoginClick={handleLoginClick} 
               />} />
             <Route path="/cart" element={
               auth ? (
@@ -322,8 +311,7 @@ function App() {
                 auth={auth} 
                 userId={userId} 
                 cart={cart} 
-                setCart={setCart} 
-                handleLoginClick={handleLoginClick} 
+                setCart={setCart}
                 />} />
             <Route exact path="/login" element={<OtpLoginPage />} />
             <Route path="/about" element={<About />} />
@@ -341,10 +329,7 @@ function App() {
             <Route path="/testing-page" element={<TesgingPage />} />
             <Route path="*" element={<ErrorPage />} />
           </Routes>
-          <LogPopup 
-            isShowLogin={isShowLogin} 
-            handleLoginClick={handleLoginClick} 
-          />
+
           <OtpLoginPopup 
             show={showOtpPopup} 
             onHide={() => setShowOtpPopup(false)} 

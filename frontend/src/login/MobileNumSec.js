@@ -3,7 +3,7 @@ import React from 'react';
 export default function MobileNumsec({ handleSubmit, number, setNumber }) {
     return (
       <div id='mobileNumsec'>
-        <h1 className="text-k-secondary">Sign In / Sign Up</h1>
+        <h2 className="text-k-secondary">Sign In / Sign Up</h2>
         <p className='text-k-text small'>View your reports and upcoming health checkups at one place.</p>
         <form onSubmit={handleSubmit} className='my-3'>
           <div className="form-outline mb-2">
@@ -16,7 +16,7 @@ export default function MobileNumsec({ handleSubmit, number, setNumber }) {
               required
               onChange={e => setNumber(e.target.value )} 
           />
-          <p className='small fw-bold'>An OTP will be sent on this number</p>
+          <p className='small'>An OTP will be sent on this number</p>
           </div>
           <div className="text-center text-lg-start pt-2">
             <button type="submit" className="btn btn-primary btn-md btn-block w-100" style={{ paddingLeft: "2.5rem", paddingRight: "2.5rem" }}>

@@ -12,6 +12,7 @@ const AddNewMemberForm = ({ cart, setCart, userId, setShowAddNewMemberPopup }) =
     gender: '',
     relationship: '',
   });
+  const [showSuccessMessage, setShowSuccessMessage] = useState(false);
 
   const handleChange = (e) => {
     const { id, value } = e.target;
@@ -22,11 +23,14 @@ const AddNewMemberForm = ({ cart, setCart, userId, setShowAddNewMemberPopup }) =
   };
 
   const handleSubmit = (e) => {
-    console.log(formData);
     e.preventDefault();
     axios.post(`${BASE_API_URL}/user/add-new-member`, formData)
       .then((response) => {
         console.log("Member added to db", response.data);
+        setShowSuccessMessage(true);
+        setTimeout(() => {
+          window.location.reload();
+        }, 2000);
       }).catch((error) => {
         console.log(error);
       })
@@ -36,7 +40,8 @@ const AddNewMemberForm = ({ cart, setCart, userId, setShowAddNewMemberPopup }) =
     <div className='p-4'>
       <h3 className='text-k-secondary'>Add New Member</h3>
       <hr />
-      <Form onSubmit={handleSubmit}>
+      {!showSuccessMessage && (
+        <Form onSubmit={handleSubmit}>
         <div className="mb-3">
           <div className='d-flex'>
             <div className="form-group w-25">
@@ -116,9 +121,14 @@ const AddNewMemberForm = ({ cart, setCart, userId, setShowAddNewMemberPopup }) =
             </Form.Control>
           </div>
         </div>
-
-        <Button type="submit" variant="primary" className='btn btn-k-primary w-100'>Submit</Button>
-      </Form>
+          <Button type="submit" variant="primary" className='btn btn-k-primary w-100'>Submit</Button>
+        </Form>
+      )}
+      {showSuccessMessage && (
+        <div className="alert alert-success" role="alert">
+          New member has been added.
+        </div>
+      )}
     </div>
   )
 }

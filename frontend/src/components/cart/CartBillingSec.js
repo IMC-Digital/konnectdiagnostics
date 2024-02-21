@@ -86,11 +86,15 @@ export default function CartBillingSec({ cart, setCart, userId, checkOutFormData
                             aria-label="Coupon Code"
                             aria-describedby="basic-addon2"
                             name="couponCode"
+                            className='text-uppercase'
+                            disabled={cart.length === 0}
                         />
                         <Button
                             type='submit'
                             variant="outline-secondary"
-                            id="button-addon2">
+                            id="button-addon2"
+                            disabled={cart.length === 0}
+                            >
                             Submit
                         </Button>
                     </InputGroup>

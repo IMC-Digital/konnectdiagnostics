@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import Form from 'react-bootstrap/Form';
-import InputGroup from 'react-bootstrap/InputGroup';
 import { BASE_API_URL } from '../../api';
 import axios from 'axios';
+import Form from 'react-bootstrap/Form';
+import InputGroup from 'react-bootstrap/InputGroup';
+import { Button } from 'react-bootstrap';
 
 export default function SampleCollHomeTab({ setShowAddNewAddressPopup, userId, profileData, checkOutFormData, setCheckOutFormData }) {
   const [userAddresses, setUserAddresses] = useState(["Home", "Office", "Others"]);
@@ -19,7 +20,7 @@ export default function SampleCollHomeTab({ setShowAddNewAddressPopup, userId, p
   useEffect(() => {
     const fetchUserAddresses = async () => {
       try {
-        const response = await axios.get(`${BASE_API_URL}/user/get-user-addresses`, { params: { userid: userId } });
+        const response = await axios.get(`${BASE_API_URL}/user/get-user-addresses/${userId}`);
         setUserAddresses(response.data.addrs);
       } catch (err) {
         console.log(err);
@@ -94,9 +95,9 @@ export default function SampleCollHomeTab({ setShowAddNewAddressPopup, userId, p
             handleUserAddressChange(e);
           }}
           className="me-0"
-          // style={{ width: "250px" }}
+        // style={{ width: "250px" }}
         >
-          <option value={ checkOutFormData.sampleCollection.homeSampleCollection.address_name === "Select Address" }>
+          <option value={checkOutFormData.sampleCollection.homeSampleCollection.address_name === "Select Address"}>
             Select Address
           </option>
           {userAddresses.map((address, index) => (
@@ -144,10 +145,13 @@ export default function SampleCollHomeTab({ setShowAddNewAddressPopup, userId, p
               {checkOutFormData.sampleCollection.homeSampleCollection.pincode}
             </p>
             <p className="mb-1">
-              <strong>User: </strong> {profileData.fullname}
+              <span className='fw-bold'>User: </span> {profileData.fullname}
             </p>
             <p className="mb-1">
-              <strong>Regd. Mobile Number: </strong> {profileData.mobile_number}
+              <span className='fw-bold'>Regd. Mobile Number: </span> {profileData.mobile_number}
+            </p>
+            <p className="mb-1">
+              <span className='fw-bold'>Alternative Mobile Number: </span> {profileData.alternate_mobile_number}
             </p>
           </>
         ) : (
@@ -157,7 +161,7 @@ export default function SampleCollHomeTab({ setShowAddNewAddressPopup, userId, p
 
       <div>
         <div className="mb-0">
-          <InputGroup className="mb-3 w-auto">
+          {/* <InputGroup className="mb-3 w-auto">
             <InputGroup.Text id="basic-addon1">
               Alternative Mobile Number:
             </InputGroup.Text>
@@ -172,6 +176,39 @@ export default function SampleCollHomeTab({ setShowAddNewAddressPopup, userId, p
             <button className="btn btn-primary" onClick={handleAltMobNum}>
               Enter
             </button>
+          </InputGroup> */}
+
+          <p className="text-k-accent"> Alternative Mobile Number: </p>
+          <InputGroup style={{ width: "400px" }}>
+            <Form.Control
+              required
+              placeholder="Alternative Mobile Number"
+              aria-label="Alternative Mobile Number"
+              aria-describedby="alt_mob"
+              name="alt_mob"
+              type='tel'
+              // defaultValue={profileData.alternate_mobile_number}
+              defaultValue={userAltMob}
+              // onKeyPress={(e) => {
+              //   const keyCode = e.keyCode || e.which;
+              //   const keyValue = String.fromCharCode(keyCode);
+              //   const numericRegex = /^[0-9]+$/;
+              //   if (!numericRegex.test(keyValue)) {
+              //     e.preventDefault();
+              //   }
+              // }}
+              onChange={(e) => setUserAltMob(e.target.value)}
+            />
+
+
+            <Button
+              type='button'
+              variant="outline-secondary"
+              id="alt_mob_btn"
+              onClick={handleAltMobNum}
+            >
+              Change
+            </Button>
           </InputGroup>
         </div>
         <p className="small text-danger">{altMobErrorMessage}</p>

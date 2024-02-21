@@ -12,13 +12,15 @@ export default function PackageCard({ cart, setCart, item }) {
   const handleAddToCart = (item) => {
     if (!isItemSelected) {
       item.quantity = 1;
+      item.type = "package";
+      item.price = sumPrices(packageTests);
       const prevCartItems =
         JSON.parse(localStorage.getItem("selectedCartItems")) || [];
       const newCartItems = [...prevCartItems, item];
       localStorage.setItem("selectedCartItems", JSON.stringify(newCartItems));
       setCart(JSON.parse(localStorage.getItem("selectedCartItems")));
 
-      toast.success(`${item.test_name} added to cart`, {
+      toast.success(`${item.package_name} added to cart`, {
         position: toast.POSITION.BOTTOM_RIGHT,
         className: "green-toast",
       });
@@ -30,7 +32,7 @@ export default function PackageCard({ cart, setCart, item }) {
       JSON.parse(localStorage.getItem("selectedCartItems")) || [];
     console.log("prevCartItems:", prevCartItems);
     const indexToRemove = prevCartItems.findIndex(
-      (item) => item.test_id === itemToRemove.test_id
+      (item) => item.package_id === itemToRemove.package_id
     );
     const updatedCartItems = [
       ...prevCartItems.slice(0, indexToRemove),
@@ -39,14 +41,14 @@ export default function PackageCard({ cart, setCart, item }) {
     localStorage.setItem("selectedCartItems", JSON.stringify(updatedCartItems));
     setCart(updatedCartItems);
 
-    toast.error(`${item.test_name} removed from cart`, {
+    toast.error(`${item.package_name} removed from cart`, {
       position: toast.POSITION.BOTTOM_RIGHT,
       className: "red-toast",
     });
   };
 
   useEffect(() => {
-    setIsItemSelected(cart.some((cartItem) => cartItem.test_id === 2));
+    setIsItemSelected(cart.some((cartItem) => cartItem.package_id === item.package_id));
   }, [cart, item]);
 
   return (

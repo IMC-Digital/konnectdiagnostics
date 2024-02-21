@@ -158,12 +158,12 @@ const placeOrder = async (orderData, callback) => {
     
 
     try {
-        // const { checkOutFormData, paymentDetails, cart } = orderData;
-        const { checkOutFormData, cart } = orderData;
+        const { checkOutFormData, paymentDetails, cart } = orderData;
+        // const { checkOutFormData, cart } = orderData;
 
         const { userId, selectedMember, amount, selectedSession, sampleCollection } = checkOutFormData;
-        // const { id, entity, amount_paid, receipt, offer_id, status, attempts, created_at } = paymentDetails;
-        // const payment_amount = paymentDetails.amount;
+        const { id, entity, amount_paid, receipt, offer_id, status, attempts, created_at } = paymentDetails;
+        const payment_amount = paymentDetails.amount;
 
         // Insert into orders table
         const orderInsertResult = await queryAsync(
@@ -174,10 +174,10 @@ const placeOrder = async (orderData, callback) => {
         const orderId = orderInsertResult.insertId;
 
         // Insert into order_payments table
-        // await queryAsync(
-        //     "INSERT INTO order_payments (order_id, id, entity, amount, amount_paid, reciept, offer_id, status, attempts, created_at) VALUES ?",
-        //     [orderId, id, entity, payment_amount, amount_paid, receipt, offer_id, status, attempts, created_at]
-        // )
+        await queryAsync(
+            "INSERT INTO order_payments (order_id, id, entity, amount, amount_paid, reciept, offer_id, status, attempts, created_at) VALUES ?",
+            [orderId, id, entity, payment_amount, amount_paid, receipt, offer_id, status, attempts, created_at]
+        )
 
         // Insert into order_items table
         const resultQueries = generateQueries(orderId, userId, cart, selectedMember);

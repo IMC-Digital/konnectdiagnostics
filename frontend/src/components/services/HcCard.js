@@ -7,7 +7,7 @@ const HcCard = () => {
   return (
     <Wrapper>
       <section className="conditions pb-5">
-        <div className="hc-card d-flex gap-3 justify-content-between flex-wrap col container">
+        <div className="hc-card d-flex gap-3 justify-content-center flex-wrap container">
           {hcContentData.map((item) => (
             <div className="box bg-white rounded p-0 overflow-hidden shadow-sm" key={item.id}>
               <Link to={`/health-conditions/${item.slug}`}>
@@ -17,7 +17,7 @@ const HcCard = () => {
                 <div className="p-3 ">
                   <a href="/">{item.category}</a>
                   <h2 className="text-k-secondary">{item.title}</h2>
-                  <p className="text-secondary">{item.excerpt.slice(0,40)}...</p>
+                  <p className="text-secondary">{item.excerpt.slice(0,35)}...</p>
                   <button className="btn btn-outline-secondary btn-sm">Know More</button>
                 </div>
               </Link>

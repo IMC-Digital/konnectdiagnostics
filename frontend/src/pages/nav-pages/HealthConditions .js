@@ -1,15 +1,12 @@
 import React from "react";
 import { styled } from "styled-components";
 import HcCard from "../../components/services/HcCard";
+import PageBanner from "../../components/PageBanner";
 
 const HealthConditions = () => {
   return (
     <Wrapper>
-      <div className="banner pb d-flex">
-        <div className="container flex">
-          <h1 className="page_title text-k-mainHeadings">Health Conditions</h1>
-        </div>
-      </div>
+      <PageBanner title={"Health Conditions"} bannerImg={'health-conditions-bg-image'} />
       <div className="container health-conditions mt-5"></div>
       <HcCard />
     </Wrapper>
@@ -18,9 +15,6 @@ const HealthConditions = () => {
 
 export default HealthConditions;
 const Wrapper = styled.section`
-  .banner {
-    background: url("/images/banners/health-conditions-bg-image.jpg");
-  }
   .health-conditions {
     text-align: center;
   }

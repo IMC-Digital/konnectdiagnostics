@@ -1,7 +1,9 @@
 import React, { useState } from "react";
+import { BASE_API_URL } from "../api/index"
 import { Form, Button, FloatingLabel } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { styled } from "styled-components";
+import axios from "axios";
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({
@@ -19,9 +21,24 @@ const ContactForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Add your logic to handle form submission here
-    console.log("Form Data:", formData);
-  };
+    // console.log("Form Data:", formData);
+    
+    const sendMail = async (formData) => {
+      try{
+        const response = await axios.post(`${BASE_API_URL}/forms/contact-form-submission`, {formData: formData});
+        console.log(response);
+        if(response.data.emailSent){
+          console.log('Email sent');
+        } else {
+          console.log('Email Error');
+        }
+      } catch(error) {
+        console.log(error);
+      }
+    }
+    sendMail(formData);
+};
+
 
   return (
     <Wrapper>

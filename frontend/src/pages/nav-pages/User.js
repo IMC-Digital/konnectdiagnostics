@@ -15,9 +15,9 @@ export const User = ({ auth, userName, message, handleLoginClick, handleLogout }
               id="dropdown-menu-align-responsive-2"
               variant="secondary"
               title={
-                  <div className="btn border px-2">
-                    <span>{userName}</span>
-                    <i className="fa-solid fa-user rounded p-2"></i>
+                  <div className="btn btn-outline-dark border-dark px-3 py-1">
+                    {userName}  
+                    <i className="fa-solid ms-2 fa-user rounded clr-inherit"></i>
                   </div>
               }
             >

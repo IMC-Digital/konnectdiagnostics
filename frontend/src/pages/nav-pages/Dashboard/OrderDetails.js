@@ -14,7 +14,7 @@ function OrderDetails({ profileData }) {
     const [showCancelOrderPopup, setShowCancelOrderPopup] = useState(false);
     const [error, setError] = useState(null);
 
-    // const handleShow = () => setShowCancelOrderPopup(true);
+    const handleShow = () => setShowCancelOrderPopup(true);
 
     const { search } = useLocation();
     const queryParams = new URLSearchParams(search);
@@ -39,10 +39,10 @@ function OrderDetails({ profileData }) {
     }
 
     return (
-        <div>
+        <div className='w-md-1100px'>
             {order && order.length > 0 ? (
                 order.map((item, index) => (
-                    <div key={index} className='w-md-900px mx-auto my-md-5'>
+                    <div key={index} className='mx-auto my-md-5'>
                         <BackTODashboardBtn />
                         <div className="rounded shadow-sm pb-md-3 p-2">
                             <OrderInfoSec order={item} />
@@ -50,6 +50,17 @@ function OrderDetails({ profileData }) {
                                 <EventDetailsSec order={item} profileData={profileData} />
                                 <OrderItemsGrid order={item} />
                                 <OrderBillingDetails order={item} />
+
+                                {item.order_status === "active" && (
+                                    <div className='d-flex'>
+                                        <button
+                                            type="button"
+                                            onClick={handleShow}
+                                            className="btn btn-outline-danger"
+                                        > Cancel / Modify Order
+                                        </button>
+                                    </div>
+                                )}
                             </div>
                         </div>
                     </div>

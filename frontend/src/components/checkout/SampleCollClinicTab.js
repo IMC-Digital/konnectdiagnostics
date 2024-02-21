@@ -116,7 +116,7 @@ export default function SampleCollClinicTab({ userId, profileData, checkOutFormD
                 <FormControlLabel
                   key={index}
                   value={item.area}
-                  className={`shadow-sm rounded my-2 ${checkOutFormData.sampleCollection.clinicSampleCollection.area === item.area ? 'clinicSelectoinChecked' : ''}`}
+                  className={`shadow-sm rounded my-1 ${checkOutFormData.sampleCollection.clinicSampleCollection.area === item.area ? 'clinicSelectoinChecked' : ''}`}
                   onChange={handleClinicSelection}
                   control={
                     <Radio />

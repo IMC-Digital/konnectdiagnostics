@@ -2,6 +2,8 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { BASE_API_URL } from '../../api';
 import { ToastContainer, toast } from 'react-toastify';
+import { removeFromCart } from '../../utils/cartUtils';
+
 
 const SelectMember2 = ({ userId, cart, profileData, setCart, checkOutFormData, setCheckOutFormData, setShowAddNewMemberPopup }) => {
     const [memSelData, setMemSelData] = useState(Array(cart.length).fill([profileData.fullname]));
@@ -62,13 +64,26 @@ const SelectMember2 = ({ userId, cart, profileData, setCart, checkOutFormData, s
         }
     };
 
-    const handleRemoveFromCart = (item) => {
-        const prevCartItems = JSON.parse(localStorage.getItem("selectedCartItems")) || [];
-        const indexToRemove = prevCartItems.findIndex(cartItem => cartItem.product_id === item.product_id);
-        const updatedCartItems = [...prevCartItems.slice(0, indexToRemove), ...prevCartItems.slice(indexToRemove + 1)];
-        localStorage.setItem("selectedCartItems", JSON.stringify(updatedCartItems));
+    // const handleRemoveFromCart = (item) => {
+    //     const prevCartItems = JSON.parse(localStorage.getItem("selectedCartItems")) || [];
+    //     const indexToRemove = prevCartItems.findIndex(cartItem => cartItem.product_id === item.product_id);
+    //     const updatedCartItems = [...prevCartItems.slice(0, indexToRemove), ...prevCartItems.slice(indexToRemove + 1)];
+    //     localStorage.setItem("selectedCartItems", JSON.stringify(updatedCartItems));
+    //     setCart(updatedCartItems);
+    // };
+
+    const handleRemoveFromCart = (itemToRemove) => {
+        const updatedCartItems = removeFromCart(
+          itemToRemove,
+          "selectedCartItems",
+          `${itemToRemove.type === "test" ? itemToRemove.test_name : itemToRemove.package_name} removed from cart`
+        );
         setCart(updatedCartItems);
-    };
+        toast.error(`${itemToRemove.type === "test" ? itemToRemove.test_name : itemToRemove.package_name} removed from cart`, {
+          position: toast.POSITION.BOTTOM_RIGHT,
+          className: "red-toast",
+        });
+      };
 
     return (
         <div className="mt-5">

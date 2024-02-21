@@ -46,7 +46,7 @@ function Header({
                 {!auth ? (
                   <Button
                     variant="primary"
-                    className="btn l-r-btn btn-k-primary"
+                    className="btn p-0 px-3 py-1 l-r-btn btn-k-primary"
                     onClick={() => setShowOtpPopup(true)}
                   >
                     Login / Register{" "}
@@ -73,7 +73,7 @@ function Header({
                 id="dropdown-menu-align-responsive-1"
                 className="btn-sm p-0 pb-0 mb-0 d-flex"
                 title={
-                  <div variant="primary" className="btn align-self-center btn-k-primary btn-sm">
+                  <div variant="primary" className="btn align-self-center btn-k-primary btn-sm p-0 px-2">
                     <i className="fa-solid fa-cart-plus me-2 text-white"></i>
                     <span className="item-count text-white">{cart.length}</span>
                   </div>
@@ -116,7 +116,10 @@ function Header({
 
 export default Header;
 
-const Wrapper = styled.section`
+const Wrapper = styled.div`
+  position: sticky;
+  top: 0;
+  z-index: 99; 
   .l-r-btn {
     background-color: var(--primary-color);
     border: none;

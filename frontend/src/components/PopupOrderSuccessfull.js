@@ -11,7 +11,6 @@ export default function PopupOrderSuccessful({ orderPlacedId, profileData, show,
         const getOrderDetails = async () => {
             try {
                 const response = await axios.get(`${BASE_API_URL}/orders/get-order-details/${orderPlacedId}`);
-                // console.log(response.data);
                 setOrderDetails(response.data);
             } catch (error) {
                 console.log("error fetching order details", error);
@@ -37,12 +36,12 @@ export default function PopupOrderSuccessful({ orderPlacedId, profileData, show,
                     >
                         <p className='text-white mb-0'>Thank You</p>
                         <h2 className="text-k-secondary text-white"> Your Order Placed Successfully </h2>
-                        <p className="text-k-clr-light text-light-white">Order <span className='fw-bold'> #KD0{orderPlacedId} </span> was place on <span className='fw-bold'> January 17, 2024 </span> and is currently in progress</p>
+                        <p className="text-k-clr-light text-light-white">Order <span className='fw-bold'> #ORKDC{orderPlacedId} </span> was place on <span className='fw-bold'> January 17, 2024 </span> and is currently in progress</p>
                     </div>
                     <div className="w-50">
                         <div className="px-4 py-2 bg-light border-bottom">
                             <p className="text-k-text mb-0 small"> Order Details </p>
-                            <h2 className="text-k-secondary text-k-clr-secondary"> #KD0{orderPlacedId} </h2>
+                            <h2 className="text-k-secondary text-k-clr-secondary"> #ORKDC{orderPlacedId} </h2>
                         </div>
                         <div className="px-4 py-2 border-bottom">
                             {orderDetails && (
