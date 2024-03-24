@@ -24,7 +24,7 @@ const HeroSlider = () => {
           className="s-slider"
         >
           <div className="sliderSec0">
-            <div className="container d-flex align-items-center h-100">
+            <div className="d-flex align-items-center h-100">
               <div className="w-50 pe-5">
                 <h1 className="text-k-primary text-k-clr-primary text-capitalize">
                   We are  <span className="text-k-clr-secondary">Upgrading</span> to serve you better

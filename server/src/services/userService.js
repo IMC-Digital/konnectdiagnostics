@@ -1,11 +1,11 @@
-const createOtpDbConnection = require("../../config/database");
-const otpdb = createOtpDbConnection();
+const createpoolConnection = require("../../config/database");
+const pool = createpoolConnection();
 const axios = require('axios');
 const bcrypt = require('bcrypt');
 const salt = 10;
 
 const getUser = (mobileNumber, callback) => {
-  otpdb.query('SELECT * FROM users WHERE mobile_number = ?', [mobileNumber], (error, response) => {
+  pool.query('SELECT * FROM users WHERE mobile_number = ?', [mobileNumber], (error, response) => {
     callback(error, response);
   })
 }
@@ -16,8 +16,8 @@ const loginOTP = (number, callback) => {
   for (let i = 0; i < 6; i++) {
       OTP += digits[Math.floor(Math.random() * 10)];
   }
-
   const sendOTP = async (num, otp) => {
+    
     try{
       const API_KEY = 'A0c7c219e22a5f772085c95ceef54dd32';
       const method = 'sms';
@@ -25,23 +25,26 @@ const loginOTP = (number, callback) => {
       const sender = 'KIMDCK';
       const unicode = '1';
       const templateId = '1207170651663518023';
-
+      
       const url = `http://sms.athentech.co.in/api/v4/?api_key=${API_KEY}&method=${method}&message=${MESSAGE}&to=${num}&sender=${sender}&unicode=${unicode}&template_id=${templateId}`;
       const response = await axios.get(url);
-      if (response.data.status === "OK"){
-        callback(null, {Status: "OTP sent!"});
+      // console.log(response);
+      if (response.statusText === "OK"){
+        // console.log(number+"asdf");
+        // console.log("ok");
+        callback(null, {Status: "OTP sent!", OTP: OTP});
       }
     }catch(error){console.log(error);}
   }
-
-  otpdb.query('SELECT * FROM users WHERE mobile_number = ?', [number], (error, response) => {
-
+  
+  pool.query('SELECT * FROM users WHERE mobile_number = ?', [number], (error, response) => {
+    
     error && callback(error, null);
-
+    
     if (response.length === 0) {
       bcrypt.hash(OTP.toString(), salt, (err, hash) => {
         if (err) return res.json({ "err for hashing password": err });
-        otpdb.query('INSERT INTO users (mobile_number, otp) VALUES (?, ?)', [number, hash], (err2, result2) => {
+        pool.query('INSERT INTO users (mobile_number, otp) VALUES (?, ?)', [number, hash], (err2, result2) => {
           if (err2) {
             console.error('Error inserting mobile number to users table:', err2);
             res.status(500).json({ error: "Database error" });
@@ -52,7 +55,7 @@ const loginOTP = (number, callback) => {
     } else {
       bcrypt.hash(OTP.toString(), salt, (err, hash) => {
         if (err) return res.json({ "err for hasing password": err });
-        otpdb.query('UPDATE users SET otp = ? WHERE mobile_number = ?', [hash, number], (err3, result3) => {
+        pool.query('UPDATE users SET otp = ? WHERE mobile_number = ?', [hash, number], (err3, result3) => {
           if (err3) {
             console.error('Error updating OTP in users table:', err3);
             if (err3.code === 'ECONNRESET') {
@@ -69,8 +72,9 @@ const loginOTP = (number, callback) => {
 }
 
 const getUserProfile = (userId, callback) => {
+  // console.log(userId);
   const query = "SELECT * FROM user_profile WHERE user_id = ?";
-  otpdb.query(query, [userId], (error, response) => {
+  pool.query(query, [userId], (error, response) => {
     callback(error, response)
   })
 }
@@ -80,7 +84,7 @@ const addNewAddress = (newAddressFormData, callback) => {
   const query = "INSERT INTO user_addresses (user_id, address_type, pincode, locality, address_name, address_line_1, address_line_2, googlemap, city, state) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
   const values = [user_id, address_type, pincode, locality, address_name, address_line_1, address_line_2, googlemap, city, state];
 
-  otpdb.query(query, values, (error, response) => {
+  pool.query(query, values, (error, response) => {
     callback(error, response)
   });
 }
@@ -90,7 +94,7 @@ const addNewMember = (newMemberFormData, callback) => {
   const query = "INSERT INTO user_members (user_id, person_title, fullname, date_of_birth, gender, relation ) VALUES (?, ?, ?, ?, ?, ?)";
   const values = [userId, personTitle, fullName, date_of_birth, gender, relationship];
 
-  otpdb.query(query, values, (error, results) => {
+  pool.query(query, values, (error, results) => {
     if (error) {
       console.error('Error adding member to database:', error);
       callback(error, null);
@@ -103,7 +107,7 @@ const addNewMember = (newMemberFormData, callback) => {
 const getUserAddresses = (req, callback) => {
   const { userId } = req.params;
   const query = "SELECT * FROM user_addresses WHERE user_id = ?";
-  otpdb.query(query, [userId], (error, response) => {
+  pool.query(query, [userId], (error, response) => {
     callback(error, response);
   })
 }
@@ -111,7 +115,7 @@ const getUserAddresses = (req, callback) => {
 const getUserAltmob = (req, callback) => {
   const uid = req.query.userid;
   const query = "SELECT * FROM user_profile WHERE user_id = ?";
-  otpdb.query(query, [uid], (error, response) => {
+  pool.query(query, [uid], (error, response) => {
     callback(error, response);
   })
 }
@@ -120,7 +124,7 @@ const getUserMembers = (req, callback) => {
   const uid = req.query.userid;
   // callback(null, uid)
   const query = "SELECT * FROM user_members WHERE user_id = ?";
-  otpdb.query(query, [uid], (error, response) => {
+  pool.query(query, [uid], (error, response) => {
     callback(error, response)
   })
 }

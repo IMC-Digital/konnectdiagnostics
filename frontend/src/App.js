@@ -68,7 +68,6 @@ function App() {
   axios.defaults.withCredentials = true;
   const [auth, setAuth] = useState(false);
   const [userId, setUserId] = useState('');
-  const [cartId, setCartId] = useState('');
   const [orderPlacedId, setOrderPlacedId] = useState('');
   const [cart, setCart] = useState([]);
   const [localCartItems, setLocalCartItems] = useState([]);
@@ -134,7 +133,6 @@ function App() {
         if (res.data.Status === "ok") {
           setAuth(true);
           setUserId(res.data.userid);
-          setCartId(res.data.cart_id);
           setCheckOutFormData((prevData) => ({
             ...prevData,
             userId: res.data.userid
@@ -146,7 +144,7 @@ function App() {
       .catch((err) => {
         console.error("Axios error:", err);
       });
-  }, [auth, userId, cartId]);
+  }, [auth, userId]);
 
   useEffect(() => {
     const storedCartItems = JSON.parse(
@@ -168,7 +166,6 @@ function App() {
         const profData = response.data;
         if (profData.length > 0) {
           setProfileData(profData[0]);
-          // console.log(response.data);
         } else {
           setShowProfileForm(true);
           setShowPopupProfileSetupForm(true);
@@ -176,7 +173,7 @@ function App() {
       }
     };
     fetchData();
-  }, [userId, auth, profileData]);
+  }, [userId, auth]);
 
   const handleLogout = () => {
     axios.get(`${BASE_API_URL}/logout`).then(() => {
@@ -218,9 +215,7 @@ function App() {
             setAuth={setAuth} 
             userId={userId}  
             setUserId={setUserId}  
-            userName={profileData.fullname} 
-            cartId={cartId}  
-            setCartId={setCartId}
+            userName={profileData.fullname}
             setShowOtpPopup={setShowOtpPopup}
             handleLogout={handleLogout} />
           <Routes>

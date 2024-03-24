@@ -1,5 +1,5 @@
-const createOtpDbConnection = require("../../../config/database");
-const otpdb = createOtpDbConnection();
+const createpoolConnection = require("../../../config/database");
+const pool = createpoolConnection();
 
 const getTestsOfAPackage = (packageId, callback) => {
     const query = `
@@ -9,14 +9,14 @@ const getTestsOfAPackage = (packageId, callback) => {
         WHERE tip.package_id = ?;
     `;
 
-    otpdb.query(query, [packageId], (error, result) => {
+    pool.query(query, [packageId], (error, result) => {
         callback(error, result);
     });
 };
 
 const getTestsofSearchTerm = (searchTerm, callback) => {
     const query = `SELECT DISTINCT * FROM tests WHERE test_name LIKE '%${searchTerm}%'`;
-    otpdb.query(query, (error, results) => {
+    pool.query(query, (error, results) => {
         callback(error, results)
     });
 }
@@ -24,7 +24,7 @@ const getTestsofSearchTerm = (searchTerm, callback) => {
 
 const getAllTests = (callback) => {
     const query = "SELECT * FROM tests";
-    otpdb.query(query, (error, result) => {
+    pool.query(query, (error, result) => {
         callback(error, result);
     });
 };

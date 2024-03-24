@@ -1,8 +1,8 @@
-const createOtpDbConnection = require("../../config/database");
-const otpdb = createOtpDbConnection();
+const createpoolConnection = require("../../config/database");
+const pool = createpoolConnection();
 
 const getAllCategories = (callback) => {
-    otpdb.query("SELECT * FROM categories", (error, result) => {
+    pool.query("SELECT * FROM categories", (error, result) => {
         callback(error, result)
     })
 }

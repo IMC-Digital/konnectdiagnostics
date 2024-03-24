@@ -48,7 +48,7 @@ const ToggleKT = ({ localCartItems, setLocalCartItems, userId, auth, cart, setCa
           auth={auth} 
           cart={cart} 
           setCart={setCart} 
-          cardsPerPage={8} 
+          cardsPerPage={4} 
           handleLoginClick={handleLoginClick}
         />
 

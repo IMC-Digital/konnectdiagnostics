@@ -19,18 +19,16 @@ function ClinicSearchBar({ setClinicsdata }) {
   };
 
   return (
-    <div className=''>
-      <div className="d-flex mb-2">
-        <div className="form-outline w-100">
-          <input 
-            type="text" 
-            className="clinicsearchinp form-control" 
-            style={searchInpStyle} 
-            placeholder='Search City / Area / Clinic Name...'
-            value={searchTerm} 
-            onChange={(e) => {handleSearch(); setSearchTerm(e.target.value)}}
-          />
-        </div>
+    <div className="d-flex">
+      <div className="form-outline w-100">
+        <input 
+          type="text" 
+          className="clinicsearchinp form-control" 
+          style={searchInpStyle} 
+          placeholder='Search City / Area / Clinic Name...'
+          value={searchTerm} 
+          onChange={(e) => {handleSearch(); setSearchTerm(e.target.value)}}
+        />
       </div>
     </div>
   );

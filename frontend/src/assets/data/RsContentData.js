@@ -40,7 +40,7 @@ export const RsContentData = [
     category: "CT",
     excerpt:
       "Computed Tomography or CT is a medical imaging procedure that produces detailed images ",
-    productImage: "/images/srvcs/radiology/raiology_machines/CT.jpg",
+    productImage: "/images/srvcs/radiology/raiology_machines/CT.png",
     component: <CT />,
   },
   {
@@ -77,7 +77,7 @@ export const RsContentData = [
     category: "CBCT",
     excerpt:
       "Cone-beamed computed tomography or CBCT is a form of medical imaging technology",
-    productImage: "/images/srvcs/radiology/raiology_machines/MRI.jpg",
+    productImage: "/images/srvcs/radiology/raiology_machines/MRI.png",
     component: <MRI />,
   },
   {
@@ -95,7 +95,7 @@ export const RsContentData = [
     title: "OPG (Orthopantomagram)",
     excerpt:
       "Cone-beamed computed tomography or CBCT is a form of medical imaging technology",
-    productImage: "/images/srvcs/radiology/raiology_machines/OPG.jpg",
+    productImage: "/images/srvcs/radiology/raiology_machines/OPG.png",
     component: <OPG />,
   },
   {
@@ -104,7 +104,7 @@ export const RsContentData = [
     title: "PFT (Pulmonary Function Test)",
     excerpt:
       "Cone-beamed computed tomography or CBCT is a form of medical imaging technology",
-    productImage: "/images/srvcs/radiology/raiology_machines/PFT.jpg",
+    productImage: "/images/srvcs/radiology/raiology_machines/PFT.png",
     component: <PFT />,
   },
   {

@@ -8,49 +8,32 @@ const SectionThree = () => {
     <Wrapper>
       <div className="s3-full">
         <div className="services">
-          <div className="container d-flex justify-content-sm-between justify-content-start flex-sm-nowrap flex-wrap">
-            <div className="s3-s service1">
-              <div className="s3-icons">
-                <DynamicImage imageName={"/icons/location.svg"} />
-              </div>
-              <h5>Nearest Center</h5>
-            </div>
-            <div className="s3-s service2">
-              <div className="s3-icons">
-                <DynamicImage imageName={"/icons/Lab.svg"} />
-              </div>
-              <h5>Book a test</h5>
-            </div>
-            <div className="s3-s service2">
-              <div className="s3-icons">
-                <DynamicImage imageName={"/icons/house.svg"} />
-              </div>
-              <h5>Home Collections</h5>
-            </div>
-            <div className="s3-s service3">
-              <div className="s3-icons">
-                <DynamicImage imageName={"/icons/Prescription.svg"} />
-              </div>
-              <h5>Upload Prescription</h5>
-            </div>
-            <div className="s3-s service4">
-              <div className="s3-icons">
-                <DynamicImage imageName={"/icons/download-report.svg"} />
-              </div>
-              <h5>Download Report</h5>
-            </div>
+          <div className="container d-flex justify-content-sm-around justify-content-start flex-sm-nowrap flex-wrap">
+              {
+                [
+                  {icon: "location", title: "Nearest Center"},
+                  {icon: "Lab", title: "Book a test"},
+                  {icon: "house", title: "Home Collections"},
+                  {icon: "Prescription", title: "Upload Prescription"},
+                  {icon: "download-report", title: "Download Report"}
+                ].map((item, index) => (
+                  <div key={index} className="s3-s">
+                    <div className="s3-icons">
+                      <DynamicImage imageName={`/icons/${item.icon}.svg`} />
+                    </div>
+                    <h2 className="text-k-accent fw-normal text-white"> { item.title } </h2>
+                  </div>
+                ))
+              }
           </div>
         </div>
       </div>
+
       <div className="secThree row container d-flex mx-auto px-0">
         <div className="why-konnect-img col-md-6 bg-k-primary">
           <div className="why-konnect-content bg-k-secondary">
-            <div className="title">
-              <h3>Why Konnect</h3>
-            </div>
-            <div className="info d-flex gap-2">
-              <h3>Empowering Health through Precision</h3>
-            </div>
+              <h2 className="text-k-secondary text-white">Why Konnect</h2>
+              <h2 className="text-k-text text-white">Empowering Health through Precision</h2>
           </div>
         </div>
 
@@ -68,7 +51,7 @@ const SectionThree = () => {
                 />
               </div>
             </div>
-            <p className="mb-0">
+            <p className="text-k-text mb-0">
               Konnect Diagnostics offers precise diagnostics with certified
               radiologists, pathologists, doctors, and technicians.{" "}
             </p>
@@ -83,7 +66,7 @@ const SectionThree = () => {
                 <img src="/images/icons/home/team.svg" alt="teamIcon" />
               </div>
             </div>
-            <p className="mb-0">
+            <p className="mb-0 text-k-text">
               Pioneering tech, skilled team drive us in advanced diagnostics,
               managing complex cases with expertise.
             </p>
@@ -96,10 +79,9 @@ const SectionThree = () => {
                 style={{ width: "80px", height: "80px" }}
               >
                 <img src="/images/icons/home/top.svg" alt="topIcon" />
-                {/* <img src="/images/icons/home/certified.svg" alt="certifiedIcon" className="img-fluid" /> */}
               </div>
             </div>
-            <p className="mb-0">
+            <p className="mb-0 text-k-text">
               Our priority: satisfied patients. Swift, transparent, precise
               top-quality services for convenience and rapid results.{" "}
             </p>
@@ -187,10 +169,6 @@ const Wrapper = styled.section`
         height: 100%;
         transition: all 0.3s;
       }
-    }
-    h5 {
-      color: #fff;
-      font-size: 1.125rem;
     }
     &:hover .s3-icons {
       box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;

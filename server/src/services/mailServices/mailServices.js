@@ -1,7 +1,17 @@
-const sendOrderPlacedMail = (orderData) => {
-    const { checkOutFormData, paymentDetails, cart } = orderData;
+const userService = require("../../services/userService");
+const nodemailer = require('nodemailer');
 
-    var transporter = nodemailer.createTransport({
+const sendOrderPlacedMail = (orderPlacedResponse, orderData) => {
+
+    const { fullname, mobile_number, email } = orderPlacedResponse.userProfile;
+    const { orderId } =  orderPlacedResponse;
+    // const { checkOutFormData, paymentDetails, cart } = orderData;
+
+
+
+    // console.log(checkOutFormData, paymentDetails, cart);
+
+    const transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
             user: 'shaikmahmoodsameer@gmail.com',
@@ -9,31 +19,38 @@ const sendOrderPlacedMail = (orderData) => {
         }
     });
 
-    var emailTemplate = `
-        <h1>${formData.subject}</h1>
-        ${formData.message}
+    const emailTemplate = `
+        Dear ${fullname}
 
-        From: ${formData.name}
-        Email: ${formData.email}
-        Contact Number: ${formData.email}
-    `
+        Thank you for choosing Konnect Diagnostics.
 
-    var mailOptions = {
-        // from: formData.email,
+        Your Order has been placed successfully, with  Order Id : #ORKDC${orderId}
+        Payment ID: #PMTOKDC{paymentDetails.payment_id} - {paymentDetails.id}
+        Of User Id : ${mobile_number}
+        Check your order details at https://konnectdiagnostics.com/dashboard
+
+        From: Konnect Diagnostics
+        Email: info@konnectdiagnostics.com
+        Customer Care No: 040 - 4123 5555
+    `;
+
+    const mailOptions = {
         from: 'shaikmahmoodsameer@gmail.com',
-        to: formData.email,
-        subject: "Konnect - Order Placed Successfully.",
+        to: email,
+        subject: `Order #ORKDC${orderId} Placed Successfully - Konnect`,
         text: emailTemplate
     };
-    transporter.sendMail(mailOptions, function (error, info) {
+
+    transporter.sendMail(mailOptions, (error, info) => {
         if (error) {
             console.error(error);
-        } else {
-            return res.json({ emailSent: true, message: `Email sent: ${info.response}` });
+            return ( error );
         }
+        // console.log("email sent");
+        return ({ emailSent: true, message: `Email sent: ${info.response}` });
     });
-}
+};
 
 module.exports = {
     sendOrderPlacedMail
-}
+};

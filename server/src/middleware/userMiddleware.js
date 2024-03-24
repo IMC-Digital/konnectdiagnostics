@@ -3,6 +3,7 @@ const jwt = require('jsonwebtoken');
 const privateKey = process.env.PRIVATEKEY;
 
 const verifyUser = (req, res, next) => {
+  console.log("verifying");
   const token = req.cookies.token;
   if (!token) {
     return res.json({ TokenError: "not Authenticated, Login!" });

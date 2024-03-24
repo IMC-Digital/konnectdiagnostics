@@ -29,13 +29,15 @@ export default function CategoryWisePackagesTabs({ cart, setCart, auth, userId, 
             ) : packages.length > 0 ? (
                 <Tab.Container id={`category-package-tab-${category.category_name}`} defaultActiveKey={0}>
                     <Nav variant="pills" className="justify-content-start">
-                        {packages.map((item, index) => (
-                            <Nav.Item key={index} className="border rounded me-1">
-                                <Nav.Link eventKey={index}>
-                                    <span className="small clr-inherit">{item.package_name}</span>
-                                </Nav.Link>
-                            </Nav.Item>
-                        ))}
+                        <div className="package-tab-titles-wrapper d-flex gap-1">
+                            {packages.map((item, index) => (
+                                <Nav.Item key={index}>
+                                    <Nav.Link eventKey={index}>
+                                        <span className="text-k-text clr-inherit">{item.package_name}</span>
+                                    </Nav.Link>
+                                </Nav.Item>
+                            ))}
+                        </div>
                     </Nav>
                     <Tab.Content>
                         {packages.map((item, index) => (
@@ -62,5 +64,20 @@ export default function CategoryWisePackagesTabs({ cart, setCart, auth, userId, 
 const Wrapper = styled.section`
 .category-package-tabs{
     border: 2px solid red;
+}
+.package-tab-titles-wrapper{
+    background: white;
+    box-shadow: 0 0 1px #e8f0ff, 0 6px 12px #e8f0ff;
+    border: 1px solid #e8f0ff;
+    border-radius: 50px;
+    padding: 6px;
+    .nav-item a{
+        border-radius: 50px;
+        color: var(--text-clr);
+    }
+    .nav-item .active{
+        background: var(--color1);
+        color: var(--secondary-color);
+    }
 }
 `;

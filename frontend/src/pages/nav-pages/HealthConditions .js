@@ -7,8 +7,9 @@ const HealthConditions = () => {
   return (
     <Wrapper>
       <PageBanner title={"Health Conditions"} bannerImg={'health-conditions-bg-image'} />
-      <div className="container health-conditions mt-5"></div>
-      <HcCard />
+      <div className="container health-conditions py-6">
+        <HcCard />
+      </div>
     </Wrapper>
   );
 };

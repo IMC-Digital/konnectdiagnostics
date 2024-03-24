@@ -4,22 +4,14 @@ import axios from "axios";
 import { TestCard } from "./TestCard";
 import { BASE_API_URL } from "../../api";
 
-export const PopularTests = ({
-  userId,
-  auth,
-  cart,
-  setCart,
-  handleLoginClick,
-}) => {
+export const PopularTests = ({ userId, auth, cart, setCart, handleLoginClick}) => {
   const [popularTests, setPopularTests] = useState([]);
 
   useEffect(() => {
     const poptestscode = ["COMPLETE BLOOD COUNT", "BLOOD CULTURE", "TSH", "URINE MICROALBUMIN"];
     async function getPopularTests() {
       try {
-        const response = await axios.get(`${BASE_API_URL}/getpoptests`, {
-          params: { codes: poptestscode },
-        });
+        const response = await axios.get(`${BASE_API_URL}/tests/getpoptests`, { params: { codes: poptestscode } });
         setPopularTests(response.data);
       } catch (error) {
         console.error(error);
@@ -27,6 +19,7 @@ export const PopularTests = ({
     }
     getPopularTests();
   }, []);
+
   return (
     <Wrapper>
       <div className="ptCards my-3 container p-0 d-flex flex-wrap gap-2">

@@ -17,8 +17,6 @@ function Header({
   setUserId,
   userName,
   setUserName,
-  cartId,
-  setCartId,
   message,
   handleLoginClick,
   setShowOtpPopup,
@@ -36,7 +34,7 @@ function Header({
             <img
               src="/images/konnect-logo.png"
               alt="Konect-Logo"
-              style={{ width: "150px" }}
+              style={{ width: "200px" }}
             />
           </Navbar.Brand>
 
@@ -44,12 +42,8 @@ function Header({
             <div className="d-flex justify-content-end">
               <div className="d-flex align-items-center justify-content-center me-2">
                 {!auth ? (
-                  <Button
-                    variant="primary"
-                    className="btn p-0 px-3 py-1 l-r-btn btn-k-primary"
-                    onClick={() => setShowOtpPopup(true)}
-                  >
-                    Login / Register{" "}
+                  <Button variant="primary" className="btn p-0 px-3 py-1 l-r-btn btn-k-primary" onClick={() => setShowOtpPopup(true)}>
+                    Login / Register
                     <i className="ms-2 fa-solid fa-right-to-bracket text-white"></i>
                   </Button>
                 ) : (
@@ -60,7 +54,6 @@ function Header({
                     setUserId={setUserId}
                     userName={userName}
                     setUserName={setUserName}
-                    setCartId={setCartId}
                     message={message}
                     handleLoginClick={handleLoginClick}
                     handleLogout={handleLogout}

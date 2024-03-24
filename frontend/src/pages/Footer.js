@@ -59,13 +59,13 @@ const Footer = () => {
         </div>
         <div className="footer-container container d-flex">
           <div className="d-flex border-bottom ">
-            <div className="w-25 me-5">
+            <div className="w-30 me-3">
               <img
                 className="img-fluid mb-3"
                 src="/images/konnect-logo.png"
                 alt="logofooter"
               />
-              <p className="fh-info">
+              <p className="text-k-text">
                 Konnect Diagnostics offers precise diagnostics with certified
                 radiologists, pathologists, doctors, and technicians.
               </p>

@@ -44,53 +44,36 @@ const FacilitiesCarousel = () => {
   return (
     <Wrapper>
       <Slider ref={Fac_carousel_slider} {...sliderSettings}>
-        <div className="fac_card">
-          <img
-            src="./images/fetal-medicine-care/fetal-facilities/high-end-ultrasound-equipment.jpg"
-            alt="fac1"
-          />
-          <h2>High End Ultrasound Equipment</h2>
-        </div>
-
-        <div className="fac_card">
-          <img
-            src="./images/fetal-medicine-care/fetal-facilities/procedure-room.jpg"
-            alt="fac2"
-          />
-          <h2> Procedure Room </h2>
-        </div>
-
-        <div className="fac_card">
-          <img
-            src="./images/fetal-medicine-care/fetal-facilities/special-suites.jpg"
-            alt="fac3"
-          />
-          <h2> Special Suites </h2>
-        </div>
-
-        <div className="fac_card">
-          <img
-            src="./images/fetal-medicine-care/fetal-facilities/virtual-fetal-museum.jpg"
-            alt="fac4"
-          />
-          <h2> Virtual Fetal Museum </h2>
-        </div>
-
-        <div className="fac_card">
-          <img
-            src="./images/fetal-medicine-care/fetal-facilities/3d-printed-baby.jpg"
-            alt="fac5"
-          />
-          <h2> 3D Printing For Fetal Face </h2>
-        </div>
-
-        <div className="fac_card">
-          <img
-            src="./images/fetal-medicine-care/fetal-facilities/fetal-booth.jpg"
-            alt="fac6"
-          />
-          <h2> Photo Booth </h2>
-        </div>
+        {
+          [{
+            title: "High End Ultrasound Equipment",
+            img: "high-end-ultrasound-equipment"
+          }, {
+            title: "Procedure Room",
+            img: "procedure-room"
+          }, {
+            title: "Special Suites",
+            img: "special-suites"
+          }, {
+            title: "Virtual Fetal Museum",
+            img: "virtual-fetal-museum"
+          }, {
+            title: "3D Printing For Fetal Face",
+            img: "3d-printed-baby"
+          }, {
+            title: "Photo Booth",
+            img: "fetal-booth"
+          }].map((item, index) => (
+            <div key={index} className="fac_card bg-white rounded-3">
+              <img 
+                src={`./images/fetal-medicine-care/fetal-facilities/${item.img}.jpg`}
+                alt={`${item.img}`}
+                className="rounded"
+              />
+              <h2 className="text-k-accent fmu-text-clr"> {item.title} </h2>
+            </div>
+          ))
+        }
       </Slider>
     </Wrapper>
   );
@@ -99,9 +82,15 @@ const FacilitiesCarousel = () => {
 export default FacilitiesCarousel;
 
 const Wrapper = styled.section`
+.slick-track{
+  .slick-slide{
+    padding: 5px;
+  }
+}
   .fac_card {
     padding: 10px;
     overflow: hidden;
+
   }
   .fac_card img {
     width: 100%;

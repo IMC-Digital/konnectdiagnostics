@@ -1,12 +1,12 @@
 const clinicsService = require('../services/clinicService');
 
 const getAllClinics = (req, res) => {
-  clinicsService.getAllClinicsData((error, clinicsData) => {
+  clinicsService.getAllClinicsData((error, response) => {
     if (error) {
       console.error('Error fetching clinics data:', error);
       res.status(500).json({ error: 'An error occurred' });
     } else {
-      res.status(200).json(clinicsData);
+      res.status(200).json(response);
     }
   });
 };

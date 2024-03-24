@@ -1,19 +1,20 @@
 const ordersServices = require("../services/ordersServices");
+const userServices = require("../services/userService")
 const mailServices = require("../services/mailServices/mailServices")
 
 const placeOrder = async (req, res) => {
     const orderData = req.body;
 
-    try {
-        const response = await ordersServices.placeOrder(orderData);
-        if(response){
-            mailServices.sendOrderPlacedMail(orderData);
+    ordersServices.placeOrder(orderData, (error, response) => {
+        if(error){
+            console.log(error);
+            console.error('Internal Server Error(Placing Order):', error);
+            res.status(500).json({ success: false, error: 'An error occurred at placing an order' });
+        } else if (response) {
+            mailServices.sendOrderPlacedMail(response, orderData);
             res.status(200).json({ success: true, response });
         }
-    } catch (error) {
-        console.error('Internal Server Error(Placing Order):', error);
-        res.status(500).json({ success: false, error: 'An error occurred at placing an order' });
-    }
+    })
 };
 
 const getOrderByOrderId = async (req, res) => {

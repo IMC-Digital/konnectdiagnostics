@@ -23,7 +23,7 @@
   color: rgba(0, 0, 0, 0.584);
 }
 .text-k-primary {
-  font-size: 46px;
+  font-size: 36px;
   font-weight: 700;
   line-height: 1.3em;
 }
@@ -33,27 +33,26 @@
   line-height: 1.3em;
 }
 .text-k-secondary {
-  font-size: 22px;
+  font-size: 26px;
   font-weight: 700;
-  line-height: 1.1em;
+  line-height: 1.5em;
 }
 .text-k-text {
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 300;
   line-height: 1.5em;
 }
 .text-k-accent {
-  font-size: 15px;
+  font-size: 18px;
   font-weight: 600;
   line-height: 1.4em;
 }
 
 p {
   color: var(--text-color);
-  font-weight: 400;
-  line-height: 1.3rem;
-  margin-bottom: 10px !important ;
+  font-weight: 300;
+  line-height: 1.5rem;
+  margin-bottom: 10px !important;
   font-size: 16px;
   font-weight: 300;
-  line-height: 1.7rem;
 }

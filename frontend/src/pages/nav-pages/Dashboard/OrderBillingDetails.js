@@ -27,9 +27,9 @@ export default function OrderBillingDetails({ order }) {
         fetchPaymentDetails();
     }, [setPayment, order]);
 
-    useEffect(() => {
-        console.log(payment);
-    }, [payment])
+    // useEffect(() => {
+    //     console.log(payment);
+    // }, [payment])
 
     return (
         <div className='d-flex gap-5 mt-5'>

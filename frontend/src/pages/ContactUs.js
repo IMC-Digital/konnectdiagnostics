@@ -10,24 +10,27 @@ function ContactUs() {
 
       <div className="box container row container px-0 mx-auto my-5 d-flex justify-content-center align-items-center">
         <div className="box-left col-md-6 p-5 rounded">
-          <h6 className="fw-bolder">Registered Office</h6>
+          <h2 className="text-k-accent fw-bold">Registered Office</h2>
           <img
             src="/images/konnect-logo.png"
             className="my-3"
             alt="konnect-diagnostics"
           />
-          <p>
-            <strong> Address: </strong> 1-5-1055/87/236 & 237, HMT officers colony, Batukhamma park, Alwal, Hyderabad, Secunderabad, Telangana 500010
+          <p className="text-k-text">
+            <span className="fw-bold"> Address: </span> 
+            1-5-1055/87/236 & 237, HMT officers colony, Batukhamma park, Alwal, Hyderabad, Secunderabad, Telangana 500010
           </p>
-          <p>
-            <strong> Email: </strong> info@konnectdiagnostics.com{" "}
+          <p className="text-k-text">
+            <span className="fw-bold"> Email: </span> 
+            info@konnectdiagnostics.com
           </p>
-          <p>
-            <strong> Customer Care No: </strong> 040 - 4123 5555{" "}
+          <p className="text-k-text">
+            <span className="fw-bold"> Customer Care No: </span> 
+            040 - 4123 5555
           </p>
         </div>
 
-        <div className="bg-light shadow-sm rounded col-md-6 p-2 p-md-5">
+        <div className="bg-k-light shadow-sm rounded col-md-6 p-2 p-md-5">
           <ContactForm />
         </div>
       </div>
@@ -58,18 +61,5 @@ const Wrapper = styled.div`
     background-color: ${({ theme }) => theme.colors.white};
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
     z-index: 1;
-  }
-
-  .w-80 {
-    width: 80%;
-  }
-  h2 {
-    color: ${({ theme }) => theme.colors.secondary};
-  }
-  p {
-    strong {
-      color: ${({ theme }) => theme.colors.primary};
-    }
-    margin-top: 5px;
   }
 `;

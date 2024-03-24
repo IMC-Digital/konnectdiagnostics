@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { BASE_API_URL } from "../../api/index";
 import { styled } from "styled-components";
-import PageBanner from "../PageBanner";
+// import PageBanner from "../PageBanner";
 import { Nav, Tab } from "react-bootstrap";
 import CategoryWisePackagesTabs from "./CategoryWisePackagesTabs";
 
@@ -28,7 +28,7 @@ export default function Packages({ auth, userId, cart, setCart, handleLoginClick
 
   return (
     <Wrapper>
-      <PageBanner title={"Packages"} bannerImg={"packages-bg-image"} />
+      {/* <PageBanner title={"Packages"} bannerImg={"packages-bg-image"} /> */}
 
       <div className="container">
         <Tab.Container
@@ -108,9 +108,11 @@ const Wrapper = styled.section`
           font-size: 12px;
         }
       }
-      a.active span,
-      a.active i {
-        color: white !important;
+      a.active{
+        background: var(--secondary-color);
+        span, i {
+          color: white !important;
+        }
       }
       .nav-item:hover {
         background-color: white;

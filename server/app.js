@@ -7,7 +7,7 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const nodemailer = require('nodemailer');
 const app = express();
-const createOtpDbConnection = require('./config/database');
+const createpoolConnection = require('./config/database');
 const axios = require('axios');
 
 const port = process.env.PORT;
@@ -34,8 +34,8 @@ app.use(cors({
 
 
 // db connection
-createOtpDbConnection();
-const otpdb = createOtpDbConnection();
+createpoolConnection();
+const pool = createpoolConnection();
 
 // ------------------------------------------------------------
 const clinicsRoutes = require('./src/routes/clinicsroutes');
@@ -87,7 +87,7 @@ app.get('/search', (req, res) => {
   // const query = `SELECT * FROM products WHERE product_name LIKE '%${searchTerm}%'`;
   const query = `SELECT DISTINCT * FROM tests WHERE test_name LIKE '%${searchTerm}%'`;
 
-  otpdb.query(query, (error, results) => {
+  pool.query(query, (error, results) => {
     if (error) {
       console.error(error);
       res.status(500).json({ error: 'An error occurred' });
@@ -102,7 +102,7 @@ app.get('/getbyletter', (req, res) => {
   // const query = `SELECT * FROM products WHERE product_name LIKE '${startingLetter}%'`;
   const query = `SELECT DISTINCT * FROM tests WHERE test_name LIKE '${startingLetter}%'`;
 
-  otpdb.query(query, (error, results) => {
+  pool.query(query, (error, results) => {
     if (error) {
       console.error(error);
       res.status(500).json({ error: 'An error occurred' });
@@ -112,34 +112,10 @@ app.get('/getbyletter', (req, res) => {
   });
 });
 
-
-// ===========================================================================================
-// const verifyUser = (req, res, next) => {
-//   const token = req.cookies.token;
-//   if (!token) {
-//       return res.json({ TokenError: "not Authenticated, Login!" });
-//   } else {
-//       jwt.verify(token, privateKey, (err, decoded) => {
-//           if (err) {
-//               return res.json({ TokenIncorrectError: "token not correct" });
-//           } else {
-//               req.user_id = decoded.user_id;
-//               req.user_name = decoded.user_name; // Include user_name in req
-//               req.cart_id = decoded.cart_id;
-//               next();
-//           }
-//       });
-//   }
-// };
-
-// app.get('/user', verifyUser, (req, res) => {
-//   return res.json({ Status: "ok", userid: req.user_id, cart_id: req.cart_id }); // Include user_name in the response
-// });
-
 app.post('/login', (req, res) => {
   const { email, password } = req.body.values;
   const userQuery = 'SELECT * FROM users WHERE email = ?';
-  otpdb.query(userQuery, [email], (err, userData) => {
+  pool.query(userQuery, [email], (err, userData) => {
     if (err) {
       console.error('Error in user query:', err);
       return res.json({ error: "Login Error in Server" });
@@ -162,7 +138,7 @@ app.post('/login', (req, res) => {
       if (response) {
         // Step 3: Retrieve cart_id
         const cartQuery = 'SELECT cart_id FROM cart WHERE user_id = ?';
-        otpdb.query(cartQuery, [user_id], (cartErr, cartData) => {
+        pool.query(cartQuery, [user_id], (cartErr, cartData) => {
           if (cartErr) {
             console.error('Error in cart query:', cartErr);
             return res.json({ error: "Error getting cart ID" });
@@ -184,68 +160,11 @@ app.post('/login', (req, res) => {
   });
 });
 
-// app.post("/otplogin", async (req, res) => {
-//   const { number } = req.body;
-//   let digits = "0123456789";
-//   let OTP = "000000";
-//   const sendOTP = (num, otp) => {
-//     client.messages.create({
-//       body: 'Hello from twilio-node, Your OTP is: ' + otp,
-//       to: '+91' + num,
-//       from: '+14076245195',
-//     })
-//       .then((message) => {
-//         res.json({ Status: "OTP sent!" });
-//       })
-//       .catch((err) => {
-//         console.error("Error sending OTP:", err);
-//         res.status(500).json({ "Failed to send OTP": err, messagese: "Failed to send OTP!" });
-//       });
-//   }
-
-//   otpdb.query('SELECT * FROM users WHERE mobile_number = ?', [number], (err, result) => {
-//     if (err) {
-//       console.error('Error in searching for entered mobile number:', err);
-//       res.status(500).json({ error: "Database error" });
-//     }
-
-//     if (result.length === 0) {
-//       bcrypt.hash(OTP.toString(), salt, (err, hash) => {
-//         if (err) return res.json({ "err for hasing password": err });
-//         otpdb.query('INSERT INTO users (mobile_number, otp) VALUES (?, ?)', [number, hash], (err2, result2) => {
-//           if (err2) {
-//             console.error('Error inserting mobile number to users table:', err2);
-//             res.status(500).json({ error: "Database error" });
-//           }
-//           // sendOTP(number, OTP);
-//           res.json({ Status: "OTP sent!" });
-//         });
-//       })
-//     } else {
-//       bcrypt.hash(OTP.toString(), salt, (err, hash) => {
-//         if (err) return res.json({ "err for hasing password": err });
-//         otpdb.query('UPDATE users SET otp = ? WHERE mobile_number = ?', [hash, number], (err3, result3) => {
-//           if (err3) {
-//             console.error('Error updating OTP in users table:', err3);
-//             if (err3.code === 'ECONNRESET') {
-//               // Retry the database operation or handle it as needed.
-//             } else {
-//               res.status(500).json({ error: "Database error" });
-//             }
-//           } else {
-//             // sendOTP(number, OTP);
-//             res.json({ Status: "OTP sent!" });
-//           }
-//         });
-//       })
-//     }
-//   });
-// });
 
 app.post('/register', (req, res) => {
   const { name, email, password } = req.body.values;
 
-  otpdb.query('SELECT * FROM users WHERE email = ?', [email], (error, results) => {
+  pool.query('SELECT * FROM users WHERE email = ?', [email], (error, results) => {
     if (error) return res.json({ Error: "Database error" });
 
     if (results.length > 0) {
@@ -259,7 +178,7 @@ app.post('/register', (req, res) => {
         const userValues = [name, email, hash];
         const userInsertQuery = 'INSERT INTO users (`name`, `email`, `password`) VALUES (?,?,?)';
 
-        otpdb.query(userInsertQuery, userValues, (insertError, userResponse) => {
+        pool.query(userInsertQuery, userValues, (insertError, userResponse) => {
           if (insertError) {
             return res.json({ Error: "Insertion Error" });
           }
@@ -269,7 +188,7 @@ app.post('/register', (req, res) => {
           const cartValues = [userId, new Date()]; // Assuming 'created_at' is the current timestamp
           const cartInsertQuery = 'INSERT INTO cart (`user_id`, `created_at`) VALUES (?,?)';
 
-          otpdb.query(cartInsertQuery, cartValues, (cartInsertError, cartResponse) => {
+          pool.query(cartInsertQuery, cartValues, (cartInsertError, cartResponse) => {
             if (cartInsertError) {
               return res.json({ Error: "Cart Insertion Error" });
             }
@@ -291,7 +210,7 @@ app.get('/logout', (req, res) => {
 app.get('/profile/:userId', (req, res) => {
   const userId = req.params.userId;
   const sql = 'SELECT * FROM user_profile WHERE user_id = ?';
-  otpdb.query(sql, [userId], (error, results) => {
+  pool.query(sql, [userId], (error, results) => {
     if (error) {
       return res.status(500).json({ error: 'Database error' });
     }
@@ -300,7 +219,7 @@ app.get('/profile/:userId', (req, res) => {
     } else {
       const profileData = results[0];
       const getRegMobNumQ = 'SELECT * FROM users WHERE user_id = ?';
-      otpdb.query(getRegMobNumQ, [userId], (err, innerResults) => {
+      pool.query(getRegMobNumQ, [userId], (err, innerResults) => {
         if (err) {
           return res.status(500).json({ error: 'Database error' });
         }
@@ -317,7 +236,7 @@ app.post('/profile/:userId', (req, res) => {
   const profileData = req.body;
 
   // Use a different variable name for the result from the first query
-  otpdb.query(`SELECT * FROM users WHERE user_id = ${userId}`, (errSelect, userResult) => {
+  pool.query(`SELECT * FROM users WHERE user_id = ${userId}`, (errSelect, userResult) => {
     if (errSelect) {
       console.error('Error executing SELECT query:', errSelect);
       return res.status(500).json({ error: 'Error retrieving user data' });
@@ -339,7 +258,7 @@ app.post('/profile/:userId', (req, res) => {
       profileData.alternateMobile
     ];
 
-    otpdb.query(query, values, (errInsert, results) => {
+    pool.query(query, values, (errInsert, results) => {
       if (errInsert) {
         console.error('Error executing INSERT query:', errInsert);
         return res.status(500).json({ error: 'Failed to save profile data' });
@@ -365,27 +284,12 @@ app.post('/updateprofile/:userId', (req, res) => {
     userId,
   ];
 
-  otpdb.query(query, values, (err, results) => {
+  pool.query(query, values, (err, results) => {
     if (err) {
       console.error('Error executing database query:', err);
       return res.status(500).json({ error: 'Failed to update profile data', err });
     }
     return res.json({ profileUpdated: true });
-  });
-});
-//=========================profile=============================================
-
-app.get('/gettests', (req, res) => {
-  // const searchTerm = req.query.q;
-  const query = "SELECT * FROM products WHERE `product_type` = 'tests'";
-
-  otpdb.query(query, (error, results) => {
-    if (error) {
-      console.error(error);
-      res.status(500).json({ error: 'An error occurred' });
-    } else {
-      res.status(200).json(results);
-    }
   });
 });
 
@@ -399,7 +303,7 @@ app.get('/getpoptests', (req, res) => {
 
   const query = `SELECT * FROM tests WHERE test_name IN (?)`;
 
-  otpdb.query(query, [codes], (error, results) => {
+  pool.query(query, [codes], (error, results) => {
     if (error) {
       console.error(error);
       res.status(500).json({ error: 'An error occurred' });
@@ -415,7 +319,7 @@ app.post("/reset-password", async (req, res) => {
   const { email } = req.body;
   try {
     const q = "SELECT * FROM users WHERE email = ?"
-    otpdb.query(q, [email], (err, oldUserData) => {
+    pool.query(q, [email], (err, oldUserData) => {
       if (err) {
         console.error('Error in user query:', err);
         return res.json({ err: "Error at resetting password query" });
@@ -458,7 +362,7 @@ app.post("/reset-password", async (req, res) => {
 app.get("/reset-password/:user_id/:token", (req, res) => {
   const { user_id, token } = req.params;
   const q = "SELECT * FROM users WHERE user_id = ?"
-  otpdb.query(q, [user_id], (err, oldUserData) => {
+  pool.query(q, [user_id], (err, oldUserData) => {
     if (err) {
       console.error('Error in user query:', err);
       return res.json({ err: "Error at resetting password query" });
@@ -482,7 +386,7 @@ app.post("/reset-password/:user_id/:token", async (req, res) => {
   const { password } = req.body;
   const q = "SELECT * FROM users WHERE user_id = ?";
 
-  otpdb.query(q, [user_id], (err, oldUserData) => {
+  pool.query(q, [user_id], (err, oldUserData) => {
     if (err) {
       console.error('Error in user query:', err);
       return res.json({ err: "Error at resetting password query" });
@@ -503,7 +407,7 @@ app.post("/reset-password/:user_id/:token", async (req, res) => {
           return res.json({ err: "Error at password bcrypt" });
         }
         const passwordUpdateQuery = "UPDATE users SET password = ? WHERE user_id = ?";
-        otpdb.query(passwordUpdateQuery, [hashed, user_id], (err, result) => {
+        pool.query(passwordUpdateQuery, [hashed, user_id], (err, result) => {
           if (err) {
             console.error(err);
             return res.json({ err });

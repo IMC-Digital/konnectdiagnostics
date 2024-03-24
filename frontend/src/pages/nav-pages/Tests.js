@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import { BASE_API_URL } from "../../api";
 import axios from "axios";
 import { styled } from "styled-components";
-import PageBanner from "../../components/PageBanner";
 import { Nav, Tab } from "react-bootstrap";
 import TestsGrid from "../../components/tests(New)/TestsGrid";
+// import PageBanner from "../../components/PageBanner";
 // import SearchBar from "../../components/requiredPages/SearchBar";
 
 const Tests = ({ userId, cart, setCart }) => {
@@ -30,7 +30,7 @@ const Tests = ({ userId, cart, setCart }) => {
 
   return (
     <Wrapper>
-      <PageBanner title={"Tests"} bannerImg={"tests-bg-image"} />
+      {/* <PageBanner title={"Tests"} bannerImg={"tests-bg-image"} /> */}
 
       <div className="container">
         <Tab.Container id="tests-tabs" className="tests-tabs border mx-auto p-0" defaultActiveKey="0">
@@ -38,7 +38,7 @@ const Tests = ({ userId, cart, setCart }) => {
             <div>
               {/* <SearchBar setSearchResults={setTests} /> */}
 
-              <Nav variant="pills" className="pb-3 bg-light1 d-flex flex-column flex-shrink-0" style={{ width: "280px" }}>
+              <Nav variant="pills" className="pb-3 bg-light1 d-flex flex-column flex-shrink-0" style={{ width: "250px" }}>
                 <div className="main-tabs-title-wrapper rounded">
                   {categories.map((item, index) => (
                     <Nav.Item key={index}>
@@ -92,9 +92,11 @@ const Wrapper = styled.section`
           font-size: 12px;
         }
       }
-      a.active span,
-      a.active i {
-        color: white !important;
+      a.active{
+        background: var(--secondary-color);
+        span, i {
+          color: white !important;
+        }
       }
       .nav-item:hover {
         background-color: white;

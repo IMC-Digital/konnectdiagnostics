@@ -49,7 +49,7 @@ export const TestCard = ({ cart, setCart, item }) => {
 
   return (
     <Wrapper>
-      <div className="tstCards d-flex gap-2">
+      <div className="tstCards d-flex">
         <img src="/images/k.png" className="cardcomplogo" alt="" />
         <div className="tstsCard w-100">
           <div className="go-corner"></div>
@@ -57,33 +57,35 @@ export const TestCard = ({ cart, setCart, item }) => {
             <div className="card_org_cont">
               <img src={"/images/organs/" + item.category + ".png"} className="testOrgImg" alt="" />
             </div>
-            <h6 className="text-k-accent text-k-clr-primary mb-2"> {item.test_name} </h6>
-            <p className="mb-1 small"> <b> Sample Type: </b> {item.sample_type} </p>
-            <p className="mb-1 small"> <b> Pre Test Preparation: </b> {item.pre_test_preparation} </p>
+            <h2 className="tstTitle text-k-text fw-bold mb-2" style={{height: "50px"}}> {item.test_name} </h2>
+            <hr />
+            <p className="mb-1 small mb-0"> <span className="fw-bold"> Fasting: </span> {item.fasting} </p>
+            <p className="mb-1 small mb-0"> <span className="fw-bold"> Sample Type: </span> {item.sample_type} </p>
+            <p className="mb-1 small mb-0"> <span className="fw-bold"> Pre Test Preparation: </span> {item.pre_test_preparation} </p>
           </div>
 
-          <div className="ftr-sec bg-light px-3 py-2 w-100 d-flex justify-content-between border-top tcardfooter">
+          <div className="ftr-sec bg-k-light px-3 py-2 w-100 d-flex justify-content-between border-top tcardfooter">
             <div>
               {isItemSelected ? (
                 <button
-                  className="atc-btn-rmv btn btn-sm btn-success text-white"
+                  className="atc-btn-rmv btn btn-success text-white"
                   onClick={() => handleRemoveFromCart(item)}
                 >
                   Remove Item
                 </button>
               ) : (
                 <button
-                  className="atc-btn btn btn-sm btn-secondary text-white"
+                  className="atc-btn btn btn-secondary text-white"
                   onClick={() => handleAddToCart(item)}
                 >
                   Add to Cart
                 </button>
               )}
             </div>
-            <div>
-              <h5 className="price mb-0 fw-bolder text-k-clr-primary">
+            <div className="d-flex-cc">
+              <h2 className="price mb-0 fw-bolder text-k-accent text-k-clr-primary">
                 <small>&#8377; </small> {item.price}{" "}
-              </h5>
+              </h2>
             </div>
           </div>
         </div>
@@ -103,11 +105,11 @@ const Wrapper = styled.section`
     flex-wrap: wrap;
     text-align: left;
     background-color: #fff;
-    border: 1px solid rgba(0, 0, 0, 0.05);
+    border: 2px solid rgba(0, 0, 0, 0.05);
     color: #fff;
-    border-radius: 4px;
-    width: 280px;
-    transition: 0.3s;
+    border-radius: 15px;
+    width: 300px;
+    transition: 0.5s;
     overflow: hidden;
     position: relative;
     z-index: 0;
@@ -115,18 +117,23 @@ const Wrapper = styled.section`
       margin-bottom: 15px;
       .testOrgImg {
         width: 30px;
+        transition: 0.5s
       }
     }
     &:hover {
-      border: 1px solid rgba(0, 0, 0, 0.2);
-      box-shadow: rgba(255, 255, 255, 0.02) 0px 1px 1px 0px inset,
-        rgba(50, 50, 93, 0.05) 0px 50px 100px -20px,
-        rgba(0, 0, 0, 0.06) 0px 30px 60px -30px;
+      transform: translateY(-1.1rem);
+      box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
+      border: 2px solid #00aeef;
+      background: #F6F9FC;
+      ${'' /* .tstTitle{ color: white; }
+      .tcardbody p, .tcardbody span{ color: white; }
+      .testOrgImg{ transform: scale(1.2) }
+      .tcardfooter button{ background: white; color: red; } */}
     }
   }
   .tcardbody {
     z-index: 2;
-    padding: 1rem;
+    padding: 1.2rem;
     overflow: hidden;
     position: relative;
   }
@@ -147,10 +154,11 @@ const Wrapper = styled.section`
   }
 
   .tstsCard {
-    height: 230px;
+    height: 300px;
     display: flex;
     flex-direction: column;
     transition: 0.5s;
+    
     .tstCardBtn {
       background-image: linear-gradient(180deg, #005bab, #00aeef90);
       padding: 5px 15px;
@@ -190,10 +198,7 @@ const Wrapper = styled.section`
       }
     }
     .tstTitle {
-      font-size: 1.1rem;
-      font-weight: 900;
-      line-height: 1.6rem;
-      margin-bottom: 18px;
+      color: var(--primary-color);
     }
     .tstInv {
       color: #b3b3b3;
@@ -222,5 +227,13 @@ const Wrapper = styled.section`
   }
   .para {
     color: #fff;
+  }
+  .cardcomplogo{
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    top: 10px;
+    right: 10px;
+    z-index: 2;
   }
 `;

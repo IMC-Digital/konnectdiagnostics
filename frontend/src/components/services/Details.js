@@ -15,6 +15,7 @@ const DetailsPages = () => {
     if (conditions) {
       setconditions(conditions);
     }
+    console.log("sss");
   }, [slug]);
 
   return (
@@ -24,18 +25,18 @@ const DetailsPages = () => {
           <div className="container d-flex gap-5">
             <div className="art_sec pe-5">
               <div className="fi_box" style={{ backgroundImage: `url("${conditions.cover}")`}}>
-                <h2 className="text-k-mainHeadings text-white bg-k-primary p-2 px-sm-5 mb-0"> {conditions.title} </h2>
+                <h2 className="text-k-primary text-white bg-k-primary p-2 px-sm-5 mb-0"> {conditions.title} </h2>
               </div>
               {/* <AiOutlineTags className="icon" /> */}
               <div>{conditions.component}</div>
             </div>
 
             <div className="related_art_sec">
-              <h3 className="text-k-mainHeadings">Related</h3>
+              <h2 className="text-k-primary">Related</h2>
               <hr />
               <div className="scroll-box-right">
-                {hcContentData.map((item) => (
-                  <Link to={`/health-conditions/${item.slug}`}>
+                {hcContentData.map((item, index) => (
+                  <Link key={index} to={`/health-conditions/${item.slug}`}>
                     <div className="related">
                       <div className="item d-flex gap-2">
                         <div className="rel_art_fi">
@@ -43,8 +44,8 @@ const DetailsPages = () => {
                           </div>
                         </div>
                         <div className="rel_art_info px-2">
-                          <h2 className="text-k-accent">{item.title}</h2>
-                          <p className="text-secondary">{item.excerpt.slice(0,60)}...</p>
+                          <h2 className="title text-k-accent">{item.title}</h2>
+                          <p className="excrpt text-k-text text-muted small">{item.excerpt.slice(0,60)}...</p>
                         </div>
                       </div>
                     </div>
@@ -80,6 +81,17 @@ const Wrapper = styled.section`
 
   .singlePage {
     a{ text-decoration: none; }
+    li, p{
+      color: var(--text-color);
+      font-weight: 300;
+      line-height: 1.5rem;
+      margin-bottom: 10px !important;
+      font-size: 16px;
+      font-weight: 300;
+      strong{
+        font-weight: 600;
+      }
+    }
     .art_sec{width: 65%;}
     .related_art_sec{width: 35%;}
     .rel_art_fi{width: 40%}
@@ -120,19 +132,18 @@ const Wrapper = styled.section`
         .item {
           display: flex;
           margin-bottom: 15px;
-          
           .info {
             margin: 5px;
             width: 55%;
-            h3 {
-              color: ${({ theme }) => theme.colors.dark};
-              font-size: ${({ theme }) => theme.fonts.heading4};
-              font-weight: 600;
-            }
-            p {
-              color: ${({ theme }) => theme.colors.text};
-              font-size: 0.925rem;
-            }
+          }
+          .title{
+            color: var(--primary-color);
+            transition: 0.5s;
+          }
+        }
+        &:hover{
+          .title{
+            color: var(--secondary-color)
           }
         }
       }

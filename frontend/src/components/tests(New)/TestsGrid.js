@@ -10,7 +10,7 @@ export default function TestsGrid({ item, cart, setCart }) {
         const getTests = async () => {
             try {
                 const response = await axios.get(`${BASE_API_URL}/tests/category/${item.category_id}`);
-                console.log(response.data);
+                // console.log(response.data);
                 // Append category property to each object in response.data
                 const searchResultsWithCategory = response.data.map(result => ({
                     ...result,
@@ -28,7 +28,7 @@ export default function TestsGrid({ item, cart, setCart }) {
     return (
         <div className="pt-2">
             <div>
-                <h2 className="text-k-accent bg-light rounded-2 px-4 py-2 border mb-0 d-inline">
+                <h2 className="text-k-text bg-k-light rounded-2 px-4 py-2 mb-0 d-inline">
                     {tests.length} Tests found for {item.category_name}.
                 </h2>
             </div>

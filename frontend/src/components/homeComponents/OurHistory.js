@@ -1,19 +1,18 @@
 import React from "react";
 import styled from "styled-components";
 import { BiSolidQuoteRight } from "react-icons/bi";
+import HomeSectionsHeading from "./SectionsHeadingAndPara";
 
 const OurHistory = () => {
   return (
     <Wrapper>
-      <div className="top our-history p-md-5">
-        <div className="col-md-6 mx-auto px-2 mb-5">
-          <h2>Our History and Experience</h2>
-          <p>
-            Chronicle of Our Journey: our commitment has revolved around
-            enhancing the lives of individuals
-          </p>
-        </div>
-        <div className="oh-section container p-0 d-sm-flex">
+      <div className="container mt-md-3 mb-md-3 py-md-5 py-sm-3 py-2">
+        <HomeSectionsHeading 
+          title={"Our History and Experiences"} 
+          para={`Chronicle of Our Journey: our commitment has revolved around enhancing the lives of individuals`}
+          />
+
+        <div className="oh-section mt-5 container p-0 d-sm-flex">
           <div className="oh-left">
             <img
               src="https://img.freepik.com/free-photo/portrait-doctor_144627-39409.jpg?w=740&t=st=1692358246~exp=1692358846~hmac=0ebe64510d017ba81a4031d4c7db0ab35e4e548a9345615c25ce15dd4fa51236"
@@ -21,10 +20,10 @@ const OurHistory = () => {
             />
           </div>
           <div className="oh-right overflow-hidden">
-            <h5>Our History</h5>
+            <h5 className="text-k-accent">Our History</h5>
             <div className="content">
-              <h2>We are committed to deliver your health aspirations</h2>
-              <p>
+              <h2 className="text-k-secondary">We are committed to deliver your health aspirations</h2>
+              <p className="text-k-text text-light mt-3 muted opacity7">
                 We lead the industry through adopting cutting-edge technology
                 and nurturing a team of capable professionals prepared to manage
                 intricate diagnostics.
@@ -42,18 +41,17 @@ const OurHistory = () => {
 };
 
 export default OurHistory;
-const Wrapper = styled.section`
+
+const Wrapper = styled.div`
   .top {
     text-align: center;
     align-items: center;
   }
   .oh-section {
-    /* background-color: ${({ theme }) => theme.colors.primary}; */
     justify-content: center;
     align-items: center;
   }
   .oh-left {
-    /* height: 100%; */
     width: 60%;
     img {
       border-radius: 25px 0 0 25px;
@@ -75,7 +73,6 @@ const Wrapper = styled.section`
       position: relative;
       background-color: ${({ theme }) => theme.colors.white};
       padding: 5px 16px;
-      /* width: 100%; */
       &::before,
       &::after {
         content: "";
@@ -97,10 +94,6 @@ const Wrapper = styled.section`
     .content {
       text-align: center;
       color: ${({ theme }) => theme.colors.white};
-    }
-    p {
-      margin-top: 20px;
-      color: #ffffff90;
     }
     .quote-icon {
       font-size: 3rem;

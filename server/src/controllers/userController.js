@@ -6,10 +6,11 @@ const privateKey = process.env.PRIVATEKEY;
 
 const loginOTP = async (req, res) => {
   const { number } = req.body;
-
+  
   userService.loginOTP(number, (error, response) => {
     if (error) {
-      console.error('Error fetching user profile data:', error);
+      // console.error('Error fetching user profile data:', error);
+      console.log(error);
       res.status(500).json({ error: 'An error occurred' });
     } else {
       res.status(200).json(response); 

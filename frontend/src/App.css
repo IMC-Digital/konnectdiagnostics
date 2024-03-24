@@ -1,6 +1,4 @@
 @import url("https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;700;900&display=swap");
-@import url("./styles/minicart.css");
-@import url("./styles/packages.css");
 @import url("./styles/User.css");
 @import url("./styles/SampleCollecionAt.css");
 @import url("./styles/selectMember.css");
@@ -14,6 +12,16 @@
   --primary-color: #005bab;
   --secondary-color: #00aeef;
   --text-color: #2c2c2c;
+  --color1: #F6F9FC;
+
+  /* radiology theme colors */
+  --rs-clr1: #EEFAFA;
+  /* radiology theme colors */
+
+  /* fetal med unit */
+  --fmu-clr1: #d12e88;
+  --fmu-clr2: #ffe3f2;
+  /* fetal med unit */
 }
 
 * {
@@ -75,15 +83,11 @@
   background-color: #F6F9FC;
 }
 
-/* ------------------------------------ Inner page banner ------------------------------------------ */
-.pb {
-  position: relative;
-  height: 15em;
-  align-items: center;
-  z-index: 0;
-  background-size: cover !important;
-  background-position: center center !important;
-}
+.opacity5{ opacity: 0.5; }
+.opacity7{ opacity: 0.7; }
+
+.p-6{padding: 4.5rem;}
+.py-6{padding: 4.5rem 0;}
 
 /* ------------------------------------ Section three ------------------------------------------ */
 .secThree-img img {
@@ -128,46 +132,6 @@
   width: 30px;
   color: red;
 }
-/* ---------------------------------------- TestCards ------------------------------------------- */
-.cards {
-  gap: 25px;
-  margin-bottom: 50px;
-}
-.test-cards {
-  gap: 25px;
-  justify-content: center;
-}
-.test-card {
-  margin-top: 25px;
-  background-color: #f2f2f2;
-  padding: 30px;
-  border-top: 1px solid #005bab;
-  border-bottom: 1px solid #005bab;
-  border-radius: 25px;
-  width: 350px;
-  text-align: left;
-}
-.test-card h3 {
-  color: #333333;
-  font-size: 1.1rem;
-  font-weight: 600;
-}
-.test-card span {
-  color: #005bab;
-
-  font-size: 2rem;
-  font-weight: 600;
-}
-.test-btn {
-  background-color: #00aeef;
-  color: #fff;
-  border: none;
-  border-radius: 25px;
-  padding: 12px 36px;
-}
-.test-btns {
-  justify-content: flex-end;
-}
 
 /* ------------------------------------------- Section Four ------------------------------------- */
 .cards {
@@ -208,7 +172,7 @@
 /* ----------------------------------------- Health Condition Articles ------------------------------------------ */
 
 /* LogPopup css */
-.popupbox {
+/* .popupbox {
   position: fixed;
   top: 50%;
   left: 50%;
@@ -241,7 +205,7 @@
 .popupbox.active + .overlay {
   opacity: 1;
   pointer-events: auto;
-}
+} */
 .loginpopupleftsec {
   background-image: url("https://img.freepik.com/premium-photo/doctor-research-analysis-diagnose-checking-brain-testing-result-patient-medical-technology_34200-493.jpg");
   background-size: cover;

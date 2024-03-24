@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { patientStoryData } from "../../assets/data/AllData";
 import { BiSolidQuoteRight } from "react-icons/bi";
 import PatExpCarousel from "./PatExpCarousel";
+import HomeSectionsHeading from "./SectionsHeadingAndPara";
 
 const PatientExperience = () => {
   const [activeTab, setActiveTab] = useState(0);
@@ -11,18 +12,14 @@ const PatientExperience = () => {
   };
 
   return (
-    <Wrapper>
-      <div className="pe container">
-        <div className="peTitle col-md-6 mx-auto px-2 mb-5">
-          <h2>The Patient Experience</h2>
-          <p>
-            Hear from our satisfied patients about our exceptional care,
-            accurate results, and compassionate staff. Experience the difference
-            today.
-          </p>
-        </div>
+    <Wrapper className="bg-k-light">
+      <div className="pe container py-md-5 py-sm-3 py-2">
+        <HomeSectionsHeading 
+          title={"The Patient Experience"} 
+          para={`Hear from our satisfied patients about our exceptional care, accurate results, and compassionate staff. Experience the difference today.`} 
+          />
 
-        <div className="peContent">
+        <div className="peContent mt-md-5">
           <div className="pe-left">
             {patientStoryData.map((patient, index) => (
               <div key={index}
@@ -40,8 +37,7 @@ const PatientExperience = () => {
                   }}
                 ></div>
                 <div className="patientInfo">
-                  <h5>{patient.name}</h5>
-                  {/* <p>{patient.info}</p> */}
+                  <h2 className="text-k-accent fw-bold text-k-clr-text pat-name"> {patient.name} </h2>
                 </div>
               </div>
             ))}
@@ -58,13 +54,13 @@ const PatientExperience = () => {
           >
             <div className="patientStory-box">
               <div className="patientStory">
-                <h5>Patient Story</h5>
-                <p>{patientStoryData[activeTab].description}</p>
+                <h5 className="text-k-clr-secondary text-k-text">Patient Story</h5>
+                <p className="text-k-text text-center text-white">{patientStoryData[activeTab].description}</p>
 
                 <span>
                   <BiSolidQuoteRight />
                 </span>
-                <h5 className="patient-name">
+                <h5 className="patient-name text-k-text fw-bold">
                   {patientStoryData[activeTab].name}
                 </h5>
               </div>
@@ -118,7 +114,7 @@ const Wrapper = styled.section`
 
       &::-webkit-scrollbar-thumb {
         background: ${({ theme }) => theme.colors.secondary};
-        border-radius: 10px;
+        border-radius: 15px;
         &:hover {
           background: ${({ theme }) => theme.colors.primary};
         }
@@ -131,8 +127,8 @@ const Wrapper = styled.section`
         cursor: pointer;
         background-color: white;
         margin: 0 20px;
-        box-shadow: rgba(100, 100, 111, 0.2) 0px 2px 10px 0px;
-        border: 2px solid white;
+        box-shadow: 0 0 1px #e8f0ff, 0 6px 12px #e8f0ff;
+        border: 1px solid #e8f0ff;
         padding: 15px;
         margin: 5px 25px;
         border-radius: 5px;
@@ -144,6 +140,9 @@ const Wrapper = styled.section`
         }
         &:hover{
           background-color: ${({ theme }) => theme.colors.secondary};
+          .pat-name{
+            color: white;
+          }
         }
 
         .patientImage {
@@ -158,10 +157,10 @@ const Wrapper = styled.section`
         .patientInfo {
           ${'' /* color: ${({ theme }) => theme.colors.white}; */}
 
-          h5 {
+          ${'' /* h5 {
             font-size: 1.1rem;
             font-weight: 700;
-          }
+          } */}
           p {
             font-size: 15px;
             font-weight: 400;
@@ -172,7 +171,9 @@ const Wrapper = styled.section`
     }
     .pe-right {
       width: 70%;
-      box-shadow: rgba(100, 100, 111, 0.2) 0px 2px 10px 0px;
+      ${'' /* box-shadow: rgba(100, 100, 111, 0.2) 0px 2px 10px 0px; */}
+      box-shadow: 0 0 1px #e8f0ff, 0 6px 12px #e8f0ff;
+      border: 1px solid #e8f0ff;
       padding: 0px;
       margin-top: 5px;
       border-radius: 10px;
@@ -186,7 +187,6 @@ const Wrapper = styled.section`
         top: 0;
         right: 50px;
         width: 45%;
-        ${'' /* background-image: url(/images/k-10.png), linear-gradient(220deg, #005bab, #00ffbb90); */}
         background-color: ${({ theme }) => theme.colors.secondary};
         .patientStory {
           overflow: hidden;
@@ -196,10 +196,6 @@ const Wrapper = styled.section`
           justify-content: center;
           align-items: center;
           gap: 10px;
-          h5 {
-            color: ${({ theme }) => theme.colors.secondary};
-            font-size: 1rem;
-          }
           .patient-name {
             border: 2px solid ${({ theme }) => theme.colors.white};
             color: ${({ theme }) => theme.colors.white};
@@ -210,8 +206,7 @@ const Wrapper = styled.section`
               display: none;
             }
           }
-          h5,
-          span {
+          h5, span {
             padding: 5px 10px;
             position: relative;
             overflow: visible;
@@ -245,11 +240,6 @@ const Wrapper = styled.section`
             &::after {
               width: 100px;
             }
-          }
-          p {
-            color: ${({ theme }) => theme.colors.white};
-            font-size: 0.9375rem;
-            font-weight: 500;
           }
         }
       }

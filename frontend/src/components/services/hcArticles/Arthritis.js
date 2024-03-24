@@ -75,8 +75,8 @@ const Arthritis = () => {
         </p>
         <h5 className="include">A few common symptoms may include:</h5>
         <div className="icon-box d-flex flex-wrap gap-3">
-          {hcIcons[0].arthritis[0].symptoms.map((item) => (
-            <div className="box">
+          {hcIcons[0].arthritis[0].symptoms.map((item, index) => (
+            <div className="box" key={index}>
               <img src={item.icon} alt="" />
               <h5>{item.symptom}</h5>
             </div>
@@ -90,8 +90,8 @@ const Arthritis = () => {
           in an individual include:
         </h5>
         <div className="icon-box d-flex flex-wrap gap-3">
-          {hcIcons[0].arthritis[0].riskFactors.map((item) => (
-            <div className="box">
+          {hcIcons[0].arthritis[0].riskFactors.map((item, index) => (
+            <div className="box" key={index}>
               <img src={item.icon} alt="" />
               <h5>{item.symptom}</h5>
             </div>

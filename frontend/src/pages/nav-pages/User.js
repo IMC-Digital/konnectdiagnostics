@@ -29,18 +29,6 @@ export const User = ({ auth, userName, message, handleLoginClick, handleLogout }
                 <i class="fa-solid fa-table-columns me-2"></i>
                 <span className="text-k-text"> My Dashboard </span>
               </Dropdown.Item>
-              {/* <Dropdown.Item href="/profile">
-                <span className="text-k-text"> My Account </span>
-              </Dropdown.Item>
-              <Dropdown.Item href="/dashboard">
-                <span className="text-k-text"> My Orders </span>
-              </Dropdown.Item>
-              <Dropdown.Item href="/cart">
-                <span className="text-k-text"> My Reports </span>
-              </Dropdown.Item>
-              <Dropdown.Item href="/cart">
-                <span className="text-k-text"> Help? </span>
-              </Dropdown.Item> */}
               <Dropdown.Item onClick={handleLogout} className="bg-light">
                   <BiLogOut />
                   <span className="text-k-text"> Logout </span>

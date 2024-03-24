@@ -47,9 +47,22 @@ const getTestsSrcWise = (req, res) => {
   })
 }
 
+const getPopTests = (req, res) => {
+  const codes = req.query.codes;
+  testsServices.getPopTests(codes, (error, response) => {
+    if(error) {
+      console.error('Err fetching tests package wise', error);
+      res.status(500).json({ error: "Err(test packages query)" });
+    } else {
+      res.status(200).json(response);
+    }
+  })
+}
+
 module.exports = {
     getAllTests,
     getTestsCatWise,
     getTestsPckWise,
-    getTestsSrcWise
+    getTestsSrcWise,
+    getPopTests
 }

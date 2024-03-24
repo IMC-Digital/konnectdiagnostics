@@ -17,9 +17,9 @@ export default function UserAddresses ({ userId }) {
       fetchUserAddresses();
     }, [userId]);
   
-    useEffect(() => {
-      console.log(userAddresses);
-    }, [userAddresses])
+    // useEffect(() => {
+    //   console.log(userAddresses);
+    // }, [userAddresses])
   
   
     return (

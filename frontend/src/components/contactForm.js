@@ -21,7 +21,6 @@ const ContactForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // console.log("Form Data:", formData);
     
     const sendMail = async (formData) => {
       try{
@@ -51,7 +50,7 @@ const ContactForm = () => {
             value={formData.name}
             onChange={handleChange}
             required
-            className="form-control-sm frm"
+            className="form-control-sm text-k-text"
           />
         </FloatingLabel>
 
@@ -63,7 +62,7 @@ const ContactForm = () => {
             value={formData.email}
             onChange={handleChange}
             required
-            className="form-control-sm"
+            className="form-control-sm text-k-text"
           />
         </FloatingLabel>
 
@@ -75,7 +74,7 @@ const ContactForm = () => {
             value={formData.phone}
             onChange={handleChange}
             required
-            className="form-control-sm"
+            className="form-control-sm text-k-text"
           />
         </FloatingLabel>
 
@@ -87,7 +86,7 @@ const ContactForm = () => {
             value={formData.subject}
             onChange={handleChange}
             required
-            className="form-control-sm"
+            className="form-control-sm text-k-text"
           />
         </FloatingLabel>
 
@@ -100,7 +99,7 @@ const ContactForm = () => {
             value={formData.message}
             onChange={handleChange}
             required
-            className="form-control-sm"
+            className="form-control-sm text-k-text"
           />
         </FloatingLabel>
 

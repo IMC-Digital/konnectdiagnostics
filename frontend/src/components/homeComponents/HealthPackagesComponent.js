@@ -4,26 +4,23 @@ import { AiOutlineDoubleRight } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import OrganCarousel from "../requiredPages/OrganCarousel";
 import PackageCard from "../packages(New)/PackageCard";
+import HomeSectionsHeading from "./SectionsHeadingAndPara";
 
-const HealthPackagesComponent = ({ userId, auth, cart, setCart, handleLoginClick,}) => {
+const HealthPackagesComponent = ({ userId, auth, cart, setCart, handleLoginClick, }) => {
   const [searchResults, setSearchResults] = useState([]);
 
   return (
-    <Wrapper>
-      <section className="" id="hp_sec">
-        <div>
-          <div className="hp-info col-md-6 mx-auto px-2 mb-5">
-            <h2>Health Packages</h2>
-            <p>
-              Konnect Diagnostic Centre: Empowering proactive health management
-              through tailored Diagnostic Health Packages for early detection
-              and prevention, promoting healthier lives.
-            </p>
-          </div>
-          <div className="hp-box container flex-wrap">
+    <Wrapper className="bg-k-light">
+        <div className="container py-md-5 py-sm-3 py-2">
+          <HomeSectionsHeading 
+            title={"Health Packages"} 
+            para={`Konnect Diagnostic Centre: Empowering proactive health management through tailored Diagnostic Health Packages for early detection and prevention, promoting healthier lives.`}
+          />
+
+          <div className="hp-box container flex-wrap mt-5">
             <div className="hpCards w-100 d-flex justify-content-center flex-wrap gap-3">
               <OrganCarousel testsOrPackage={"packages"} searchResults={searchResults} setSearchResults={setSearchResults} />
-              <div className="mt-3 d-flex justify-content-center flex-wrap gap-3">
+              <div className="mt-3 pb-3 d-flex justify-content-center flex-wrap gap-3">
                 {
                   searchResults.map((item, index) => (
                     <PackageCard key={index} cart={cart} setCart={setCart} item={item} />
@@ -35,13 +32,11 @@ const HealthPackagesComponent = ({ userId, auth, cart, setCart, handleLoginClick
           <Link to="/packages">
             <div className="more text-center d-flex">
               <button>
-                Explore
-                <AiOutlineDoubleRight />
+                View All <AiOutlineDoubleRight />
               </button>
             </div>
           </Link>
         </div>
-      </section>
     </Wrapper>
   );
 };
@@ -53,12 +48,7 @@ const Wrapper = styled.section`
     display: flex;
     flex-direction: column;
     overflow: hidden;
-    margin-top: 1.5rem;
-  }
-
-  #hp_sec {
-    padding: 50px 0;
-    background: ${({ theme }) => theme.colors.bg_light};
+    ${'' /* margin-top: 1.5rem; */}
   }
   .hp-info {
     flex-direction: column;

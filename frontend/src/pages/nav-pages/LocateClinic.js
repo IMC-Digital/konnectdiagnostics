@@ -5,26 +5,24 @@ import ClinicSearchBar from "./LocateClinics/ClinicsSearchBar";
 import axios from "axios";
 import ClinicPinSearch from "./LocateClinics/ClinicPinSearch";
 import { BASE_API_URL } from "../../api";
-import PageBanner from "../../components/PageBanner";
+// import PageBanner from "../../components/PageBanner";
 
 const LocateClinic = () => {
   const [showNoExctPin, setshowNoExctPin] = useState(false);
   const [clinicsdata, setClinicsdata] = useState([]);
   const [pinSearchTerm, setPinSearchTerm] = useState("");
-  // const [sessPinCodes, setSessPinCodes] = useState([]);
 
   useEffect(() => {
-    // const storedPinCodes = sessionStorage.getItem("enteredpincodes");
-    // setSessPinCodes(storedPinCodes || "");
-
-    axios
-      .get(`${BASE_API_URL}/clinics`)
-      .then((response) => {
+    const fetchAllClinics = async () => {
+      try{
+        const response = await axios.get(`${BASE_API_URL}/clinics`);
         setClinicsdata(response.data);
-      })
-      .catch((error) => {
-        console.error("Error fetching tests:", error);
-      });
+      } catch (error) {
+        console.error(error);
+      }
+    }
+
+    fetchAllClinics();
   }, []);
 
   const handlePinCodeSearch = async () => {
@@ -45,26 +43,12 @@ const LocateClinic = () => {
     }
   };
 
-  // const pinclick = async (item) => {
-  //   // console.log(pinSearchTerm);
-  //   try {
-  //     const response = await axios.get(
-  //       `${BASE_API_URL}/clinicpinsearch?q=${item}`
-  //     );
-  //     setClinicsdata(response.data.exactPincodeResults);
-  //     setshowNoExctPin(false);
-  //   } catch (err) {
-  //     console.error(err);
-  //   }
-  // };
-
   return (
     <Wrapper>
       <div className="locate-clinic">
-        <PageBanner title={"Locate Nearest Centers"} bannerImg={"locate-clinic-bg-image"} />
+        {/* <PageBanner title={"Locate Nearest Centers"} bannerImg={"locate-clinic-bg-image"} /> */}
 
-        <div className="container w-50 bg-white shadow p-3 rounded mt-5">
-          <div className="d-flex gap-2">
+        <div className="container w-50 bg-white shadow-sm d-flex gap-2 p-3 rounded mt-5">
             <ClinicSearchBar
               clinicsdata={clinicsdata}
               setClinicsdata={setClinicsdata}
@@ -74,21 +58,6 @@ const LocateClinic = () => {
               pinSearchTerm={pinSearchTerm}
               setPinSearchTerm={setPinSearchTerm}
             />
-          </div>
-          <div className="d-flex gap-2">
-            {/* {sessPinCodes
-              .toString()
-              .split(" ")
-              .map((item) => (
-                <div
-                  onClick={() => pinclick(item)}
-                  className="d-flex align-items-center overflow-hidden bg-light rounded p-0 cursor-pointer"
-                  key={item}
-                >
-                  <p className="m-0 py-1 px-3">{item}</p>
-                </div>
-              ))} */}
-          </div>
         </div>
         <div className="container w-75">
           <p

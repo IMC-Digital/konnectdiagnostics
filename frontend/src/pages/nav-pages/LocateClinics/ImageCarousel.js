@@ -5,13 +5,13 @@ import { styled } from "styled-components";
 function ImageCarousel({ clinicname }) {
   const sliderSettings = {
     arrows: true,
-    dots: true,
+    dots: false,
     infinite: true,
-    speed: 300,
+    speed: 400,
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 2000,
+    autoplaySpeed: 3000,
     border: 0,
     responsive: [
       {
@@ -46,8 +46,8 @@ function ImageCarousel({ clinicname }) {
     <Wrapper>
       <Slider ref={Fac_carousel_slider} {...sliderSettings}>
         {
-          imgs.map((item) => (
-            <div className="fac_card">
+          imgs.map((item, index) => (
+            <div key={index} className="fac_card">
               <img
                 src={`./images/clinics-images/${clinicname.toLowerCase()}${item}.jpg`}
                 alt={`fac${item}`}
@@ -66,9 +66,25 @@ export default ImageCarousel;
 const Wrapper = styled.section`
   .fac_card {
     padding: 10px;
-    overflow: hidden;
+    overflow: hidden; 
   }
   .fac_card img {
+    border-radius: 5px;
     width: 100%;
+  }
+  .slick-list{
+    height: 280px;
+    .slick-track{
+      height: 280px;
+      .slick-slide{
+        height: 280px;
+        .fac_card{
+          height: 280px;
+          img{
+            height: 260px !important;
+          }
+        }
+      }
+    }
   }
 `;

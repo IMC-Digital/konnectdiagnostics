@@ -2,11 +2,11 @@
 const express = require('express');
 const router = express.Router();
 const UserController = require('../controllers/userController');
-const { verifyUser } = require('../middleware/userMiddleware');
+const { verifyUser } = require('../middleware/authenticationMiddleware');
 
 // User Routes
 router.get('/', verifyUser, UserController.getUserInfo);
-router.get('/get-profile/:userId', UserController.getUserProfile);
+router.get('/get-profile/:userId', verifyUser, UserController.getUserProfile);
 
 // User Authentication
 router.post('/login-otp', UserController.loginOTP);

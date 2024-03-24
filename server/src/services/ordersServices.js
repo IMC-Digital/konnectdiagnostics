@@ -1,6 +1,7 @@
+const userService = require('../services/userService');
 const { response } = require("express");
-const createOtpDbConnection = require("../../config/database");
-const otpdb = createOtpDbConnection();
+const createpoolConnection = require("../../config/database");
+const pool = createpoolConnection();
 
 // const placeOrder = (orderData) => {
 //     const { checkOutFormData, cart } = orderData;
@@ -11,7 +12,7 @@ const otpdb = createOtpDbConnection();
 
 //     // Insert into orders table
 //     return new Promise((resolve, reject) => {
-//       otpdb.query(
+//       pool.query(
 //         "INSERT INTO orders (user_id, sample_submission_type) VALUES (?, ?)", 
 //         [
 //           checkOutFormData.userId,
@@ -43,7 +44,7 @@ const otpdb = createOtpDbConnection();
 
 //         const resultQueries = generateQueries(orderId, cart, selectedMember);
 //         return new Promise((resolve, reject) => {
-//           otpdb.query(
+//           pool.query(
 //             "INSERT INTO order_items (order_id, product_id, member_name) VALUES ?",
 //             [resultQueries],
 //             (order_item_err, order_item_result) => {
@@ -58,7 +59,7 @@ const otpdb = createOtpDbConnection();
 //     })
 //     .then((orderId) => {
 //         return new Promise((resolve, reject) => {
-//           otpdb.query(
+//           pool.query(
 //               "INSERT INTO order_billings (order_id, order_subtotal_amount, order_coupon_applied, order_discount_amount, order_total_amount) VALUES (?,?,?,?,?)",
 //               [orderId, amount.subTotalAmount, amount.couponCode, amount.couponCodeDiscount, amount.totalAmount],
 //               (order_billing_err, order_billing_result) => {
@@ -73,7 +74,7 @@ const otpdb = createOtpDbConnection();
 //     .then((orderId) => {
 //         return new Promise((resolve, reject) => {
 //             const fulldate = `${selectedSession.date.date} ${selectedSession.date.month} ${selectedSession.date.day}`;
-//             otpdb.query(
+//             pool.query(
 //                 "INSERT INTO order_sessions (order_id, order_session_time, order_session_date, order_session_update) VALUES (?, ?, ?, null)",
 //                 [orderId, selectedSession.time, fulldate],
 //                 (order_session_err, order_session_result) => {
@@ -89,7 +90,7 @@ const otpdb = createOtpDbConnection();
 //     .then((orderId) => {
 //         return new Promise((resolve, reject) => {
 //             if ( sampleCollection.sampleCollectionAt === 0 ) {
-//                 otpdb.query(
+//                 pool.query(
 //                     "INSERT INTO order_sample_at_home (order_id, address_id, alternative_mobile_number) VALUES (?,?,?)",
 //                     [orderId, sampleCollection.homeSampleCollection.address_id, sampleCollection.homeSampleCollection.alternate_mobile_number],
 //                     (order_sample_coll_home_err, order_sample_coll_home_result) => {
@@ -101,7 +102,7 @@ const otpdb = createOtpDbConnection();
 //                     }
 //                 )
 //             } else {
-//                 otpdb.query(
+//                 pool.query(
 //                     "INSERT INTO order_sample_at_clinic (order_id, clinic_id) VALUES (?, ?)",
 //                     [orderId, sampleCollection.clinicSampleCollection.id],
 //                     (order_sample_coll_clinic_err, order_sample_coll_clinic_result) => {
@@ -120,10 +121,26 @@ const otpdb = createOtpDbConnection();
 //     });
 //   };
 
+const fetchUserProfileAndSendResponse = (userId, orderId) => {
+    return new Promise((resolve, reject) => {
+        userService.getUserProfile(userId, (error, response) => {
+            if (error) {
+                console.error('Error fetching user profile data:', error);
+                reject(error);
+            } else if (response.length > 0) {
+                resolve({ success: true, orderId, userProfile: response[0] });
+            } else {
+                console.log("No profile of user " + userId);
+                resolve({ success: false, message: "No profile found" });
+            }
+        });
+    });
+};
+
 const placeOrder = async (orderData, callback) => {
     const queryAsync = (sql, values) => {
         return new Promise((resolve, reject) => {
-            otpdb.query(sql, values, (error, result) => {
+            pool.query(sql, values, (error, result) => {
                 if (error) {
                     reject(error);
                 } else {
@@ -158,12 +175,12 @@ const placeOrder = async (orderData, callback) => {
     
 
     try {
-        const { checkOutFormData, paymentDetails, cart } = orderData;
-        // const { checkOutFormData, cart } = orderData;
+        // const { checkOutFormData, paymentDetails, cart } = orderData;
+        const { checkOutFormData, cart } = orderData;
 
         const { userId, selectedMember, amount, selectedSession, sampleCollection } = checkOutFormData;
-        const { id, entity, amount_paid, receipt, offer_id, status, attempts, created_at } = paymentDetails;
-        const payment_amount = paymentDetails.amount;
+        // const { id, entity, amount_paid, receipt, offer_id, status, attempts, created_at } = paymentDetails;
+        // const payment_amount = paymentDetails.amount;
 
         // Insert into orders table
         const orderInsertResult = await queryAsync(
@@ -174,10 +191,10 @@ const placeOrder = async (orderData, callback) => {
         const orderId = orderInsertResult.insertId;
 
         // Insert into order_payments table
-        await queryAsync(
-            "INSERT INTO order_payments (order_id, id, entity, amount, amount_paid, reciept, offer_id, status, attempts, created_at) VALUES ?",
-            [orderId, id, entity, payment_amount, amount_paid, receipt, offer_id, status, attempts, created_at]
-        )
+        // await queryAsync(
+        //     "INSERT INTO order_payments (order_id, id, entity, amount, amount_paid, reciept, offer_id, status, attempts, created_at) VALUES ?",
+        //     [orderId, id, entity, payment_amount, amount_paid, receipt, offer_id, status, attempts, created_at]
+        // )
 
         // Insert into order_items table
         const resultQueries = generateQueries(orderId, userId, cart, selectedMember);
@@ -209,7 +226,9 @@ const placeOrder = async (orderData, callback) => {
             );
         }
 
-        return { success: true, orderId };
+        const result = await fetchUserProfileAndSendResponse(checkOutFormData.userId, orderId);
+        callback(null, result);       
+
     } catch (error) {
         console.error("Error placing order:", error); 
         throw { success: false, error };
@@ -226,7 +245,7 @@ const getOrderDetails = async (orderId, callback) => {
     // Helper function to promisify the database queries
     const queryAsync = (sql, params) => {
         return new Promise((resolve, reject) => {
-            otpdb.query(sql, params, (err, result) => {
+            pool.query(sql, params, (err, result) => {
                 if (err) {
                     reject(err);
                 } else {
@@ -284,7 +303,7 @@ const getOrderDetails = async (orderId, callback) => {
 // const getActiveOrders = async (userId, callback) => {
 //     // callback(null, userId)
 //     const ordersData = {}
-//     otpdb.query("SELECT * FROM orders WHERE user_id = ? AND order_status = ?", [userId, "active"], (err1, response) => {
+//     pool.query("SELECT * FROM orders WHERE user_id = ? AND order_status = ?", [userId, "active"], (err1, response) => {
 //         // callback(error, response);
 //         if (err1) { callback(err1, null) } else {
 //             if (response.length === 0) {
@@ -293,9 +312,9 @@ const getOrderDetails = async (orderId, callback) => {
 //                 ordersData.orders = response;
 //                 response.forEach((item) => {
 //                     try {
-//                         item.order_billing_id = otpdb.query(`SELECT * FROM order_billings WHERE order_id = ${item.order_id}`);
-//                         item.order_session = otpdb.query(`SELECT * FROM order_sessions WHERE order_id = ${item.order}`);
-//                         item.order_items = otpdb.query(`SELECT * FROM order_items WHERE order_id = ${item.order}`);
+//                         item.order_billing_id = pool.query(`SELECT * FROM order_billings WHERE order_id = ${item.order_id}`);
+//                         item.order_session = pool.query(`SELECT * FROM order_sessions WHERE order_id = ${item.order}`);
+//                         item.order_items = pool.query(`SELECT * FROM order_items WHERE order_id = ${item.order}`);
 //                     } catch (err) {
 //                         console.error(err);
 //                     }
@@ -310,7 +329,7 @@ const getOrderDetails = async (orderId, callback) => {
 // const getActiveOrders = async (userId, callback) => {
 //     const queryAsync = (sql, values) => {
 //         return new Promise((resolve, reject) => {
-//             otpdb.query(sql, values, (error, result) => {
+//             pool.query(sql, values, (error, result) => {
 //                 if (error) {
 //                     reject(error);
 //                 } else {
@@ -350,61 +369,61 @@ const getOrderDetails = async (orderId, callback) => {
 // }
 
 const getActiveOrders = async (userId, callback) => {
-    otpdb.query(`SELECT * FROM orders WHERE user_id = ${userId} AND order_status = 'active'`, (error, response) => {
+    pool.query(`SELECT * FROM orders WHERE user_id = ${userId} AND order_status = 'active'`, (error, response) => {
         callback(error, response);
     })
 }
 const getPastOrders = async (userId, callback) => {
-    otpdb.query(`SELECT * FROM orders WHERE user_id = ${userId} AND order_status = 'delivered'`, (error, response) => {
+    pool.query(`SELECT * FROM orders WHERE user_id = ${userId} AND order_status = 'delivered'`, (error, response) => {
         callback(error, response);
     })
 }
 const getCancelledOrders = async (userId, callback) => {
-    otpdb.query(`SELECT * FROM orders WHERE user_id = ${userId} AND order_status = 'cancelled'`, (error, response) => {
+    pool.query(`SELECT * FROM orders WHERE user_id = ${userId} AND order_status = 'cancelled'`, (error, response) => {
         callback(error, response);
     })
 }
 
 const getOrderByOrderId = async (orderId, callback) => {
-    otpdb.query(`SELECT * FROM orders WHERE order_id = ${orderId}`, (error, response) => {
+    pool.query(`SELECT * FROM orders WHERE order_id = ${orderId}`, (error, response) => {
         callback(error, response)
     })
 }
 
 const getOrderAppointmentDate = async (orderId, callback) => {
-    otpdb.query(`SELECT * FROM order_sessions WHERE order_id = ${orderId}`, (error, response) => {
+    pool.query(`SELECT * FROM order_sessions WHERE order_id = ${orderId}`, (error, response) => {
         callback(error, response)
     })
 }
 
 const getOrderBillingDetails = async (orderId, callback) => {
-    otpdb.query(`SELECT * FROM order_billings WHERE order_id = ${orderId}`, (error, response) => {
+    pool.query(`SELECT * FROM order_billings WHERE order_id = ${orderId}`, (error, response) => {
         callback(error, response)
     })
 }
 
 const getOrderPaymentDetails = async (orderId, callback) => {
-    otpdb.query(`SELECT * FROM order_payments WHERE order_id = ${orderId}`, (error, response) => {
+    pool.query(`SELECT * FROM order_payments WHERE order_id = ${orderId}`, (error, response) => {
         callback(error, response)
     })
 }
 
 const getOrderItems = async (orderId, callback) => {
-    otpdb.query(`SELECT * FROM order_items WHERE order_id = ${orderId}`, (error, response) => {
+    pool.query(`SELECT * FROM order_items WHERE order_id = ${orderId}`, (error, response) => {
         callback(error, response)
     })
 }
 
 const getUserOrderAddress = async (orderId, callback) => {
     const query = `SELECT osh.*, ua.*FROM order_sample_at_home osh JOIN user_addresses ua ON osh.address_id = ua.address_id WHERE osh.order_id = ?`
-    otpdb.query(query, [orderId], (error, response) => {
+    pool.query(query, [orderId], (error, response) => {
         callback(error, response)
     })
 }
 
 const getOrderClinicAddress = async (orderId, callback) => {
     const query = `SELECT osc.*, c.* FROM order_sample_at_clinic osc JOIN clinics c ON osc.clinic_id = c.id WHERE osc.order_id = ?`
-    otpdb.query(query, [orderId], (error, response) => {
+    pool.query(query, [orderId], (error, response) => {
         callback(error, response)
     })
 }
@@ -412,7 +431,7 @@ const getOrderClinicAddress = async (orderId, callback) => {
 const getAllOrders = async (userId, callback) => {
     const queryAsync = (sql, values) => {
         return new Promise((resolve, reject) => {
-            otpdb.query(sql, values, (error, result) => {
+            pool.query(sql, values, (error, result) => {
                 error ? reject (error) : resolve(result);
             });
         });
@@ -455,7 +474,7 @@ const getAllOrders = async (userId, callback) => {
 const getSingleOrder = async (orderId, callback) => {
     const queryAsync = (sql, values) => {
         return new Promise((resolve, reject) => {
-            otpdb.query(sql, values, (error, result) => {
+            pool.query(sql, values, (error, result) => {
                 error ? reject (error) : resolve(result);
             });
         });

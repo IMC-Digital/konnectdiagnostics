@@ -15,8 +15,8 @@ const SectionTwo = ({ localCartItems, setLocalCartItems, userId, auth, cart, set
 
   return (
     <Wrapper>
-      <div className="s2 mx-auto bg-k-light">
-        <div className="s2-tests-container bg-k-light container">
+      <div className="s2 mx-auto">
+        <div className="s2-tests-container container">
           <div className="k-btns d-flex justify-content-sm-center">
             <button 
               className={`k-btn ${ activeComponent === "ToggleKT" ? "active" : "" }`} 
@@ -48,7 +48,7 @@ const SectionTwo = ({ localCartItems, setLocalCartItems, userId, auth, cart, set
               Locations
             </button>
           </div>
-          <div className="s2-selection-box d-flex justify-content-center gap-2 p-sm-3 px-sm-5 p-2">
+          <div className="s2-selection-box d-flex justify-content-center gap-2 p-sm-3 p-2">
             {activeComponent === "ToggleKT" && (
               <ToggleKT
                 localCartItems={localCartItems} 
@@ -92,16 +92,16 @@ export default SectionTwo;
 
 const Wrapper = styled.section`
   .s2 {
-    z-index: 10;
+    background: url("/images/k-10.png") #F6F9FC;
+    background-repeat: no-repeat;
+    background-position: 50px 50px;;
+    background-size: 50%;
   }
 
   .s2-tests-box {
     font-weight: 500;
   }
   .s2-tests-container {
-    ${'' /* background-image: url("/images/k-10.png"); */}
-    ${'' /* background-repeat: repeat; */}
-    background-position: center left;
     padding: 50px 0;
     ${'' /* box-shadow: rgba(100, 100, 111, 0.2) 0px 0px 25px 0px; */}
     ${'' /* background-color: ${({ theme }) => theme.colors.white}; */}

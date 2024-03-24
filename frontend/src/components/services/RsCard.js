@@ -8,20 +8,18 @@ const RsCard = () => {
   return (
     <Wrapper>
       <section className="conditions">
-        <div className="hc-card d-flex gap-3 justify-content-between flex-wrap col container">
+        <div className="hc-card d-flex flex-wrap justify-content-center row">
           {RsContentData.map((item) => (
-            <div className="box mb-3" key={item.id}>
+            <div className="box rounded col-md-4" key={item.id}>
               <Link to={`/radiology-services/${item.slug}`}>
                 <div className="img">
                   <img src={item.productImage} alt={item.slug} />
                 </div>
                 <div className="details">
                   <div className="catg">
-                    {/* <AiOutlineTags className="icon" /> */}
-                    {/* <a href="/">{item.category}</a> */}
                   </div>
-                  <h3>{item.title}</h3>
-                  <p>{item.excerpt.slice(0, 25)}...</p>
+                  <h2 className="title text-k-accent">{item.title}</h2>
+                  {/* <p>{item.excerpt.slice(0, 25)}...</p> */}
                 </div>
               </Link>
             </div>
@@ -34,28 +32,30 @@ const RsCard = () => {
 
 export default RsCard;
 
-const Wrapper = styled.section`
+const Wrapper = styled.div`
   .hc-card {
-    /* background-color: white; */
-    /* margin: 2rem auto; */
-    padding: 5rem 0;
-    a {
-      text-decoration: none;
-    }
-    .box {
-      /* background-color: #fff; */
-      border-radius: 1rem;
-      box-shadow: rgba(149, 157, 165, 0.2) 0px 5px 20px;
-      padding: 15px;
-      width: 32%;
+    a { text-decoration: none; }
+    .box{
+      transition: 0.5s;
+      .title{
+        color: var(--primary-color);
+        transition: 0.5s;
+      }
+      &:hover{
+        border: 1px solid #e8f0ff;
+        box-shadow: 0 0 1px #e8f0ff, 0 6px 12px #e8f0ff;
+        transform: translateY(-1.1rem);
+        .title{
+          color: var(--secondary-color);
+        }
+      }
       img {
         width: 100%;
-        height: 220px;
+        ${'' /* height: 220px; */}
         border-radius: 1rem;
       }
       .details {
         padding: 15px;
-
         a {
           font-size: 14px;
         }
@@ -63,7 +63,6 @@ const Wrapper = styled.section`
         h3 {
           font-size: 1.25rem;
           margin-top: 5px;
-          /* font-family: "Montserrat Alternates", sans-serif; */
           font-weight: 600;
           text-decoration: none;
           text-transform: lowercase;
