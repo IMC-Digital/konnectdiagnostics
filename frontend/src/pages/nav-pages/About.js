@@ -52,7 +52,7 @@ const About = () => {
           <div className="d-flex flex-column gap-3">
             <IconBox
               iconBox={true}
-              src={"/images/icons/box.svg"}
+              src={"/images/icons/team_professionals.svg"}
               title={""}
               desc={"At Konnect Diagnostics, we have assembled a team of certified and qualified professionals, including radiologists, pathologists, doctors, and technicians. Their expertise in various specializations allows us to deliver accurate and reliable diagnostic solutions."}
             />
@@ -62,12 +62,12 @@ const About = () => {
               title={""}
               desc={"We strive to stay at the forefront of the industry by embracing the latest technologies and advancements. Our commitment to excellence extends to our team of skilled technicians and professionals who are equipped to handle the most complex diagnostic procedures."}
             />
-            <IconBox
+            {/* <IconBox
               iconBox={true}
               src={"/images/icons/box.svg"}
               title={""}
               desc={"At Konnect Diagnostics, we have assembled a team of certified and qualified professionals, including radiologists, pathologists, doctors, and technicians. Their expertise in various specializations allows us to deliver accurate and reliable diagnostic solutions."}
-            />
+            /> */}
           </div>
         </div>
       </div>

@@ -1,15 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
-import { patientStoryData } from "../../assets/data/AllData";
-import { BiSolidQuoteRight } from "react-icons/bi";
+// import { patientStoryData } from "../../assets/data/AllData";
+// import { BiSolidQuoteRight } from "react-icons/bi";
 import PatExpCarousel from "./PatExpCarousel";
 import HomeSectionsHeading from "./SectionsHeadingAndPara";
 
 const PatientExperience = () => {
-  const [activeTab, setActiveTab] = useState(0);
-  const handleTabClick = (index) => {
-    setActiveTab(index);
-  };
+  // const [activeTab, setActiveTab] = useState(0);
+  // const handleTabClick = (index) => {
+  //   setActiveTab(index);
+  // };
 
   return (
     <Wrapper className="bg-k-light">
@@ -19,7 +19,7 @@ const PatientExperience = () => {
           para={`Hear from our satisfied patients about our exceptional care, accurate results, and compassionate staff. Experience the difference today.`} 
           />
 
-        <div className="peContent mt-md-5">
+        {/* <div className="peContent mt-md-5">
           <div className="pe-left">
             {patientStoryData.map((patient, index) => (
               <div key={index}
@@ -42,7 +42,7 @@ const PatientExperience = () => {
               </div>
             ))}
           </div>
-          {/* ------------------------------------------------- */}
+          
           <div
             className="pe-right"
             style={{
@@ -66,7 +66,7 @@ const PatientExperience = () => {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
         <div className="py-2">
           <PatExpCarousel />
         </div>

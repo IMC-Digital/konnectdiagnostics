@@ -17,7 +17,7 @@ const SectionTwo = ({ localCartItems, setLocalCartItems, userId, auth, cart, set
     <Wrapper>
       <div className="s2 mx-auto">
         <div className="s2-tests-container container">
-          <div className="k-btns d-flex justify-content-sm-center">
+          <div className="k-btns d-flex justify-content-sm-center p-md-0 p-2">
             <button 
               className={`k-btn ${ activeComponent === "ToggleKT" ? "active" : "" }`} 
               onClick={() => handleButtonClick("ToggleKT")}>
@@ -103,8 +103,6 @@ const Wrapper = styled.section`
   }
   .s2-tests-container {
     padding: 50px 0;
-    ${'' /* box-shadow: rgba(100, 100, 111, 0.2) 0px 0px 25px 0px; */}
-    ${'' /* background-color: ${({ theme }) => theme.colors.white}; */}
     z-index: 50;
   }
   .k-btn {
@@ -114,7 +112,7 @@ const Wrapper = styled.section`
     padding: 10px 25px;
     border-radius: 5px;
     color: ${({ theme }) => theme.colors.primary};
-    font-weight: 600;
+    font-weight: 500;
     margin: 5px;
     transition: 0.5s;
     &:hover {
@@ -136,6 +134,7 @@ const Wrapper = styled.section`
       overflow-x: auto; /* Enable horizontal scrolling */
       white-space: nowrap; /* Prevent button text from wrapping */
       display: flex;
+      font-weight: 400;
       align-items: flex-start;
       justify-content: flex-start;
       flex-wrap: nowrap;

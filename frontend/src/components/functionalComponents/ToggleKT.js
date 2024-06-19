@@ -23,11 +23,11 @@ const ToggleKT = ({ localCartItems, setLocalCartItems, userId, auth, cart, setCa
   }, []);
   
   return (
-    <Wrapper>
+    <Wrapper className="p-md-0 p-4">
       <div className="s2-kt mt-4">
         <div className="selectionBox mx-auto d-flex gap-2 mb-4">
           <div className="a-zBox mx-auto">
-            <div className="kt-a-z d-flex flex-wrap me-3">
+            <div className="kt-a-z d-md-flex d-none flex-wrap me-3">
               <SearchBar searchResults={searchResults} setSearchResults={setSearchResults} />
               <AtoZ setSearchResults={setSearchResults} />
             </div>
@@ -58,7 +58,7 @@ const ToggleKT = ({ localCartItems, setLocalCartItems, userId, auth, cart, setCa
 };
 
 export default ToggleKT;
-const Wrapper = styled.section`
+const Wrapper = styled.div`
   .s2-kt {
     .a-zBox{
       width: 70%;

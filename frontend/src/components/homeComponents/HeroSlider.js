@@ -23,7 +23,7 @@ const HeroSlider = () => {
           {...sliderSettings}
           className="s-slider"
         >
-          <div className="sliderSec0">
+          {/* <div className="sliderSec0">
             <div className="d-flex align-items-center h-100">
               <div className="w-50 pe-5">
                 <h1 className="text-k-primary text-k-clr-primary text-capitalize">
@@ -31,29 +31,30 @@ const HeroSlider = () => {
                 </h1>
               </div>
             </div>
-          </div>
+          </div> */}
 
-          {/* <div className="sliderSec1">
-            <div className="container d-flex align-items-center h-100">
-              <div className="w-50 pe-5">
+          <div className="sliderSec1">
+            <div className="container d-flex align-items-center justify-content-center flex-md-row flex-column h-100">
+              <div className="w-md-50 w-100 pe-5 p-md-0">
                 <h1 className="text-k-primary text-k-clr-primary text-capitalize"> 
                   Navigating <span className="text-k-clr-secondary">Health Solutions</span> with konnect
                 </h1>
               </div>
+              <div className="w-md-50 w-100"> </div>
             </div>
           </div>
 
           <div className="sliderSec2 d-flex bg-white">
             <div className="container align-self-center">
-              <div className="slider-2 d-flex align-self-center justify-content-between align-items-center">
-                <div className="w-50 pe-5">
+              <div className="slider-2 d-md-flex align-self-center justify-content-between align-items-center">
+                <div className="w-md-50 w-100 pe-md-5 p-md-0">
                   <h1 className="text-k-primary text-k-clr-primary text-capitalize"> 
                     Your <span className="text-k-clr-secondary">partner</span> in keeping you <span className="text-k-clr-secondary">healthy</span> 
                   </h1>
                   <p className="text-k-accent"> Get Your Reports in 12 hours <span className="text-danger"> * </span> </p>
                 </div>
 
-                <div className="w-50 p-5 d-flex-cc">
+                <div className="w-md-50 w-100 p-5 d-flex-cc">
                   <video autoPlay loop muted controls={false}>
                     <source src="/images/hero24.mp4" type="video/mp4" />
                     Your browser does not support the video tag.
@@ -61,7 +62,7 @@ const HeroSlider = () => {
                 </div>
               </div>
             </div>
-          </div> */}
+          </div>
         </Slider>
       </div>
     </Wrapper>
@@ -128,13 +129,12 @@ const Wrapper = styled.section`
   @media (min-width: 0px) and (max-width: 768px) {
     .sliderSec1 {
       height: 70vh;
-      h1 {
-        font-size: 3.5rem;
-      }
+      h1 { font-size: 26px; }
     }
 
     .sliderSec2 {
       height: 70vh;
+      h1 { font-size: 26px; }
     }
     .s-slider {
       .sliderSec1 {
@@ -212,10 +212,10 @@ const Wrapper = styled.section`
   }
 
   /* Desktop styles */
-  @media (min-width: 769px) {
+  ${'' /* @media (min-width: 769px) {
     .sliderSec1,
     .sliderSec2 {
-      height: 80vh; /* Adjust the height as needed */
+      height: 80vh;
     }
-  }
+  } */}
 `;

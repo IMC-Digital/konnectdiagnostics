@@ -1,14 +1,24 @@
-import React from 'react'
+import React from 'react';
+import styled from "styled-components";
 
 export default function SectionsHeadingAndPara({ title, para }) {
     return (
-        <div className="mx-auto text-center w-50 d-flex-cc flex-column">
+        <Wrapper className="mx-auto text-center w-md-50 d-flex-cc flex-column">
             <h2 className="text-k-primary text-k-clr-primary"> {title} </h2>
-            <p className="text-k-text" style={{width: "500px"}}>
+            <p className="text-k-text">
                 {para}
             </p>
-        </div>
+        </Wrapper>
     )
 }
+
+const Wrapper = styled.div`
+p{
+    width: 500px;
+}
+@media (max-width: 768px) {
+    p{ width: auto; }
+}
+`
 
 

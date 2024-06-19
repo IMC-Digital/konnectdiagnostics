@@ -8,20 +8,7 @@ import MiniCart from "../components/cart/MiniCart";
 import { User } from "./nav-pages/User";
 import NavMenu from "./nav-pages/NavMenu";
 
-function Header({
-  cart,
-  setCart,
-  auth,
-  setAuth,
-  userId,
-  setUserId,
-  userName,
-  setUserName,
-  message,
-  handleLoginClick,
-  setShowOtpPopup,
-  handleLogout,
-}) {
+function Header({ cart, setCart, auth, setAuth, userId, setUserId, userName, setUserName, message, handleLoginClick, setShowOtpPopup, handleLogout }) {
   return (
     <Wrapper>
       <Navbar
@@ -31,14 +18,10 @@ function Header({
       >
         <Container>
           <Navbar.Brand href="/">
-            <img
-              src="/images/konnect-logo.png"
-              alt="Konect-Logo"
-              style={{ width: "200px" }}
-            />
+            <img src="/images/konnect-logo.png" alt="Konect-Logo" style={{ width: "200px" }} />
           </Navbar.Brand>
 
-          <div>
+          <div className="w-100 d-flex flex-md-column justify-content-between">
             <div className="d-flex justify-content-end">
               <div className="d-flex align-items-center justify-content-center me-2">
                 {!auth ? (

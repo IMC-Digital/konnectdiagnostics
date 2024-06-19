@@ -14,66 +14,70 @@ export default function PopupConfirmCheckout({
     setShowPopupOrderSuccessful,
     handleOrderPlacedSuccessfullyActions
 }) {
-    
+
     const handlePlaceOrder = async (orderamount) => {
-        try {
-            const response = await axios.post(`${BASE_API_URL}/orders/place-order`, {
-                checkOutFormData,
-                cart
-            });
-            if (response.data.success) {
-                const orderId = response.data.response.orderId;
-                handleOrderPlacedSuccessfullyActions(orderId);
-            } else {
-                console.error('Error placing order:', response.data.error);
-            }
-        } catch (error) {
-            console.error('Error submitting order:', error);
-        }
-        
         // try {
-        //     const response = await axios.post(`${BASE_API_URL}/payments/create-payment/${orderamount}`);
-        //     const { id, amount, currency } = response.data;
-
-        //     const options = {
-        //         key: 'rzp_live_j5o9tvEWfIk8rl',
-        //         amount,
-        //         currency,
-        //         name: 'Konnect Diagnostics',
-        //         description: 'Payment for your order',
-        //         order_id: id,
-        //         handler: function (response) {
-        //             console.log(response);
-        //             if (response.status === "created") {
-        //                 const paymentDetails = response;
-        //                 const placeOrder = async () => {
-        //                     try {
-        //                         const response = await axios.post(`${BASE_API_URL}/orders/place-order`, {
-        //                             checkOutFormData,
-        //                             paymentDetails,
-        //                             cart
-        //                         });
-        //                         if (response.data.success) {
-        //                             const orderId = response.data.response.orderId;
-        //                             handleOrderPlacedSuccessfullyActions(orderId);
-        //                         } else {
-        //                             console.error('Error placing order:', response.data.error);
-        //                         }
-        //                     } catch (error) {
-        //                         console.error('Error submitting order:', error);
-        //                     }
-        //                 }
-        //                 placeOrder();
-        //             }
-        //             // Handle success, e.g., update database, show success message, etc.
-        //         },
-        //     };
-
-        //     const rzp = new window.Razorpay(options);
-        //     rzp.open();
+        //     const response = await axios.post(`${BASE_API_URL}/orders/place-order`, {
+        //         checkOutFormData,
+        //         cart
+        //     });
+        //     if (response.data.success) {
+        //         const orderId = response.data.response.orderId;
+        //         handleOrderPlacedSuccessfullyActions(orderId);
+        //     } else {
+        //         console.error('Error placing order:', response.data.error);
+        //     }
         // } catch (error) {
-        //     console.error(error);
+        //     console.error('Error submitting order:', error);
         // }
+
+        try {
+            const response = await axios.post(`${BASE_API_URL}/payments/create-payment/${orderamount}`);
+            const { id, amount, currency } = response.data;
+
+            const options = {
+                key: 'rzp_live_j5o9tvEWfIk8rl',
+                amount,
+                currency,
+                name: 'Konnect Diagnostics',
+
+                // test payment of NTCS
+                // key: "rzp_test_abT4ZDhDnaQg8g",
+                // amount,
+                // currency,
+                // name: "C-Suite Registration Payment",
+                description: 'Payment for your order',
+                order_id: id,
+                handler: function (response) {
+                    console.log(response);
+                    if (response.razorpay_order_id) {
+                        const paymentDetails = response;
+                        const placeOrder = async () => {
+                            try {
+                                const response = await axios.post(`${BASE_API_URL}/orders/place-order`, { checkOutFormData, paymentDetails, cart });
+                                if (response.data.success) {
+                                    const orderId = response.data.response.orderId;
+                                    handleOrderPlacedSuccessfullyActions(orderId);
+                                } else {
+                                    console.error('Error placing order:', response.data.error);
+                                }
+                            } catch (error) {
+                                console.error('Error submitting order:', error);
+                            }
+                        }
+                        placeOrder();
+                    } else {
+                        console.log("Something went wrong!");
+                    }
+                    // Handle success, e.g., update database, show success message, etc.
+                },
+            };
+
+            const rzp = new window.Razorpay(options);
+            rzp.open();
+        } catch (error) {
+            console.error(error);
+        }
     };
 
 
@@ -154,14 +158,14 @@ export default function PopupConfirmCheckout({
                                     <td>&#8377; {checkOutFormData.amount.subTotalAmount}</td>
                                 </tr>
                                 {
-                                    checkOutFormData.amount.couponCode && 
+                                    checkOutFormData.amount.couponCode &&
                                     <tr>
                                         <td>Coupon Code Applied:</td>
                                         <td className='text-success'>{checkOutFormData.amount.couponCode}</td>
                                     </tr>
                                 }
                                 {
-                                    checkOutFormData.amount.couponCode && 
+                                    checkOutFormData.amount.couponCode &&
                                     <tr>
                                         <td>Coupon Code Discount:</td>
                                         <td className='text-danger'>- &#8377; {checkOutFormData.amount.couponCodeDiscount} </td>

@@ -94,7 +94,7 @@ const SectionThree = () => {
 
 export default SectionThree;
 
-const Wrapper = styled.section`
+const Wrapper = styled.div`
   .icon-box {
     display: flex;
     .icon {

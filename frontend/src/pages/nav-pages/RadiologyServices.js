@@ -26,7 +26,7 @@ const RadiologyServices = () => {
         <div className="row gx-3 gy-3">
           {
             [
-              { title: "MRI", fullForm: "Magnetic Resonance Imaging", url: "magnetic-resource-imaging", col: "6" },
+              { title: "MRI", fullForm: "Magnetic Resonance Imaging", url: "magnetic-resonance-imaging", col: "6" },
               { title: "2D-ECHO", fullForm: "Two-dimensional Echocardiography", url: "two-dimensional-echocardiography", col: "3" },
               { title: "CBCT", fullForm: "Cone-Beamed Computed Tomography", url: "cone-beamed-computed-tomography", col: "3" },
               { title: "EEG", fullForm: "Electroencephalogram", url: "electroencephalogram", col: "3" },
