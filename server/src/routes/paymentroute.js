@@ -5,6 +5,9 @@ const Razorpay = require('razorpay');
 const razorpay = new Razorpay({
   key_id: 'rzp_live_j5o9tvEWfIk8rl',
   key_secret: 'vMPJNZtkz6cUsBeow77XlyhD',
+  // testing payment details of NTCS
+  // key_id: 'rzp_test_abT4ZDhDnaQg8g',
+  // key_secret: 'bqnLFUibrgnHgCOOJiVBzWKp',
 });
 
 router.post('/create-payment/:amount', async (req, res) => {

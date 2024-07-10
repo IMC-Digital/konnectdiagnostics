@@ -1,58 +1,50 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-// import DynamicImage from "../components/requiredPages/DynamicImage";
 import { styled } from "styled-components";
 
 const Footer = () => {
   return (
     <>
       <Wrapper className="footer">
-        <div className="footer-head">
-          <div className="fh container d-flex justify-content-between">
-            <div className="fh-content d-flex ">
-              <p className="fh-p">Follow Konnect Diagnostics on Social Media</p>
-              <NavLink
-                to="https://www.facebook.com/konnectdiagnostic/"
-                target="blank"
-              >
-                <i
-                  className="fa-brands fa-square-facebook fa-xl"
-                  style={{ color: "#ffffff" }}
-                ></i>
-              </NavLink>
-              <NavLink to="https://twitter.com/KonnectDiagnos2" target="blank">
-                <i
-                  className="fa-brands fa-square-twitter fa-xl"
-                  style={{ color: "#ffffff" }}
-                ></i>
-              </NavLink>
-              <NavLink
-                to="https://www.instagram.com/konnectdiagnosticcenters/"
-                target="blank"
-              >
-                <i
-                  className="fa-brands fa-square-instagram fa-xl"
-                  style={{ color: "#ffffff" }}
-                ></i>
-              </NavLink>
-              <NavLink
-                to="https://www.youtube.com/channel/UC2y2Nq4LXo36lU3kkZvx9xA"
-                target="blank"
-              >
-                <i
-                  className="fa-brands fa-linkedin fa-xl"
-                  style={{ color: "#ffffff" }}
-                ></i>
-              </NavLink>
-              <NavLink
-                to="https://www.youtube.com/channel/UC2y2Nq4LXo36lU3kkZvx9xA"
-                target="blank"
-              >
-                <i
-                  className="fa-brands fa-square-youtube fa-xl"
-                  style={{ color: "#ffffff" }}
-                ></i>
-              </NavLink>
+        <div className="footer-head py-3 px-md-0 px-3">
+          <div className="fh container d-flex">
+            <div className="fh-content d-md-flex align-items-center">
+              <p className="fh-p p-0 m-0">
+                Follow Konnect Diagnostics on Social Media:{" "}
+              </p>
+              {[
+                {
+                  link: "https://www.facebook.com/konnectdiagnostic/",
+                  icon: "fa-brands fa-square-facebook fa-xl",
+                },
+                {
+                  link: "https://twitter.com/KonnectDiagnos2",
+                  icon: "fa-brands fa-square-twitter fa-xl",
+                },
+                {
+                  link: "https://www.instagram.com/konnectdiagnosticcenters/",
+                  icon: "fa-brands fa-square-instagram fa-xl",
+                },
+                {
+                  link: "https://www.youtube.com/channel/UC2y2Nq4LXo36lU3kkZvx9xA",
+                  icon: "fa-brands fa-linkedin fa-xl",
+                },
+                {
+                  link: "https://www.youtube.com/channel/UC2y2Nq4LXo36lU3kkZvx9xA",
+                  icon: "fa-brands fa-square-youtube fa-xl",
+                },
+              ].map((item, idx) => (
+                <NavLink
+                  to={item.link}
+                  target="blank"
+                  key={idx}
+                >
+                  <i
+                    className={item.icon}
+                    style={{ color: "#ffffff" }}
+                  ></i>
+                </NavLink>
+              ))}
             </div>
             <div className="fh-content d-flex"></div>
           </div>

@@ -12,6 +12,7 @@ const placeOrder = async (req, res) => {
             res.status(500).json({ success: false, error: 'An error occurred at placing an order' });
         } else if (response) {
             mailServices.sendOrderPlacedMail(response, orderData);
+            mailServices.orderPlaceMailToAdmin(response, orderData);
             res.status(200).json({ success: true, response });
         }
     })

@@ -3,124 +3,6 @@ const { response } = require("express");
 const createpoolConnection = require("../../config/database");
 const pool = createpoolConnection();
 
-// const placeOrder = (orderData) => {
-//     const { checkOutFormData, cart } = orderData;
-//     const { selectedMember } = checkOutFormData;
-//     const { amount } = checkOutFormData;
-//     const { selectedSession } = checkOutFormData;
-//     const { sampleCollection } = checkOutFormData;
-
-//     // Insert into orders table
-//     return new Promise((resolve, reject) => {
-//       pool.query(
-//         "INSERT INTO orders (user_id, sample_submission_type) VALUES (?, ?)", 
-//         [
-//           checkOutFormData.userId,
-//           checkOutFormData.sampleCollection.sampleCollectionAt === 0 ? 'home' : 'clinic'
-//         ], 
-//         (order_placing_err, order_placed_result) => {
-//           if (order_placing_err) {
-//             reject(order_placing_err);
-//           } else {
-//             const orderId = order_placed_result.insertId;
-//             resolve(orderId);
-//           }
-//         }
-//       );
-//     })
-//     .then((orderId) => {
-//         function generateQueries(orderId, cart, membersSelected) {
-//             const queries = [];
-
-//             cart.forEach((cartItem, cartIndex) => {
-//                 membersSelected[cartIndex % membersSelected.length].forEach(memberName => {
-//                     const query = "(?, ?, ?)";
-//                     queries.push([orderId, cartItem.product_id, memberName]);
-//                 });
-//             });
-
-//             return queries;
-//         }
-
-//         const resultQueries = generateQueries(orderId, cart, selectedMember);
-//         return new Promise((resolve, reject) => {
-//           pool.query(
-//             "INSERT INTO order_items (order_id, product_id, member_name) VALUES ?",
-//             [resultQueries],
-//             (order_item_err, order_item_result) => {
-//               if (order_item_err) {
-//                 reject(order_item_err);
-//               } else {
-//                 resolve(orderId);
-//               }
-//             }
-//           );
-//         });
-//     })
-//     .then((orderId) => {
-//         return new Promise((resolve, reject) => {
-//           pool.query(
-//               "INSERT INTO order_billings (order_id, order_subtotal_amount, order_coupon_applied, order_discount_amount, order_total_amount) VALUES (?,?,?,?,?)",
-//               [orderId, amount.subTotalAmount, amount.couponCode, amount.couponCodeDiscount, amount.totalAmount],
-//               (order_billing_err, order_billing_result) => {
-//                   if (order_billing_err) {
-//                       reject(order_billing_err)
-//                   } else {
-//                       resolve(orderId)
-//                   }
-//               })
-//         })
-//     })
-//     .then((orderId) => {
-//         return new Promise((resolve, reject) => {
-//             const fulldate = `${selectedSession.date.date} ${selectedSession.date.month} ${selectedSession.date.day}`;
-//             pool.query(
-//                 "INSERT INTO order_sessions (order_id, order_session_time, order_session_date, order_session_update) VALUES (?, ?, ?, null)",
-//                 [orderId, selectedSession.time, fulldate],
-//                 (order_session_err, order_session_result) => {
-//                     if (order_session_err) {
-//                         reject(order_session_err);
-//                     } else {
-//                         resolve(orderId);
-//                     }
-//                 }
-//             );
-//         });
-//     })
-//     .then((orderId) => {
-//         return new Promise((resolve, reject) => {
-//             if ( sampleCollection.sampleCollectionAt === 0 ) {
-//                 pool.query(
-//                     "INSERT INTO order_sample_at_home (order_id, address_id, alternative_mobile_number) VALUES (?,?,?)",
-//                     [orderId, sampleCollection.homeSampleCollection.address_id, sampleCollection.homeSampleCollection.alternate_mobile_number],
-//                     (order_sample_coll_home_err, order_sample_coll_home_result) => {
-//                         if ( order_sample_coll_home_err ) {
-//                             reject(order_sample_coll_home_err);
-//                         } else {
-//                             resolve(orderId);
-//                         }
-//                     }
-//                 )
-//             } else {
-//                 pool.query(
-//                     "INSERT INTO order_sample_at_clinic (order_id, clinic_id) VALUES (?, ?)",
-//                     [orderId, sampleCollection.clinicSampleCollection.id],
-//                     (order_sample_coll_clinic_err, order_sample_coll_clinic_result) => {
-//                         if ( order_sample_coll_clinic_err ) {
-//                             reject(order_sample_coll_clinic_err)
-//                         } else {
-//                             resolve(orderId)
-//                         }
-//                     }
-//                 )
-//             }
-//         })
-//     })
-//     .catch((error) => {
-//       console.error("Error placing order:", error);
-//     });
-//   };
-
 const fetchUserProfileAndSendResponse = (userId, orderId) => {
     return new Promise((resolve, reject) => {
         userService.getUserProfile(userId, (error, response) => {
@@ -152,7 +34,6 @@ const placeOrder = async (orderData, callback) => {
 
     function generateQueries(orderId, userId, cart, membersSelected) {
         const queries = [];
-    
         cart.forEach((cartItem, cartIndex) => {
             membersSelected[cartIndex % membersSelected.length].forEach(memberName => {
                 let productId, productName;
@@ -169,18 +50,15 @@ const placeOrder = async (orderData, callback) => {
                 queries.push([orderId, userId, productId, cartItem.type, productName, cartItem.price, memberName]);
             });
         });
-    
         return queries;
     }
     
-
     try {
-        // const { checkOutFormData, paymentDetails, cart } = orderData;
-        const { checkOutFormData, cart } = orderData;
+        const { checkOutFormData, paymentDetails, cart } = orderData;
+        // const { checkOutFormData, cart } = orderData;
 
         const { userId, selectedMember, amount, selectedSession, sampleCollection } = checkOutFormData;
-        // const { id, entity, amount_paid, receipt, offer_id, status, attempts, created_at } = paymentDetails;
-        // const payment_amount = paymentDetails.amount;
+        const { razorpay_order_id, razorpay_payment_id, razorpay_signature } = paymentDetails;
 
         // Insert into orders table
         const orderInsertResult = await queryAsync(
@@ -189,12 +67,13 @@ const placeOrder = async (orderData, callback) => {
         );
 
         const orderId = orderInsertResult.insertId;
-
+        
         // Insert into order_payments table
-        // await queryAsync(
-        //     "INSERT INTO order_payments (order_id, id, entity, amount, amount_paid, reciept, offer_id, status, attempts, created_at) VALUES ?",
-        //     [orderId, id, entity, payment_amount, amount_paid, receipt, offer_id, status, attempts, created_at]
-        // )
+        const paymentInsertResult = await queryAsync(
+            "INSERT INTO order_payments (order_id, razorpay_order_id, razorpay_payment_id, razorpay_signature) VALUES (?,?,?,?)",
+            [orderId, razorpay_order_id, razorpay_payment_id, razorpay_signature]
+        )
+        const paymentId = paymentInsertResult.insertId;
 
         // Insert into order_items table
         const resultQueries = generateQueries(orderId, userId, cart, selectedMember);
@@ -202,8 +81,8 @@ const placeOrder = async (orderData, callback) => {
 
         // Insert into order_billings table
         await queryAsync(
-            "INSERT INTO order_billings (order_id, user_id, order_subtotal_amount, order_coupon_code_applied, order_coupon_code_discount, order_discount_amount, order_total_amount) VALUES (?,?,?,?,?,?,?)",
-            [orderId, userId, amount.subTotalAmount, amount.couponCode, amount.couponCodeDiscount, amount.couponCodeDiscount, amount.totalAmount]
+            "INSERT INTO order_billings (order_id, user_id, order_subtotal_amount, order_coupon_code_applied, order_coupon_code_discount, order_discount_amount, order_total_amount, payment_id) VALUES (?,?,?,?,?,?,?,?)",
+            [orderId, userId, amount.subTotalAmount, amount.couponCode, amount.couponCodeDiscount, amount.couponCodeDiscount, amount.totalAmount, paymentId]
         );
 
         // Insert into order_sessions table
