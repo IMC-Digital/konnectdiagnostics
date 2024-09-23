@@ -32,7 +32,7 @@ const loginOTP = (number, callback) => {
       if (response.statusText === "OK"){
         // console.log(number+"asdf");
         // console.log("ok");
-        callback(null, {Status: "OTP sent!", OTP: OTP});
+        callback(null, {Status: "OTP sent!"});
       }
     }catch(error){console.log(error);}
   }

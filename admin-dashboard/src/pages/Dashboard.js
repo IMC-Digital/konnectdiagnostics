@@ -5,7 +5,7 @@ import DashboardTabs from '../components/DashboardTabs';
 export default function Dashboard() {
   return (
     <Wrapper>
-      <div className="container-fluid overflow-hidden rounded bg-light1 h-100 p-0">
+      <div className="container-fluid overflow-hidden rounded bg-light1 h-100 p-0 border">
         <DashboardTabs />
       </div>
     </Wrapper>
@@ -16,7 +16,6 @@ export default function Dashboard() {
 const Wrapper = styled.div`
 height: 100vh;
 width: 100%;
-padding: 30px;
 background: #eeeeee;
 .main-tabs-title-wrapper{
     overflow: hidden;

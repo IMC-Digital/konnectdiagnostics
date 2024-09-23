@@ -24,6 +24,9 @@ const HeroSlider = () => {
           className="s-slider"
         >
           {/* <div className="sliderSec0">
+            <div className="h-100 d-flex-cc p-0">
+              <img src="/images/banners/banner0.jpg" alt="banner0" className="img-fluid" />
+            </div>
             <div className="d-flex align-items-center h-100">
               <div className="w-50 pe-5">
                 <h1 className="text-k-primary text-k-clr-primary text-capitalize">
@@ -86,11 +89,15 @@ const Wrapper = styled.section`
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    .sliderSec0 {
+    ${'' /* .sliderSec0 {
       height: 70vh;
-      background: #ffffff url("/images/bannerImage0.jpg") no-repeat right center;
-      background-size: 50%;
-    }
+      background-size: contain;
+      img{
+        border: 3px solid white;
+        box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
+        border-radius: 15px;
+      }
+    } */}
     .sliderSec1 {
       height: 70vh;
       background: #ffffff url("images/bannerImage.jpg") no-repeat right top;
