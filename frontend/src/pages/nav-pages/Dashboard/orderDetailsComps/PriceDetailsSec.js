@@ -18,7 +18,7 @@ export default function PriceDetailsSec({ billingDetails, paymentDetails }) {
                         <td>Coupon Code Discount:</td>
                         <td className='text-danger'>- &#8377; {billingDetails.order_discount_amount} </td>
                     </tr>
-                    <tr className='bg-k-light'>
+                    <tr className='bg_light2'>
                         <td className='fw-bold'>Total Amount:</td>
                         <td className='fw-bold d-flex align-items-center'>
                             &#8377; {billingDetails.order_total_amount}

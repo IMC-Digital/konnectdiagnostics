@@ -85,9 +85,6 @@ export default function MultiStepForm({
                     variant={currentStep === steps.length - 1 ? "success" : "primary"}
                     onClick={currentStep === steps.length - 1 ? handleCheckoutSubmission : nextStep}
                     disabled={
-                        // (currentStep === 0 &&
-                        //     (!checkOutFormData.sampleCollection.homeSampleCollection.address_name && !checkOutFormData.sampleCollection.clinicSampleCollection.name)
-                        // ) ||
                         (currentStep === 0 &&
                             ((!checkOutFormData.sampleCollection.homeSampleCollection.address_name && checkOutFormData.sampleCollection.sampleCollectionAt === 0) ||
                                 (!checkOutFormData.sampleCollection.clinicSampleCollection.name && checkOutFormData.sampleCollection.sampleCollectionAt === 1))

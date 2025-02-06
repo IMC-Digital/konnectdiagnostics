@@ -16,21 +16,6 @@ export default function PopupConfirmCheckout({
 }) {
 
     const handlePlaceOrder = async (orderamount) => {
-        // try {
-        //     const response = await axios.post(`${BASE_API_URL}/orders/place-order`, {
-        //         checkOutFormData,
-        //         cart
-        //     });
-        //     if (response.data.success) {
-        //         const orderId = response.data.response.orderId;
-        //         handleOrderPlacedSuccessfullyActions(orderId);
-        //     } else {
-        //         console.error('Error placing order:', response.data.error);
-        //     }
-        // } catch (error) {
-        //     console.error('Error submitting order:', error);
-        // }
-
         try {
             const response = await axios.post(`${BASE_API_URL}/payments/create-payment/${orderamount}`);
             const { id, amount, currency } = response.data;
@@ -40,16 +25,9 @@ export default function PopupConfirmCheckout({
                 amount,
                 currency,
                 name: 'Konnect Diagnostics',
-
-                // test payment of NTCS
-                // key: "rzp_test_abT4ZDhDnaQg8g",
-                // amount,
-                // currency,
-                // name: "C-Suite Registration Payment",
                 description: 'Payment for your order',
                 order_id: id,
                 handler: function (response) {
-                    console.log(response);
                     if (response.razorpay_order_id) {
                         const paymentDetails = response;
                         const placeOrder = async () => {
@@ -90,18 +68,18 @@ export default function PopupConfirmCheckout({
 
                     {checkOutFormData.sampleCollection.sampleCollectionAt === 0 ?
                         <div>
-                            <h2 className="text-k-accent text-k-clr-primary"> Sample Collection Address: </h2>
+                            <h2 className="text_accent text_primary"> Sample Collection Address: </h2>
                             <p className='mb-0'>
-                                <span className="text-k-accent">{checkOutFormData.sampleCollection.homeSampleCollection.address_name} </span>
+                                <span className="text_accent">{checkOutFormData.sampleCollection.homeSampleCollection.address_name} </span>
                                 <small> ({checkOutFormData.sampleCollection.homeSampleCollection.address_type}) </small>
                                 {`${checkOutFormData.sampleCollection.homeSampleCollection.address_line_1} ${checkOutFormData.sampleCollection.homeSampleCollection.address_line_2}`}
                             </p>
                             <p className='mb-0'>
-                                <span className="text-k-accent"> Alternative Mobile number: </span>
+                                <span className="text_accent"> Alternative Mobile number: </span>
                                 {checkOutFormData.sampleCollection.homeSampleCollection.alternate_mobile_number}
                             </p>
                         </div> : <div>
-                            <h2 className="text-k-accent">Selected Sample Submission Clinic:</h2>
+                            <h2 className="text_accent">Selected Sample Submission Clinic:</h2>
                             <p className='mb-0'>
                                 {checkOutFormData.sampleCollection.clinicSampleCollection.name}
                             </p>
@@ -123,7 +101,7 @@ export default function PopupConfirmCheckout({
                     <hr />
 
                     <div>
-                        <h2 className="text-k-accent text-k-clr-primary"> Preferred Session for sample collection </h2>
+                        <h2 className="text_accent text_primary"> Preferred Session for sample collection </h2>
                         {checkOutFormData.selectedSession && (
                             <p>
                                 <span className="bg-light p-2 rounded me-2">
@@ -145,12 +123,12 @@ export default function PopupConfirmCheckout({
                     <hr />
 
                     <div>
-                        <h2 className="text-k-accent text-k-clr-primary"> Tests to be done per user members </h2>
+                        <h2 className="text_accent text_primary"> Tests to be done per user members </h2>
                         <MemberTestsTable selectedProducts={cart} selectedMembers={checkOutFormData.selectedMember} />
                     </div>
 
                     <div>
-                        <h2 className="text-k-accent text-k-clr-primary"> Billing Details </h2>
+                        <h2 className="text_accent text_primary"> Billing Details </h2>
                         <table className='table table-striped'>
                             <tbody>
                                 <tr>

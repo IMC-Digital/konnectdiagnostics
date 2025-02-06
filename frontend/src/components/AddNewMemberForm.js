@@ -38,14 +38,14 @@ const AddNewMemberForm = ({ cart, setCart, userId, setShowAddNewMemberPopup }) =
 
   return (
     <div className='p-4'>
-      <h3 className='text-k-secondary'>Add New Member</h3>
+      <h3 className='text_secondary'>Add New Member</h3>
       <hr />
       {!showSuccessMessage && (
         <Form onSubmit={handleSubmit}>
         <div className="mb-3">
           <div className='d-flex'>
             <div className="form-group w-25">
-              <Form.Label htmlFor="personTitle" className='text-k-accent'>Title</Form.Label>
+              <Form.Label htmlFor="personTitle" className='text_accent'>Title</Form.Label>
               <DropdownButton
                 variant="outline-secondary"
                 id="personTitle"
@@ -61,7 +61,7 @@ const AddNewMemberForm = ({ cart, setCart, userId, setShowAddNewMemberPopup }) =
             </div>
 
             <div className="form-group w-75">
-              <Form.Label htmlFor="fullName" className='text-k-accent'>Full Name</Form.Label>
+              <Form.Label htmlFor="fullName" className='text_accent'>Full Name</Form.Label>
               <Form.Control
                 type="text"
                 id="fullName"
@@ -76,7 +76,7 @@ const AddNewMemberForm = ({ cart, setCart, userId, setShowAddNewMemberPopup }) =
 
         <div className="mb-3">
           <div className="form-group">
-            <Form.Label htmlFor="date_of_birth" className='text-k-accent'>Date of Birth</Form.Label>
+            <Form.Label htmlFor="date_of_birth" className='text_accent'>Date of Birth</Form.Label>
             <Form.Control
               type="date"
               id="date_of_birth"
@@ -87,7 +87,7 @@ const AddNewMemberForm = ({ cart, setCart, userId, setShowAddNewMemberPopup }) =
           </div>
 
           <div className="form-group" id="formGender">
-            <Form.Label className='text-k-accent'>Gender</Form.Label>
+            <Form.Label className='text_accent'>Gender</Form.Label>
             <div className='d-flex'>
               {["Male", "Female", "Other"].map((e) => (
                 <div key={e} className="form-check rounded shadow-sm me-2 py-1 px-3">
@@ -107,7 +107,7 @@ const AddNewMemberForm = ({ cart, setCart, userId, setShowAddNewMemberPopup }) =
 
         <div className="mb-3">
           <div className="form-group">
-            <Form.Label htmlFor="relationship" className='text-k-accent'>Relationship</Form.Label>
+            <Form.Label htmlFor="relationship" className='text_accent'>Relationship</Form.Label>
             <Form.Control
               as="select"
               id="relationship"

@@ -17,38 +17,24 @@ const SectionTwo = ({ localCartItems, setLocalCartItems, userId, auth, cart, set
     <Wrapper>
       <div className="s2 mx-auto">
         <div className="s2-tests-container container">
+
+          {/* Tab Titles */}
           <div className="k-btns d-flex justify-content-sm-center p-md-0 p-2">
-            <button 
-              className={`k-btn ${ activeComponent === "ToggleKT" ? "active" : "" }`} 
-              onClick={() => handleButtonClick("ToggleKT")}>
+            <button className={`k-btn ${ activeComponent === "ToggleKT" ? "active" : "" }`} onClick={() => handleButtonClick("ToggleKT")}>
               Search Tests
             </button>
-            <button
-              className={`k-btn ${
-                activeComponent === "ToggleKHP" ? "active" : ""
-              }`}
-              onClick={() => handleButtonClick("ToggleKHP")}
-            >
+            <button className={`k-btn ${ activeComponent === "ToggleKHP" ? "active" : ""}`} onClick={() => handleButtonClick("ToggleKHP")}>
               Health Packages
             </button>
-            <button
-              className={`k-btn ${
-                activeComponent === "ToggleKLT" ? "active" : ""
-              }`}
-              onClick={() => handleButtonClick("ToggleKLT")}
-            >
+            <button className={`k-btn ${ activeComponent === "ToggleKLT" ? "active" : ""}`} onClick={() => handleButtonClick("ToggleKLT")}>
               Frequently ordered Tests
             </button>
-            <button
-              className={`k-btn ${
-                activeComponent === "ToggleKL" ? "active" : ""
-              }`}
-              onClick={() => handleButtonClick("ToggleKL")}
-            >
+            <button className={`k-btn ${ activeComponent === "ToggleKL" ? "active" : ""}`} onClick={() => handleButtonClick("ToggleKL")}>
               Locations
             </button>
           </div>
-          <div className="s2-selection-box d-flex justify-content-center gap-2 p-sm-3 p-2">
+
+          <div className="s2-selection-box d-flex justify-content-center gap-2 p-3">
             {activeComponent === "ToggleKT" && (
               <ToggleKT
                 localCartItems={localCartItems} 
@@ -97,10 +83,6 @@ const Wrapper = styled.section`
     background-position: 50px 50px;;
     background-size: 50%;
   }
-
-  .s2-tests-box {
-    font-weight: 500;
-  }
   .s2-tests-container {
     padding: 50px 0;
     z-index: 50;
@@ -111,20 +93,19 @@ const Wrapper = styled.section`
     border: none;
     padding: 10px 25px;
     border-radius: 5px;
-    color: ${({ theme }) => theme.colors.primary};
+    color: var(--primary-color);
     font-weight: 500;
     margin: 5px;
     transition: 0.5s;
     &:hover {
-      box-shadow: rgba(100, 100, 111, 0.2) 0px 0px 25px 0px;
-      background-color: ${({ theme }) => theme.colors.primary};
-      color: ${({ theme }) => theme.colors.white};
+      background-color: var(--primary-color);
+      color: white;
     }
   }
   .active {
-    background-color: ${({ theme }) => theme.colors.primary};
-    color: ${({ theme }) => theme.colors.white};
-    box-shadow: ${({ theme }) => theme.colors.primary} 0px 20px 30px -10px;
+    background-color: var(--primary-color);
+    color: white;
+    box-shadow: var(--primary-color) 0px 5px 10px -5px;
   }
   @media (max-width: 768px) {
     .s2-tests-container{

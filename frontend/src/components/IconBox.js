@@ -3,7 +3,7 @@ import { styled } from "styled-components";
 
 export default function IconBox({ src, title, desc, iconLg, iconBox, iconAbove }) {
     return (
-        <Wrapper>
+        <Wrapper className='mb-3'>
             <div className={`icon-box-wrapper d-flex ${iconAbove && 'flex-column'} gap-3`}>
                 <div className='me-3'>
                     <div className={`icon-wrap d-flex-cc rounded-4 ${ iconBox && "iconBox" } ${ iconLg && "iconLg" }`}>
@@ -11,8 +11,8 @@ export default function IconBox({ src, title, desc, iconLg, iconBox, iconAbove }
                     </div>
                 </div>
                 <div className="info-wrap d-flex flex-column gap-2">
-                    { title && <h2 className="text-k-accent text-k-clr-secondary mb-0"> {title} </h2> }
-                    { desc && <h2 className="desc text-k-text"> {desc} </h2> }
+                    { title && <h2 className="text_accent text_secondary_clr mb-0"> {title} </h2> }
+                    { desc && <p className="desc"> {desc} </p> }
                 </div>
             </div>
         </Wrapper>

@@ -62,7 +62,7 @@ function PackageCard({ item, auth, userId, cart, setCart, handleLoginClick }) {
         <img src="/images/k.png" className="cardcomplogo" alt="" />
         <div className="p-3">
           <div className="mb-5">
-            <h6 className="text-k-accent text-k-clr-primary mb-2">
+            <h6 className="text_accent text_primary mb-2">
               {item.product_name}
             </h6>
             <p className="small mb-0">

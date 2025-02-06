@@ -33,8 +33,8 @@ const Allergies = () => {
           A few most common symptoms of allergies include:
         </h5>
         <div className="icon-box d-flex flex-wrap gap-3">
-          {hcIcons[0].allergy[0].symptoms.map((item) => (
-            <div className="box">
+          {hcIcons[0].allergy[0].symptoms.map((item, idx) => (
+            <div key={idx} className="box">
               <div className="sym-img">
                 <img src={item.icon} alt="" />
               </div>
@@ -49,8 +49,8 @@ const Allergies = () => {
           Risk factors for most common allergies include:
         </h5>
         <div className="icon-box d-flex flex-wrap gap-3">
-          {hcIcons[0].allergy[0].riskFactors.map((item) => (
-            <div className="box">
+          {hcIcons[0].allergy[0].riskFactors.map((item, idx) => (
+            <div key={idx} className="box">
               <div className="rf-img">
                 <img src={item.icon} alt="" />
               </div>
@@ -142,5 +142,5 @@ const Allergies = () => {
 };
 
 export default Allergies;
-const Wrapper = styled.section`
-`;
+
+const Wrapper = styled.section``;

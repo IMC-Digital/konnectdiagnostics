@@ -17,29 +17,16 @@ export default function UserAddresses ({ userId }) {
       fetchUserAddresses();
     }, [userId]);
   
-    // useEffect(() => {
-    //   console.log(userAddresses);
-    // }, [userAddresses])
-  
   
     return (
-      <div className='gap-2'>
+      <div className='row gx-0'>
         {
           userAddresses.map((address, index) => (
-            <div key={index} className='d-flex border p-3 rounded shadow'>
-              <lord-icon
-                src="https://cdn.lordicon.com/cnpvyndp.json"
-                trigger="loop"
-                colors="primary:#16c72e"
-                style={{ width: "22px", height: "22px" }}>
-              </lord-icon>
-              <div className='ms-2'>
-                <p className="text-k-secondary">{address.address_name} </p>
-                <p className="text-k-text small">
-                  <span className="fw-bold"> Address : </span>
-                  <span> {address.address_line_1} {address.address_line_2} </span>
-                </p>
-                <div className='d-flex gap-3'>
+            <div key={index} className='col-md-4'>
+              <div className='me-md-2 p-4 rounded bg-light h-100'>
+                <h2 className="text_secondary"> {address.address_name} </h2>
+                <p> <span className="fw-bold"> Address : </span>{address.address_line_1} {address.address_line_2} </p>
+                <div>
                   {
                     [
                       { label: 'Locality', value: address.locality },
@@ -47,9 +34,8 @@ export default function UserAddresses ({ userId }) {
                       { label: 'Pincode', value: address.pincode },
                       { label: 'State', value: address.state }
                     ].map((item, index) => (
-                      <p key={index} className="text-k-text small">
-                        <span className="fw-bold"> {item.label} : </span>
-                        <span> {item.value} </span>
+                      <p key={index}>
+                        <b> {item.label}: </b> {item.value}
                       </p>
                     ))
                   }

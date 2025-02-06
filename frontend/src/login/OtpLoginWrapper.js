@@ -3,6 +3,7 @@ import VerifyOTPsec from './VerifyOTPsec';
 import MobileNumsec from './MobileNumSec';
 import axios from 'axios';
 import { BASE_API_URL } from '../api/index';
+import { styled } from 'styled-components';
 
 const OTP_EXPIRY_TIME = 120; // 2 minutes in seconds
 
@@ -75,9 +76,11 @@ export default function OtpLoginWrapper() {
     };
 
     return (
-        <div className="w-100 rounded overflow-hidden border-0 d-flex justify-content-center align-items-stretch p-0 bg-light position-relative">
-            <div className="w-40 loginpopupleftsec p-0"></div>
-            <div className="w-60 mh-100 p-4 px-5">
+        <Wrapper className="row gx-3">
+            <div className="col-md-6">
+                <img src="/images/login_side_img.jpg" alt="login_side_img" className='login_side_img img-fluid border h-100 rounded object-fit-cover' />
+            </div>
+            <div className="col-md-6 p-md-5 p-4">
                 {numberVerified ?
                     <VerifyOTPsec
                         otpMismatchText={otpMismatchText}
@@ -92,6 +95,11 @@ export default function OtpLoginWrapper() {
                         setNumber={setNumber}
                     />}
             </div>
-        </div>
+        </Wrapper>
     );
 }
+
+
+const Wrapper = styled.div`
+
+`

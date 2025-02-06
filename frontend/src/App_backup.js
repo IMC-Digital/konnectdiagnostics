@@ -3,7 +3,7 @@ import { useState } from "react";
 import "./App.css";
 import { ThemeProvider } from "styled-components";
 import GlobalStyle from "./styles/global.css";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 
 import Header from "./pages/Header";
 import Footer from "./pages/Footer";
@@ -27,7 +27,7 @@ import ErrorPage from "./pages/ErrorPage";
 
 import Profile from "./login/Profile";
 import axios from "axios";
-// import HealthPackages from "./pages/nav-pages/HealthPackages";
+import HealthPackages from "./pages/nav-pages/HealthPackages";
 import ProfileUpdate from "./login/ProfileUpdate";
 import ContactUs from "./pages/ContactUs";
 import { BASE_API_URL } from "./api";
@@ -42,7 +42,6 @@ import PopupOrderSuccessful from "./components/PopupOrderSuccessfull";
 import OrderDetails from "./pages/nav-pages/Dashboard/OrderDetails";
 import PopupProfileSetupForm from "./components/PopupProfileSetupForm";
 import Packages from "./components/packages(New)/Packages";
-import PrivateRoutes from "./utils/PrivateRoutes";
 
 const theme = {
   colors: {
@@ -229,7 +228,7 @@ function App() {
                 cart={cart} 
                 setCart={setCart}
               />} />
-            {/* <Route exact path="/profile" element={
+            <Route exact path="/profile" element={
               <Profile 
                 userId={userId} 
                 auth={auth} 
@@ -237,15 +236,15 @@ function App() {
                 setProfileData={setProfileData} 
                 showProfileForm={showProfileForm} 
                 setShowProfileForm={setShowProfileForm} />   
-            } /> */}
-            {/* <Route exact path="/edit-profile" element={ 
+            } />
+            <Route exact path="/edit-profile" element={ 
               <ProfileUpdate 
                 userId={userId} 
                 auth={auth} 
                 profileData={profileData} 
                 setProfileData={setProfileData} />
-            } /> */}
-            {/* <Route exact path="/dashboard" element={
+            } />
+            <Route exact path="/dashboard" element={
                 <Dashboard 
                   userId={userId} 
                   auth={auth} 
@@ -254,17 +253,17 @@ function App() {
                   setProfileData={setProfileData}
                   // setShowOrderDetailsPopup={setShowOrderDetailsPopup}
                 /> 
-              } /> */}
-            {/* <Route exact path="/dashboard/order-details" element={
+              } />
+            <Route exact path="/dashboard/order-details" element={
                 <OrderDetails 
                   userId={userId}
                   profileData={profileData}
                   userName={profileData.fullname}
                 /> 
-              } /> */}
+              } />
             <Route path="/tests" element={ <Tests userId={userId} auth={auth} cart={cart} setCart={setCart} />} />
-            {/* <Route path="/health-packages" element={ <HealthPackages  userId={userId}  auth={auth}  cart={cart}  setCart={setCart} />} /> */}
-            {/* <Route path="/cart" element={
+            <Route path="/health-packages" element={ <HealthPackages  userId={userId}  auth={auth}  cart={cart}  setCart={setCart} />} />
+            <Route path="/cart" element={
               auth ? (
                 <Cart 
                   userId={userId} 
@@ -276,8 +275,8 @@ function App() {
                  <Navigate to="/login" /> 
                 )
               } 
-            /> */}
-            {/* <Route path="/checkout" element={ 
+            />
+            <Route path="/checkout" element={ 
               <CheckoutProceed 
                 userId={userId} 
                 cart={cart} 
@@ -288,15 +287,10 @@ function App() {
                 profileData={profileData}
                 checkOutFormData={checkOutFormData}
                 setCheckOutFormData={setCheckOutFormData}
-              /> } /> */}
+              /> } />
 
-            <Route element={<PrivateRoutes auth={auth} setAuth={setAuth} userId={userId} setUserId={setUserId} />}>
-              <Route path="/profile" element={<Profile userId={userId} auth={auth} profileData={profileData} setProfileData={setProfileData} showProfileForm={showProfileForm} setShowProfileForm={setShowProfileForm} />} />
-              <Route path="/edit-profile" element={<ProfileUpdate userId={userId} auth={auth} profileData={profileData} setProfileData={setProfileData} />} />
-              <Route path="/dashboard" element={<Dashboard userId={userId} auth={auth} userName={profileData.fullname} profileData={profileData} setProfileData={setProfileData} />} />
-              <Route path="/dashboard/order-details" element={<OrderDetails userId={userId} profileData={profileData} userName={profileData.fullname} />} />
-              <Route path="/cart" element={<Cart userId={userId} cart={cart} setCart={setCart} checkOutFormData={checkOutFormData} setCheckOutFormData={setCheckOutFormData} />} />
-              <Route path="/checkout" element={<CheckoutProceed userId={userId} cart={cart} setCart={setCart} setShowAddNewAddressPopup={setShowAddNewAddressPopup} setShowAddNewMemberPopup={setShowAddNewMemberPopup} setShowPopupConfirmCheckout={setShowPopupConfirmCheckout} profileData={profileData} checkOutFormData={checkOutFormData} setCheckOutFormData={setCheckOutFormData} />} />
+            <Route element={<PrivateRoutes auth={auth} setAuth={setAuth} doctorId={doctorId} setDoctorId={setDoctorId} />}>
+              <Route path="/rabies-and-doctor" element={<RabiesAndDoctor doctorId={doctorId} setDoctorId={setAuth} auth={auth} setAuth={setAuth} />} />
             </Route>
 
             <Route path="/packages" element={ <Packages auth={auth}  userId={userId}  cart={cart}  setCart={setCart} />} />

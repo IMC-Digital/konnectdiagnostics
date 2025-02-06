@@ -107,8 +107,8 @@ export default function CartBillingSec({ cart, setCart, userId, checkOutFormData
             </div>
             <hr />
             <div className='totalSec d-flex align-items-end justify-content-between'>
-                <p className='text-k-accent'> Total(incl. offers) : </p>
-                <p className='text-k-accent text-k-clr-secondary'> &#8377;{grandTotalAmount} </p>
+                <p className='text_accent'> Total(incl. offers) : </p>
+                <p className='text_accent text_secondary_clr'> &#8377;{grandTotalAmount} </p>
             </div>
         </div>
     )

@@ -20,7 +20,7 @@ export default function OrderBillingDetails({ order }) {
         const fetchPaymentDetails = async () => {
             try {
                 const response = await axios.get(`${BASE_API_URL}/orders/order-payment/${order.order_id}`);
-                console.log(response.data);
+                // console.log(response.data);
                 setPayment(response.data[0] || null);
             } catch (error) { console.log(error); }
         }
@@ -32,10 +32,10 @@ export default function OrderBillingDetails({ order }) {
     // }, [payment])
 
     return (
-        <div className='d-flex gap-5 mt-5'>
+        <div className='row gx-5 mt-5'>
             {billing && billing !== null ? (
-                <div className='w-50'>
-                    <h2 className="text-k-secondary"> Order Billing Details </h2>
+                <div className='col-md-6'>
+                    <h2 className="text_secondary"> Order Billing Details </h2>
                     <table className='table table-bordered shadow rounded'>
                         <tbody>
                             <tr>
@@ -50,7 +50,7 @@ export default function OrderBillingDetails({ order }) {
                                 <td>Coupon Code Discount:</td>
                                 <td className='text-danger text-end'>- &#8377; {billing.order_coupon_code_discount} </td>
                             </tr>
-                            <tr className='bg-k-light'>
+                            <tr className='bg_light2'>
                                 <td className='fw-bold'>Total Amount:</td>
                                 <td className='fw-bold text-end d-flex flex-column align-items-end'>
                                     <span>
@@ -67,8 +67,8 @@ export default function OrderBillingDetails({ order }) {
             )}
 
             {payment && payment !== null ? (
-                <div className='w-50'>
-                    <h2 className="text-k-secondary"> Order Payment Details </h2>
+                <div className='col-md-6'>
+                    <h2 className="text_secondary"> Order Payment Details </h2>
                     <table className='table table-bordered shadow w-50 rounded'>
                         <tbody>
                             <tr>

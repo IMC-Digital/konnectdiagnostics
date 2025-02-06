@@ -80,8 +80,8 @@ const Cancer = () => {
 
         <h6>Early stage :</h6>
         <div className="icon-box d-flex flex-wrap gap-3">
-          {hcIcons[0].cancer[0].earlyStage.map((item) => (
-            <div className="box">
+          {hcIcons[0].cancer[0].earlyStage.map((item, idx) => (
+            <div key={idx} className="box">
               <img src={item.icon} alt="" />
               <h5>{item.symptom}</h5>
             </div>
@@ -89,8 +89,8 @@ const Cancer = () => {
         </div>
         <h6>Late stage :</h6>
         <div className="icon-box d-flex flex-wrap gap-3">
-          {hcIcons[0].cancer[0].lateStage.map((item) => (
-            <div className="box">
+          {hcIcons[0].cancer[0].lateStage.map((item, idx) => (
+            <div key={idx} className="box">
               <img src={item.icon} alt="" />
               <h5>{item.symptom}</h5>
             </div>
@@ -101,8 +101,8 @@ const Cancer = () => {
         <h3 className="question">What are the risk factors?</h3>
         <h5 className="include">The risk factors of cancer include:</h5>
         <div className="icon-box d-flex flex-wrap gap-3">
-          {hcIcons[0].cancer[0].riskFactors.map((item) => (
-            <div className="box">
+          {hcIcons[0].cancer[0].riskFactors.map((item, idx) => (
+            <div key={idx} className="box">
               <img src={item.icon} alt="" />
               <h5>{item.symptom}</h5>
             </div>

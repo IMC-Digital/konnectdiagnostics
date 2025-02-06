@@ -7,12 +7,12 @@ export default function PopupProfileSetupForm({ show, onHide, userId }) {
     return (
         <Wrapper>
             <Modal show={show} onHide={onHide} size="lg" aria-labelledby="contained-modal-title-vcenter" centered className='overflow-hidden border-none'>
-                <Modal.Body className='p-0 overflow-hidden rounded bg-k-light'>
-                    <div className="d-flex">
-                        <div className="w-50 d-flex-cc p-3 profilepageSideImagesection">
+                <Modal.Body className='p-0 overflow-hidden rounded bg_light2'>
+                    <div className="row">
+                        <div className="col-md-6 d-flex-cc p-3 profilepageSideImagesection">
                             <Image src={"/images/sideImage1.png"} fluid />
                         </div>
-                        <div className="w-50">
+                        <div className="cold-md-6">
                             <ProfileForm userId={userId} />
                         </div>
                     </div>

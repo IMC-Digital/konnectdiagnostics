@@ -11,22 +11,18 @@ import NavMenu from "./nav-pages/NavMenu";
 function Header({ cart, setCart, auth, setAuth, userId, setUserId, userName, setUserName, message, handleLoginClick, setShowOtpPopup, handleLogout }) {
   return (
     <Wrapper>
-      <Navbar
-        expand="xl"
-        className="bg-body-tertiary bg-light w-100"
-        style={{ zIndex: "100", position: "-webkit-sticky", top: "0" }}
-      >
+      <Navbar expand="xl" className="bg-body-tertiary bg-light w-100" style={{ zIndex: "100", position: "-webkit-sticky", top: "0" }}>
         <Container>
           <Navbar.Brand href="/">
-            <img src="/images/konnect-logo.png" alt="Konect-Logo" style={{ width: "200px" }} />
+            <img src="/images/konnect-logo.png" alt="Konect-Logo" className="header_brand_logo" />
           </Navbar.Brand>
 
-          <div className="w-100 d-flex flex-md-column justify-content-between">
+          <div>
             <div className="d-flex justify-content-end">
               <div className="d-flex align-items-center justify-content-center me-2">
                 {!auth ? (
-                  <Button variant="primary" className="btn p-0 px-3 py-1 l-r-btn btn-k-primary" onClick={() => setShowOtpPopup(true)}>
-                    Login / Register
+                  <Button variant="primary" className="btn p-0 px-3 py-1 l-r-btn btn-k-primary small" onClick={() => setShowOtpPopup(true)}>
+                    Sign-In
                     <i className="ms-2 fa-solid fa-right-to-bracket text-white"></i>
                   </Button>
                 ) : (
@@ -55,13 +51,13 @@ function Header({ cart, setCart, auth, setAuth, userId, setUserId, userName, set
                   </div>
                 }
               >
-                <Dropdown.Item eventKey="0" className="p-0">
+                <Dropdown.Item eventKey="0" className="p-0 m-0">
                   <MiniCart cart={cart} setCart={setCart} />
                 </Dropdown.Item>
               </DropdownButton>
             </div>
 
-            <div className="d-flex justify-content-end">
+            <div id="main_navbar" className="d-flex justify-content-end mt-md-0 mt-2">
               <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-xl`} />
               <Navbar.Offcanvas
                 id={`offcanvasNavbar-expand-xl`}
@@ -70,11 +66,7 @@ function Header({ cart, setCart, auth, setAuth, userId, setUserId, userName, set
               >
                 <Offcanvas.Header closeButton>
                   <Offcanvas.Title id={`offcanvasNavbarLabel-expand-xl`}>
-                    <img
-                      src="/images/konnect-logo.png"
-                      alt="Konect-Logo"
-                      style={{ width: "150px" }}
-                    />
+                    <img src="/images/konnect-logo.png" alt="Konect-Logo" style={{ width: "150px" }} />
                   </Offcanvas.Title>
                 </Offcanvas.Header>
                 <Offcanvas.Body>
@@ -93,19 +85,20 @@ function Header({ cart, setCart, auth, setAuth, userId, setUserId, userName, set
 export default Header;
 
 const Wrapper = styled.div`
-  position: sticky;
-  top: 0;
-  z-index: 99; 
-  .l-r-btn {
-    background-color: var(--primary-color);
-    border: none;
-    &:hover {
-      background-color: var(--secondary-color);
-    }
-  }
+position: sticky;
+top: 0;
+z-index: 99; 
 
-  ${'' /* mini cart */}
-  .mini-cart-wrapper{
+.header_brand_logo{ width: 180px; }
+.l-r-btn {
+  background-color: var(--primary-color);
+  border: none;
+  &:hover {
+    background-color: var(--secondary-color);
+  }
+}
+
+.mini-cart-wrapper{
     width: 350px;
     height: 350px;
     overflow-y: scroll;
@@ -131,5 +124,12 @@ const Wrapper = styled.div`
 }
 .mini-cart-wrapper ul{
     list-style-type: none;
+}
+
+@media only screen and (max-width: 600px) {
+  ${'' /* #main_navbar .navbar-toggler{
+    transfrom: scale(0.2) !important;
+  } */}
+  .header_brand_logo{ width: 150px; }
 }
 `;

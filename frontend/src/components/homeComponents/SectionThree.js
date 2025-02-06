@@ -1,39 +1,17 @@
 import React from "react";
 import styled from "styled-components";
-import DynamicImage from "../requiredPages/DynamicImage";
+import SectionThreeIconsSec from "./SectionThreeIconsSec";
 import "../../App.css";
 
 const SectionThree = () => {
   return (
     <Wrapper>
-      <div className="s3-full">
-        <div className="services">
-          <div className="container d-flex justify-content-sm-around justify-content-start flex-sm-nowrap flex-wrap">
-              {
-                [
-                  {icon: "location", title: "Nearest Center"},
-                  {icon: "Lab", title: "Book a test"},
-                  {icon: "house", title: "Home Collections"},
-                  {icon: "Prescription", title: "Upload Prescription"},
-                  {icon: "download-report", title: "Download Report"}
-                ].map((item, index) => (
-                  <div key={index} className="s3-s">
-                    <div className="s3-icons">
-                      <DynamicImage imageName={`/icons/${item.icon}.svg`} />
-                    </div>
-                    <h2 className="text-k-accent fw-normal text-white"> { item.title } </h2>
-                  </div>
-                ))
-              }
-          </div>
-        </div>
-      </div>
-
-      <div className="secThree row container d-flex mx-auto px-0">
-        <div className="why-konnect-img col-md-6 bg-k-primary">
+      <SectionThreeIconsSec />
+      <div className="secThree row container d-flex mx-md-auto mx-3 px-0">
+        <div className="why-konnect-img col-md-6 bg_primary">
           <div className="why-konnect-content bg-k-secondary">
-              <h2 className="text-k-secondary text-white">Why Konnect</h2>
-              <h2 className="text-k-text text-white">Empowering Health through Precision</h2>
+              <h2 className="text_secondary text-white">Why Konnect</h2>
+              <p className="text-white">Empowering Health through Precision</p>
           </div>
         </div>
 
@@ -112,33 +90,19 @@ const Wrapper = styled.div`
     background-position: center;
     .why-konnect-content {
       position: absolute;
-      padding: 25px;
       border-radius: 15px;
+      padding: 25px;
       left: 5%;
       bottom: 5%;
       color: white;
-      .title h3 {
-        color: white;
-        font-size: 1%.5;
-      }
       .info {
         margin-top: 1rem;
         img {
           width: 35px;
           height: 100%;
         }
-        h3 {
-          color: ${({ theme }) => theme.colors.white};
-          margin: 0;
-          font-size: 1rem;
-          font-weight: 500;
-        }
       }
     }
-  }
-  .services {
-    background-color: ${({ theme }) => theme.colors.primary};
-    padding: 4rem 0 15rem 0;
   }
   .secThree {
     margin-top: -12rem;
@@ -149,32 +113,6 @@ const Wrapper = styled.div`
       img {
         width: 100%;
       }
-    }
-  }
-  .s3-s {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    justify-content: center;
-    align-items: center;
-    .s3-icons {
-      background-color: #fff;
-      border-radius: 100px;
-      padding: 1.5rem;
-      height: 100px;
-      width: 100px;
-      border-bottom: 2px solid ${({ theme }) => theme.colors.secondary};
-      img {
-        width: 100%;
-        height: 100%;
-        transition: all 0.3s;
-      }
-    }
-    &:hover .s3-icons {
-      box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-    }
-    &:hover img {
-      scale: 1.2;
     }
   }
   @media (max-width: 768px) {

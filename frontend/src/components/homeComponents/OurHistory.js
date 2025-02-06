@@ -5,24 +5,24 @@ import HomeSectionsHeading from "./SectionsHeadingAndPara";
 
 const OurHistory = () => {
   return (
-    <Wrapper>
-      <div className="container mt-md-3 mb-md-3 py-md-5 py-sm-3 py-2">
+    <Wrapper className="py-5 px-md-0 px-4">
+      <div className="container">
         <HomeSectionsHeading 
           title={"Our History and Experiences"} 
           para={`Chronicle of Our Journey: our commitment has revolved around enhancing the lives of individuals`}
-          />
+        />
 
-        <div className="oh-section mt-5 container p-0 d-sm-flex">
+        <div className="oh-section mt-3 container p-0 d-sm-flex">
           <div className="oh-left">
             <img
               src="https://img.freepik.com/free-photo/portrait-doctor_144627-39409.jpg?w=740&t=st=1692358246~exp=1692358846~hmac=0ebe64510d017ba81a4031d4c7db0ab35e4e548a9345615c25ce15dd4fa51236"
-              alt=""
+              alt="our_history_section"
             />
           </div>
           <div className="oh-right overflow-hidden">
-            <h5 className="text-k-accent">Our History</h5>
+            <h5 className="text_accent">Our History</h5>
             <div className="content">
-              <h2 className="text-k-secondary">We are committed to deliver your health aspirations</h2>
+              <h2 className="text_secondary">We are committed to deliver your health aspirations</h2>
               <p className="text-k-text text-light mt-3 muted opacity7">
                 We lead the industry through adopting cutting-edge technology
                 and nurturing a team of capable professionals prepared to manage

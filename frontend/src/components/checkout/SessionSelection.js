@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import Slider from 'react-slick';
 
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -60,42 +59,9 @@ export default function SessionSelection({ checkOutFormData, setCheckOutFormData
         return { day, month, date: currentDate.getDate() };
     };
 
-    const tabs = Array.from({ length: 10 }, (_, index) => ({
+    const tabs = Array.from({ length: 8 }, (_, index) => ({
         ...getDate(index),
     }));
-      
-    // CustomPrevArrow and CustomNextArrow components
-    const CustomPrevArrow = (props) => {
-      return (
-        <div
-          className="slick-arrow-custom slick-prev"
-          onClick={props.onClick}
-          style={{ left: "-20px", zIndex: 1 }}
-        >
-          <i className="fas fa-chevron-left"></i>
-        </div>
-      );
-    };
-    
-    const CustomNextArrow = (props) => {
-      return (
-        <div
-          className="slick-arrow-custom border text-success slick-next"
-          onClick={props.onClick}
-          style={{ right: "-20px", zIndex: 1, padding: "10px", border: "2px solid red" }}
-        >
-          <i className="fas fa-chevron-right"></i>
-        </div>
-      );
-    };
-    const settings = {
-      infinite: false,
-      speed: 500,
-      slidesToShow: 8,
-      slidesToScroll: 3,
-      prevArrow: <CustomPrevArrow />,
-      nextArrow: <CustomNextArrow />,
-    };
 
     const handleSessionClick = (session) => {
         setSelectedSession({
@@ -119,31 +85,14 @@ export default function SessionSelection({ checkOutFormData, setCheckOutFormData
         }
     }, [checkOutFormData])
 
-
-    const tabsRender = () => {
-        return tabs.map((item, index) => (
-            <div key={index} className='inline-block d-flex justify-content-center align-items-center flex-column p-2'>
-                <button
-                    className={`btn ${activeIndex === index + 1 ? 'btn-info' : 'btn-outline-secondary'}`}
-                    onClick={() => setActiveIndex(index + 1)}
-                    style={{ width: "65px" }}
-                >
-                    {`${item.day}`}
-                </button>
-                <p className='mb-0'> {`${item.month} ${item.date}`} </p>
-            </div>
-        ));
-    };
-
     return (
         <div>
             <div>
-                <h2 className="text-k-secondary">Preferred Session</h2>
+                <h2 className="text_secondary">Preferred Session</h2>
                 <hr />
-                <div className="d-flex text-white">
-
+                <div className="d-md-flex text-white">
                     {checkOutFormData.selectedSession && (
-                        <div className="d-flex align-items-center bg-k-primary py-2 px-4 rounded-top">
+                        <div className="d-md-flex align-items-center bg_primary py-2 px-4 rounded-top">
                             <p className='text-k-text mb-0 me-3 text-white'>Selected Session (data and time) :</p>
                             <p className="d-flex align-items-center mb-0">
                                 <i className="fa-regular fa-calendar text-white pe-2"></i>
@@ -154,9 +103,19 @@ export default function SessionSelection({ checkOutFormData, setCheckOutFormData
                 </div>
             </div>
 
-            <Slider {...settings} className='bg-light shadow-sm p-3 d-flex align-items-center rounded'>
-                {tabsRender()}
-            </Slider>
+            <div className='d-flex flex-wrap gap-1 py-3 bg-light rounded-3'>
+                {tabs.map((item, index) => (
+                    <div key={index} className='inline-block d-flex justify-content-center align-items-center flex-column'>
+                        <button
+                            className={`btn ${activeIndex === index + 1 ? 'btn-info' : 'btn-outline-secondary'}`}
+                            onClick={() => setActiveIndex(index + 1)}
+                            style={{ width: "75px" }}
+                        >
+                            {`${item.month} ${item.date}`} <span className="small"> {`${item.day}`} </span>
+                        </button>
+                    </div>
+                ))}
+            </div>
 
             <div className="tabs-content p-3">
                 {activeIndex === 1 ? <div>

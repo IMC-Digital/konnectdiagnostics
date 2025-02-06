@@ -37,10 +37,8 @@ export default function OrderAppointmentDate({ order }) {
     return (
         <div>
 
-            <h2 className="text-k-text">
-                {order.sample_submission_type === "home" ? "Home Sample Collection" : "Diagnostic Walkin Appointment"}
-            </h2>
-            <p className="text-k-text small d-flex fw-bold">
+            <h2 className="text_accent"> {order.sample_submission_type === "home" ? "Home Sample Collection" : "Diagnostic Walkin Appointment"} </h2>
+            <p className="small d-flex">
                 <lord-icon
                     src="https://cdn.lordicon.com/abfverha.json"
                     trigger="loop"

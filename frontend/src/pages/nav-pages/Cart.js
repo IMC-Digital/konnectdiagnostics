@@ -6,27 +6,23 @@ import CartBillingSec from '../../components/cart/CartBillingSec';
 
 const Cart = ({ userId, cart, setCart, checkOutFormData, setCheckOutFormData }) => {
     return (
-        <Wrapper>
-            <article className='w-md-1100px mx-auto m-5 p-0 d-flex'>
-                <div className='' style={{ width: "60%" }}>
-                    <div className='px-5 py-3 bg-light d-flex justify-content-between align-items-center border'>
+        <Wrapper className='container py-md-5 py-3'>
+            <article className='row gx-0'>
+                <div className='col-md-8 pb-md-0 pb-5'>
+                    <div className='px-md-5 px-4 py-3 bg-light d-flex justify-content-between align-items-center'>
                         <div>
-                            <h2 className='text-k-secondary text-k-clr-secondary'>
-                                Cart
-                            </h2>
-                            <span className='text-k-clr-text small fw-normal'>Selected Tests & Packages</span>
+                            <h2 className='text_secondary text_secondary_clr'> Cart </h2>
+                            <span className='small fw-normal'>Selected Tests & Packages</span>
                         </div>
-                        <NavLink to="/tests">
-                            <button className='btn btn-outline-secondary btn-sm'>Add +</button>
-                        </NavLink>
+                        <NavLink to="/tests"> <button className='btn btn-outline-secondary btn-sm'>Add +</button> </NavLink>
                     </div>
-                    <div className='px-5 p-2'>
-                        {cart?.map((item) => (
-                            <CartItemsList key={item.product_id} item={item} userId={userId} cart={cart} setCart={setCart} />
+                    <div className='px-md-5 px-4'>
+                        {cart?.map((item, idx) => (
+                            <CartItemsList key={idx} item={item} userId={userId} cart={cart} setCart={setCart} />
                         ))}
                     </div>
                 </div>
-                <div className='p-5' style={{ width: "40%" }}>
+                <div className='col-md-4 p-md-5 p-4'>
                     <CartBillingSec
                         cart={cart}
                         setCart={setCart}

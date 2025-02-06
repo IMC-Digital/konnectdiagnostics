@@ -49,7 +49,6 @@ const Home = ({
         setCart={setCart}
         handleLoginClick={handleLoginClick}
       />
-      {/* <CounterBox /> */}
       <CounterBox2 />
       <PatientExperience />
       <OurHistory />

@@ -30,44 +30,30 @@ export default function Packages({ auth, userId, cart, setCart, handleLoginClick
     <Wrapper>
       {/* <PageBanner title={"Packages"} bannerImg={"packages-bg-image"} /> */}
 
-      <div className="container">
-        <Tab.Container
-          id="packages-tabs"
-          className="dashboard-tabs border mx-auto p-0"
-          defaultActiveKey="0"
-        >
-          <div className="h-100 p-0 my-5 pb-0 d-flex flex-row overflow-hidden rounded">
-            <Nav
-              variant="pills"
-              className="me-3 pb-3 bg-light1 d-flex flex-column flex-shrink-0"
-              style={{ width: "250px" }}
-            >
-              <div className="main-tabs-title-wrapper rounded">
-                {categories.map((item, index) => (
-                  <Nav.Item key={index}>
-                    <Nav.Link eventKey={index} >
-                      <span>
-                        <img
-                          src={`/images/organs/${convertToTitleCase(
-                            item.category_name
-                          )}.png`}
-                          alt="organ"
-                          className="me-2"
-                        />
-                        <span className="text-k-text">
-                          {item.category_name}
+      <div className="container px-md-0 px-4">
+        <Tab.Container id="packages-tabs" defaultActiveKey="0">
+          <div className="p-0 my-5 pb-0 d-md-flex rounded">
+            <div className="overflow-md-hidden overflow-auto">
+              <Nav className="me-3 pb-3 bg-light1 d-flex flex-column flex-shrink-0" style={{ width: "250px" }}>
+                <div className="main-tabs-title-wrapper d-flex flex-md-column rounded">
+                  {categories.map((item, index) => (
+                    <Nav.Item key={index}>
+                      <Nav.Link eventKey={index} >
+                        <span>
+                          <img src={`/images/organs/${convertToTitleCase(item.category_name)}.png`} alt="organ" className="me-2" />
+                          <span className="text-k-text"> {item.category_name} </span>
                         </span>
-                      </span>
-                      <span>
-                        <i className="fa-solid fa-angle-right"></i>
-                      </span>
-                    </Nav.Link>
-                  </Nav.Item>
-                ))}
-              </div>
-            </Nav>
+                        <span>
+                          <i className="fa-solid fa-angle-right"></i>
+                        </span>
+                      </Nav.Link>
+                    </Nav.Item>
+                  ))}
+                </div>
+              </Nav>
+            </div>
 
-            <div className="tab-content bg-white rounded-top ps-3 flex-grow-1" style={{ flex: 1 }}>
+            <div className="tab-content bg-white rounded-top ps-md-3 flex-grow-1" style={{ flex: 1 }}>
               {categories.map((item, index) => (
                 <Tab.Pane key={index} eventKey={index}>
                   <CategoryWisePackagesTabs
@@ -119,4 +105,12 @@ const Wrapper = styled.section`
       }
     }
   }
+
+  @media only screen and (max-width: 600px) {
+    .main-tabs-title-wrapper {
+      .nav-item{
+        width: 150px !important;
+      }
+    }
+  } 
 `;

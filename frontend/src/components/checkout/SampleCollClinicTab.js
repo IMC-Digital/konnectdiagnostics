@@ -6,7 +6,6 @@ import ClinicPinSearch from '../../pages/nav-pages/LocateClinics/ClinicPinSearch
 import SelectClinicGrid from './SelectClinicGrid';
 import { FormControl, FormControlLabel, Radio, RadioGroup } from '@mui/material';
 
-
 export default function SampleCollClinicTab({ userId, profileData, checkOutFormData, setCheckOutFormData }) {
   const [selectedClinic, setSelectedClinic] = useState({})
   const [showNoExctPin, setshowNoExctPin] = useState(false);
@@ -53,9 +52,9 @@ export default function SampleCollClinicTab({ userId, profileData, checkOutFormD
     }
   };
 
-  useEffect(() => {
-    console.log(selectedClinic);
-  }, [selectedClinic])
+  // useEffect(() => {
+  //   console.log(selectedClinic);
+  // }, [selectedClinic])
 
   const handleClinicSelection = (e) => {
     const clinicArea = e.target.value;
@@ -85,49 +84,31 @@ export default function SampleCollClinicTab({ userId, profileData, checkOutFormD
 
   return (
     <div className='py-3'>
-      <div className="d-flex">
-        <div className='w-50 me-2'>
+      <div className="row gx-3 gy-1">
+        <div className='col-md-6'>
           <ClinicSearchBar
             clinicsdata={clinicsdata}
             setClinicsdata={setClinicsdata}
           />
         </div>
-        <div className='w-50'>
-          <ClinicPinSearch
-            handlePinCodeSearch={handlePinCodeSearch}
-            pinSearchTerm={pinSearchTerm}
-            setPinSearchTerm={setPinSearchTerm}
-          />
+        <div className='col-md-6'>
+          <ClinicPinSearch handlePinCodeSearch={handlePinCodeSearch} pinSearchTerm={pinSearchTerm} setPinSearchTerm={setPinSearchTerm} />
         </div>
       </div>
 
       <div className="container">
         <p className={showNoExctPin ? "mt-4 mb-4 text-center text-danger fw-bold" : ""}>{showNoExctPin ? "No Exact Pincode clinics found, but below are nearest centers to entered Pincode" : ""}</p>
         <div className="d-flex flex-wrap justify-content-center">
-
           <FormControl className='w-100'>
-            <RadioGroup
-              aria-labelledby="clinics-radio-field"
-              // defaultValue={checkOutFormData.sampleCollection.clinicSampleCollection.area || "Attapur"}
-              // defaultValue="Attapur"
-              name="radio-buttons-group"
-            >
+            <RadioGroup aria-labelledby="clinics-radio-field" name="radio-buttons-group">
               {clinicsdata.map((item, index) => (
                 <FormControlLabel
                   key={index}
                   value={item.area}
                   className={`shadow-sm rounded my-1 ${checkOutFormData.sampleCollection.clinicSampleCollection.area === item.area ? 'clinicSelectoinChecked' : ''}`}
                   onChange={handleClinicSelection}
-                  control={
-                    <Radio />
-                  }
-                  label={
-                    <SelectClinicGrid
-                      key={item.index}
-                      item={item}
-                      setSelectedClinic={setSelectedClinic}
-                    />
-                  }
+                  control={ <Radio /> }
+                  label={ <SelectClinicGrid key={item.index} item={item} selectedClinic={selectedClinic} setSelectedClinic={setSelectedClinic} /> }
                 />
               ))}
             </RadioGroup>

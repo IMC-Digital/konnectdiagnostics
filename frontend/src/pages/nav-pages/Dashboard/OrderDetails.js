@@ -39,7 +39,7 @@ function OrderDetails({ profileData }) {
     }
 
     return (
-        <div className='w-md-1100px'>
+        <div className='container py-md-0 py-4'>
             {order && order.length > 0 ? (
                 order.map((item, index) => (
                     <div key={index} className='mx-auto my-md-5'>
@@ -53,11 +53,8 @@ function OrderDetails({ profileData }) {
 
                                 {item.order_status === "active" && (
                                     <div className='d-flex'>
-                                        <button
-                                            type="button"
-                                            onClick={handleShow}
-                                            className="btn btn-outline-danger"
-                                        > Cancel / Modify Order
+                                        <button type="button" onClick={handleShow} className="btn btn-outline-danger"> 
+                                            Cancel / Modify Order
                                         </button>
                                     </div>
                                 )}

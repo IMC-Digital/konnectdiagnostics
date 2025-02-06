@@ -56,7 +56,7 @@ const AppointmentTime = ({ order }) => {
 
     return (
         <div>
-            <h2 className="text-k-secondary my-3">
+            <h2 className="text_secondary my-3">
                 {order.sample_submission_type === "home" ? "Home Sample Collection" : "Diagnostic Walkin Appointment"}
             </h2>
             <p className="text-k-text small d-flex">
@@ -95,12 +95,12 @@ function OrderHomeAddressDetails({ orderId, profileData }) {
             </lord-icon>
             {address !== null ? (
                 <div className='ms-2'>
-                    <p className="text-k-secondary">{address.address_name} </p>
-                    <p className="text-k-text small">
+                    <p className="text_secondary">{address.address_name} </p>
+                    <p className="small">
                         <span className="fw-bold"> Address : </span>
                         <span> {address.address_line_1} {address.address_line_2} </span>
                     </p>
-                    <div className='d-flex gap-3'>
+                    <div className='d-md-flex gap-3'>
                         {
                             [
                                 { label: 'Locality', value: address.locality },
@@ -156,12 +156,12 @@ function OrderClinicAddressDetails({ orderId, profileData }) {
             </lord-icon>
             {clinic !== null ? (
                 <div className='ms-2'>
-                    <p className="text-k-secondary">{clinic.name} </p>
-                    <p className="text-k-text small">
+                    <p className="text_secondary">{clinic.name} </p>
+                    <p className="small">
                         <span className="fw-bold"> Address : </span>
                         <span> {clinic.address} </span>
                     </p>
-                    <div className='d-flex gap-3'>
+                    <div className='d-md-flex gap-3'>
                         {
                             [
                                 { label: 'Area', value: clinic.area },

@@ -23,7 +23,7 @@ const ToggleKT = ({ localCartItems, setLocalCartItems, userId, auth, cart, setCa
   }, []);
   
   return (
-    <Wrapper className="p-md-0 p-4">
+    <Wrapper className="p-md-0 p-3">
       <div className="s2-kt mt-4">
         <div className="selectionBox mx-auto d-flex gap-2 mb-4">
           <div className="a-zBox mx-auto">
@@ -33,12 +33,9 @@ const ToggleKT = ({ localCartItems, setLocalCartItems, userId, auth, cart, setCa
             </div>
           </div>
           <div className="organsBox">
-            <div className="">
-              <OrganCarousel testsOrPackage={"tests"} setSearchResults={setSearchResults} />
-            </div>
+            <OrganCarousel testsOrPackage={"tests"} setSearchResults={setSearchResults} />
           </div>
         </div>
-      
 
         <TestsGrid 
           searchResults={searchResults} 
@@ -111,7 +108,7 @@ const Wrapper = styled.div`
     .kt-organs {
       align-items: center;
       &:hover {
-        color: ${({ theme }) => theme.colors.primary};
+        color: var(--primary-color);
       }
     }
     .carousel-root {

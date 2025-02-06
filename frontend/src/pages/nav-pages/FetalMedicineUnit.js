@@ -4,7 +4,7 @@ import FacilitiesCarousel from "../../components/requiredPages/FacilitiesCarouse
 
 const Li = ({ prop }) => {
   return (
-    <li className="bg-k-light rounded px-3 py-2">
+    <li className="bg_light2 rounded px-3 py-2">
       <svg height="20" viewBox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg">
         <g id="Outline">
           <g> <path d="m11.982 14.982c-.265 0-.52-.105-.707-.293l-2.982-2.982c-.391-.391-.391-1.023 0-1.414s1.023-.391 1.414 0l2.275 2.275 7.293-7.293c.391-.391 1.023-.391 1.414 0s.391 1.023 0 1.414l-8 8c-.188.188-.442.293-.707.293z" fill="#d66ea6 " /> </g>
@@ -19,71 +19,72 @@ const Li = ({ prop }) => {
 const FetalMedicineUnit = () => {
   return (
     <Wrapper>
-      <div className="container fmu-banner rounded-4 row d-flex-cb py-6 px-md-5 mx-auto my-md-5 m-3 p-3">
-        <div className="col-md-5 py-6">
-          <p className="text-k-accent mt-3 fmu-text-clr"> Fetal Medicine Unit </p>
-          <h2 className="text-k-primary">
-            Center for Fetal Medicine, that provides
-            <span className="fmu-text-clr"> Mother & Fetus </span> care
-          </h2>
-          <p className="text-k-text">
-            By assessing the fetal growth, its wellbeing, diagnosis and management of fetal disorders and abnormalities which counsels parents to take care of their child in prior.
-          </p>
-        </div>
-        <div className="col-md-7 d-flex-cc" style={{minHeight: "200px"}}>
+      <div className="container mx-auto mt-5 px-md-0 px-4">
+        <div className="fmu_banner rounded-4 row px-md-5 px-4">
+          <div className="col-md-5 py-6 order-md-1 order-2">
+            <p className="text_accent fmu-text-clr"> Fetal Medicine Unit </p>
+            <h2> Center for Fetal Medicine, that provides <span className="fmu-text-clr"> Mother & Fetus </span> care </h2>
+            <p> By assessing the fetal growth, its wellbeing, diagnosis and management of fetal disorders and abnormalities which counsels parents to take care of their child in prior. </p>
+          </div>
+          <div className="col-md-7 d-flex-cc order-md-2 order-1" style={{ minHeight: "200px" }}>
+          </div>
         </div>
       </div>
 
-      <div className="container row d-md-flex py-6 mx-auto my-md-5 m-3 p-md-0 p-3">
+      <div className="container row gx-md-0 mx-auto py-5 px-md-0 px-4">
         <div className="col-md-6 pe-md-5">
           <div className="d-flex flex-column gap-3">
             <h2 className="text-k-primary fmu-text-clr"> About Us </h2>
             <p className="text-k-text">Over a decade, many diagnostic systems are striving to go through a quality process in Fetal Health Diagnosis. Considering the importance and value of fetal health and care, Konnect Diagnostics is a step ahead of all its competitors in market to provide the best fetal diagnosis and guide the mother by suggesting relevant and superior treatment to forbid the future health issues of the fetus. Konnect diagnostics is at the reach to offer a complete and detailed Fetal imaging and diagnosis with a high expertise team and well equipped facility which is comfortable and affordable. We care and let you know how to take care.</p>
           </div>
-          {
-            [
-              { icon: "report", desc: "Accurate Reports" },
-              { icon: "equipments", desc: "Advanced experties and equipments" },
-              { icon: "doctors", desc: "Skilled and experienced doctors and staff" },
-              { icon: "facilities", desc: "Premium facilities like VRTOUR, 3D Printing, Photobooth" },
-            ].map((item, index) => (
-              <div key={index} className="iconBox2 d-flex align-items-center rounded bg-white my-2 shadow-sm p-1">
-                <div className="icon-wrapper d-flex-cc me-2">
-                  <img src={`images/srvcs/fmu/${item.icon}.png`} alt={item.icon} />
+          <div className="mb-md-0 mb-5">
+            {
+              [
+                { icon: "report", desc: "Accurate Reports" },
+                { icon: "equipments", desc: "Advanced experties and equipments" },
+                { icon: "doctors", desc: "Skilled and experienced doctors and staff" },
+                { icon: "facilities", desc: "Premium facilities like VRTOUR, 3D Printing, Photobooth" },
+              ].map((item, index) => (
+                <div key={index} className="iconBox2 d-flex align-items-center rounded bg-white my-2 shadow-sm p-1">
+                  <div className="icon-wrapper d-flex-cc me-2">
+                    <img src={`images/srvcs/fmu/${item.icon}.png`} alt={item.icon} />
+                  </div>
+                  <div>
+                    <p className="fw-bold"> {item.desc} </p>
+                  </div>
                 </div>
-                <div>
-                  <h2 className="text-k-text fw-bold"> {item.desc} </h2>
-                </div>
-              </div>
-            ))
-          }
-        </div>
-        <div className="col-md-6 ps-md-5 d-flex gap-2">
-          <div>
-            <img src={`images/srvcs/fmu/image3.png`} alt="img3" />
+              ))
+            }
           </div>
-          <div className="d-flex flex-column gap-2">
-              <img src={`images/srvcs/fmu/image4.png`} alt="img3" />
-              <img src={`images/srvcs/fmu/image5.png`} alt="img3" />
+        </div>
+        <div className="col-md-6 ps-md-5">
+          <div className="row gx-md-3 gx-1">
+            <div className="col-6">
+              <img src={`images/srvcs/fmu/image3.png`} alt="img3" className="img-fluid h-100" />
+            </div>
+            <div className="col-6">
+              <img src={`images/srvcs/fmu/image4.png`} alt="img3" className="mb-md-3 mb-1 img-fluid" />
+              <img src={`images/srvcs/fmu/image5.png`} alt="img3" className="img-fluid" />
+            </div>
           </div>
         </div>
       </div>
 
-      <section className="container-fluid d-flex flex-column pb-5 bg-k-light" id="fmu_s4">
+      <section className="pb-5 bg_light2" id="fmu_s4">
         <div className="flex-columnmx-auto p-5" id="fmu_s41">
           <div className="text-center">
-            <h2 className="text-k-primary fmu-text-clr"> Our Services </h2>
-            <span className="text-k-text fw-bold">Promising best quality Services</span>
+            <h2 className="text_primary_clr fmu-text-clr"> Our Services </h2>
+            <p>Promising best quality Services</p>
           </div>
         </div>
 
         <div className="container mx-auto">
-          <div className="d-flex bg-white rounded-4">
-            <div className="w-50 m-4" style={{ minHeight: "200px" }}>
-              <img src="/images/fetal-medicine-care/fetalImaging.jpg" alt="nhtjm" className="img-fluid rounded-3"/>
+          <div className="row gx-0 bg-white rounded-4 p-3">
+            <div className="col-md-6" style={{ minHeight: "200px" }}>
+              <img src="/images/fetal-medicine-care/fetalImaging.jpg" alt="nhtjm" className="img-fluid rounded-3" />
             </div>
-            <div className="w-50 p-4 ps-5 d-flex flex-column justify-content-center content_wrapper">
-              <h4 className="text-k-secondary fmu-text-clr">Fetal Imaging</h4>
+            <div className="col-md-6 ps-md-5 py-4">
+              <h2 className="text_secondary fmu-text-clr">Fetal Imaging</h2>
               <ul className="d-flex list-style-none gap-2 flex-wrap">
                 {
                   [
@@ -104,9 +105,9 @@ const FetalMedicineUnit = () => {
             </div>
           </div>
 
-          <div className="d-flex bg-white rounded-4 my-3">
-            <div className="w-50 p-4 d-flex flex-column justify-content-center content_wrapper">
-              <h4 className="text-k-secondary fmu-text-clr"> Imaging In Fertility</h4>
+          <div className="row gx-0 bg-white rounded-4 p-3 my-3">
+            <div className="col-md-6 order-md-1 order-2 pe-md-5 py-4">
+              <h4 className="text_secondary fmu-text-clr"> Imaging In Fertility</h4>
               <ul className="d-flex gap-2 flex-wrap">
                 {
                   [
@@ -126,18 +127,18 @@ const FetalMedicineUnit = () => {
                 }
               </ul>
             </div>
-            <div className="w-50 m-4">
-              <img src="/images/fetal-medicine-care/imagingInFertility.jpg" alt="nhtjm" className="img-fluid rounded-3"/>
+            <div className="col-md-6 order-md-2 order-1">
+              <img src="/images/fetal-medicine-care/imagingInFertility.jpg" alt="nhtjm" className="img-fluid rounded-3" />
             </div>
           </div>
 
-          <div className="d-flex bg-white rounded-4">
-            <div className="w-50 m-4">
-              <img src="/images/fetal-medicine-care/maternal.jpg" alt="nhtjm" className="img-fluid rounded-3"/>
+          <div className="row gx-0 bg-white rounded-4 p-3 my-3">
+            <div className="col-md-6">
+              <img src="/images/fetal-medicine-care/maternal.jpg" alt="nhtjm" className="img-fluid rounded-3" />
             </div>
-            <div className="w-50 p-4 d-flex flex-column justify-content-center content_wrapper">
-              <h4 className="text-k-secondary fmu-text-clr"> Fetal & Maternal</h4>
-              <ul  className="d-flex gap-2 flex-wrap">
+            <div className="col-md-6 ps-md-5 py-4">
+              <h4 className="text_secondary fmu-text-clr"> Fetal & Maternal</h4>
+              <ul className="d-flex gap-2 flex-wrap">
                 {
                   [
                     "INTERVENTIONS",
@@ -154,22 +155,22 @@ const FetalMedicineUnit = () => {
             </div>
           </div>
 
-          <div className="d-flex bg-white rounded-4 my-3">
-            <div className="w-50 p-4 d-flex flex-column justify-content-center content_wrapper">
-              <h4 className="text-k-secondary fmu-text-clr">Genetics</h4>
+          <div className="row gx-0 bg-white rounded-4 p-3 my-3">
+            <div className="col-md-6 pe-md-5 py-4 order-md-1 order-2">
+              <h4 className="text_secondary fmu-text-clr">Genetics</h4>
               <ul className="d-flex gap-2 flex-wrap">
                 <Li prop={"Genetic counselling"} />
                 <Li prop={"Blood investigations"} />
               </ul>
             </div>
-            <div className="w-50 m-4">
+            <div className="col-md-6 order-md-2 order-1">
               <img src="/images/fetal-medicine-care/genetics.jpg" alt="fmu_img" className="img-fluid rounded-3" />
             </div>
           </div>
         </div>
       </section>
 
-      <section className="fmu-bg-clr2 py-6">
+      <section className="fmu-bg-clr2 py-6 px-md-0 px-4">
         <div className="container">
           <h2 className="text-center text-k-primary fmu-text-clr"> Konnect Facilities </h2>
           <div>
@@ -184,7 +185,7 @@ const FetalMedicineUnit = () => {
 export default FetalMedicineUnit;
 
 const Wrapper = styled.div`
-.fmu-banner{
+.fmu_banner{
   background: var(--fmu-clr2) url('/images/srvcs/fmu/bannerImg.jpg');
   background-position: right center;
   background-repeat: no-repeat;
@@ -227,6 +228,15 @@ const Wrapper = styled.div`
     list-style-type: none;
     margin-left: 0;
     padding: 0;
+  }
+}
+@media only screen and (max-width: 600px){
+  .fmu_banner{
+    background-position: top center;
+    background-size: 100%;
+    &::after{
+      background-image: linear-gradient(to bottom, transparent, var(--fmu-clr2, #ffffff) 50%);
+    }
   }
 }
 `;

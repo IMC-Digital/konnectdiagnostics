@@ -70,7 +70,7 @@ const FacilitiesCarousel = () => {
                 alt={`${item.img}`}
                 className="rounded"
               />
-              <h2 className="text-k-accent fmu-text-clr"> {item.title} </h2>
+              <h2 className="text_accent fmu-text-clr"> {item.title} </h2>
             </div>
           ))
         }

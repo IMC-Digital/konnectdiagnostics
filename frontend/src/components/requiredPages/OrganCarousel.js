@@ -53,7 +53,7 @@ const OrganCarousel = ({ setSearchResults, testsOrPackage }) => {
             onClick={(e) => handleOrgSel(e, item)}
             >
             <img src={`/images/organs/${item.category_name}.png`} alt={item.category_name + "icon"} />
-            <p className="mb-0 text-k-accent small clr-inherit">{item.category_name}</p>
+            <p className="mb-0 text_accent small clr-inherit">{item.category_name}</p>
           </div>
         ))}
       </div>

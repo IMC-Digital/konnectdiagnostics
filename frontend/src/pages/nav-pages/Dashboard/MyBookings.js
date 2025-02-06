@@ -11,8 +11,8 @@ function MyBookings({
 }) {
     return (
         <div>
-            <h2 className='text-k-secondary'>Order history</h2>
-            <hr />
+            <h2 className='text_secondary'>Order history</h2>
+            
             <Tabs defaultActiveKey="home" id="dashboard-orders-tab" className="mb-3 dashboard-orders-tab">
                 {
                     [
@@ -33,7 +33,7 @@ function MyBookings({
                         />]
                     ].map((item, index) => (
                         <Tab key={index} eventKey={item[0]} title={
-                            <p className="text-k-accent tabs-bottom-line position-relative"> {item[1]} </p>
+                            <p className="text_accent tabs-bottom-line position-relative"> {item[1]} </p>
                         }>
                             {item[2]}
                         </Tab>

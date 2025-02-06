@@ -53,37 +53,21 @@ export default function PackageCard({ cart, setCart, item }) {
 
   return (
     <Wrapper>
-      <div className="package-card-wrapper rounded-3 p-0 overflow-hidden">
-        <div className="d-flex align-items-center bg-k-light p-3">
-          <div
-            className="bg-white d-flex-cc p-2 rounded me-2"
-            style={{ width: "45px", height: "45px" }}
-          >
-            <Image
-              src={`/images/organs/${convertToTitleCase(
-                item.package_category
-              )}.png`}
-              rounded
-              style={{ width: "35px", height: "35px" }}
-            />
+      <div className="package-card-wrapper rounded-3 overflow-hidden p-0">
+        <div className="d-flex align-items-center bg_light2 p-3">
+          <div className="bg-white d-flex-cc p-2 rounded me-2" style={{ width: "45px", height: "45px" }}>
+            <Image src={`/images/organs/${convertToTitleCase(item.package_category)}.png`} rounded style={{ width: "35px", height: "35px" }} />
           </div>
-          <h2 className="text-k-text mb-0">
-            <span className="text-k-clr-text text-k-accent fw-bold">
-              {" "}
-              {item.package_name}{" "}
-            </span>
-            <br />
-            <span className="small text-k-clr-secondary">
-              Tests covered {packageTests && packageTests.length}{" "}
-            </span>
-          </h2>
+          <div className="ms-2">
+            <h2 className="text_accent mb-1"> {item.package_name} </h2>
+            <span className="small text_secondary_clr"> Tests covered {packageTests && packageTests.length} </span>
+          </div>
         </div>
         <div className="hr"></div>
 
         <div className="p-0">
           <div className="p-3">
-            <p className="text-k-accent mb-0"> Tests / Parameters </p>
-
+            <p className="text_accent mb-0"> Tests / Parameters </p>
             <PackageTestsGrid
               packageId={item.package_id}
               packageTests={packageTests}
@@ -91,7 +75,7 @@ export default function PackageCard({ cart, setCart, item }) {
             />
           </div>
 
-          <div className="ftr-sec bg-k-light px-3 py-2 w-100 d-flex-cb tcardfooter">
+          <div className="ftr-sec bg_light2 px-3 py-2 w-100 d-flex-cb tcardfooter">
             {isItemSelected ? (
               <button
                 className="atc-btn-rmv btn btn-sm btn-success text-white"
@@ -107,7 +91,7 @@ export default function PackageCard({ cart, setCart, item }) {
                 Add to Cart
               </button>
             )}
-            <h5 className="price mb-0 fw-bolder text-k-clr-secondary">
+            <h5 className="price mb-0 fw-bolder text_secondary_clr">
               <small>&#8377; </small> {sumPrices(packageTests)}{" "}
             </h5>
           </div>

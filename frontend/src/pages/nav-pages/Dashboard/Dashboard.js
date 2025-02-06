@@ -37,10 +37,10 @@ function Dashboard({ userId, userName, auth, profileData }) {
 
   return (
     <Wrapper>
-      <div className="container">
-        <div className="userDashboard-wrapper shadow-sm rounded my-5 mx-auto p-0">
-          <div className="d-flex">
-            <div className="tab-title-wrapper-main bg-light w-25">
+      <div className="container p-md-0 p-2">
+        <div className="userDashboard-wrapper border rounded my-md-5 mx-auto p-0">
+          <div className="row gx-0">
+            <div className="tab-title-wrapper-main bg-light col-md-3">
               <div className="d-flex p-3">
                 <div>
                   <div className="profilePhoto">
@@ -48,7 +48,7 @@ function Dashboard({ userId, userName, auth, profileData }) {
                   </div>
                 </div>
                 <div className="ps-2">
-                  <h2 className="text-k-accent mb-0">{userName}</h2>
+                  <h2 className="text_accent mb-0">{userName}</h2>
                   <p className="text-k-text text-light-dark small mb-0">
                     {profileData.email}
                   </p>
@@ -57,13 +57,17 @@ function Dashboard({ userId, userName, auth, profileData }) {
                   </p>
                 </div>
               </div>
-              {DashboardTabs.map((tab, index) => (
-                <div key={index} className={`tab-title py-2 px-4 ${index === activeTab ? "active" : ""}`} onClick={() => handleTabClick(index)}>
-                  <span className="text-k-text">{tab}</span>
-                </div>
-              ))}
+
+              <div>
+                {DashboardTabs.map((tab, index) => (
+                  <div key={index} className={`tab-title py-2 px-4 ${index === activeTab ? "active" : ""}`} onClick={() => handleTabClick(index)}>
+                    <p className="">{tab}</p>
+                  </div>
+                ))}
+              </div>
             </div>
-            <div className="tab-content w-75 px-md-5 py-md-3 p-sm-3 p-2">
+
+            <div className="col-md-9 tab-content px-md-5 py-md-3 p-sm-3 p-2 py-4">
               {DashboardTabs[activeTab] === DashboardTabs[0] && <MyBookings
                 allOrdersData={allOrdersData}
                 userId={userId}
@@ -128,7 +132,7 @@ const Wrapper = styled.section`
     transition: all ease-in-out 0.2s;
     .icon {
       width: 20px;
-      fill: ${({ theme }) => theme.colors.primary};
+      fill: var(--primary-color);
     }
   }
   .tab-title-wrapper-main .active {
@@ -158,4 +162,8 @@ const Wrapper = styled.section`
     z-index: 0;
   }
   /* -- Order Tracking */
+
+  @media only screen and (max-width: 600px) {
+    .tab-title-wrapper-main { height: auto;}
+  }
 `;

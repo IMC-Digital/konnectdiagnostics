@@ -19,7 +19,7 @@ function CancelledOrders({ userId, navigateToOrderDetails }) {
   }, [setCancelledOrders, userId]);
 
   return (
-    <div id='past-orders-tab' className='d-flex flex-wrap gap-2 p-3'>
+    <div id='past-orders-tab' className='d-md-flex flex-wrap gap-2 p-3'>
       {cancelledOrders && cancelledOrders.length > 0 ? (
         cancelledOrders.map((orderItem, index) => (
           <OrderItemCard 

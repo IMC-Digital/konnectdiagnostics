@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-// Remove the script tag for jQuery
 
 function CounterBox2() {
   const [counts, setCounts] = useState({
@@ -27,51 +26,47 @@ function CounterBox2() {
     };
 
     // Usage
-    animateCounting(2000, "linesOfCode");
-    animateCounting(480, "projectsDone");
-    animateCounting(120, "happyClients");
-    animateCounting(5000000, "cupsOfCoffee");
+    animateCounting(2000, "numb1");
+    animateCounting(480, "numb2");
+    animateCounting(120, "numb3");
+    animateCounting(5, "numb4");
   }, []);
 
   return (
-    <Wrapper>
-      <section
-        id="counter-stats"
-        className="wow fadeInRight"
-        data-wow-duration="1.4s"
-      >
+    <Wrapper className="bg_primary py-5">
+      <section id="counter-stats" className="wow fadeInRight" data-wow-duration="1.4s">
         <div className="container">
-          <div className="row">
-            <div className="col-lg-3 col-6 stats">
-              <img src="/images/icons/tests-white.svg" alt="" />
-              <div className="counting" data-count={counts.linesOfCode}>
-                {counts.linesOfCode}+
-              </div>
-              <h5>Tests</h5>
+          <div className="d-flex gap-2 flex-wrap justify-content-center align-items-center">
+            <div className="stats">
+              <img src="/images/icons/tests-white.svg" alt="statIcon1" />
+              <h2 className="text-white my-3" data-count={counts.numb1}>
+                {counts.numb1}+
+              </h2>
+              <h5 className="text-white">Tests</h5>
             </div>
 
-            <div className="col-lg-3 col-6 stats">
-              <img src="/images/icons/test-bottle.svg" alt="" />
-              <div className="counting" data-count={counts.projectsDone}>
-                {counts.projectsDone}+
-              </div>
-              <h5>Types of tests</h5>
+            <div className="stats">
+              <img src="/images/icons/test-bottle.svg" alt="statIcon2" />
+              <h2 className="text-white my-3" data-count={counts.numb2}>
+                {counts.numb2}+
+              </h2>
+              <h5 className="text-white">Types of tests</h5>
             </div>
 
-            <div className="col-lg-3 col-6 stats">
-              <img src="/images/icons/hospital-white.svg" alt="" />
-              <div className="counting" data-count={counts.happyClients}>
-                {counts.happyClients}+
-              </div>
-              <h5>Centers</h5>
+            <div className="stats">
+              <img src="/images/icons/hospital-white.svg" alt="statIcon3" />
+              <h2 className="text-white my-3" data-count={counts.numb3}>
+                {counts.numb3}+
+              </h2>
+              <h5 className="text-white">Centers</h5>
             </div>
 
-            <div className="col-lg-3 col-6 stats">
-              <img src="/images/icons/customers-white.svg" alt="" />
-              <div className="counting" data-count={counts.cupsOfCoffee}>
-                {counts.cupsOfCoffee}+
-              </div>
-              <h5>Customers</h5>
+            <div className="stats">
+              <img src="/images/icons/customers-white.svg" alt="statIcon4" />
+              <h2 className="text-white my-3" data-count={counts.numb4}>
+                {counts.numb4}M+
+              </h2>
+              <h5 className="text-white">Customers</h5>
             </div>
           </div>
         </div>
@@ -83,26 +78,17 @@ function CounterBox2() {
 export default CounterBox2;
 
 const Wrapper = styled.section`
-  section#counter-stats {
-    background-color: ${({ theme }) => theme.colors.primary};
-    padding: 50px;
-    display: flex;
-    justify-content: center;
-    ${"" /* margin-top: 100px; */}
-  }
-
   .stats {
+    width: 180px;
+    border: 1px solid rgba(255,255,255,0.2);
     text-align: center;
+    border-radius: 8px;
     font-size: 35px;
     font-weight: 700;
-    color: white;
-    .counting {
-      color: white;
+    padding: 20px;
+    img {
+      width: 50px;
     }
-  }
-
-  .stats img {
-    width: 50px;
   }
 
   /*/ end count stats /*/

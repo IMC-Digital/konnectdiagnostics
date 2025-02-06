@@ -16,7 +16,7 @@ const HcCard = () => {
 
                 <div className="p-3">
                   <a href="/">{item.category}</a>
-                  <h2 className="condition-title text-k-accent">{item.title}</h2>
+                  <h2 className="condition-title text_accent">{item.title}</h2>
                   <p className="text-k-text small text-muted">{item.excerpt.slice(0,35)}...</p>
                   <button className="btn btn-outline-secondary btn-sm">Know More</button>
                 </div>
@@ -57,5 +57,8 @@ const Wrapper = styled.section`
     height: 200px;
     width: 100%; 
   }
-}
+}@media only screen and (max-width: 600px){
+  .hc-card {
+    .box {width: 95%;}
+  }
 `;

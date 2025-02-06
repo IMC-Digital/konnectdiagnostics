@@ -29,8 +29,8 @@ const HeroSlider = () => {
             </div>
             <div className="d-flex align-items-center h-100">
               <div className="w-50 pe-5">
-                <h1 className="text-k-primary text-k-clr-primary text-capitalize">
-                  We are  <span className="text-k-clr-secondary">Upgrading</span> to serve you better
+                <h1 className="text-k-primary text_primary text-capitalize">
+                  We are  <span className="text_secondary_clr">Upgrading</span> to serve you better
                 </h1>
               </div>
             </div>
@@ -39,8 +39,8 @@ const HeroSlider = () => {
           <div className="sliderSec1">
             <div className="container d-flex align-items-center justify-content-center flex-md-row flex-column h-100">
               <div className="w-md-50 w-100 pe-5 p-md-0">
-                <h1 className="text-k-primary text-k-clr-primary text-capitalize"> 
-                  Navigating <span className="text-k-clr-secondary">Health Solutions</span> with konnect
+                <h1 className="text-k-primary text_primary text-capitalize"> 
+                  Navigating <span className="text_secondary_clr">Health Solutions</span> with konnect
                 </h1>
               </div>
               <div className="w-md-50 w-100"> </div>
@@ -51,10 +51,10 @@ const HeroSlider = () => {
             <div className="container align-self-center">
               <div className="slider-2 d-md-flex align-self-center justify-content-between align-items-center">
                 <div className="w-md-50 w-100 pe-md-5 p-md-0">
-                  <h1 className="text-k-primary text-k-clr-primary text-capitalize"> 
-                    Your <span className="text-k-clr-secondary">partner</span> in keeping you <span className="text-k-clr-secondary">healthy</span> 
+                  <h1 className="text-k-primary text_primary text-capitalize"> 
+                    Your <span className="text_secondary_clr">partner</span> in keeping you <span className="text_secondary_clr">healthy</span> 
                   </h1>
-                  <p className="text-k-accent"> Get Your Reports in 12 hours <span className="text-danger"> * </span> </p>
+                  <p className="text_accent"> Get Your Reports in 12 hours <span className="text-danger"> * </span> </p>
                 </div>
 
                 <div className="w-md-50 w-100 p-5 d-flex-cc">

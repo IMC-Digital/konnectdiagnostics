@@ -34,12 +34,11 @@ const Tests = ({ userId, cart, setCart }) => {
 
       <div className="container">
         <Tab.Container id="tests-tabs" className="tests-tabs border mx-auto p-0" defaultActiveKey="0">
-          <div className="h-100 p-0 my-5 pb-0 d-flex overflow-hidden rounded">
-            <div>
+          <div className="h-100 p-0 my-5 pb-0 d-md-flex rounded">
+            <div className="overflow-md-hidden overflow-auto">
               {/* <SearchBar setSearchResults={setTests} /> */}
-
               <Nav variant="pills" className="pb-3 bg-light1 d-flex flex-column flex-shrink-0" style={{ width: "250px" }}>
-                <div className="main-tabs-title-wrapper rounded">
+                <div className="main-tabs-title-wrapper d-flex flex-md-column rounded">
                   {categories.map((item, index) => (
                     <Nav.Item key={index}>
                       <Nav.Link eventKey={index} >
@@ -103,4 +102,12 @@ const Wrapper = styled.section`
       }
     }
   }
+
+  @media only screen and (max-width: 600px) {
+    .main-tabs-title-wrapper {
+      .nav-item{
+        width: 150px !important;
+      }
+    }
+  } 
 `;

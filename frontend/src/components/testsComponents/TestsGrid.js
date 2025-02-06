@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { TestCard } from '../requiredPages/TestCard';
 import { styled } from 'styled-components';
 
-function TestsGrid({ searchResults, cart, setCart, cardsPerPage}) {
+function TestsGrid({ searchResults, cart, setCart, cardsPerPage }) {
   const [currentPage, setCurrentPage] = useState(1);
   const totalPages = Math.ceil(searchResults.length / cardsPerPage);
   const handlePageChange = (newPage) => {
@@ -27,54 +27,49 @@ function TestsGrid({ searchResults, cart, setCart, cardsPerPage}) {
   // pagination
 
   return (
-    <Wrapper>
-        <div className="categories d-flex justify-content-center align-items-center rounded py-2">
-          <h6 className="px-4 py-2 rounded  bg-light text-dark fw-bold small text-center">Total tests {searchResults.length}</h6>
-        </div>
+    <Wrapper className='d-flex flex-column align-items-center'>
+      <h6 className="px-4 py-2 rounded bg-light small text-center d-inline" style={{ width: '150px' }}>Total Tests: {searchResults.length}</h6>
+      <div className="d-flex flex-wrap justify-content-center gap-2 w-100">
+        {
+          visibleCards.map((item, index) => (
+            <TestCard
+              key={index}
+              item={item}
+              cart={cart}
+              setCart={setCart}
+            />
+          ))
+        }
+      </div>
 
-        <div className="box-right-bottom mt-3">
-          <div className="d-flex justify-content-center flex-wrap gap-2">
-            {
-              visibleCards.map((item, index) => (
-                <TestCard 
-                  key={index} 
-                  item={item}
-                  cart={cart} 
-                  setCart={setCart}
-                />
-              ))
-            }
-          </div>
-        </div>
-
-        <div className="pagination">
-          <button onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage === 1}>
-            <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512">
-              <path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160zm352-160l-160 160c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L301.3 256 438.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0z"/>
-            </svg>
+      <div className="pagination mb-4">
+        <button onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage === 1}>
+          <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512">
+            <path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160zm352-160l-160 160c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L301.3 256 438.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0z" />
+          </svg>
+        </button>
+        {getPageNumbers().map((pageNumber, index) => (
+          <button
+            key={index}
+            onClick={() => { if (pageNumber !== '...') { handlePageChange(pageNumber); } }}
+            className={currentPage === pageNumber ? "active" : ""}
+          >
+            {pageNumber}
           </button>
-          {getPageNumbers().map((pageNumber, index) => (
-            <button 
-              key={index} 
-              onClick={() => {if (pageNumber !== '...') {handlePageChange(pageNumber);}}}
-              className={currentPage === pageNumber ? "active" : ""}
-            >
-              {pageNumber}
-            </button>
-          ))}
-          <button onClick={() => handlePageChange(currentPage + 1)} disabled={currentPage === totalPages} >
-            <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512">
-              <path d="M470.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L402.7 256 265.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160zm-352 160l160-160c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L210.7 256 73.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0z"/>
-            </svg>
-          </button>
-        </div>
+        ))}
+        <button onClick={() => handlePageChange(currentPage + 1)} disabled={currentPage === totalPages} >
+          <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512">
+            <path d="M470.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L402.7 256 265.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160zm-352 160l160-160c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L210.7 256 73.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0z" />
+          </svg>
+        </button>
+      </div>
     </Wrapper>
   )
 }
 
 export default TestsGrid;
 
-const Wrapper = styled.section`
+const Wrapper = styled.div`
   /* pagination */
   .pagination {
     display: flex;

@@ -4,17 +4,17 @@ import { styled } from "styled-components";
 
 const RadiologyServices = () => {
   return (
-    <Wrapper>
+    <Wrapper className="px-md-0 px-4">
       <div className="container rs-banner rounded-4 row d-flex-cb py-6 px-md-5 mx-auto my-md-5 m-3 p-3">
         <div className="col-md-5 py-6">
           <h2 className="text-k-primary">
             Konnect Diagnostics offers top-tier
-            <span className="text-k-clr-secondary"> Radiology </span> Services
+            <span className="text_secondary_clr"> Radiology </span> Services
           </h2>
           <p className="text-k-text">
             With cutting-edge technology, expert radiologists, and swift turnaround times for accurate diagnoses.
           </p>
-          <p className="text-k-accent mt-3 text-k-clr-secondary">
+          <p className="text_accent mt-3 text_secondary_clr">
             Your health, our priority
           </p>
         </div>
@@ -46,12 +46,12 @@ const RadiologyServices = () => {
                         <div className="d-flex-cc w-100">
                           <Image src={`/images/srvcs/radiology/machines/${item.title}.png`} alt={item.title} className="img-fluid p-3" />
                         </div>
-                        <h2 className="text-k-accent ps-4 pe-3 py-2 rs-title">
+                        <h2 className="text_accent ps-4 pe-3 py-2 rs-title">
                           <span>
-                            <span className="text-k-clr-secondary"> {item.title} </span>
+                            <span className="text_secondary_clr"> {item.title} </span>
                             { item.fullForm !== "" && <span className="text-k-text fw-normal"> - {item.fullForm} </span> }
                           </span>
-                          <i className="fa-solid fa-arrow-right-long text-k-clr-secondary"></i>
+                          <i className="fa-solid fa-arrow-right-long text_secondary_clr"></i>
                         </h2>
                     </Link>
                   </div>

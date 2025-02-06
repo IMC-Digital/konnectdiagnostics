@@ -50,40 +50,33 @@ export const TestCard = ({ cart, setCart, item }) => {
   return (
     <Wrapper>
       <div className="tstCards d-flex">
-        <img src="/images/k.png" className="cardcomplogo" alt="" />
+        <img src="/images/k.png" className="cardcomplogo" alt="K_logo" />
         <div className="tstsCard w-100">
           <div className="go-corner"></div>
           <div className="tcardbody">
-            <div className="card_org_cont">
-              <img src={"/images/organs/" + item.category + ".png"} className="testOrgImg" alt="" />
-            </div>
-            <h2 className="tstTitle text-k-text fw-bold mb-2" style={{height: "50px"}}> {item.test_name} </h2>
+            { item.category && (
+                <div className="card_org_cont">
+                  <img src={`/images/organs/${item.category}.png`} className="testOrgImg" alt={item.category} />
+                </div>
+              )
+            }
+            <h2 className="text_accent fw-normal text_secondary_clr"> {item.test_name} </h2>
             <hr />
             <p className="mb-1 small mb-0"> <span className="fw-bold"> Fasting: </span> {item.fasting} </p>
             <p className="mb-1 small mb-0"> <span className="fw-bold"> Sample Type: </span> {item.sample_type} </p>
             <p className="mb-1 small mb-0"> <span className="fw-bold"> Pre Test Preparation: </span> {item.pre_test_preparation} </p>
           </div>
 
-          <div className="ftr-sec bg-k-light px-3 py-2 w-100 d-flex justify-content-between border-top tcardfooter">
+          <div className="ftr-sec bg_light2 px-3 py-2 w-100 d-flex justify-content-between border-top tcardfooter">
             <div>
               {isItemSelected ? (
-                <button
-                  className="atc-btn-rmv btn btn-success text-white"
-                  onClick={() => handleRemoveFromCart(item)}
-                >
-                  Remove Item
-                </button>
+                <button className="atc-btn-rmv btn btn-success text-white" onClick={() => handleRemoveFromCart(item)}> Remove Item </button>
               ) : (
-                <button
-                  className="atc-btn btn btn-secondary text-white"
-                  onClick={() => handleAddToCart(item)}
-                >
-                  Add to Cart
-                </button>
+                <button className="atc-btn btn btn-secondary text-white" onClick={() => handleAddToCart(item)}> Add to Cart </button>
               )}
             </div>
             <div className="d-flex-cc">
-              <h2 className="price mb-0 fw-bolder text-k-accent text-k-clr-primary">
+              <h2 className="price mb-0 fw-bolder text_accent">
                 <small>&#8377; </small> {item.price}{" "}
               </h2>
             </div>
@@ -98,8 +91,8 @@ export const TestCard = ({ cart, setCart, item }) => {
 
 const Wrapper = styled.section`
   .atc-btn {
-    background-color: ${({ theme }) => theme.colors.secondary};
-    border: 0px solid ${({ theme }) => theme.colors.primary};
+    background-color: var(--secondary-color);
+    border: 0px solid var(--primary-color);
   }
   .tstCards {
     flex-wrap: wrap;
@@ -125,10 +118,6 @@ const Wrapper = styled.section`
       box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
       border: 2px solid #00aeef;
       background: #F6F9FC;
-      ${'' /* .tstTitle{ color: white; }
-      .tcardbody p, .tcardbody span{ color: white; }
-      .testOrgImg{ transform: scale(1.2) }
-      .tcardfooter button{ background: white; color: red; } */}
     }
   }
   .tcardbody {

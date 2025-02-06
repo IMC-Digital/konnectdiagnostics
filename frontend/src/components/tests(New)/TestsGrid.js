@@ -4,7 +4,7 @@ import axios from "axios";
 import { TestCard } from "../requiredPages/TestCard";
 
 export default function TestsGrid({ item, cart, setCart }) {
-  const [tests, setTests] = useState([]);
+    const [tests, setTests] = useState([]);
 
     useEffect(() => {
         const getTests = async () => {
@@ -27,11 +27,9 @@ export default function TestsGrid({ item, cart, setCart }) {
 
     return (
         <div className="pt-2">
-            <div>
-                <h2 className="text-k-text bg-k-light rounded-2 px-4 py-2 mb-0 d-inline">
-                    {tests.length} Tests found for {item.category_name}.
-                </h2>
-            </div>
+            <p className="bg_light2 rounded-2 px-4 py-2 mb-0 d-inline">
+                {tests.length} Tests found for {item.category_name}.
+            </p>
             <div className="d-flex flex-wrap mt-3 gap-2">
                 {tests.map((item, index) => (
                     <TestCard key={index} item={item} cart={cart} setCart={setCart} />

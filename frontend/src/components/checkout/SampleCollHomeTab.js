@@ -11,12 +11,6 @@ export default function SampleCollHomeTab({ setShowAddNewAddressPopup, userId, p
   const [altMobErrorMessage, setAltMobErrorMessage] = useState("");
   const [altMobSuccessMessage, setAltMobSuccessMessage] = useState("");
 
-  // const handleAltMobChange = (e) => {
-  //   const newValue = e.target.value;
-  //   const numericValue = newValue.replace(/\D/g, '');
-  //   setUserAltMob(numericValue);
-  // };
-
   useEffect(() => {
     const fetchUserAddresses = async () => {
       try {
@@ -36,7 +30,6 @@ export default function SampleCollHomeTab({ setShowAddNewAddressPopup, userId, p
 
     const selectedAddIndex = Number(e.target.value);
     const selectedAddress = userAddresses[selectedAddIndex];
-    // console.log(selectedAddIndex, typeof selectedAddIndex, selectedAddress);
 
     setCheckOutFormData((prevData) => ({
       ...prevData,
@@ -88,49 +81,25 @@ export default function SampleCollHomeTab({ setShowAddNewAddressPopup, userId, p
       <div className="d-flex justify-content-between align-items-center">
         <p className="mb-0"> Select Your Address </p>
       </div>
-      <div className="d-flex">
-        <Form.Select
-          aria-label="Default select example"
-          onChange={(e) => {
-            handleUserAddressChange(e);
-          }}
-          className="me-0"
-        // style={{ width: "250px" }}
-        >
-          <option value={checkOutFormData.sampleCollection.homeSampleCollection.address_name === "Select Address"}>
-            Select Address
-          </option>
+      <div className="d-md-flex gap-2">
+        <Form.Select aria-label="Default select example" onChange={(e) => { handleUserAddressChange(e); }} className="me-0 my-md-0 my-2">
+          <option value={checkOutFormData.sampleCollection.homeSampleCollection.address_name === "Select Address"}> Select Address </option>
           {userAddresses.map((address, index) => (
-            <option
-              key={index}
-              value={index}
-              selected={
-                address.address_name ===
-                checkOutFormData.sampleCollection.homeSampleCollection
-                  .address_name
-              }
-            >
+            <option key={index} value={index} selected={ address.address_name === checkOutFormData.sampleCollection.homeSampleCollection.address_name }>
               {address.address_name}
             </option>
           ))}
         </Form.Select>
 
-        <button
-          className="btn btn-outline-secondary btn-sm"
-          style={{ width: "200px" }}
-          onClick={() => {
-            setShowAddNewAddressPopup(true);
-          }}
-        >
+        <button className="btn btn-outline-secondary btn-sm" style={{ width: "200px" }} onClick={() => { setShowAddNewAddressPopup(true); }}>
           Add New Address +
         </button>
       </div>
 
       <div className="my-4">
-        {checkOutFormData.sampleCollection.homeSampleCollection.address_name !==
-          "" ? (
+        {checkOutFormData.sampleCollection.homeSampleCollection.address_name !== "" ? (
           <>
-            <p className="mb-1">
+            <p className="mb-1 small">
               <strong>Address:</strong>
               {
                 checkOutFormData.sampleCollection.homeSampleCollection
@@ -144,13 +113,13 @@ export default function SampleCollHomeTab({ setShowAddNewAddressPopup, userId, p
               {checkOutFormData.sampleCollection.homeSampleCollection.state} -{" "}
               {checkOutFormData.sampleCollection.homeSampleCollection.pincode}
             </p>
-            <p className="mb-1">
+            <p className="mb-1 small">
               <span className='fw-bold'>User: </span> {profileData.fullname}
             </p>
-            <p className="mb-1">
+            <p className="mb-1 small">
               <span className='fw-bold'>Regd. Mobile Number: </span> {profileData.mobile_number}
             </p>
-            <p className="mb-1">
+            <p className="mb-1 small">
               <span className='fw-bold'>Alternative Mobile Number: </span> {profileData.alternate_mobile_number}
             </p>
           </>
@@ -161,25 +130,8 @@ export default function SampleCollHomeTab({ setShowAddNewAddressPopup, userId, p
 
       <div>
         <div className="mb-0">
-          {/* <InputGroup className="mb-3 w-auto">
-            <InputGroup.Text id="basic-addon1">
-              Alternative Mobile Number:
-            </InputGroup.Text>
-            <Form.Control
-              placeholder="Alternative Mobile Number"
-              aria-label="Alternative Mobile Number"
-              aria-describedby="basic-addon1"
-              value={userAltMob}
-              type="tel"
-              onChange={(e) => setUserAltMob(e.target.value)}
-            />
-            <button className="btn btn-primary" onClick={handleAltMobNum}>
-              Enter
-            </button>
-          </InputGroup> */}
-
-          <p className="text-k-accent"> Alternative Mobile Number: </p>
-          <InputGroup style={{ width: "400px" }}>
+          <p className="text_accent"> Alternative Mobile Number: </p>
+          <InputGroup style={{ width: "335px" }}>
             <Form.Control
               required
               placeholder="Alternative Mobile Number"
@@ -187,28 +139,11 @@ export default function SampleCollHomeTab({ setShowAddNewAddressPopup, userId, p
               aria-describedby="alt_mob"
               name="alt_mob"
               type='tel'
-              // defaultValue={profileData.alternate_mobile_number}
               defaultValue={userAltMob}
-              // onKeyPress={(e) => {
-              //   const keyCode = e.keyCode || e.which;
-              //   const keyValue = String.fromCharCode(keyCode);
-              //   const numericRegex = /^[0-9]+$/;
-              //   if (!numericRegex.test(keyValue)) {
-              //     e.preventDefault();
-              //   }
-              // }}
               onChange={(e) => setUserAltMob(e.target.value)}
             />
 
-
-            <Button
-              type='button'
-              variant="outline-secondary"
-              id="alt_mob_btn"
-              onClick={handleAltMobNum}
-            >
-              Change
-            </Button>
+            <Button type='button' variant="outline-secondary" id="alt_mob_btn" onClick={handleAltMobNum}> Change </Button>
           </InputGroup>
         </div>
         <p className="small text-danger">{altMobErrorMessage}</p>

@@ -26,7 +26,6 @@ const AnimatedProgressBar = ({ orderItem }) => {
       default: setActiveStep(0)
         break;
     }
-    console.log(state);
   }, [orderItem, setActiveStep])
   // const handleStepClick = (index) => {
   //     setActiveStep(index);
@@ -36,15 +35,15 @@ const AnimatedProgressBar = ({ orderItem }) => {
     <Wrapper>
       <div className='d-flex-cb my-1 w-100 p-2 rounded'>
         <div className='d-flex w-100 justify-content-start align-item-start'>
-          <h2 className="mb-0 text-k-text bg-k-light px-3 py-2">
-            <span className="text-k-accent small text-k-clr-primary fw-bold"> {orderItem.product_name}  </span>
-            <span className="text-k-accent small text-k-clr-primary fw-bold"> ( {orderItem.product_type} ) </span>
+          <h2 className="mb-0 text_accent bg_light2 px-3 py-2">
+            <span className="text_accent small text_primary fw-bold"> {orderItem.product_name}  </span>
+            <span className="text_accent small text_primary fw-bold"> ( {orderItem.product_type} ) </span>
             <span className="text-k-text small"> - {orderItem.member_name}</span>
           </h2>
         </div>
       </div>
 
-      <ul className='d-flex'>
+      <ul className='d-flex text-nowrap'>
         {[
           'Order Placed',
           'Sample Collection',
@@ -58,7 +57,6 @@ const AnimatedProgressBar = ({ orderItem }) => {
               <i className="fa-solid fa-check text-white" style={{ fontSize: "16px" }}></i>
             </div>
             <i className="icon uil uil-capture">
-              {/* <img src={`/images/icons/ProgressBarIcons/${step.toLowerCase().replace(/\s/g, '_')}.svg`} alt="" /> */}
             </i>
             <p className="text mb-0">{step}</p>
           </li>

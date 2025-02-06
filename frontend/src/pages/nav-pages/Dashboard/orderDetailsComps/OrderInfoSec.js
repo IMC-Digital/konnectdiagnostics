@@ -19,24 +19,24 @@ function formatOrderDate(orderDate) {
 
 export default function OrderInfoSec({ order }) {
     return (
-        <div className='bg-k-light p-3 py-2'>
+        <div className='bg_light2 p-3 py-2'>
             <div className="d-flex-cb">
-                <div className="d-flex w-100">
-                    <div className='d-flex-cc'>
+                <div className="d-md-flex w-100">
+                    <div className='d-flex justify-content-md-center justify-content-start align-items-center'>
                         <div className='bg-white d-flex-cc p-2 rounded me-2' style={{ width: "45px", height: "45px" }} >
                             <Image src={"/images/k.png"} rounded style={{ width: "35px", height: "35px" }} />
                         </div>
                         <div className='pe-3 py-1 mb-0'>
                             <p className="text-k-text py-1 mb-0"> Order Id: </p>
-                            <p className='text-k-clr-secondary fw-bold'> #ORKDC{order.order_id} </p>
+                            <p className='text_secondary_clr fw-bold'> #ORKDC{order.order_id} </p>
                         </div>
                     </div>
-                    <div className="vr"></div>
+                    <div className="vr d-md-block d-none"></div>
                     <BillingIdSec orderId={order.order_id} />
-                    <div className="vr"></div>
+                    <div className="vr d-md-block d-none"></div>
                     <PaymentIdSec orderId={order.order_id} />
                     
-                    <div className="vr ms-auto"></div>
+                    <div className="vr ms-auto d-md-block d-none"></div>
                     <OrderDateSec order={order} />
                 </div>
 

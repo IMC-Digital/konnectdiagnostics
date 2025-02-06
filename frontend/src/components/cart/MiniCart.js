@@ -6,7 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
 export default function MiniCart({ cart, setCart }) {
   return (
     <div className='mini-cart-wrapper'>
-      <h5 className='p-3 bg-light text-k-accent'>Tests Cart</h5>
+      <h5 className='p-3 bg-light text_accent'>Tests Cart</h5>
       <ul className='px-3'>
         {cart.map((item, index) => (
           <MiniCartItem key={index} item={item} setCart={setCart} />

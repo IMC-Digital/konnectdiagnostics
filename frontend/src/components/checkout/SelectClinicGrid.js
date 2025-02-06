@@ -3,15 +3,15 @@ import Accordion from 'react-bootstrap/Accordion';
 
 export default function SelectClinicGrid({ item, setSelectedClinic }) {
   return (
-    <div className='rounded' onClick={() => { setSelectedClinic(item); console.log(item) }}>
+    <div className='rounded' onClick={() => { setSelectedClinic(item); }}>
 
           <div className='d-flex align-items-center'>
             <Accordion>
               <Accordion.Item eventKey="0">
                 <Accordion.Header>
-                  <h3 className='mb-0 text-k-accent'>
+                  <h3 className='mb-0 text_accent'>
                     <span> {item.area} </span> -
-                    <span className='text-k-clr-secondary'> {item.pincode} </span>
+                    <span className='text_secondary_clr'> {item.pincode} </span>
                   </h3>
                 </Accordion.Header>
                 <Accordion.Body>

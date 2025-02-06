@@ -8,8 +8,8 @@ export default function ActiveOrderCard1() {
         <Card.Header className='d-flex-cb'>
             <div className='d-flex-cc'>
               <Image src='/images/k.png' alt="konnect-logo" className='me-2' style={{ width: "17px", height: "15px" }} />  
-              <h2 className="text-k-accent mb-0 me-2">  #KDO085</h2>
-              <p className="text-k-text small text-k-clr-secondary mb-0"> 24 Jan, Wed </p>
+              <h2 className="text_accent mb-0 me-2">  #KDO085</h2>
+              <p className="text-k-text small text_secondary_clr mb-0"> 24 Jan, Wed </p>
             </div>
 
             <div className='d-flex-cc'>
@@ -19,7 +19,7 @@ export default function ActiveOrderCard1() {
         <Card.Body>
           <div className='d-flex align-items-center'>
             <Image src='/images/k.png' alt="konnect-logo" className='me-2' style={{ width: "17px", height: "15px" }} />
-            <h2 className='text-k-accent mb-0'>Card Title</h2>
+            <h2 className='text_accent mb-0'>Card Title</h2>
           </div>
           <Card.Text className='d-flex-cb'>
             <p className="text-k-text text-light-dark mb-0">

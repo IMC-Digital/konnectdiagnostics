@@ -63,8 +63,8 @@ const Asthma = () => {
           </ul>
           <h5 className="include">Signs that indicate worsening of asthma:</h5>
           <div className="icon-box d-flex flex-wrap gap-3">
-            {hcIcons[0].asthma[0].symptoms.map((item) => (
-              <div className="box">
+            {hcIcons[0].asthma[0].symptoms.map((item, idx) => (
+              <div key={idx} className="box">
                 <img src={item.icon} alt="" />
                 <h5>{item.symptom}</h5>
               </div>
@@ -80,8 +80,8 @@ const Asthma = () => {
           </p>
           <h5 className="include">The common asthma triggers include:</h5>
           <div className="icon-box d-flex flex-wrap gap-3">
-            {hcIcons[0].asthma[0].riskFactors.map((item) => (
-              <div className="box">
+            {hcIcons[0].asthma[0].riskFactors.map((item, idx) => (
+              <div key={idx} className="box">
                 <img src={item.icon} alt="" />
                 <h5>{item.symptom}</h5>
               </div>

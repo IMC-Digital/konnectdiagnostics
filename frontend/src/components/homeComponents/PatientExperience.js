@@ -1,75 +1,18 @@
 import React from "react";
 import styled from "styled-components";
-// import { patientStoryData } from "../../assets/data/AllData";
-// import { BiSolidQuoteRight } from "react-icons/bi";
 import PatExpCarousel from "./PatExpCarousel";
 import HomeSectionsHeading from "./SectionsHeadingAndPara";
 
 const PatientExperience = () => {
-  // const [activeTab, setActiveTab] = useState(0);
-  // const handleTabClick = (index) => {
-  //   setActiveTab(index);
-  // };
 
   return (
-    <Wrapper className="bg-k-light">
-      <div className="pe container py-md-5 py-sm-3 py-2">
+    <Wrapper className="bg_light2 py-5 px-md-0 px-3">
+      <div className="container">
         <HomeSectionsHeading 
           title={"The Patient Experience"} 
           para={`Hear from our satisfied patients about our exceptional care, accurate results, and compassionate staff. Experience the difference today.`} 
           />
-
-        {/* <div className="peContent mt-md-5">
-          <div className="pe-left">
-            {patientStoryData.map((patient, index) => (
-              <div key={index}
-                className={`patients tab-item ${
-                  activeTab === index ? "active" : ""
-                }`}
-                onClick={() => handleTabClick(index)}
-              >
-                <div
-                  className="patientImage"
-                  style={{
-                    backgroundImage: `url(${patient.photo})`,
-                    backgroundSize: "cover",
-                    backgroundRepeat: "no-repeat",
-                  }}
-                ></div>
-                <div className="patientInfo">
-                  <h2 className="text-k-accent fw-bold text-k-clr-text pat-name"> {patient.name} </h2>
-                </div>
-              </div>
-            ))}
-          </div>
-          
-          <div
-            className="pe-right"
-            style={{
-              backgroundImage: `url(${patientStoryData[activeTab].bg})`,
-              backgroundSize: "cover",
-              backgroundPosition: "center top",
-              backgroundRepeat: "no-repeat",
-            }}
-          >
-            <div className="patientStory-box">
-              <div className="patientStory">
-                <h5 className="text-k-clr-secondary text-k-text">Patient Story</h5>
-                <p className="text-k-text text-center text-white">{patientStoryData[activeTab].description}</p>
-
-                <span>
-                  <BiSolidQuoteRight />
-                </span>
-                <h5 className="patient-name text-k-text fw-bold">
-                  {patientStoryData[activeTab].name}
-                </h5>
-              </div>
-            </div>
-          </div>
-        </div> */}
-        <div className="py-2">
-          <PatExpCarousel />
-        </div>
+        <PatExpCarousel />
       </div>
     </Wrapper>
   );

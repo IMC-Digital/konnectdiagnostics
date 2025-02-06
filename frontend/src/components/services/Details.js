@@ -15,24 +15,22 @@ const DetailsPages = () => {
     if (conditions) {
       setconditions(conditions);
     }
-    console.log("sss");
   }, [slug]);
 
   return (
     <Wrapper>
       {conditions ? (
-        <section className="singlePage">
-          <div className="container d-flex gap-5">
-            <div className="art_sec pe-5">
+        <section className="singlePage px-md-0 px-3">
+          <div className="container row mx-auto">
+            <div className="col-md-8 art_sec pe-md-5">
               <div className="fi_box" style={{ backgroundImage: `url("${conditions.cover}")`}}>
-                <h2 className="text-k-primary text-white bg-k-primary p-2 px-sm-5 mb-0"> {conditions.title} </h2>
+                <h2 className="text_primary text-white bg_primary p-3 px-sm-5 mb-0"> {conditions.title} </h2>
               </div>
-              {/* <AiOutlineTags className="icon" /> */}
               <div>{conditions.component}</div>
             </div>
 
-            <div className="related_art_sec">
-              <h2 className="text-k-primary">Related</h2>
+            <div className="col-md-4 pt-md-0 pt-5">
+              <h2 className="text_primary">Related</h2>
               <hr />
               <div className="scroll-box-right">
                 {hcContentData.map((item, index) => (
@@ -44,7 +42,7 @@ const DetailsPages = () => {
                           </div>
                         </div>
                         <div className="rel_art_info px-2">
-                          <h2 className="title text-k-accent">{item.title}</h2>
+                          <h2 className="title text_accent">{item.title}</h2>
                           <p className="excrpt text-k-text text-muted small">{item.excerpt.slice(0,60)}...</p>
                         </div>
                       </div>
@@ -92,8 +90,6 @@ const Wrapper = styled.section`
         font-weight: 600;
       }
     }
-    .art_sec{width: 65%;}
-    .related_art_sec{width: 35%;}
     .rel_art_fi{width: 40%}
     .rel_art_info{width: 60%}
     .fi_box {
@@ -147,5 +143,9 @@ const Wrapper = styled.section`
           }
         }
       }
+  }
+
+  @media only screen and (max-width: 600px){
+    .fi_box{ height: 200px !important; }
   }
 `;

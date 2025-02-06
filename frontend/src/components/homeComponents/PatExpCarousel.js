@@ -12,7 +12,7 @@ const PatExpCarousel = () => {
     arrows: true,
     dots: true,
     infinite: true,
-    speed: 300,
+    speed: 350,
     slidesToShow: 3,
     slidesToScroll: 1,
     responsive: [
@@ -43,21 +43,16 @@ const PatExpCarousel = () => {
     ],
     autoplay: true,
     autoplaySpeed: 2000,
-    // cssEase: "ease-in"
   };
   const PE_carousel_slider = useRef(null);
 
   return (
-    <Wrapper>
-      <div className="container">
-        <div className="my-5">
+    <Wrapper className="mt-3">
           <Slider ref={PE_carousel_slider} {...sliderSettings}>
             {ytPatExpVids.map((videoObj, index) => {
               return <SinglePEytVideo key={index} vidCode={videoObj.vidCode} />;
             })}
           </Slider>
-        </div>
-      </div>
     </Wrapper>
   );
 };
@@ -73,15 +68,14 @@ const Wrapper = styled.section`
     height: 50px;
     z-index: 5;
     border-radius: 100%;
-    background: ${({ theme }) => theme.colors.primary90};
-
+    background: white;
+    box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
   }
   .slick-prev:before,.slick-next:before {
-    color: ${({ theme }) => theme.colors.primary90};
+    color: var(--primary-color);
   }
   .slick-dots li button:before {
-    color: ${({ theme }) => theme.colors.primary};
-    font-size: 10px !important;
+    color: white;
     margin-top: 10px;
   }
 `;

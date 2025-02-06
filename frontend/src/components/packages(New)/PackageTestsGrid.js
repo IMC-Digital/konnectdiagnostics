@@ -27,7 +27,7 @@ export default function PackageTestsGrid({ setPackageTests, packageTests, packag
             </ListGroup>
 
             {packageTests.length > 7 && (
-                <p className="small fw-bold text-k-clr-secondary pb-0">{packageTests.length - 5} More &gt;&gt;</p>
+                <p className="small fw-bold text_secondary_clr pb-0">{packageTests.length - 5} More &gt;&gt;</p>
             )}
         </Wrapper>
 

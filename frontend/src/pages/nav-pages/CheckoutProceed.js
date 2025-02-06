@@ -16,16 +16,14 @@ export default function CheckoutProceed({
   setCheckOutFormData 
 }) {
   return (
-    <Wrapper>
-      <article className='container mx-auto m-5 p-0 d-flex'>
-        <div className='p-5 bg-light' style={{ width: "35%" }}>
+    <Wrapper className='py-md-5 py-3 px-md-0 px-3'>
+      <article className='container border mx-auto px-0 row'>
+        <div className='col-md-4 order-md-1 order-2 p-md-5 p-3 bg-light'>
           <NavLink to="/cart">
-            <button type="button" className='btn btn-primary fw-bold text-white'>
-              <i className="fa-solid fa-angle-left text-white"></i>
-              <span className='ms-4 me-2 text-white'> Back to cart </span>
+            <button type="button" className='btn btn-outline-secondary fw-bold mb-3'>
+              <i className="fa-solid fa-angle-left me-2"></i> Back to cart
             </button>
           </NavLink>
-          <div className='my-2'></div>
           <CartBillingSec 
             cart={cart} 
             setCart={setCart} 
@@ -34,7 +32,8 @@ export default function CheckoutProceed({
             setCheckOutFormData={setCheckOutFormData} 
           />
         </div>
-        <div className='p-5' style={{ width: "65%" }}>
+
+        <div className='col-md-8 order-md-2 order-1 p-md-5 p-3'>
           <MultiStepForm
             cart={cart}
             setCart={setCart}
@@ -55,13 +54,7 @@ export default function CheckoutProceed({
 
 const Wrapper = styled.section`
 article{
-    margin: auto;
-    background-image: 'url("/project-konnect/images/k-10.png")';
-    background-size: "500px";
-    background-position: "center center";
-    background-repeat: "no-repeat";
     overflow: hidden;
-    box-shadow: rgba(50, 50, 93, 0.1) 0px 50px 100px -20px, rgba(0, 0, 0, 0.1) 0px 30px 60px -30px;
     border-radius: 10px;
 }
 .cartItem{

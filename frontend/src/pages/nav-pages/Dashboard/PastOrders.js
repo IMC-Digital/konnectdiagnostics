@@ -19,7 +19,7 @@ function PastOrders({ userId, navigateToOrderDetails }) {
   }, [setPastOrders, userId]);
 
   return (
-    <div id='past-orders-tab' className='d-flex flex-wrap gap-2 p-3'>
+    <div id='past-orders-tab' className='d-md-flex flex-wrap gap-2 p-3'>
       {pastOrders && pastOrders.length > 0 ? (
         pastOrders.map((orderItem, index) => (
           <OrderItemCard 

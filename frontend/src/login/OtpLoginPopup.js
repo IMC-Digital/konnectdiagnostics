@@ -5,7 +5,7 @@ export default function OtpLoginPopup(props) {
 
   return (
     <Modal {...props} size="lg" aria-labelledby="contained-modal-title-vcenter" centered>
-      <Modal.Body className='p-0'>
+      <Modal.Body className='d-flex-cc'>
         <OtpLoginWrapper /> 
       </Modal.Body>
     </Modal>

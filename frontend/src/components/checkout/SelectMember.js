@@ -44,7 +44,7 @@ const SelectMember = ({ userId, cart, profileData, setCart, setShowAddNewMemberP
   return (
     <div className="mt-5">
       <div className="d-flex justify-content-between">
-        <h2 className="text-k-secondary mb-0">Select Member for Selected Test</h2>
+        <h2 className="text_secondary mb-0">Select Member for Selected Test</h2>
         <button
           className="btn btn-outline-secondary btn-sm"
           style={{ width: "200px" }}
@@ -57,7 +57,7 @@ const SelectMember = ({ userId, cart, profileData, setCart, setShowAddNewMemberP
       <form>
         {cart.map((product, questionIndex) => (
           <div key={product.product_id} className="mb-3 border-bottom">
-            <h5 className="text-k-accent">{product.test_name}</h5>
+            <h5 className="text_accent">{product.test_name}</h5>
 
             <div className="d-flex ">
               <div className="form-check">

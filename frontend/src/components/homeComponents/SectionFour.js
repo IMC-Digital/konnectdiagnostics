@@ -6,14 +6,14 @@ import HomeSectionsHeading from "./SectionsHeadingAndPara";
 
 const SectionFour = ({ userId, auth, cart, setCart, handleLoginClick }) => {
   return (
-    <Wrapper>
-      <div className="container mt-md-5 py-md-5 py-sm-3 py-2">
+    <Wrapper className="py-5 px-md-0 px-3">
+      <div className="container">
         <HomeSectionsHeading 
           title={"Popular Tests"} 
           para={`Explore Konnect's popular diagnostic tests to gain valuable insights into your health, cognition, and overall well-being. Take charge of your health journey now.`}
         />
 
-        <div className="cards pt-2">
+        <div className="cards mt-n4">
           <PopularTests userId={userId} auth={auth} cart={cart} setCart={setCart} handleLoginClick={handleLoginClick} />
         </div>
       </div>
@@ -23,5 +23,4 @@ const SectionFour = ({ userId, auth, cart, setCart, handleLoginClick }) => {
 
 export default SectionFour;
 
-const Wrapper = styled.div`
-`;
+const Wrapper = styled.div``;

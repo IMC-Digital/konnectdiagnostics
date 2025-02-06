@@ -7,7 +7,7 @@ export default function PageBanner({ title, bannerImg }) {
     <Wrapper>
       <div className="banner pb d-flex" style={{background: `url('/images/banners/${bannerImg}.jpg')`}}>
         <div className="container flex">
-          <h2 className="text-k-primary text-k-clr-text">{title}</h2>
+          <h2 className="text_primary">{title}</h2>
         </div>
       </div>
     </Wrapper>

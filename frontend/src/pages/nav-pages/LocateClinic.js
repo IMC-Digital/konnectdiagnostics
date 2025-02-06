@@ -44,11 +44,11 @@ const LocateClinic = () => {
   };
 
   return (
-    <Wrapper>
-      <div className="locate-clinic">
+    <Wrapper className="">
+      <div className="container locate-clinic">
         {/* <PageBanner title={"Locate Nearest Centers"} bannerImg={"locate-clinic-bg-image"} /> */}
 
-        <div className="container w-50 bg-white shadow-sm d-flex gap-2 p-3 rounded mt-5">
+        <div className="container fields_wrapper bg-white shadow-sm d-md-flex gap-2 p-3 rounded mt-5">
             <ClinicSearchBar
               clinicsdata={clinicsdata}
               setClinicsdata={setClinicsdata}
@@ -59,15 +59,9 @@ const LocateClinic = () => {
               setPinSearchTerm={setPinSearchTerm}
             />
         </div>
-        <div className="container w-75">
-          <p
-            className={
-              showNoExctPin ? "mt-4 mb-4 text-center text-danger fw-bold" : ""
-            }
-          >
-            {showNoExctPin
-              ? "No Exact Pincode clinics found, but below are nearest centers to entered Pincode"
-              : ""}
+        <div className="container">
+          <p className={ showNoExctPin ? "mt-4 mb-4 text-center text-danger fw-bold" : "" }>
+            {showNoExctPin ? "No Exact Pincode clinics found, but below are nearest centers to entered Pincode" : ""}
           </p>
           <LocateClinicGrid clinicsdata={clinicsdata} />
         </div>
@@ -77,6 +71,7 @@ const LocateClinic = () => {
 };
 
 export default LocateClinic;
+
 const Wrapper = styled.section`
   .locate-clinic {
     background-color: white;
@@ -90,5 +85,21 @@ const Wrapper = styled.section`
       background: #005bab;
       border: 1px solid #005bab;
     }
+  }
+  .fields_wrapper{
+    width: 750px;
+    input.areaField{
+      width: 400px !important;
+    }
+  }
+
+  @media only screen and (max-width: 600px){
+    .fields_wrapper{ 
+      width: 350px; 
+      input.areaField{
+        width: 320px !important;
+        margin-bottom: 5px;
+      }
+    } 
   }
 `;

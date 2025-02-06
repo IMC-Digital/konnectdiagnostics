@@ -1,19 +1,13 @@
 import React from 'react';
 // import ProfileForm from './ProfileForm';
 import UserProfile from './UserProfile';
-import { styled } from "styled-components";
 
 const Profile = ({ userId, auth, profileData, showProfileForm, setShowProfileForm, setProfileData }) => {
   return (
-    <Wrapper className='container p-5'>
-      <div className="d-flex-cc">
-        <UserProfile profileData={profileData} />
-      </div>
-    </Wrapper>
+    <div className='container mx-auto px-md-0 px-3 py-md-5 py-2'>
+      {profileData && <UserProfile profileData={profileData} />}
+    </div>
   );
 };
 
 export default Profile;
-
-const Wrapper = styled.div`
-`

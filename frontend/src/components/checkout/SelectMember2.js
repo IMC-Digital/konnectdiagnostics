@@ -64,14 +64,6 @@ const SelectMember2 = ({ userId, cart, profileData, setCart, checkOutFormData, s
         }
     };
 
-    // const handleRemoveFromCart = (item) => {
-    //     const prevCartItems = JSON.parse(localStorage.getItem("selectedCartItems")) || [];
-    //     const indexToRemove = prevCartItems.findIndex(cartItem => cartItem.product_id === item.product_id);
-    //     const updatedCartItems = [...prevCartItems.slice(0, indexToRemove), ...prevCartItems.slice(indexToRemove + 1)];
-    //     localStorage.setItem("selectedCartItems", JSON.stringify(updatedCartItems));
-    //     setCart(updatedCartItems);
-    // };
-
     const handleRemoveFromCart = (itemToRemove) => {
         const updatedCartItems = removeFromCart(
           itemToRemove,
@@ -87,8 +79,8 @@ const SelectMember2 = ({ userId, cart, profileData, setCart, checkOutFormData, s
 
     return (
         <div className="mt-5">
-            <div className="d-flex justify-content-between">
-                <h2 className="text-k-secondary mb-0">Select Member for Selected Test</h2>
+            <div className="d-md-flex justify-content-between">
+                <h2 className="text_secondary mb-0">Select Member for Selected Test</h2>
                 <button
                     className="btn btn-outline-secondary btn-sm"
                     style={{ width: "200px" }}
@@ -100,10 +92,10 @@ const SelectMember2 = ({ userId, cart, profileData, setCart, checkOutFormData, s
             <hr />
             <form>
                 {cart.map((product, questionIndex) => (
-                    <div key={product.product_id} className="mb-3">
+                    <div key={questionIndex} className="mb-3">
                         <div className="d-flex justify-content-between align-items-center bg-light p-2 ps-3 rounded">
                             <div className='d-flex'>
-                                <h2 className='text-k-accent mb-0 me-2'>{product.type === "test" ? product.test_name : product.package_name}</h2>
+                                <h2 className='text_accent mb-0 me-2'>{product.type === "test" ? product.test_name : product.package_name}</h2>
                                 <span className="small text-muted text-capitalize"> - {product.type} </span>
                             </div>
                             <div className='d-flex align-items-center'>
@@ -114,7 +106,7 @@ const SelectMember2 = ({ userId, cart, profileData, setCart, checkOutFormData, s
                             </div>
                         </div>
 
-                        <div className='d-flex '>
+                        <div className='d-md-flex'>
                             <div className="form-check">
                                 <input
                                     type="checkbox"
@@ -125,14 +117,13 @@ const SelectMember2 = ({ userId, cart, profileData, setCart, checkOutFormData, s
                                     required
                                 />
                                 <label className="form-check-label" htmlFor={`option${profileData.profile_id}${questionIndex}`}>
-
                                     <div className="d-flex p-3 rounded" style={{ width: "200px", marginLeft: "-25px", zIndex: "0" }}>
-                                        <div className='mb-2'>
+                                        <div className='mb-md-2'>
                                             <img src={`./images/icons/${profileData.gender}.svg`} alt="male" className="me-3" style={{ width: "35px" }} />
                                         </div>
                                         <div>
-                                            <h2 className="text-k-text mb-0">{profileData.fullname}</h2>
-                                            <p className="small text-muted fw-bold mb-0">Self</p>
+                                            <p className="mb-0">{profileData.fullname}</p>
+                                            <p className="small">Self</p>
                                         </div>
                                     </div>
                                 </label>
@@ -149,12 +140,12 @@ const SelectMember2 = ({ userId, cart, profileData, setCart, checkOutFormData, s
                                     />
                                     <label className="form-check-label" htmlFor={`option${member.member_id}${questionIndex}`}>
                                         <div className="d-flex p-3 rounded" style={{ width: "200px", marginLeft: "-25px", zIndex: "0" }}>
-                                            <div className='mb-2'>
+                                            <div className='mb-md-2'>
                                                 <img src={`./images/icons/${member.gender}.svg`} alt="male" className="me-3" style={{ width: "35px" }} />
                                             </div>
                                             <div>
-                                                <h2 className="text-k-text mb-0">{member.fullname}</h2>
-                                                <p className="small text-muted fw-bold mb-0">{member.relation}</p>
+                                                <p className="mb-0">{member.fullname}</p>
+                                                <p className="small">{member.relation}</p>
                                             </div>
                                         </div>
                                     </label>
@@ -163,9 +154,8 @@ const SelectMember2 = ({ userId, cart, profileData, setCart, checkOutFormData, s
                         </div>
                     </div>
                 ))}
-                <button type="button" className="btn btn-primary w-100" onClick={handleMemberSelectionSubmit}>
-                    Confirm Member selection for selected tests
-                </button>
+                <button type="button" className="btn btn-secondary" onClick={handleMemberSelectionSubmit}> Confirm Member selected </button>
+                <p className="small"> Confirm Member selection for selected tests to countinue </p>
             </form>
 
             <ToastContainer />

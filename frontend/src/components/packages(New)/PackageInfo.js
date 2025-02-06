@@ -3,6 +3,7 @@ import PackageInfoTestsTable from "./PackageInfoTestsTable";
 import axios from 'axios';
 import BASE_API_URL from '../../api/index';
 import { ToastContainer, toast } from "react-toastify";
+import { styled } from "styled-components";
 
 export default function PackageInfo({ cart, setCart, item }) {
     const [isItemSelected, setIsItemSelected] = useState(false);
@@ -63,15 +64,13 @@ export default function PackageInfo({ cart, setCart, item }) {
     }, [cart, item]);
 
     return (
-        <div className="rounded-2 h-100 p-3 my-3 bg-white shadow-sm">
-            <div className="d-flex-cb w-100 bg-k-light rounded-2 overflow-hidden">
-                <div className="ps-4 h-100">
-                    <h2 className="text-k-secondary"> {item.package_name} </h2>
-                    <p className="small mb-1 text-k-clr-secondary">
-                        Tests covered {packageTests && packageTests.length}{" "}
-                    </p>
-                    <h2 className="text-k-secondary mb-3 price mb-0 fw-bolder text-k-clr-secondary">
-                        <small>&#8377; </small> {sumPrices(packageTests)}{" "}
+        <Wrapper className="rounded-2 h-100 p-3 my-3 bg-white shadow-sm">
+            <div className="d-md-flex align-items-center justify-content-between w-100 bg_light2 rounded-2 overflow-hidden">
+                <div className="ps-md-4 ps-2 pb-md-0 pb-3 h-100">
+                    <h2 className="text_secondary"> {item.package_name} </h2>
+                    <p className="small mb-1 text_secondary_clr"> Tests covered {packageTests && packageTests.length} </p>
+                    <h2 className="text_secondary mb-3 price mb-0 fw-bolder text_secondary_clr">
+                        <small>&#8377; </small> {sumPrices(packageTests)}
                     </h2>
 
                     {isItemSelected ? (
@@ -89,29 +88,25 @@ export default function PackageInfo({ cart, setCart, item }) {
                     )}
                 </div>
                 <div>
-                    <img 
-                        src={`/images/health-packages/${item.package_category}.jpg`} 
-                        alt="" 
-                        style={{ width: "500px" }}
-                    />
+                    <img src={`/images/health-packages/${item.package_category}.jpg`} alt="Package_FI" className='package_FI' style={{ width: "500px" }} />
                 </div>
             </div>
             <div>
-                <p className="text-k-secondary mb-0 mt-4">Tests / Parameters</p>
-                <p className="small text-k-clr-secondary">Laborator Tests</p>
+                <p className="text_secondary mb-0 mt-4">Tests / Parameters</p>
+                <p className="small text_secondary_clr">Laborator Tests</p>
 
                 <PackageInfoTestsTable packageTests={packageTests} />
             </div>
             <hr />
             <div>
-                <p className="text-k-secondary mb-0 mt-4">General Instructions</p>
-                <p className="small text-k-clr-secondary">Tests, Pre-test preps info, tat, prescription</p>
+                <p className="text_secondary mb-0 mt-4">General Instructions</p>
+                <p className="small text_secondary_clr">Tests, Pre-test preps info, tat, prescription</p>
 
 
             </div>
 
             <ToastContainer />
-        </div>
+        </Wrapper>
     )
 }
 
@@ -121,3 +116,19 @@ const sumPrices = (packageTests) => {
     }
     return packageTests.reduce((total, item) => total + (item.price || 0), 0);
 };
+
+
+const Wrapper = styled.section`
+.package_FI{
+    width: 500px;
+    height: auto;
+}
+
+@media only screen and (max-width: 600px){
+    .package_FI{
+        width: 100% !important;
+        height: 200px;
+        object-fit: cover;
+    }
+}
+`;

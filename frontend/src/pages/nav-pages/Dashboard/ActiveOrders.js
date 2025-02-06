@@ -19,7 +19,7 @@ function ActiveOrders({ userId, navigateToOrderDetails }) {
   }, [setActiveOrders, userId]);
 
   return (
-    <div id='active-orders-tab' className='d-flex flex-wrap gap-2 p-3'>
+    <div id='active-orders-tab' className='d-md-flex flex-wrap gap-2 p-3'>
       {activeOrders && activeOrders.length > 0 ? (
         activeOrders.map((order, index) => (
           <OrderCard 

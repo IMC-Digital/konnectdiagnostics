@@ -21,25 +21,25 @@ export default function OrderItemsGrid({ order }) {
         <div>
             {
                 orderItems.map((item, index) => (
-                    <div key={index} className='d-flex-cb my-1 w-100 p-2 bg-k-light rounded'>
+                    <div key={index} className='d-flex-cb my-1 w-100 p-2 bg_light2 rounded'>
                         <div className='d-flex w-100 justify-content-start align-item-start'>
                             {/* <div className='bg-white d-flex-cc p-2 rounded' style={{ width: "35px", height: "35px" }} >
                                 <Image src={"/images/organs/cardiac.png"} rounded style={{ width: "25px", height: "25px" }} />
                             </div> */}
                             <div className='pe-0 flex-grow-1'>
-                                <div className='d-flex-cb'>
-                                    <h2 className="mb-0 text-k-text">
-                                        <span className="text-k-accent small text-k-clr-primary fw-bold"> {item.product_name}  </span>
-                                        <span className="text-k-accent small text-k-clr-primary fw-bold"> ( {item.product_type} ) </span>
-                                    </h2>
-                                    <h2 className="mb-0 text-k-text p-1 py-0">
-                                        <span className="p-2 small rounded text-light-dark">
+                                <div className='d-md-flex align-items-center justify-content-between'>
+                                    <p>
+                                        <span className="text_accent small text_primary fw-bold"> {item.product_name}  </span>
+                                        <span className="text_accent small text_primary fw-bold"> ( {item.product_type} ) </span>
+                                    </p>
+                                    <p className="mb-0 py-0">
+                                        <span className="small rounded text-light-dark">
                                             <strong> Status: </strong> {item.order_item_delivery_status}
                                         </span>
-                                    </h2>
+                                    </p>
                                     {/* <OrderStatusBadge orderStatus="refunded" /> */}
                                 </div>
-                                <div className="d-flex py-2">
+                                <div className="d-md-flex py-2">
                                     {
                                         [
                                             ["Member", item.member_name],

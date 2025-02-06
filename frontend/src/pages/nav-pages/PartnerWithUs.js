@@ -2,7 +2,8 @@ import React from "react";
 import { styled } from "styled-components";
 import PageBanner from "../../components/PageBanner";
 import SectionsHeadingAndPara from "../../components/homeComponents/SectionsHeadingAndPara";
-import CardCarousel from "../../components/CardCarousel";
+import CardComponent from "../../components/CardComponent";
+// import CardCarousel from "../../components/CardCarousel";
 // import AssetImage from "../../imageImporter";
 
 const PartnerWithUs = () => {
@@ -10,19 +11,19 @@ const PartnerWithUs = () => {
     <Wrapper className="partnerwithus">
       <PageBanner title={"Partner With Us"} bannerImg={"partner-with-us-bg-image"} />
       
-      <section className="container py-6">
-        <div className="d-flex align-items-stretch">
-          <div className="w-50 align-self-center pe-5">
-            <h2 className="text-k-primary text-k-clr-secondary">
+      <section className="container mx-auto py-6 px-md-0 px-4">
+        <div className="row">
+          <div className="col-md-6 align-self-center pe-5">
+            <h2 className="text-k-primary text_secondary_clr">
               Our Commitment to Exceptional Diagnostic Services
             </h2>
-            <p className="text-k-accent fw-normal text-k-clr-primary">
+            <p className="text_accent fw-normal">
               We invite you to join us in our mission to deliver high-quality
               healthcare solutions to patients.
             </p>
           </div>
 
-          <div className="w-50 d-flex align-items-stretch gap-2">
+          <div className="col-md-6 d-flex align-items-stretch gap-2">
             <div className="w-50" id="pwu_s121"></div>
             <div className="w-50 d-flex flex-column gap-2">
               <div className="w-100">
@@ -36,27 +37,27 @@ const PartnerWithUs = () => {
         </div>
       </section>
 
-      <section className="py-6 bg-k-light">
+      <section className="py-6 bg_light2 px-md-0 px-5">
         <SectionsHeadingAndPara
           title={"Why Konnect Diagnostics?"}
           para={`We bridge the gap between accuracy and accessibility. With cutting-edge technology and a commitment to innovation, we make diagnostics efficient, reliable, and readily available to all.`}
           />
 
-        <div className="container row mx-auto mt-5" id="pwu_s22">
-          <div className="d-md-flex align-items-stretch justify-content-around flex-wrap">
+        <div className="container mx-auto pt-5" id="pwu_s22">
+          <div className="row gx-5">
             {
               [
                 {icon: "doctor", title: "Expert Team", para: "We have assembled a team of certified and qualified professionals comprising radiologists, pathologists, doctors, and technicians."},
                 {icon: "microscope", title: "State-of-the-Art Facilities", para: "We strive to be at the forefront of medical advancements by equipping our branches with the latest technologies and cutting-edge equipment."},
                 {icon: "high-quality", title: "Convenient and Fast Service", para: "We understand the importance of timely diagnoses and strive to provide quick services, ensuring that reports are delivered within 24 hours or even faster."}
               ].map((item, index) => (
-                <div key={index} className="text-center">
+                <div key={index} className="col-md-4 text-center px-4 mb-4">
                   <div className="card_img_container">
                     <img src={`/images/stethescope.svg`} alt="steth" className="img_steth" />
                     <img src={`/images/${item.icon}.svg`} alt="icon" className="w_icon" />
                   </div>
-                  <div style={{width: "350px"}}>
-                    <h2 className="text-k-accent my-3 text-k-clr-secondary"> { item.title } </h2>
+                  <div>
+                    <h2 className="text_accent my-3 text_secondary_clr"> { item.title } </h2>
                     <p className="text-k-text text-center"> { item.para } </p>
                 </div>
                 </div>
@@ -66,25 +67,48 @@ const PartnerWithUs = () => {
         </div>
       </section>
 
-      <section className="d-flex-cc flex-column py-6">
+      <section className="container py-6 px-md-0 px-4">
         <SectionsHeadingAndPara 
             title={"Partner Benefits"}
             para={`We're dedicated to unlocking partnerships and elevating diagnostics. Join us on a journey where mutual success takes center stage. Let's collaborate and revolutionize the world of diagnostics together`}
           />
-        <div className="container mx-auto mt-3">
+        {/* <div className="container mx-auto mt-3">
           <CardCarousel />
+        </div> */}
+
+        <div className="d-md-flex gap-2 mt-4">
+          <CardComponent
+            img="/images/benf1.jpg" 
+            title="Enhanced Reputation"
+            desc="By partnering with Konnect Diagnostics, you align yourself with a reputable and trusted brand in the healthcare industry. Our commitment to excellence and adherence to strict quality standards will enhance your reputation and instill confidence in your patients."
+          />
+          <CardComponent
+            img="/images/benf2.jpg" 
+            title="Comprehensive Services"
+            desc="As a partner, you gain access to our comprehensive range of diagnostic services. This includes radiology, pathology, and a range of specialized tests, allowing you to offer a wide spectrum of healthcare solutions to your patients."
+          />
+          <CardComponent
+            img="/images/benf3.jpg" 
+            title="Collaborative Approach"
+            desc="We believe in fostering strong partnerships based on collaboration and mutual growth. We work closely with our partners to understand their specific needs and develop tailored solutions that meet the unique requirements of their patient base."
+          />
+          <CardComponent
+            img="/images/benf4.jpg" 
+            title="Continuous Support"
+            desc='Our dedicated team is committed to providing ongoing support to our partners, offering comprehensive training, education, technical assistance, and marketing support to ensure your success as our valued partner.'
+          />
         </div>
       </section>
 
-      <section className="bg-k-light py-6">
-        <div className="container p-0 d-flex align-items-stretch justify-content-between">
-          <div className="pe-5 d-flex flex-column justify-content-center w-50">
-            <h2 className="text-k-primary text-k-clr-secondary"> Join us in our Pursuit of excellence in diagnostic care and together </h2>
+      <section className="bg_light2 py-6">
+        <div className="container px-md-0 px-5 d-md-flex align-items-stretch justify-content-between">
+          <div className="pe-5 d-flex flex-column justify-content-center w-md-50">
+            <h2 className="text-k-primary text_secondary_clr"> Join us in our Pursuit of excellence in diagnostic care and together </h2>
             <p className="text-k-text text-muted"> Let's make a positive impact on the health and well-being of our communities. </p>
-            <h2 className="text-k-accent text-k-clr-primary"> Partner with Konnect Diagnostics today and experience the Konnect difference! </h2>
+            <p className="text_accent"> Partner with Konnect Diagnostics today and experience the Konnect difference! </p>
           </div>
 
-          <div className="d-flex gap-2 align-items-stretch w-50">
+          <div className="d-flex gap-2 align-items-stretch w-md-50">
             <div className="w-50" id="pwu_s421"></div>
             <div className="w-50 d-flex flex-column gap-2">
               <div className="w-100">

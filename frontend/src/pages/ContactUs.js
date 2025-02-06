@@ -8,9 +8,9 @@ function ContactUs() {
     <Wrapper className="contact">
       <PageBanner title={"Contact Us"} bannerImg={'contact-us-bg-image'} />
 
-      <div className="box container row container px-0 mx-auto my-5 d-flex justify-content-center align-items-center">
+      <div className="box container row container px-md-0 px-4 mx-auto my-5 d-flex justify-content-center align-items-center">
         <div className="box-left col-md-6 p-5 rounded">
-          <h2 className="text-k-accent fw-bold">Registered Office</h2>
+          <h2 className="text_accent fw-bold">Registered Office</h2>
           <img
             src="/images/konnect-logo.png"
             className="my-3"
@@ -30,7 +30,7 @@ function ContactUs() {
           </p>
         </div>
 
-        <div className="bg-k-light shadow-sm rounded col-md-6 p-2 p-md-5">
+        <div className="bg_light2 shadow-sm rounded col-md-6 p-md-5 p-4">
           <ContactForm />
         </div>
       </div>

@@ -80,7 +80,7 @@
 //       <div
 //         className={`tab-pane ${item.product_id === activeTab ? "active" : ""}`}
 //       >
-//         <div className="tab-bg bg-k-primary">{/* <h2>{tab.title}</h2> */}</div>
+//         <div className="tab-bg bg_primary">{/* <h2>{tab.title}</h2> */}</div>
 //         <div className="pkg-active-bg-top d-flex">
 //           <div className="pkg-top d-flex">
 //             <div className="pkg-image">
@@ -97,7 +97,7 @@
 //               <div className="pkg-code">
 //                 <h3>{item.test_name}</h3>
 //                 <h5 className="code">Code :{item.product_code}</h5>
-//                 <p className="text-k-clr-primary fw-bolder">
+//                 <p className="text_primary fw-bolder">
 //                   <span> Price : &#8377; </span>
 //                   {item.price}/-
 //                 </p>
@@ -201,7 +201,7 @@ function PackageItemInfo({ item, auth, userId, cart, setCart, activeTab, handleL
 
   return (
     <div className={`tab-pane ${item.product_id === activeTab ? "active" : ""}`}>
-      <div className="tab-bg bg-k-primary">{/* <h2>{tab.title}</h2> */}</div>
+      <div className="tab-bg bg_primary">{/* <h2>{tab.title}</h2> */}</div>
       <div className="pkg-active-bg-top d-flex">
         <div className="pkg-top d-flex">
           <div className="pkg-image">
@@ -211,7 +211,7 @@ function PackageItemInfo({ item, auth, userId, cart, setCart, activeTab, handleL
             <div className="pkg-code">
               <h3>{item.test_name}</h3>
               <h5 className="code">Code :{item.product_code}</h5>
-              <p className="text-k-clr-primary fw-bolder">
+              <p className="text_primary fw-bolder">
                 <span> Price : &#8377; </span>
                 {item.price}/-
               </p>

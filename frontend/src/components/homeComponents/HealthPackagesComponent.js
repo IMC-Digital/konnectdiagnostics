@@ -10,14 +10,14 @@ const HealthPackagesComponent = ({ userId, auth, cart, setCart, handleLoginClick
   const [searchResults, setSearchResults] = useState([]);
 
   return (
-    <Wrapper className="bg-k-light">
-        <div className="container py-md-5 py-sm-3 py-2">
+    <Wrapper className="bg_light2 py-5 px-md-0 px-4">
+        <div className="container">
           <HomeSectionsHeading 
             title={"Health Packages"} 
-            para={`Konnect Diagnostic Centre: Empowering proactive health management through tailored Diagnostic Health Packages for early detection and prevention, promoting healthier lives.`}
+            para={`Empowering proactive health management through tailored Diagnostic Health Packages for early detection and prevention, promoting healthier lives.`}
           />
 
-          <div className="hp-box container flex-wrap mt-5">
+          <div className="hp-box container flex-wrap mt-3">
             <div className="hpCards w-100 d-flex justify-content-center flex-wrap gap-3">
               <OrganCarousel testsOrPackage={"packages"} searchResults={searchResults} setSearchResults={setSearchResults} />
               <div className="mt-3 pb-3 d-flex justify-content-center flex-wrap gap-3">

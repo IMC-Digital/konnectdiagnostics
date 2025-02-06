@@ -24,12 +24,10 @@ export default function CategoryWisePackagesTabs({ cart, setCart, auth, userId, 
 
     return (
         <Wrapper>
-            {loading ? (
-                <p>Loading...</p>
-            ) : packages.length > 0 ? (
+            {loading ? ( <p>Loading...</p> ) : packages.length > 0 ? (
                 <Tab.Container id={`category-package-tab-${category.category_name}`} defaultActiveKey={0}>
                     <Nav variant="pills" className="justify-content-start">
-                        <div className="package-tab-titles-wrapper d-flex gap-1">
+                        <div className="package-tab-titles-wrapper d-flex text-nowrap overflow-auto gap-1">
                             {packages.map((item, index) => (
                                 <Nav.Item key={index}>
                                     <Nav.Link eventKey={index}>

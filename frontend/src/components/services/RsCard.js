@@ -18,7 +18,7 @@ const RsCard = () => {
                 <div className="details">
                   <div className="catg">
                   </div>
-                  <h2 className="title text-k-accent">{item.title}</h2>
+                  <h2 className="title text_accent">{item.title}</h2>
                   {/* <p>{item.excerpt.slice(0, 25)}...</p> */}
                 </div>
               </Link>

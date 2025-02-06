@@ -7,10 +7,10 @@ const ToggleKHP = ({ userId, auth, cart, setCart, handleLoginClick }) => {
 
   return (
     <div className="container mt-4">
-      <div className="results d-flex flex-column flex-wrap gap-3 justify-content-center">
+      <div className="results d-flex flex-column gap-3 justify-content-center">
         <OrganCarousel testsOrPackage={"packages"} searchResults={searchResults} setSearchResults={setSearchResults} />
 
-        <div className="mt-3 d-flex justify-content-center flex-wrap gap-3">
+        <div className="mt-3 mb-md-0 mb-5 d-flex justify-content-center flex-wrap gap-3">
           {
             searchResults.map((item, index) => (
               <PackageCard key={index} cart={cart} setCart={setCart} item={item} />

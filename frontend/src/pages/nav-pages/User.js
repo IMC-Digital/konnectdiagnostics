@@ -15,9 +15,9 @@ export const User = ({ auth, userName, message, handleLoginClick, handleLogout }
               id="dropdown-menu-align-responsive-2"
               variant="secondary"
               title={
-                  <div className="btn btn-outline-dark border-dark px-3 py-1">
-                    {userName}  
-                    <i className="fa-solid ms-2 fa-user rounded clr-inherit"></i>
+                  <div className="btn btn-outline-dark border-dark px-2 py-1">
+                    { window.innerWidth > 600 &&  <span className="userName me-2"> {userName} </span> }  
+                    <i className="fa-solid fa-user rounded clr-inherit"></i>
                   </div>
               }
             >
@@ -26,7 +26,7 @@ export const User = ({ auth, userName, message, handleLoginClick, handleLogout }
                 <span className="text-k-text"> {userName} </span>
               </Dropdown.Item>
               <Dropdown.Item href="/dashboard">
-                <i class="fa-solid fa-table-columns me-2"></i>
+                <i className="fa-solid fa-table-columns me-2"></i>
                 <span className="text-k-text"> My Dashboard </span>
               </Dropdown.Item>
               <Dropdown.Item onClick={handleLogout} className="bg-light">
@@ -116,4 +116,6 @@ const Wrapper = styled.section`
   .logoutbtn:hover{
     background-color: rgba(255,0,0,0.05);
   }
+
+  .userName:hover{color: white;}
 `;
